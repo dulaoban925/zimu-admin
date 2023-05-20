@@ -24,6 +24,12 @@
     "paths": {
       "@/*": [
         "src/*"
+      ],
+      "@views/*": [
+        "src/views/*"
+      ],
+      "@components/*": [
+        "src/components/*"
       ]
     },
   },
