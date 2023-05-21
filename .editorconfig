@@ -1,0 +1,10 @@
+# 最顶层的 editorconfig 文件
+root = true
+
+[*]
+# 默认 utf-8 编码
+charset = utf-8
+# Unix 风格的换行符，以换行符结束
+end_of_line = lf
+# 缩进
+indent_size = 2
