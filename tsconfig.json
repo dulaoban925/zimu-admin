@@ -22,21 +22,15 @@
 
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ],
-      "@views/*": [
-        "src/views/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ]
-    },
+      "@/*": ["src/*"],
+      "@views/*": ["src/views/*"],
+      "@components/*": ["src/components/*"]
+    }
   },
   "include": [
-    "src/**/*.ts", 
-    "src/**/*.d.ts", 
-    "src/**/*.tsx", 
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
     "src/**/*.vue",
     "auto-imports.d.ts",
     "components.d.ts"

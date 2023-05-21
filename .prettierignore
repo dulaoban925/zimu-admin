@@ -5,3 +5,6 @@ package-lock.json
 .vscode/
 .husky/
 public/
+
+tsconfig.json
+tsconfig.node.json
