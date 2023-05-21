@@ -1,10 +1,25 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    // https://github.com/antfu/unplugin-auto-import/tree/main
+    AutoImport({
+      imports: ['vue', 'vue-router'],
+      /**
+       * 用于处理 eslint no-undef 检查冲突
+       * 启用该配置会生成一个 .eslintrc-auto-import.json 文件
+       * 添加到 eslintrc.cjs extends 下即可
+       */
+      eslintrc: {
+        enabled: true
+      }
+    })
+  ],
   resolve: {
     // 注意！！ alias 使用如下方式配置，若使用 对象形式，如 { "@": resolve(__dirname, 'src') }，import 的 url 必需为完整的路径，包括 index 及后缀
     alias: [

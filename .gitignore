@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 .eslintcache
+
+# unplugin-auto-import/vite 插件自动生成的文件
+auto-imports.d.ts
+.eslintrc-auto-import.json

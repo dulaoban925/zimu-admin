@@ -8,7 +8,12 @@ module.exports = {
     browser: true,
     es2021: true
   },
-  extends: ['plugin:vue/essential', 'standard', 'plugin:prettier/recommended'],
+  extends: [
+    'plugin:vue/essential',
+    'standard',
+    'plugin:prettier/recommended',
+    './.eslintrc-auto-import.json'
+  ],
   parserOptions: {
     ecmaVersion: 'latest',
     parser: '@typescript-eslint/parser',
