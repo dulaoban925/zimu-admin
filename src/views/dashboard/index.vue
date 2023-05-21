@@ -1,5 +1,9 @@
 <template>
   <div class="dashboard">
-    <el-button>我是主页</el-button>
+    <el-button>{{ text }}</el-button>
+    <hello-world></hello-world>
   </div>
 </template>
+<script setup lang="ts">
+const text = ref('我是主页')
+</script>
