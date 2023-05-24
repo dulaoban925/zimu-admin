@@ -4,10 +4,10 @@
   特点：顶部包含导航菜单和操作栏
 -->
 <template>
-  <div class="vertical-wrapper">
+  <div class="vertical-wrapper layout-wrapper">
     <el-header></el-header>
     <el-content>
-      <el-sidebar></el-sidebar>
+      <el-aside></el-aside>
       <el-main>
         <slot />
       </el-main>

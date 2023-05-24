@@ -21,7 +21,12 @@ export default defineConfig({
     })
   ],
   resolve: {
-    // 注意！！ alias 使用如下方式配置，若使用 对象形式，如 { "@": resolve(__dirname, 'src') }，import 的 url 必需为完整的路径，包括 index 及后缀
+    /**
+     * 注意！！ alias 使用如下方式配置
+     * 若使用 对象形式，如 { "@": resolve(__dirname, 'src') }，import 的 url 必需为完整的路径，包括 index 及后缀
+     * eg:
+     *  import router from '@/router/index.ts'
+     */
     alias: [
       {
         find: '@',
