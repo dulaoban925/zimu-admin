@@ -43,5 +43,12 @@ export default defineConfig({
     ],
     // vite 默认扩展名配置，可不需显式配置
     extensions: ['.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json']
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import '@/styles/variables.scss';@import '@/styles/global.scss';`
+      }
+    }
   }
 })

@@ -1,0 +1,8 @@
+/** 常量集合 */
+body {
+  /** 左侧导航菜单 start **/
+  --el-menu-item-height: 46px;
+  --el-menu-sub-item-height: calc(var(--el-menu-item-height) - 6px);
+  /** 左侧导航菜单 end **/
+}
+
