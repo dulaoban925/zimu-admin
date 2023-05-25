@@ -26,7 +26,7 @@
       "@views/*": ["src/views/*"],
       "@components/*": ["src/components/*"]
     },
-    "types": ["element-plus/global.d.ts"]
+    "types": ["vite/client", "element-plus/global.d.ts"]
   },
   "include": [
     "src/**/*.ts",
