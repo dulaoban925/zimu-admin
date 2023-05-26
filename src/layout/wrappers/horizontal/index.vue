@@ -4,17 +4,19 @@
 -->
 <template>
   <div class="horizontal-wrapper layout-wrapper">
-    <el-header>
-      <toolbar />
-    </el-header>
-    <el-content>
-      <el-aside>
-        <sidebar />
-      </el-aside>
-      <el-main>
-        <slot />
-      </el-main>
-    </el-content>
+    <el-container>
+      <el-header>
+        <toolbar />
+      </el-header>
+      <el-container>
+        <el-aside>
+          <sidebar />
+        </el-aside>
+        <el-main>
+          <slot />
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 <script setup lang="ts">

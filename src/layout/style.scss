@@ -1,8 +1,18 @@
 @import '@/styles/mixins.scss';
 
 .layout-wrapper {
+
   .el-header, .el-aside, .el-main {
     padding: 0;
+  }
+
+  .el-header {
+    height: max-content;
+  }
+
+  .el-aside {
+    width: max-content;
+    height: calc(100vh - 3rem);
   }
 
   .toolbar {
@@ -27,6 +37,6 @@
 
 .horizontal-wrapper {
   .horizontal-sidebar {
-
+    height: inherit;
   }
 }
