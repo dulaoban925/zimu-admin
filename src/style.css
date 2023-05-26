@@ -31,6 +31,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow: hidden;
 }
 
 h1 {
@@ -66,6 +67,7 @@ button:focus-visible {
   height: inherit;
   margin: 0;
   text-align: left;
+  background-color: var(--el-bg-color-page);
 }
 
 @media (prefers-color-scheme: light) {
