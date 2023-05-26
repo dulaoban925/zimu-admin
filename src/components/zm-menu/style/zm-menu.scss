@@ -1,0 +1,96 @@
+.zm-menu {
+  width: 250px;
+  max-width: 250px;
+  min-width: 250px;
+  height: 100%;
+  transition: ease .2s;
+  overflow: hidden;
+
+  &.is-collapse {
+    width: 64px;
+    min-width: 64px;
+    max-width: 64px;
+  }
+
+  &__toolbar {
+    height: 40px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    background-color: var(--el-color-info-light-8);
+
+    &.is-collapse {
+      justify-content: center;
+    }
+
+    & > div {
+      display: flex;
+      padding: 0 5px;
+    }
+  }
+
+  &__filter {
+    height: 32px;
+    margin: 5px 10px;
+    max-width: 100%;
+
+    &--select {
+      display: inline-flex;
+    }
+
+    .el-button {
+      padding: 8px 17px;
+    }
+
+    input,
+    button,
+    .el-input__wrapper,
+    .el-input-group__prepend {
+      background-color: inherit;
+      border-radius: 0;
+    }
+  }
+
+  &__content {
+    height: calc(100% - 85px);
+
+    .el-menu {
+      border-right: none;
+    }
+  }
+
+  &__icon {
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-sizing: content-box;
+    color: var(--el-text-color-regular);
+
+    &--inactive {
+      margin-right: 10px;
+      background-color: var(--el-color-primary-light-9);
+    }
+
+    &--active {
+      margin-right: 10px;
+      color: var(--el-color-white);
+      background-color: var(--el-color-primary);
+    }
+
+    &--collect {
+      position: absolute;
+      right: 15px;
+      top: 25%;
+    }
+
+    &.is-collect {
+      display: block;
+    }
+
+    &.is-unCollect {
+      display: none;
+    }
+  }
+}
