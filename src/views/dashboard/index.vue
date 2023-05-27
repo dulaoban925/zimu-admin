@@ -1,7 +1,6 @@
 <template>
   <div class="dashboard">
     <el-button>{{ text }}</el-button>
-    <hello-world></hello-world>
   </div>
 </template>
 <script setup lang="ts">

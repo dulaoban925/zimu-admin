@@ -15,4 +15,17 @@
 
 <script setup lang="ts"></script>
 
-<style scoped></style>
+<style lang="scss">
+.toolbar {
+  &__operation {
+    .el-icon {
+      padding: 0.5rem;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--el-color-primary-light-3);
+      }
+    }
+  }
+}
+</style>
