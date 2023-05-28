@@ -1,6 +1,5 @@
 import { ref, h, PropType, defineComponent, watchEffect, VNode } from 'vue'
 import { isString, isObject } from '@vue/shared'
-import { isBoolean } from '@vueuse/core'
 import type { NavigationFailure } from 'vue-router'
 import { checkIndexPath } from './zm-menu'
 import { ZmMenuDataItem, ZmMenuItemClicked } from '../types'
@@ -13,6 +12,7 @@ import {
   ElScrollbar
 } from 'element-plus'
 import { Nullable } from '@/types'
+import { isBoolean } from '@/utils'
 
 const props = {
   // 菜单数据
