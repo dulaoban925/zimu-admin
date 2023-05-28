@@ -5,7 +5,7 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "types": ["node"]
+    "types": ["vite/client", "element-plus/global.d.ts", "node", "prettier", "fs-extra"]
   },
   "include": ["vite.config.ts"]
 }
