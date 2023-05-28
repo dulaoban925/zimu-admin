@@ -91,7 +91,7 @@ const props = defineProps({
   defaultActive: String,
   backgroundColor: {
     type: String,
-    default: '#fff'
+    default: 'var(--el-bg-color)'
   }
 })
 
