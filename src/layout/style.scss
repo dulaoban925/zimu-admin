@@ -20,7 +20,7 @@
   }
 
   .toolbar {
-    height: 3rem;
+    height: 2.5rem;
     background-color: var(--el-color-primary);
     padding: 2.5px 10px;
 
@@ -31,6 +31,7 @@
     width: 100px;
     height: inherit;
     max-height: 100%;
+    cursor: pointer;
 
     img {
       width: 100%;
