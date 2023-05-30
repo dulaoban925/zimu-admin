@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Layout from '@/layout/index.vue'
+import Layout from '@/layouts/index.vue'
 
 const Dashboard = () => import('@views/dashboard/index.vue')
 
