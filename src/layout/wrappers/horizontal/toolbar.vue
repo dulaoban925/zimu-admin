@@ -4,16 +4,16 @@
 <template>
   <toolbar>
     <template #operation>
-      <el-icon color="#fff" size="1.7rem">
+      <el-icon>
         <component
           :is="fullScreen ? ExitFullscreen : FullScreen"
           @click="handleFullScreen"
         />
       </el-icon>
-      <el-icon color="#fff" size="1.7rem">
+      <el-icon>
         <component :is="dark ? Sunny : Moon" @click="toggleDark()" />
       </el-icon>
-      <el-icon color="#fff" size="1.7rem"><Avatar /></el-icon>
+      <el-icon><avatar-line /></el-icon>
     </template>
   </toolbar>
 </template>

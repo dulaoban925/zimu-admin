@@ -1,8 +1,11 @@
 /** 常量集合 */
 body {
+  /** 通用 start */
+  --zm-common-padding: .625rem;
+  /** 通用 end */
   /** 左侧导航菜单 start **/
-  --el-menu-item-height: 46px;
-  --el-menu-sub-item-height: calc(var(--el-menu-item-height) - 6px);
+  --el-menu-item-height: 2.875rem;
+  --el-menu-sub-item-height: calc(var(--el-menu-item-height) - .375rem);
   /** 左侧导航菜单 end **/
 }
 

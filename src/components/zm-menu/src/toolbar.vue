@@ -32,24 +32,22 @@
         </el-icon>
       </el-tooltip>
     </div>
-    <el-tooltip v-model:visible="tooltipVisible" placement="top">
-      <template #content>{{ collapse ? '展开' : '收起' }}</template>
-      <el-icon
-        size="15px"
-        class="zm-menu__icon zm-menu__icon--collapse"
-        @click="handleCollapsed"
-        @mouseenter="tooltipVisible = true"
-        @mouseleave="tooltipVisible = false"
-      >
-        <component :is="collapse ? Expand : Fold" />
-      </el-icon>
-    </el-tooltip>
+    <el-icon
+      size="15px"
+      class="zm-menu__icon zm-menu__icon--collapse"
+      @click="handleCollapsed"
+      @mouseenter="tooltipVisible = true"
+      @mouseleave="tooltipVisible = false"
+    >
+      <component :is="collapse ? Expand : Fold" />
+    </el-icon>
   </div>
 </template>
 <script setup lang="ts">
 import { TOOLBAR_OPTION } from '../constants'
 import type { ActionItem } from '../types'
-import { Expand, Fold, Menu, HomeFilled, Star } from '@element-plus/icons'
+import { Expand, Fold, Menu, HomeFilled } from '@element-plus/icons'
+import { StartFilled } from '@/components/zm-icons'
 
 const props = defineProps({
   activeAction: {
@@ -93,7 +91,7 @@ const ToolList = computed<ActionItem[]>(() => [
   {
     tip: '收藏',
     key: TOOLBAR_OPTION.COLLECT,
-    icon: markRaw(Star),
+    icon: markRaw(StartFilled),
     visible: props.showCollect
   }
 ])

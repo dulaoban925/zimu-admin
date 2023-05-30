@@ -10,7 +10,7 @@
       'is-collapse': collapse
     }"
     :style="{
-      backgroundColor
+      backgroundColor: backgroundColor ?? 'var(--el-menu-bg-color)'
     }"
   >
     <zm-menu-toolbar
@@ -89,10 +89,7 @@ const props = defineProps({
   },
   // 默认激活的菜单index
   defaultActive: String,
-  backgroundColor: {
-    type: String,
-    default: 'var(--el-bg-color)'
-  }
+  backgroundColor: String
 })
 
 const emit = defineEmits({

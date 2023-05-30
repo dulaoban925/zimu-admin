@@ -1,20 +1,27 @@
 .zm-menu {
-  width: 250px;
-  max-width: 250px;
-  min-width: 250px;
+
+  --zm-menu-expend-width: 250px;
+  --zm-menu-collapse-width: 64px;
+
+  --zm-menu-toolbar-height: 40px;
+  --zm-menu-filter-height: 32px;
+
+  width: var(--zm-menu-expend-width);
+  max-width: var(--zm-menu-expend-width);
+  min-width: var(--zm-menu-expend-width);
   height: 100%;
   transition: ease .2s;
   overflow: hidden;
 
   &.is-collapse {
-    width: 64px;
-    min-width: 64px;
-    max-width: 64px;
+    width: var(--zm-menu-collapse-width);
+    min-width: var(--zm-menu-collapse-width);
+    max-width: var(--zm-menu-collapse-width);
   }
 
   &__toolbar {
-    height: 40px;
-    padding: 5px 10px;
+    height: var(--zm-menu-toolbar-height);
+    padding: calc(var(--zm-common-padding) / 2) var(--zm-common-padding);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -27,13 +34,13 @@
 
     & > div {
       display: flex;
-      padding: 0 5px;
+      padding: 0 calc(var(--zm-common-padding) / 2);
     }
   }
 
   &__filter {
-    height: 32px;
-    margin: 5px 10px;
+    height: var(--zm-menu-filter-height);
+    margin: calc(var(--zm-common-padding) / 2) var(--zm-common-padding);
     max-width: 100%;
 
     &--select {
@@ -54,7 +61,7 @@
   }
 
   &__content {
-    height: calc(100% - 85px);
+    height: calc(100% - (var(--zm-menu-toolbar-height) + var(--zm-menu-filter-height) + var(--zm-common-padding) * 2));
 
     .el-menu {
       border-right: none;
@@ -62,19 +69,19 @@
   }
 
   &__icon {
-    padding: 5px;
+    padding: calc(var(--zm-common-padding) / 2);
     border-radius: 50%;
     cursor: pointer;
     box-sizing: content-box;
     color: var(--el-text-color-regular);
 
     &--inactive {
-      margin-right: 10px;
+      margin-right: var(--zm-common-padding);
       background-color: var(--el-color-primary-light-9);
     }
 
     &--active {
-      margin-right: 10px;
+      margin-right: var(--zm-common-padding);
       color: var(--el-color-white);
       background-color: var(--el-color-primary);
     }

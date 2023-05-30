@@ -2,6 +2,10 @@
 
 .layout-wrapper {
 
+  --zm-toolbar-height:  2.75rem;
+  --zm-toolbar-icon-size: 1.75rem;
+  --zm-toolbar-logo-size: 2.5rem;
+
   .el-header, .el-aside, .el-main {
     padding: 0;
   }
@@ -12,31 +16,36 @@
 
   .el-aside {
     width: max-content;
-    height: calc(100vh - 3rem);
+    height: calc(100vh - var(--zm-toolbar-height));
   }
 
   .el-main {
-    padding: 10px;
+    padding: var(--zm-common-padding);
   }
 
   .toolbar {
-    height: 2.5rem;
-    background-color: var(--el-color-primary);
-    padding: 2.5px 10px;
+    height: var(--zm-toolbar-height);
+    background-color: var(--el-color-info-light-8);
+    border-bottom: 1px solid var(--el-color-info-light-5);
+    padding: calc(var(--zm-common-padding) / 4) calc(var(--zm-common-padding));
 
     @include flex-center-space-between();
+
+    .el-icon {
+      color: var(--el-text-color-primary);
+      font-size: var(--zm-toolbar-icon-size);
+    }
   }
 
   .wrapper-logo {
-    width: 100px;
     height: inherit;
     max-height: 100%;
     cursor: pointer;
-
-    img {
-      width: 100%;
-      height: 100%;
-    }
+    display: flex;
+    align-items: center;
+    font-size: var(--zm-toolbar-logo-size);
+    font-weight: bold;
+    color: var(--el-text-color-primary);
   }
 }
 

@@ -3,7 +3,10 @@
 -->
 <template>
   <div class="wrapper-logo">
-    <img src="/logo.png" alt="logo" />
+    <el-icon size="50px">
+      <paper-frog />
+    </el-icon>
+    <span>ZIMU</span>
   </div>
 </template>
 

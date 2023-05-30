@@ -25,7 +25,7 @@ import Logo from './logo.vue'
       cursor: pointer;
 
       &:hover {
-        background-color: var(--el-color-primary-light-3);
+        background-color: var(--el-color-info-light-9);
       }
     }
   }
