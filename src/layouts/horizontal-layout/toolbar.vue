@@ -2,7 +2,7 @@
   水平布局顶部操作栏
 -->
 <template>
-  <toolbar>
+  <common-header>
     <template #operation>
       <el-icon>
         <component
@@ -15,11 +15,11 @@
       </el-icon>
       <el-icon><avatar-line /></el-icon>
     </template>
-  </toolbar>
+  </common-header>
 </template>
 
 <script setup lang="ts">
-import Toolbar from '../common/toolbar.vue'
+import CommonHeader from '../common/header/index.vue'
 import { FullScreen, Sunny, Moon } from '@element-plus/icons'
 import { ExitFullscreen } from '@components/zm-icons'
 import { toggleFullScreen } from '@/utils'

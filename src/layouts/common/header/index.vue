@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import Logo from './logo.vue'
+import Logo from '../logo/index.vue'
 </script>
 
 <style lang="scss">

@@ -24,5 +24,5 @@ import Toolbar from './toolbar.vue'
 import Sidebar from './sidebar.vue'
 </script>
 <style lang="scss">
-@import '../../style.scss';
+@import '../style.scss';
 </style>

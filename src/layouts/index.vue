@@ -1,11 +1,12 @@
 <template>
   <component :is="Wrapper">
-    <router-view />
+    <router-content />
   </component>
 </template>
 <script setup lang="ts">
 import { LAYOUT_PROVIDE_KEY } from './constants'
-import Wrapper from './wrappers/horizontal/index.vue'
+import Wrapper from './horizontal-layout/index.vue'
+import RouterContent from './common/content/index.vue'
 
 const menus = [
   {
