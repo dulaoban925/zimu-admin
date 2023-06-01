@@ -6,7 +6,7 @@ import chalk from 'chalk'
 import glob from 'fast-glob'
 import { format } from 'prettier'
 import type { BuiltInParserName } from 'prettier'
-import { pathComponents, pathSvg, pathRoot } from './paths'
+import { pathComponents, pathSvg } from './paths'
 
 /**
  * 从文件路径中获取文件名及组件名
@@ -46,10 +46,9 @@ async function transformToVueComponent(file: string) {
   const { fileName, componentName } = getName(file)
 
   const vue = formatCode(
-    `<template>
-    ${content}
-    </template>
+    `<template> ${content} </template>
     <script lang="ts">
+      import { defineComponent } from 'vue'
       export default defineComponent({
         name: '${componentName}'
       })
@@ -65,11 +64,11 @@ const generateEntry = async (files: string[]) => {
     files
       .map(file => {
         const { fileName, componentName } = getName(file)
-        return `export { default as ${componentName} } from './vue/${fileName}.vue'`
+        return `export { default as ${componentName} } from './${fileName}.vue'`
       })
       .join('\n')
   )
-  await writeFile(path.resolve(pathRoot, 'index.ts'), code, 'utf-8')
+  await writeFile(path.resolve(pathComponents, 'index.ts'), code, 'utf-8')
 }
 
 function getSvgFiles() {

@@ -47,7 +47,7 @@
 import { TOOLBAR_OPTION } from '../constants'
 import type { ActionItem } from '../types'
 import { Expand, Fold, Menu, HomeFilled } from '@element-plus/icons'
-import { StartFilled } from '@/components/zm-icons'
+import { StartFilled } from '@zimu/icons'
 
 const props = defineProps({
   activeAction: {
