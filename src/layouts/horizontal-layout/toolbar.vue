@@ -26,6 +26,10 @@ import { toggleFullScreen } from '@/utils'
 import { useDark } from '@vueuse/core'
 import { useToggle } from '@vueuse/shared'
 
+defineOptions({
+  name: 'HorizontalLayoutToolbar'
+})
+
 // TODO:后续走配置，存 pinia
 const fullScreen = ref(false)
 

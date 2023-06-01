@@ -11,6 +11,10 @@
 import { LAYOUT_PROVIDE_KEY } from '@/layouts/constants'
 import { LayoutProvide } from '@/layouts/types'
 
+defineOptions({
+  name: 'HorizontalLayoutSidebar'
+})
+
 const { menus } = inject<LayoutProvide>(LAYOUT_PROVIDE_KEY, {})
 </script>
 

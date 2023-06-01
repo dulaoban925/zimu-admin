@@ -15,6 +15,9 @@
 
 <script setup lang="ts">
 import Logo from '../logo/index.vue'
+defineOptions({
+  name: 'LayoutCommonHeader'
+})
 </script>
 
 <style lang="scss">

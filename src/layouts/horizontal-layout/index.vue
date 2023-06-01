@@ -22,6 +22,10 @@
 <script setup lang="ts">
 import Toolbar from './toolbar.vue'
 import Sidebar from './sidebar.vue'
+
+defineOptions({
+  name: 'HorizontalLayout'
+})
 </script>
 <style lang="scss">
 @import '../style.scss';

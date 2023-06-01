@@ -10,6 +10,10 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineOptions({
+  name: 'LayoutCommonLogo'
+})
+</script>
 
 <style scoped></style>

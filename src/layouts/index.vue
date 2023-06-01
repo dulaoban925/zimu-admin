@@ -1,34 +1,26 @@
 <template>
   <component :is="Wrapper">
-    <router-content />
+    <layout-common-content />
   </component>
 </template>
 <script setup lang="ts">
 import { LAYOUT_PROVIDE_KEY } from './constants'
 import Wrapper from './horizontal-layout/index.vue'
-import RouterContent from './common/content/index.vue'
+import LayoutCommonContent from './common/content/index.vue'
+
+defineOptions({
+  name: 'Layout'
+})
 
 const menus = [
   {
     index: '1',
-    label: '申请单据',
-    icon: 'UserFilled',
+    label: '组件',
+    icon: 'DocumentCopy',
     children: [
       {
         index: '1.1',
-        label: '报销单',
-        children: [
-          {
-            index: '1.1.1',
-            label: '员工报销单',
-            children: []
-          }
-        ]
-      },
-      {
-        index: '1.2',
-        label: '付款单',
-        children: []
+        label: '图标集合'
       }
     ]
   }
