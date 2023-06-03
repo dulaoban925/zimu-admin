@@ -13,7 +13,7 @@ importers:
       '@typescript-eslint/parser': ^5.59.6
       '@vitejs/plugin-vue': ^4.1.0
       '@vueuse/core': ^10.1.2
-      '@zimu/icons': workspace:*
+      '@zimu/icons': workspace:^1.0.0
       element-plus: ^2.3.5
       eslint: ^8.41.0
       eslint-config-prettier: ^8.8.0
@@ -26,6 +26,7 @@ importers:
       husky: ^8.0.3
       lint-staged: ^13.2.2
       lodash-es: ^4.17.21
+      pinia: ^2.1.3
       prettier: ^2.8.8
       sass: ^1.62.1
       typescript: ^5.0.2
@@ -38,6 +39,7 @@ importers:
       '@vueuse/core': 10.1.2_vue@3.3.4
       element-plus: 2.3.5_vue@3.3.4
       lodash-es: 4.17.21
+      pinia: 2.1.3_typescript@5.0.4+vue@3.3.4
       vue: 3.3.4
       vue-router: 4.2.2_vue@3.3.4
     devDependencies:
@@ -48,7 +50,7 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.59.8_3b4f51ca606e75917ec30cda7acb4efd
       '@typescript-eslint/parser': 5.59.8_eslint@8.41.0+typescript@5.0.4
       '@vitejs/plugin-vue': 4.2.3_vite@4.3.9+vue@3.3.4
-      '@zimu/icons': link:packages/zm-icons
+      '@zimu/icons': link:packages/zimu-icons
       eslint: 8.41.0
       eslint-config-prettier: 8.8.0_eslint@8.41.0
       eslint-config-standard: 17.1.0_a79efa760c03c90dcf04e4e0abe3b944
@@ -3263,6 +3265,24 @@ packages:
     resolution: {integrity: sha512-C3FsVNH1udSEX48gGX1xfvwTWfsYWj5U+8/uK15BGzIGrKoUpghX8hWZwa/OFnakBiiVNmBvemTJR5mcy7iPcg==}
     engines: {node: '>=4'}
     dev: true
+
+  /pinia/2.1.3_typescript@5.0.4+vue@3.3.4:
+    resolution: {integrity: sha512-XNA/z/ye4P5rU1pieVmh0g/hSuDO98/a5UC8oSP0DNdvt6YtetJNHTrXwpwsQuflkGT34qKxAEcp7lSxXNjf/A==}
+    peerDependencies:
+      '@vue/composition-api': ^1.4.0
+      typescript: '>=4.4.4'
+      vue: ^2.6.14 || ^3.3.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+      typescript:
+        optional: true
+    dependencies:
+      '@vue/devtools-api': 6.5.0
+      typescript: 5.0.4
+      vue: 3.3.4
+      vue-demi: 0.14.5_vue@3.3.4
+    dev: false
 
   /pkg-types/1.0.3:
     resolution: {integrity: sha512-nN7pYi0AQqJnoLPC9eHFQ8AcyaixBUOwvqc5TDnIKCMEE6I0y8P7OKA7fPexsXGCGxQDl/cmrLAp26LhcwxZ4A==}

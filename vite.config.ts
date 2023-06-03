@@ -9,7 +9,7 @@ export default defineConfig({
     vue(),
     // https://github.com/antfu/unplugin-auto-import/tree/main
     AutoImport({
-      imports: ['vue', 'vue-router'],
+      imports: ['vue', 'vue-router', 'pinia'],
       /**
        * 用于处理 eslint no-undef 检查冲突
        * 启用该配置会生成一个 .eslintrc-auto-import.json 文件
