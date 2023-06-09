@@ -1,0 +1,36 @@
+{
+  "name": "@zimu/utils",
+  "version": "1.0.0",
+  "description": "梓沐 utils",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "scripts": {
+    "build": "run-p build:build build:types",
+    "build:build": "tsx build/build.ts",
+    "build:types": "tsc --declaration --emitDeclarationOnly"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ying2gege/zimu-admin.git"
+  },
+  "keywords": [
+    "zimu",
+    "utils"
+  ],
+  "author": "SuperYing",
+  "bugs": {
+    "url": "https://github.com/ying2gege/zimu-admin/issues"
+  },
+  "homepage": "https://github.com/ying2gege/zimu-admin#readme",
+  "devDependencies": {
+    "chalk": "^5.2.0",
+    "fs-extra": "^11.1.1",
+    "npm-run-all": "^4.1.5",
+    "tsx": "^3.12.7"
+  }
+}
