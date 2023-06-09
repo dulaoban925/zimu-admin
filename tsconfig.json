@@ -33,8 +33,7 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "src/types/auto-imports.d.ts",
-    "src/types/global.d.ts",
+    "src/types/auto-imports.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

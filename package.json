@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "npm run icons:build && vite",
-    "build": "npm run icons:build && vue-tsc && vite build",
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
     "preview": "vite preview",
     "icons:build": "pnpm run -C packages/zimu-icons build",
+    "utils:build": "pnpm run -C packages/zimu-utils build",
     "lint:check": "eslint --cache --ext .js,.ts,.jsx,tsx,vue src/",
     "lint:fix": "eslint --cache --ext .js,.ts,.jsx,tsx,vue,json . --fix",
     "prepare": "husky install"
@@ -15,6 +16,7 @@
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
     "@vueuse/core": "^10.1.2",
+    "@zimu/utils": "workspace:^1.0.0",
     "element-plus": "^2.3.5",
     "lodash-es": "^4.17.21",
     "pinia": "^2.1.3",
