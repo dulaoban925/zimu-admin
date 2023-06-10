@@ -18,7 +18,7 @@ export default defineConfig({
       eslintrc: {
         enabled: true
       },
-      dts: './src/types/auto-imports.d.ts'
+      dts: './src/typings/auto-imports.d.ts'
     })
   ],
   resolve: {

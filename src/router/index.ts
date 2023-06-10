@@ -1,26 +1,17 @@
-import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
-import Layout from '@/layouts/index.vue'
-
-const Dashboard = () => import('@views/dashboard/index.vue')
-
-const allRoutes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    redirect: '/dashboard',
-    component: Layout,
-    children: [
-      {
-        path: 'dashboard',
-        name: 'Dashboard',
-        component: Dashboard
-      }
-    ]
-  }
-]
+import { createRouter, createWebHashHistory } from 'vue-router'
+import { constantRoutes } from './routes'
+import type { App } from 'vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: allRoutes
+  routes: constantRoutes
 })
 
+export async function setupRouter(app: App<Element>) {
+  app.use(router)
+  // 等待路由初始化完成
+  await router.isReady()
+}
+
 export default router
+export * from './modules'

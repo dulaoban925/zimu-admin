@@ -1,18 +1,25 @@
 import { createApp } from 'vue'
 import './style.css'
-import router from '@/router'
+import { setupRouter } from '@/router'
+import { setupStore } from '@/store'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import CustomComponents from '@/components'
 import App from './App.vue'
 
-const app = createApp(App)
+async function setup() {
+  const app = createApp(App)
 
-app.use(router)
+  app.use(ElementPlus)
 
-app.use(ElementPlus)
+  app.use(CustomComponents)
 
-app.use(CustomComponents)
+  setupStore(app)
 
-app.mount('#app')
+  await setupRouter(app)
+
+  app.mount('#app')
+}
+
+setup()
