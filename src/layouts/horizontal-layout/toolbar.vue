@@ -22,7 +22,7 @@
 import CommonHeader from '../common/header/index.vue'
 import { FullScreen, Sunny, Moon } from '@element-plus/icons'
 import { ExitFullscreen } from '@zimu/icons'
-import { toggleFullScreen } from '@zimu/utils'
+import { toggleFullScreen } from '@/utils'
 import { useDark } from '@vueuse/core'
 import { useToggle } from '@vueuse/shared'
 

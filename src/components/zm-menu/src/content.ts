@@ -11,7 +11,7 @@ import {
   ElIcon,
   ElScrollbar
 } from 'element-plus'
-import { isBoolean, Nullable } from '@zimu/utils'
+import { isBoolean, Nullable } from '@/utils'
 
 const props = {
   // 菜单数据
