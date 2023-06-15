@@ -1,8 +1,7 @@
 import { ZiMuRoute } from '@/typings/route'
-import { RouteRecordRaw } from 'vue-router'
 
 export function transformModulesToRoutes(modules: ZiMuRoute.RouteModule) {
-  const routes: RouteRecordRaw[] = []
+  const routes: ZiMuRoute.Route[] = []
 
   Object.keys(modules).forEach(k => {
     const route = modules[k].default

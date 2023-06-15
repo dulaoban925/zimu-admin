@@ -39,7 +39,7 @@ importers:
     dependencies:
       '@element-plus/icons': 0.0.11
       '@vueuse/core': 10.1.2_vue@3.3.4
-      '@zimu/utils': link:packages/utils
+      '@zimu/utils': link:packages/zimu-utils
       element-plus: 2.3.5_vue@3.3.4
       lodash-es: 4.17.21
       pinia: 2.1.3_typescript@5.0.4+vue@3.3.4

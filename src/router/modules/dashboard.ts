@@ -1,15 +1,19 @@
-// import Layout from '@/layouts/index.vue'
-const Dashboard = () => import('@views/dashboard/index.vue')
+import { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
+import { ZiMuRoute } from '@/typings/route'
 
-const dashboardModule = {
-  name: 'dashboard',
+const DashboardModules = {
+  Dashboard: () => import('@/views/dashboard/index.vue')
+}
+
+const dashboardModule: ZiMuRoute.Route = {
+  name: 'Dashboard',
   path: '/dashboard',
-  component: 'Layout',
+  component: ROUTE_COMPONENT_LAYOUT_VALUE.BASIC,
   children: [
     {
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: Dashboard
+      name: 'dashboard',
+      path: '',
+      component: DashboardModules.Dashboard
     }
   ]
 }

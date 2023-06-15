@@ -1,3 +1,3 @@
-import { RouteRecordRaw } from 'vue-router'
+import { ZiMuRoute } from '@/typings/route'
 
-export const constantRoutes: RouteRecordRaw[] = []
+export const constantRoutes: ZiMuRoute.Route[] = []

@@ -5,4 +5,4 @@ const modules = import.meta.glob('./*.ts', {
   eager: true
 }) as ZiMuRoute.RouteModule
 
-export default transformModulesToRoutes(modules)
+export const routes = transformModulesToRoutes(modules)

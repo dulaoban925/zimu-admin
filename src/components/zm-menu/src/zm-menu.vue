@@ -183,7 +183,6 @@ const handleFilter = ({ selectValue, inputValue }: FilterParams) => {
 }
 
 const handleFilterInputInput = debounce(({ selectValue, inputValue }) => {
-  console.log({ selectValue, inputValue })
   handleFilter({ selectValue, inputValue })
 }, 500)
 /** filter end */

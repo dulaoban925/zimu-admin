@@ -6,3 +6,5 @@ export function setupStore(app: App<Element>) {
 
   app.use(store)
 }
+
+export * from './modules'
