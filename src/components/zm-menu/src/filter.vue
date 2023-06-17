@@ -46,6 +46,10 @@ import { Search } from '@element-plus/icons'
 import { FILTER_MODE } from '../constants'
 import { ZmMenuDataItem } from '../types'
 
+defineOptions({
+  name: 'ZmMenuFilter'
+})
+
 const props = defineProps({
   menuOptions: {
     type: Array as PropType<ZmMenuDataItem[]>,

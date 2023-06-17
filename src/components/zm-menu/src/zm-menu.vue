@@ -50,6 +50,10 @@ import ZmMenuFilter from './filter.vue'
 import ZmMenuContent from './content'
 import { debounce } from 'lodash-es'
 
+defineOptions({
+  name: 'ZmMenu'
+})
+
 const props = defineProps({
   // 菜单数据
   data: {

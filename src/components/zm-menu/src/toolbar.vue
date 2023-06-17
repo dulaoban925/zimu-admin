@@ -49,6 +49,10 @@ import type { ActionItem } from '../types'
 import { Expand, Fold, Menu, HomeFilled } from '@element-plus/icons'
 import { StartFilled } from '@zimu/icons'
 
+defineOptions({
+  name: 'ZmMenuToolbar'
+})
+
 const props = defineProps({
   activeAction: {
     type: String,
