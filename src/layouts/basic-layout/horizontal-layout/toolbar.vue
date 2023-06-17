@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import CommonHeader from '../common/header/index.vue'
+import CommonHeader from '@/layouts/common/header/index.vue'
 import { FullScreen, Sunny, Moon } from '@element-plus/icons'
 import { ExitFullscreen } from '@zimu/icons'
 import { toggleFullScreen } from '@/utils'

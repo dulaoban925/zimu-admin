@@ -6,7 +6,7 @@
 <script setup lang="ts">
 import { LAYOUT_PROVIDE_KEY } from './constants'
 import Wrapper from './horizontal-layout/index.vue'
-import LayoutCommonContent from './common/content/index.vue'
+import LayoutCommonContent from '../common/content/index.vue'
 
 defineOptions({
   name: 'Layout'

@@ -8,8 +8,8 @@
 </template>
 
 <script setup lang="ts">
-import { LAYOUT_PROVIDE_KEY } from '@/layouts/constants'
-import { LayoutProvide } from '@/layouts/types'
+import { LAYOUT_PROVIDE_KEY } from '@/layouts/basic-layout/constants'
+import { LayoutProvide } from '@/layouts/basic-layout/types'
 
 defineOptions({
   name: 'HorizontalLayoutSidebar'
