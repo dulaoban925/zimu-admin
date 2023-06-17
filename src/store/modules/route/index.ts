@@ -2,8 +2,7 @@
  * 路由 store
  */
 import { routes, router } from '@/router'
-import { RouteRecordRaw } from 'vue-router'
-import { ValueOf, flatVueRoutes } from '@/utils'
+import { ValueOf, transformRouteConfigToVueRoutes } from '@/utils'
 
 export const RouteMatchModeEnum = {
   Static: 'static',
@@ -23,15 +22,15 @@ export const useRouteStore = defineStore('route-store', () => {
   const isAuthRouteInitialized = ref(false)
 
   // 初始化静态路由
-  function initStaticRoutes() {
+  async function initStaticRoutes() {
     if (!routes.length) return
     // 将 路由配置 转化为可用的、平铺的 vue 路由
-    const vueRoutes = flatVueRoutes(routes)
+    const vueRoutes = transformRouteConfigToVueRoutes(routes)
+    console.log('vueRoutes', vueRoutes)
     for (const route of vueRoutes) {
-      const parentName = route.parent
-      parentName && router.addRoute(parentName, route as RouteRecordRaw)
-      !parentName && router.addRoute(route as RouteRecordRaw)
+      router.addRoute(route)
     }
+    console.log(router.getRoutes())
     isAuthRouteInitialized.value = true
   }
 
@@ -39,9 +38,9 @@ export const useRouteStore = defineStore('route-store', () => {
   function initDynamicRoutes() {}
 
   // 初始化权限路由
-  function initRoutes() {
-    if (mode.value === RouteMatchModeEnum.Static) initStaticRoutes()
-    else initDynamicRoutes()
+  async function initRoutes() {
+    if (mode.value === RouteMatchModeEnum.Static) await initStaticRoutes()
+    else await initDynamicRoutes()
   }
   return {
     /** state start */

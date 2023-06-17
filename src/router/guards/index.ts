@@ -2,10 +2,10 @@ import { Router } from 'vue-router'
 import createBeforeEachGuard from './beforeEachGuard'
 import createAfterEachGuard from './afterEachGuard'
 
-export function setupRouterGuards(router: Router) {
-  const beforeEachGuard = createBeforeEachGuard()
+export async function setupRouterGuards(router: Router) {
+  const beforeEachGuard = await createBeforeEachGuard()
   router.beforeEach(beforeEachGuard)
 
-  const afterEachGuard = createAfterEachGuard()
+  const afterEachGuard = await createAfterEachGuard()
   router.afterEach(afterEachGuard)
 }

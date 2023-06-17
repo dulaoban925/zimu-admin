@@ -1,11 +1,14 @@
 import type { App } from 'vue'
-import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { constantRoutes } from './routes'
 import { setupRouterGuards } from './guards'
+import { transformRouteConfigToVueRoutes } from '@/utils'
 
 export const router = createRouter({
   history: createWebHashHistory(),
-  routes: constantRoutes as unknown as RouteRecordRaw[]
+  routes: transformRouteConfigToVueRoutes(constantRoutes),
+  strict: true,
+  sensitive: true
 })
 
 export async function setupRouter(app: App<Element>) {
