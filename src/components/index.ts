@@ -1,5 +1,6 @@
 import { App, Component } from 'vue'
 import { ZmMenu } from './zm-menu'
+import { ZmTransition } from './zm-transition'
 import * as ElementPlusIcons from '@element-plus/icons'
 import * as ZiMuIcons from '@zimu/icons'
 
@@ -8,7 +9,8 @@ export * from './zm-menu'
 const customComponents: {
   [propName: string]: Component
 } = {
-  ZmMenu
+  ZmMenu,
+  ZmTransition
 }
 
 export default (app: App<Element>) => {
