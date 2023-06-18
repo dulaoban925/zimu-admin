@@ -5,6 +5,7 @@ import type {
 } from 'vue-router'
 import { useRouteStore } from '@/store'
 import { STATIC_ROUTE_NAME } from '@/constants'
+import { useLoadingBar } from '@/hooks'
 
 export default function createBeforeEachGuard(): NavigationGuardWithThis<undefined> {
   return async (
@@ -12,6 +13,8 @@ export default function createBeforeEachGuard(): NavigationGuardWithThis<undefin
     from: RouteLocationNormalized,
     next: NavigationGuardNext
   ) => {
+    const loadingBar = useLoadingBar()
+    loadingBar.start()
     await handleDynamicRoutes(to, from, next)
     next()
   }
