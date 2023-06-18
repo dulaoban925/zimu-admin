@@ -15,8 +15,9 @@ export default function createBeforeEachGuard(): NavigationGuardWithThis<undefin
   ) => {
     const loadingBar = useLoadingBar()
     loadingBar.start()
-    await handleDynamicRoutes(to, from, next)
-    next()
+
+    const commonNext = await handleDynamicRoutes(to, from, next)
+    commonNext && next()
   }
 }
 
@@ -36,17 +37,19 @@ async function handleDynamicRoutes(
      * 路由初始化过程中，若跳转的路由为 “notfound”，可能为路由为加载完成导致的
      * 重新跳转到当前目标路由
      */
-    console.log(to)
     if (to.name === STATIC_ROUTE_NAME.NOT_FOUND) {
-      console.log('111')
       // 重定向的路由路径
       const path =
         to.redirectedFrom?.name === STATIC_ROUTE_NAME.ROOT ? '/' : to.fullPath
       next({ path, query: to.query, hash: to.hash, replace: true })
+      return false
     }
   }
 
   if (to.name === STATIC_ROUTE_NAME.NOT_FOUND) {
     next({ name: STATIC_ROUTE_NAME[404], replace: true })
+    return false
   }
+
+  return true
 }

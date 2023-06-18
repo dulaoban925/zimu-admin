@@ -28,7 +28,6 @@ export function transformRouteConfigToVueRoutes(routes: ZiMuRoute.Route[]) {
   const resultRoutes: RouteRecordRaw[] = routes
     .map(route => transformRouteConfigToVueRoute(route))
     .flat(1)
-  console.log('resultRoutes', routes, resultRoutes)
   return resultRoutes
 }
 

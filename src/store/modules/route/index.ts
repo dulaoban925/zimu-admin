@@ -27,11 +27,9 @@ export const useRouteStore = defineStore('route-store', () => {
     if (!routes.length) return
     // 将 路由配置 转化为可用的、平铺的 vue 路由
     const vueRoutes = transformRouteConfigToVueRoutes(routes)
-    console.log('vueRoutes', vueRoutes)
     for (const route of vueRoutes) {
       router.addRoute(route)
     }
-    console.log(router.getRoutes())
     isAuthRouteInitialized.value = true
   }
 
