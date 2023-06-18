@@ -2,7 +2,7 @@ import { App, Component } from 'vue'
 import { ZmMenu } from './zm-menu'
 import { ZmTransition } from './zm-transition'
 import * as ElementPlusIcons from '@element-plus/icons'
-import * as ZiMuIcons from '@zimu/icons'
+import ZiMuIcons from '@zimu/icons'
 
 export * from './zm-menu'
 
@@ -13,13 +13,17 @@ const customComponents: {
   ZmTransition
 }
 
-export default (app: App<Element>) => {
+const install = (app: App<Element>) => {
   const componentEntries: [string, Component][] = [
     ...Object.entries(customComponents),
-    ...Object.entries(ElementPlusIcons),
-    ...Object.entries(ZiMuIcons)
+    ...Object.entries(ElementPlusIcons)
   ]
   for (const [key, component] of componentEntries) {
     app.component(key, component)
   }
+}
+
+export const setupComponents = (app: App<Element>) => {
+  install(app)
+  app.use(ZiMuIcons)
 }

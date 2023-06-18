@@ -5,7 +5,7 @@ import { setupStore } from '@/store'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
-import CustomComponents from '@/components'
+import { setupComponents } from '@/components'
 import App from './App.vue'
 
 async function setup() {
@@ -13,7 +13,7 @@ async function setup() {
 
   app.use(ElementPlus)
 
-  app.use(CustomComponents)
+  setupComponents(app)
 
   setupStore(app)
 
