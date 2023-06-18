@@ -3,6 +3,22 @@ import { LayoutType, getLayoutComponent } from './component'
 import { hasChildren, hasComponent } from './check'
 import { RouteRecordRaw } from 'vue-router'
 
+export function transformModulesToRoutes(modules: ZiMuRoute.RouteModule) {
+  const routes: ZiMuRoute.Route[] = []
+
+  Object.keys(modules).forEach(k => {
+    const route = modules[k].default
+    if (route) {
+      routes.push(route)
+    } else {
+      const error = `路由模块: ${k} 解析出错`
+      console.error(error)
+    }
+  })
+
+  return routes
+}
+
 /**
  * 平铺路由
  * @param routes 路由配置

@@ -1,5 +1,5 @@
 import { ZiMuRoute } from '@/typings/route'
-import { transformModulesToRoutes } from '../helpers/module'
+import { transformModulesToRoutes } from '../helpers'
 
 const modules = import.meta.glob('./*.ts', {
   eager: true

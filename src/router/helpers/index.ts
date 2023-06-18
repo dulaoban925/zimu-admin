@@ -1,3 +1,3 @@
 export * from './component'
-export * from './general'
+export * from './transform'
 export * from './check'

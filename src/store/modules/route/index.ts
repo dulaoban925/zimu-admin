@@ -2,7 +2,8 @@
  * 路由 store
  */
 import { routes, router } from '@/router'
-import { ValueOf, transformRouteConfigToVueRoutes } from '@/utils'
+import type { ValueOf } from '@/utils'
+import { transformRouteConfigToVueRoutes } from '@/router/helpers'
 
 export const RouteMatchModeEnum = {
   Static: 'static',
