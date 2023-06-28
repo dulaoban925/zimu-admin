@@ -4,6 +4,7 @@ importers:
 
   .:
     specifiers:
+      '@better-scroll/core': ^2.5.1
       '@commitlint/cli': ^17.6.3
       '@commitlint/config-conventional': ^17.6.3
       '@element-plus/icons': ^0.0.11
@@ -39,6 +40,7 @@ importers:
       vue: ^3.3.4
       vue-router: ^4.2.0
     dependencies:
+      '@better-scroll/core': 2.5.1
       '@element-plus/icons': 0.0.11
       '@vueuse/core': 10.1.2_vue@3.3.4
       '@zimu/utils': link:packages/zimu-utils
@@ -162,6 +164,16 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
     dev: true
+
+  /@better-scroll/core/2.5.1:
+    resolution: {integrity: sha512-koKOuYA55dQ04FJRIVUpMGDr1hbCfWmfX0MGp1hKagkQSWSRpwblqACiwtggVauoj9aaJRJZ9hDsTM4weaavlg==}
+    dependencies:
+      '@better-scroll/shared-utils': 2.5.1
+    dev: false
+
+  /@better-scroll/shared-utils/2.5.1:
+    resolution: {integrity: sha512-AplkfSjXVYP9LZiD6JsKgmgQJ/mG4uuLmBuwLz8W5OsYc7AYTfN8kw6GqZ5OwCGoXkVhBGyd8NeC4xwYItp0aw==}
+    dev: false
 
   /@commitlint/cli/17.6.5:
     resolution: {integrity: sha512-3PQrWr/uo6lzF5k7n5QuosCYnzaxP9qGBp3jhWP0Vmsa7XA6wrl9ccPqfQyXpSbQE3zBROVO3TDqgPKe4tfmLQ==}

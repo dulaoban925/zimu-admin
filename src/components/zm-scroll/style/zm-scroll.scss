@@ -1,0 +1,17 @@
+.zm-scroll {
+  &__wrapper {
+    height: 100%;
+    width: 100%;
+    text-align: left;
+  }
+
+  &__content {
+    &--scrollY {
+      height: 100%;
+    }
+
+    &--scrollX {
+      width: 100%;
+    }
+  }
+}
