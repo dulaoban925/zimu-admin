@@ -15,6 +15,10 @@ import BS from '@better-scroll/core'
 import type { Options } from '@better-scroll/core'
 import { useElementSize } from '@vueuse/core'
 
+defineOptions({
+  name: 'ZmScroll'
+})
+
 interface Props {
   options: Options
 }
