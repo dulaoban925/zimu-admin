@@ -3,15 +3,16 @@
     height: 100%;
     width: 100%;
     text-align: left;
+    overflow: hidden;
+
+    &--scrollX {
+      white-space: nowrap;
+    }
   }
 
   &__content {
-    &--scrollY {
-      height: 100%;
-    }
-
     &--scrollX {
-      width: 100%;
+      display: inline-block;
     }
   }
 }
