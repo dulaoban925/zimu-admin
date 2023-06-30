@@ -1,7 +1,11 @@
 /* eslint-disable no-unused-vars */
 import { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
-import { ValueOf } from '@/utils'
-import { RouteRecordRaw, RouteRecordName } from 'vue-router'
+import type { ValueOf } from '@/utils'
+import type {
+  RouteRecordRaw,
+  RouteRecordName,
+  RouteLocationNormalizedLoaded
+} from 'vue-router'
 
 declare module ZiMuRoute {
   type RouteComponent =
@@ -11,9 +15,13 @@ declare module ZiMuRoute {
   // 路由 Meta 属性
   interface RouteMeta {
     // 页面页签标题
-    title: string
+    title?: string
     // 是否缓存
     keepAlive?: boolean
+    // 是否全屏页面，不需要 header sidebar 等, component: 'blank' 时设置
+    blank?: boolean
+    // 是否固定，设置了该属性的路由视图页签始终显示，不允许关闭
+    affix?: boolean
   }
 
   // 路由信息
@@ -26,4 +34,8 @@ declare module ZiMuRoute {
 
   // 路由模块
   type RouteModule = Record<string, { default: Route }>
+
+  type RouteLocationNormalized = {
+    meta?: RouteMeta
+  } & Omit<RouteLocationNormalizedLoaded, 'meta'>
 }

@@ -13,6 +13,7 @@
           <sidebar />
         </el-aside>
         <el-main>
+          <common-tabs />
           <slot />
         </el-main>
       </el-container>
@@ -22,6 +23,7 @@
 <script setup lang="ts">
 import Toolbar from './toolbar.vue'
 import Sidebar from './sidebar.vue'
+import CommonTabs from '@/layouts/common/tabs/index.vue'
 
 defineOptions({
   name: 'HorizontalLayout'

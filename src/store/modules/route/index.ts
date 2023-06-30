@@ -17,8 +17,7 @@ export const useRouteStore = defineStore('route-store', () => {
   const mode = ref<RouteMatchMode>('static')
   // 导航菜单
   const menus = ref([])
-  // 缓存路由，路由名称集合
-  const cachedRoute = ref([])
+
   // 权限路由是否已初始化
   const isAuthRouteInitialized = ref(false)
 
@@ -37,15 +36,15 @@ export const useRouteStore = defineStore('route-store', () => {
   function initDynamicRoutes() {}
 
   // 初始化权限路由
-  async function initRoutes() {
+  const initRoutes = async () => {
     if (mode.value === RouteMatchModeEnum.Static) await initStaticRoutes()
     else await initDynamicRoutes()
   }
+
   return {
     /** state start */
     mode,
     menus,
-    cachedRoute,
     isAuthRouteInitialized,
     /** state end */
 

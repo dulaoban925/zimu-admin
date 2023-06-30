@@ -3,7 +3,7 @@
 -->
 <template>
   <div class="toolbar">
-    <logo />
+    <common-logo />
     <div class="toolbar__middle">
       <slot name="middle" />
     </div>
@@ -14,9 +14,10 @@
 </template>
 
 <script setup lang="ts">
-import Logo from '../logo/index.vue'
+import CommonLogo from '../logo/index.vue'
+
 defineOptions({
-  name: 'LayoutCommonHeader'
+  name: 'CommonHeader'
 })
 </script>
 

@@ -1,6 +1,6 @@
 import { Router } from 'vue-router'
-import createBeforeEachGuard from './beforeEachGuard'
-import createAfterEachGuard from './afterEachGuard'
+import createBeforeEachGuard from './before-each'
+import createAfterEachGuard from './after-each'
 
 export async function setupRouterGuards(router: Router) {
   const beforeEachGuard = await createBeforeEachGuard()

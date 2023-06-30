@@ -1,0 +1,59 @@
+<!--
+  系统页签
+ -->
+<template>
+  <div class="common-tabs">
+    <zm-scroll :options="scrollOptions">
+      <common-tab
+        v-for="tab in tabs"
+        :key="tab.fullPath"
+        :to="tab"
+        :label="tab.meta?.title"
+        :closeable="!tab.meta?.affix"
+        :active="tab[VIEW_DIFF_PROP] === activeTab"
+        @close="handleTabClose"
+      />
+    </zm-scroll>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { ZiMuRoute } from '@/typings/route'
+import { useViewStore } from '@/store'
+import { VIEW_DIFF_PROP } from '@/constants'
+import CommonTab from './components/common-tab.vue'
+
+const _route = useRoute()
+
+const viewStore = useViewStore()
+
+defineOptions({
+  name: 'CommonTabs'
+})
+
+const tabs = computed<ZiMuRoute.RouteLocationNormalized[]>(
+  () => viewStore.visitedViews
+)
+
+const activeTab = computed(() => viewStore.activeView)
+
+const scrollOptions = {
+  scrollX: true,
+  scrollY: false
+}
+
+const handleTabClose = (tab: ZiMuRoute.RouteLocationNormalized) => {
+  viewStore.delView(tab)
+}
+
+watch(
+  () => _route[VIEW_DIFF_PROP],
+  () => {
+    viewStore.addView(_route)
+    viewStore.setActiveView(_route)
+  }
+)
+</script>
+
+<style scoped></style>

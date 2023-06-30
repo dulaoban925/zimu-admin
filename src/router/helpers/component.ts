@@ -1,5 +1,5 @@
 import { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
-import { ValueOf, WithPromise } from '@/utils'
+import { ValueOf, Lazy } from '@/utils'
 
 // layout 布局类型，更多布局待扩展
 export type LayoutType = ValueOf<typeof ROUTE_COMPONENT_LAYOUT_VALUE>
@@ -8,7 +8,7 @@ interface ModuleComponent {
   default: Component
 }
 
-type LayoutComponent = Record<LayoutType, WithPromise<ModuleComponent>>
+type LayoutComponent = Record<LayoutType, Lazy<ModuleComponent>>
 
 const LayoutComponents: LayoutComponent = {
   basic: () => import('@/layouts/basic-layout/index.vue'),

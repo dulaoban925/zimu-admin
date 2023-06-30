@@ -15,7 +15,8 @@ const dashboardModule: ZiMuRoute.Route = {
       path: '',
       component: RouteComponents.Dashboard
     }
-  ]
+  ],
+  meta: { title: '控制台', affix: true }
 }
 
 export default dashboardModule

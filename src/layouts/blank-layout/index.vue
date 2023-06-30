@@ -1,7 +1,7 @@
 <template>
-  <layout-common-content />
+  <common-content />
 </template>
 
 <script setup lang="ts">
-import LayoutCommonContent from '../common/content/index.vue'
+import CommonContent from '../common/content/index.vue'
 </script>

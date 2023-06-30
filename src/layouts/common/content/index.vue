@@ -11,6 +11,6 @@
 import { TRANSITION_MODE } from '@components/zm-transition'
 
 defineOptions({
-  name: 'LayoutCommonContent'
+  name: 'CommonContent'
 })
 </script>

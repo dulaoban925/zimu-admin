@@ -14,12 +14,14 @@ const systemSettingsRoutes: ZiMuRoute.Route = {
     {
       name: 'system-setting_user-manage',
       path: 'user-manage',
-      component: RouteComponents.UserManage
+      component: RouteComponents.UserManage,
+      meta: { title: '用户管理', keepAlive: true }
     },
     {
       name: 'system-setting_menu-manage',
       path: 'menu-manage',
-      component: RouteComponents.MenuManage
+      component: RouteComponents.MenuManage,
+      meta: { title: '菜单管理', keepAlive: true }
     }
   ]
 }
