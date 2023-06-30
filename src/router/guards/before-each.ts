@@ -13,11 +13,13 @@ export default function createBeforeEachGuard(): NavigationGuardWithThis<undefin
     from: RouteLocationNormalized,
     next: NavigationGuardNext
   ) => {
+    // 页面加载 loading bar
     const loadingBar = useLoadingBar()
     loadingBar.start()
 
-    const commonNext = await handleDynamicRoutes(to, from, next)
-    commonNext && next()
+    const normalNext = await handleDynamicRoutes(to, from, next)
+
+    normalNext && next()
   }
 }
 
