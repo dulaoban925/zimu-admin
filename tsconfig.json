@@ -28,7 +28,7 @@
       "@components/*": ["./src/components/*"]
     },
 
-    "types": ["nprogress"]
+    "types": ["nprogress", "node", "element-plus/global.d.ts", "prettier"]
   },
   "include": [
     "src/**/*.ts",

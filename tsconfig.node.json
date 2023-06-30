@@ -5,7 +5,6 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
-    "types": ["element-plus/global.d.ts", "node", "prettier"]
   },
   "include": ["vite.config.ts"]
 }
