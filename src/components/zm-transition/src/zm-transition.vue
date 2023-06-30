@@ -27,6 +27,6 @@ withDefaults(defineProps<Props>(), {
 })
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @import '../style/zm-transition.scss';
 </style>
