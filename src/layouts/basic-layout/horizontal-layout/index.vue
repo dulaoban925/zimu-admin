@@ -14,7 +14,9 @@
         </el-aside>
         <el-main>
           <common-tabs />
-          <slot />
+          <div class="main-content">
+            <slot />
+          </div>
         </el-main>
       </el-container>
     </el-container>

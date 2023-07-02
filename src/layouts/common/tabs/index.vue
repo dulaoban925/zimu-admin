@@ -4,15 +4,17 @@
 <template>
   <div class="common-tabs">
     <zm-scroll :options="scrollOptions">
-      <common-tab
-        v-for="tab in tabs"
-        :key="tab.fullPath"
-        :to="tab"
-        :label="tab.meta?.title"
-        :closeable="!tab.meta?.affix"
-        :active="tab[VIEW_DIFF_PROP] === activeTab"
-        @close="handleTabClose"
-      />
+      <div class="common-tabs__content">
+        <common-tab
+          v-for="tab in tabs"
+          :key="tab.fullPath"
+          :to="tab"
+          :label="tab.meta?.title"
+          :closeable="!tab.meta?.affix"
+          :active="tab[VIEW_DIFF_PROP] === activeTab"
+          @close="handleTabClose"
+        />
+      </div>
     </zm-scroll>
   </div>
 </template>
@@ -56,4 +58,10 @@ watch(
 )
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.common-tabs {
+  &__content {
+    display: inline-flex;
+  }
+}
+</style>

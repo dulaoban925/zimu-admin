@@ -1,11 +1,12 @@
 <template>
   <router-link :class="{ 'common-tab': true, active }" :to="to">
-    <slot name="active-icon">
-      <el-icon><postcard /></el-icon>
+    <slot name="active-icon" v-if="active">
+      <el-icon size="16"><postcard /></el-icon>
     </slot>
     <span class="common-tab__label">{{ label }}</span>
     <el-icon
       v-if="closeable"
+      size="16"
       class="common-tab__close-icon"
       @click.prevent.stop="handleClose"
     >
@@ -40,21 +41,21 @@ const handleClose = () => {
 
 <style lang="scss" scoped>
 .common-tab {
-  --zm-tab-height: 40px;
   --zm-tab-font-size: 14px;
   --zm-tab-padding: 8px;
   --zm-tab-margin: 4px;
   --zm-tab-bg-color: var(--el-color-info-light-8);
 
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
   cursor: pointer;
-  height: var(--zm-tab-height);
-  line-height: var(--zm-tab-height);
+  height: var(--zm-layout-tab-height);
+  line-height: var(--zm-layout-tab-height);
   color: var(--el-text-color-primary);
   background: var(--zm-tab-bg-color);
   padding: 0 var(--zm-tab-padding);
   font-size: var(--zm-tab-font-size);
-  position: relative;
 
   &:not(:last-child) {
     margin-right: var(--zm-tab-margin);
@@ -70,8 +71,6 @@ const handleClose = () => {
   }
 
   &__close-icon {
-    width: var(--zm-common-font-size);
-    height: var(--zm-common-font-size);
     line-height: var(--zm-common-font-size);
     border-radius: 50%;
     text-align: center;

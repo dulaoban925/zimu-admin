@@ -21,6 +21,13 @@
 
   .el-main {
     padding: var(--zm-common-padding);
+    padding-bottom: 0;
+
+    .main-content {
+      padding: var(--zm-common-padding);
+      height: calc(100% - var(--zm-common-padding) * 2 - var(--zm-layout-tab-height));
+      background-color: var(--el-color-white);
+    }
   }
 
   .toolbar {
