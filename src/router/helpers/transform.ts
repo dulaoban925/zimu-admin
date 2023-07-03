@@ -20,14 +20,14 @@ export function transformModulesToRoutes(modules: ZiMuRoute.RouteModule) {
 }
 
 /**
- * 平铺路由
+ * 将路由配置转化为可用的 vue route
  * @param routes 路由配置
  */
 export function transformRouteConfigToVueRoutes(routes: ZiMuRoute.Route[]) {
   if (!routes.length) return []
-  const resultRoutes: RouteRecordRaw[] = routes
-    .map(route => transformRouteConfigToVueRoute(route))
-    .flat(1)
+  const resultRoutes: RouteRecordRaw[] = routes.map(route =>
+    transformRouteConfigToVueRoute(route)
+  )
   return resultRoutes
 }
 
@@ -43,9 +43,9 @@ function transformRouteConfigToVueRoute(route: ZiMuRoute.Route) {
     }
   }
   if (hasChildren(route)) {
-    const children = route.children
-      ?.map(route => transformRouteConfigToVueRoute(route))
-      .flat(1)
+    const children = route.children?.map(route =>
+      transformRouteConfigToVueRoute(route)
+    )
     resultRoute.children = children
   }
 

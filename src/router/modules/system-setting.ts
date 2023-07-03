@@ -15,7 +15,7 @@ const systemSettingsRoutes: ZiMuRoute.Route = {
       name: 'system-setting_user-manage',
       path: 'user-manage',
       component: RouteComponents.UserManage,
-      meta: { title: '用户管理', keepAlive: true }
+      meta: { title: '用户管理', keepAlive: true, affix: true }
     },
     {
       name: 'system-setting_menu-manage',

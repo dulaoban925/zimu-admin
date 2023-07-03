@@ -56,6 +56,10 @@ watch(
     viewStore.setActiveView(_route)
   }
 )
+
+onMounted(() => {
+  viewStore.initViews(_route)
+})
 </script>
 
 <style lang="scss" scoped>

@@ -2,9 +2,11 @@
  * 视图页签相关
  */
 import type { RouteRecordName } from 'vue-router'
+import { routes } from '@/router'
 import type { WithNever } from '@/utils'
 import { VIEW_DIFF_PROP } from '@/constants'
 import type { ZiMuRoute } from '@/typings/route.d.ts'
+import { filterRoutesConfig, getRoutePath } from '@/router/helpers'
 
 export const useViewStore = defineStore('view-store', () => {
   // 缓存视图，路由名称集合
@@ -26,6 +28,7 @@ export const useViewStore = defineStore('view-store', () => {
     const exist = matchIndex > -1
     if (exist) return
     visitedViews.value.push(view)
+    console.log('view', view)
   }
 
   // 删除访问视图
@@ -77,6 +80,41 @@ export const useViewStore = defineStore('view-store', () => {
     activeView.value = view[VIEW_DIFF_PROP]
   }
 
+  /**
+   * 初始化视图
+   * 1.初始化固定视图页签
+   * 2.激活当前视图页签
+   */
+  const initViews = (view: ZiMuRoute.RouteLocationNormalized) => {
+    const affixViewRoutes: ZiMuRoute.Route[] = filterRoutesConfig(
+      routes,
+      (route: ZiMuRoute.Route) => !!route.meta?.affix
+    )
+    for (const route of affixViewRoutes) {
+      const { name, meta } = route
+      const path = getRoutePath(routes, route)
+      const affixView: ZiMuRoute.RouteLocationNormalized = {
+        name,
+        path,
+        fullPath: path,
+        meta,
+        params: {},
+        matched: [],
+        query: {},
+        hash: '',
+        redirectedFrom: void 0
+      }
+      addView(affixView)
+    }
+    // 若当前跳转的视图，不在固定视图内，新增
+    const currentViewInFilteredRoutes =
+      affixViewRoutes.findIndex(r => r.name === view.name) > -1
+    !currentViewInFilteredRoutes && addView(view)
+    setActiveView(view)
+
+    console.log(visitedViews.value)
+  }
+
   return {
     /** state start */
     cachedViews,
@@ -85,6 +123,7 @@ export const useViewStore = defineStore('view-store', () => {
     /** state end */
 
     /** action start */
+    initViews,
     addView,
     addVisitedView,
     addCachedView,
