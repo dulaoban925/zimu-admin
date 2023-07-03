@@ -22,6 +22,7 @@ module.exports = {
   plugins: ['vue', '@typescript-eslint'],
   rules: {
     'vue/multi-word-component-names': 0,
-    'vue/no-v-model-argument': 0
+    'vue/no-v-model-argument': 0,
+    'vue/no-multiple-template-root': 0
   }
 }
