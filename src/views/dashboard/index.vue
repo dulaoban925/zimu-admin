@@ -9,6 +9,6 @@ const text = ref('我是主页')
 const _router = useRouter()
 
 const handleClick = () => {
-  _router.push('/system-setting/user-manage')
+  _router.push('/system-manage/user-manage')
 }
 </script>

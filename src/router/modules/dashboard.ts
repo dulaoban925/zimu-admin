@@ -11,7 +11,7 @@ const dashboardModule: ZiMuRoute.Route = {
   component: getLayoutComponent(ROUTE_COMPONENT_LAYOUT_VALUE.BASIC),
   children: [
     {
-      name: 'dashboard',
+      name: 'Dashboard',
       path: '',
       component: RouteComponents.Dashboard
     }

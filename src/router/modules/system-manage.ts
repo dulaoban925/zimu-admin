@@ -2,28 +2,29 @@ import { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
 import { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
-  UserManage: () => import('@/views/system-setting/user-manage/index.vue'),
-  MenuManage: () => import('@/views/system-setting/menu-manage/index.vue')
+  UserManage: () => import('@/views/system-manage/user-manage/index.vue'),
+  MenuManage: () => import('@/views/system-manage/menu-manage/index.vue')
 }
 
 const systemSettingsRoutes: ZiMuRoute.Route = {
-  name: 'system-setting',
-  path: '/system-setting',
+  name: 'SystemManage',
+  path: '/system-manage',
   component: ROUTE_COMPONENT_LAYOUT_VALUE.BASIC,
   children: [
     {
-      name: 'system-setting_user-manage',
+      name: 'UserManage',
       path: 'user-manage',
       component: RouteComponents.UserManage,
-      meta: { title: '用户管理', keepAlive: true, affix: true }
+      meta: { title: '用户管理', keepAlive: true }
     },
     {
-      name: 'system-setting_menu-manage',
+      name: 'MenuManage',
       path: 'menu-manage',
       component: RouteComponents.MenuManage,
       meta: { title: '菜单管理', keepAlive: true }
     }
-  ]
+  ],
+  meta: { title: '系统管理' }
 }
 
 export default systemSettingsRoutes

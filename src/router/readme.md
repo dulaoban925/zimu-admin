@@ -2,21 +2,7 @@
 
 ## route.name 赋值规则
 
-与 `@/views` 目录下文件路径保持一致，多级目录名间以 **下滑线”_“** 连接；
-
-若文件名称为 `index.vue`，可省略；
-
-若父路由与子路由 `name` 相同，则 父路由 `name` 采用**大驼峰形式**（不建议父子路由同名）
-
-### 例1
-
-视图文件路径为 `”@/views/system-setting/user-manage/index.vue“`
-**route.name** 应定义为 `”system-setting_user-manage“`
-
-### 例2
-
-视图文件路径为 `”@/views/system_setting/user_manage/detail.vue“`
-**route.name** 应定义为 `”system-setting_user-manage_detail“`
+**大驼峰格式**命名
 
 ## route.component 赋值规则
 
@@ -54,7 +40,7 @@ const dashboardRoute = {
 }
 ```
 
-## route.meta 赋值规则
+## route.meta 赋值规则(仅设置末级路由即可)
 
 ### keepAlive: boolean
 
@@ -63,3 +49,9 @@ const dashboardRoute = {
 ### title: string
 
 当前页面标签标题
+
+### affix: boolean
+
+是否固定视图页签，为 true 的视图页签始终固定在页面上，且不允许关闭。
+
+建议为看板类页面路由设置，不建议为功能页面设置该属性，否则可能发生不可预知的问题。
