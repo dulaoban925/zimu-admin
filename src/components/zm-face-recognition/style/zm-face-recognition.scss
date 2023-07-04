@@ -1,0 +1,13 @@
+.zm-face-recognition {
+  --zm-face-recognition-position-top: 0;
+  --zm-face-recognition-position-right: 0;
+
+  position: absolute;
+  top: var(--zm-face-recognition-position-top);
+  right: var(--zm-face-recognition-position-top);
+
+  &--hide {
+    --zm-face-recognition-position-top: -100%;
+    --zm-face-recognition-position-right: -100%;
+  }
+}

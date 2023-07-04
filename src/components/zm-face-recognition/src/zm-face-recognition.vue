@@ -2,11 +2,16 @@
   人脸识别组件
 -->
 <template>
-  <div class="zm-face-recognition">
+  <div
+    :class="[
+      'zm-face-recognition',
+      `${visible ? '' : 'zm-face-recognition--hide'}`
+    ]"
+  >
     <video
       ref="videoRef"
-      width="200"
-      height="200"
+      :width="videoWidth"
+      :height="videoHeight"
       autoplay
       @loadedmetadata="play"
     />
@@ -28,8 +33,20 @@ interface Expression {
   [key: string]: number
 }
 
+interface Props {
+  visible: boolean
+  videoWidth: number | string
+  videoHeight: number | string
+}
+
 defineOptions({
   name: 'ZmFaceRecognition'
+})
+
+withDefaults(defineProps<Props>(), {
+  visible: true,
+  videoWidth: '100',
+  videoHeight: '100'
 })
 
 const emit = defineEmits(['theme-change'])
@@ -97,3 +114,6 @@ onMounted(() => {
   init()
 })
 </script>
+<style lang="scss" scoped>
+@import '../style/zm-face-recognition.scss';
+</style>
