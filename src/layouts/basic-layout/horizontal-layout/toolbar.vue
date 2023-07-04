@@ -11,7 +11,7 @@
         />
       </el-icon>
       <el-icon>
-        <component :is="isDark ? Sunny : Moon" @click="toggleThemeMode" />
+        <component :is="isDark ? Sunny : Moon" @click="toggleThemeMode()" />
       </el-icon>
       <el-icon><avatar-line /></el-icon>
     </template>
