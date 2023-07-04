@@ -11,7 +11,7 @@
         />
       </el-icon>
       <el-icon>
-        <component :is="dark ? Sunny : Moon" @click="toggleDark()" />
+        <component :is="isDark ? Sunny : Moon" @click="toggleThemeMode" />
       </el-icon>
       <el-icon><avatar-line /></el-icon>
     </template>
@@ -23,12 +23,15 @@ import CommonHeader from '@/layouts/common/header/index.vue'
 import { FullScreen, Sunny, Moon } from '@element-plus/icons'
 import { ExitFullscreen } from '@zimu/icons'
 import { toggleFullScreen } from '@/utils'
-import { useDark } from '@vueuse/core'
-import { useToggle } from '@vueuse/shared'
+import { useTheme } from '@/hooks'
 
 defineOptions({
   name: 'HorizontalLayoutToolbar'
 })
+
+const { mode, toggleThemeMode } = useTheme()
+
+const isDark = computed(() => mode.value === 'dark')
 
 // TODO:后续走配置，存 pinia
 const fullScreen = ref(false)
@@ -36,11 +39,6 @@ const fullScreen = ref(false)
 function handleFullScreen() {
   fullScreen.value = toggleFullScreen()
 }
-
-const dark = useDark({
-  storageKey: 'zm-theme-appearance'
-})
-const toggleDark = useToggle(dark)
 </script>
 
 <style scoped></style>
