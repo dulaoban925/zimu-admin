@@ -27,6 +27,8 @@ module.exports = {
     'no-void': 0
   },
   globals: {
-    NodeJS: true
+    NodeJS: true,
+    ZiMuAuth: true,
+    ZiMuRoute: true
   }
 }
