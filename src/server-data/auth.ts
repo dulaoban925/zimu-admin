@@ -1,33 +1,43 @@
 // 菜单
-export const menus = [
+export const menus: ZiMuAuth.Menu[] = [
   {
-    index: '1',
-    label: '组件示例',
-    icon: 'DocumentCopy',
-    children: [
-      {
-        index: '1.1',
-        label: '图标集合'
-      },
-      {
-        index: '1.2',
-        label: '文件上传'
-      }
-    ]
+    code: 'Dashboard',
+    label: '控制台',
+    icon: 'Odometer',
+    sort: 1,
+    type: 'menu',
+    level: 1
   },
   {
-    index: 'SystemManage',
+    code: 'Home',
+    label: '主页',
+    sort: 1,
+    type: 'menu',
+    level: 2,
+    parent: 'Dashboard'
+  },
+  {
+    code: 'SystemManage',
     label: '系统管理',
     icon: 'Setting',
-    children: [
-      {
-        index: 'UserManagement',
-        label: '用户管理'
-      },
-      {
-        index: 'MenuManagement',
-        label: '菜单管理'
-      }
-    ]
+    sort: 1,
+    type: 'menu',
+    level: 1
+  },
+  {
+    code: 'UserManage',
+    label: '用户管理',
+    sort: 1,
+    type: 'menu',
+    level: 2,
+    parent: 'SystemManage'
+  },
+  {
+    code: 'MenuManage',
+    label: '菜单管理',
+    sort: 2,
+    type: 'menu',
+    level: 2,
+    parent: 'SystemManage'
   }
 ]
