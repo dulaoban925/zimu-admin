@@ -1,5 +1,5 @@
 /**
- * 系统设置
+ * 系统设置 store
  */
 export const useSettingStore = defineStore('setting-store', () => {
   // 主题

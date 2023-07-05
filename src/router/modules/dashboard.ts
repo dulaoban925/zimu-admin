@@ -7,16 +7,18 @@ const RouteComponents = {
 }
 
 const dashboardModule: ZiMuRoute.Route = {
+  name: 'Dashboard',
   path: '/dashboard',
   component: getLayoutComponent(ROUTE_COMPONENT_LAYOUT_VALUE.BASIC),
   children: [
     {
-      name: 'Dashboard',
+      name: 'Home',
       path: '',
-      component: RouteComponents.Dashboard
+      component: RouteComponents.Dashboard,
+      meta: { title: '主页', affix: true }
     }
   ],
-  meta: { title: '控制台', affix: true }
+  meta: { title: '主页' }
 }
 
 export default dashboardModule

@@ -7,7 +7,7 @@ import type {
   RouteLocationNormalizedLoaded
 } from 'vue-router'
 
-declare module ZiMuRoute {
+declare namespace ZiMuRoute {
   type RouteComponent =
     | ValueOf<typeof ROUTE_COMPONENT_LAYOUT_VALUE>
     | ValueOf<Pick<RouteRecordRaw, 'component'>>

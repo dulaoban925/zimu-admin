@@ -1,5 +1,5 @@
 /**
- * 视图页签相关
+ * 视图页签 store
  */
 import type { RouteRecordName } from 'vue-router'
 import { routes } from '@/router'
