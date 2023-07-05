@@ -19,6 +19,8 @@ const props = {
     type: Array as PropType<ZmMenuDataItem[]>,
     default: () => []
   },
+  // menu item index 属性对应 menu 数据对象的 key 值
+  indexKey: String,
   // 筛选输入框输入的值
   filterInputValue: String
 }
@@ -97,7 +99,7 @@ export default defineComponent({
           subComp = h(
             ElSubMenu,
             {
-              index: menu.index,
+              index: menu[props.indexKey] as string,
               disabled: menu.disabled
             },
             {
@@ -109,7 +111,7 @@ export default defineComponent({
           subComp = h(
             ElMenuItem,
             {
-              index: menu.index,
+              index: menu[props.indexKey] as string,
               disabled: menu.disabled
             },
             () => renderHighlightMenuItem(menu.label)

@@ -11,6 +11,7 @@ export interface ZmMenuDataItem {
   isCollected?: boolean
   disabled?: boolean
   children?: Array<ZmMenuDataItem>
+  [props: string]: string | boolean | Array<ZmMenuDataItem> | undefined
 }
 
 export interface ZmMenuItemClicked {

@@ -21,12 +21,14 @@
     />
     <zm-menu-filter
       v-show="!collapse"
+      :menu-index-key="indexKey"
       :menu-options="filterOptions"
       @select-change="handleFilter"
       @input-input="handleFilterInputInput"
     />
     <zm-menu-content
       :data="data"
+      :index-key="indexKey"
       :collapse="collapse"
       :menu-trigger="menuTrigger"
       :filter-input-value="filterState.inputValue"
@@ -59,6 +61,11 @@ const props = defineProps({
   data: {
     type: Array as PropType<ZmMenuDataItem[]>,
     default: () => []
+  },
+  // menu item index 属性对应 menu 数据对象的 key 值
+  indexKey: {
+    type: String,
+    default: 'index'
   },
   // 折叠
   collapse: {
@@ -134,8 +141,7 @@ watchEffect(() => {
 const filterOptions = computed(
   () =>
     props.data.reduce((ret: ZmMenuDataItem[], item: ZmMenuDataItem) => {
-      const { index, label } = item
-      ret.push({ index, label })
+      ret.push({ index: item[props.indexKey] as string, label: item.label })
       return ret
     }, []) ?? []
 )
@@ -175,7 +181,7 @@ const matchMenus = (value: string, menus: Array<ZmMenuDataItem>) => {
 
 const handleFilter = ({ selectValue, inputValue }: FilterParams) => {
   const baseMenus = selectValue
-    ? props.data.filter(menu => menu.index === selectValue)
+    ? props.data.filter(menu => menu[props.indexKey] === selectValue)
     : props.data
   if (inputValue) {
     filterState.inputValue = inputValue
