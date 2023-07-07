@@ -5,6 +5,7 @@ const PROXY_PATTERN = '/api'
 export function getEnvServiceConfig() {
   return {
     url: import.meta.env.VITE_SERVICE_URL,
+    enableProxy: import.meta.env.VITE_ENABLE_PROXY,
     proxyPattern: PROXY_PATTERN
   }
 }

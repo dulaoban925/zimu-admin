@@ -1,12 +1,7 @@
-import { getEnvServiceConfig } from './env'
-import { createRequest } from './factory'
+import { getEnvServiceConfig } from '../service/env'
+import { createRequest } from './creators'
 
-// 是否启用代理
-const enableProxy = import.meta.env.VITE_ENABLE_PROXY
-
-const { url, proxyPattern } = getEnvServiceConfig()
+const { url, enableProxy, proxyPattern } = getEnvServiceConfig()
 
 const config = { baseURL: enableProxy ? proxyPattern : url }
 export const request = createRequest(config)
-
-export * from './env'
