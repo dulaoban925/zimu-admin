@@ -1,3 +1,7 @@
+<!-- TODO:
+    1.支持更多的默认动销
+    2.支持自定义动效钩子设置
+  -->
 <template>
   <Transition :name="name" :mode="mode" :appear="appear">
     <slot />
