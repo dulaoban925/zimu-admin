@@ -16,17 +16,15 @@ defineOptions({
   name: 'ZmTransition'
 })
 
-type Mode = 'in-out' | 'out-in' | 'default'
-
 interface Props {
   name?: ValueOf<typeof TRANSITION_NAME>
-  mode?: Mode
+  mode?: ValueOf<typeof TRANSITION_MODE>
   appear?: boolean
 }
 
 withDefaults(defineProps<Props>(), {
   name: TRANSITION_NAME.FADE,
-  mode: TRANSITION_MODE.DEFAULT as Mode,
+  mode: TRANSITION_MODE.DEFAULT,
   appear: true
 })
 </script>
