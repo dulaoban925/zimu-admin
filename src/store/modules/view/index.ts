@@ -28,7 +28,6 @@ export const useViewStore = defineStore('view-store', () => {
     const exist = matchIndex > -1
     if (exist) return
     visitedViews.value.push(view)
-    console.log('view', view)
   }
 
   // 删除访问视图
@@ -111,8 +110,6 @@ export const useViewStore = defineStore('view-store', () => {
       affixViewRoutes.findIndex(r => r.name === view.name) > -1
     !currentViewInFilteredRoutes && addView(view)
     setActiveView(view)
-
-    console.log(visitedViews.value)
   }
 
   return {

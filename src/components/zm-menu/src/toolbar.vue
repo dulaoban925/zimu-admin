@@ -44,8 +44,8 @@
   </div>
 </template>
 <script setup lang="ts">
-import { TOOLBAR_OPTION } from '../constants'
-import type { ActionItem } from '../types'
+import { TOOLBAR_OPTION } from './constants'
+import type { ActionItem } from './types'
 import { Expand, Fold, Menu, HomeFilled } from '@element-plus/icons'
 import { StartFilled } from '@zimu/icons'
 
@@ -121,3 +121,4 @@ const toggleCollapse = (status: boolean) => {
   emit('collapse', collapse.value)
 }
 </script>
+./constants./types

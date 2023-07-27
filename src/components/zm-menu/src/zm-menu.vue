@@ -42,8 +42,8 @@
 </template>
 <script setup lang="ts">
 import type { NavigationFailure } from 'vue-router'
-import type { ZmMenuItemClicked, ZmMenuDataItem, FilterParams } from '../types'
-import { MENU_TRIGGER } from '../constants'
+import type { ZmMenuItemClicked, ZmMenuDataItem, FilterParams } from './types'
+import { MENU_TRIGGER } from './constants'
 import { checkIndexPath } from './zm-menu'
 import { isString, isObject, isArray } from '@vue/shared'
 import { isBoolean } from '@/utils'
@@ -219,3 +219,4 @@ const handleSelect = (
 <style lang="scss">
 @import '../style/zm-menu.scss';
 </style>
+./constants./types

@@ -43,8 +43,8 @@
 <script setup lang="ts">
 import { reactive, ref, watchEffect, PropType } from 'vue'
 import { Search } from '@element-plus/icons'
-import { FILTER_MODE } from '../constants'
-import { ZmMenuDataItem } from '../types'
+import { FILTER_MODE } from './constants'
+import { ZmMenuDataItem } from './types'
 
 defineOptions({
   name: 'ZmMenuFilter'
@@ -100,3 +100,4 @@ watchEffect(() => {
     : ''
 })
 </script>
+./constants./types

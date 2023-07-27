@@ -1,33 +1,32 @@
 import { App, Component } from 'vue'
-import { ZmMenu } from './zm-menu'
-import { ZmTransition } from './zm-transition'
-import { ZmScroll } from './zm-scroll'
-import { ZmFaceRecognition } from './zm-face-recognition'
-import * as ElementPlusIcons from '@element-plus/icons'
+import ElementPlusIcons from '@element-plus/icons-vue/global'
 import ZiMuIcons from '@zimu/icons'
 
-export * from './zm-menu'
+type ComponentModule = Record<string, { default: Component }>
 
-const customComponents: {
-  [propName: string]: Component
-} = {
-  ZmMenu,
-  ZmTransition,
-  ZmScroll,
-  ZmFaceRecognition
-}
+function getCustomComponents() {
+  const modules: ComponentModule = import.meta.glob('./**/index.ts', {
+    eager: true
+  })
 
-const install = (app: App<Element>) => {
-  const componentEntries: [string, Component][] = [
-    ...Object.entries(customComponents),
-    ...Object.entries(ElementPlusIcons)
-  ]
-  for (const [key, component] of componentEntries) {
-    app.component(key, component)
-  }
+  const components = Object.values(modules)
+    .map(m => m.default)
+    .filter(c => !!c)
+
+  return components
 }
 
 export const setupComponents = (app: App<Element>) => {
-  install(app)
+  const customComponents = getCustomComponents()
+  for (const component of customComponents) {
+    app.component(component.name!, component)
+  }
+  app.use(ElementPlusIcons)
   app.use(ZiMuIcons)
 }
+
+export default (app: App<Element>) => {
+  setupComponents(app)
+}
+
+export * from './zm-menu'
