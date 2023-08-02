@@ -29,6 +29,7 @@ export const useMenuStore = defineStore('menu-store', () => {
   const setActiveMenu = (menu: string) => {
     activeMenu.value = menu
   }
+
   return {
     /** state start */
     authMenus,

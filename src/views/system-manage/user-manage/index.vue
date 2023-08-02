@@ -1,15 +1,43 @@
 <template>
   <div class="menu-manage">
-    用户管理
-    <el-button @click="back">返回</el-button>
+    <zm-table :table-props="tableProps" @size-change="handleSizeChange">
+      <el-table-column prop="date" label="Date" width="180" />
+      <el-table-column prop="name" label="Name" width="180" />
+      <el-table-column prop="address" label="Address" />
+    </zm-table>
   </div>
 </template>
 
 <script setup lang="ts">
-const _router = useRouter()
+const tableData = [
+  {
+    date: '2016-05-03',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  },
+  {
+    date: '2016-05-02',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  },
+  {
+    date: '2016-05-04',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  },
+  {
+    date: '2016-05-01',
+    name: 'Tom',
+    address: 'No. 189, Grove St, Los Angeles'
+  }
+]
 
-function back() {
-  _router.back()
+const tableProps = {
+  data: tableData
+}
+
+function handleSizeChange(val) {
+  console.log('handleSizeChange', val)
 }
 </script>
 

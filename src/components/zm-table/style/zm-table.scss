@@ -1,0 +1,11 @@
+.zm-table {
+
+  &__content {
+    margin: 10px 0;
+  }
+
+  &__pagination {
+    display: flex;
+    align-items: center;
+  }
+}
