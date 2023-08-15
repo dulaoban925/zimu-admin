@@ -64,5 +64,6 @@
 
 | 表单类型       | 参数                      | 说明 |
 | ---------- | -------------------------------- | -------------------------- |
-| input | true / { tag: 'input' } | 除参数部分属性外，支持 [ElInput](https://element-plus.org/zh-CN/component/input.html#attributes) 全部配置性属性，如 `type`、`clearable` 等 |
-| select | { tag: 'select', options: [] } | 除参数部分属性外，支持 [ElSelect](https://element-plus.org/zh-CN/component/select.html#select-attributes) 全部配置性属性，如 `filterable`、`clearable` 等 |
+| 通用配置 | { tagType: '', tagProps: {}, colProps: {}, formItemProps: {} } | 下面所有类型表单类型的通用配置，tagType: 表单组件类型，对应值见下文; tagProps: 表单组件配置，详情见下文; colProps: 表单组件默认包裹 ElCol，可手动传递配置，默认 `span: 8`; formItemProps: 表单组件包括 ElFormItem，默认配置 `{ labelSuffix: ':', labelWidth: '120px' }` |
+| input | true / { tagType: 'Input' } | 除参数部分属性外，支持 [ElInput](https://element-plus.org/zh-CN/component/input.html#attributes) 全部配置性属性，如 `type`、`clearable` 等 |
+| select | { tagType: 'Select', options: [] } | 除参数部分属性外，支持 [ElSelect](https://element-plus.org/zh-CN/component/select.html#select-attributes) 全部配置性属性，如 `filterable`、`clearable` 等 |
