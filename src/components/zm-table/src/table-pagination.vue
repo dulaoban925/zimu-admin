@@ -13,7 +13,9 @@ defineOptions({
 })
 
 defineProps({
+  // ElPagination 事件集合
   events: Object as PropType<Record<string, (...args: any[]) => void>>,
+  // 横向定位
   justifyContent: {
     type: String as PropType<'flex-start' | 'center' | 'flex-end'>,
     default: 'flex-end'

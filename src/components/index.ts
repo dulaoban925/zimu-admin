@@ -1,17 +1,25 @@
-import { App, Component } from 'vue'
-import ElementPlusIcons from '@element-plus/icons-vue/global'
+import type { App, Component } from 'vue'
+import * as ElementPlusIcons from '@element-plus/icons-vue'
 import ZiMuIcons from '@zimu/icons'
 
-type ComponentModule = Record<string, { default: Component }>
+type ComponentModule = Record<
+  string,
+  { default: Component; [propName: string]: any }
+>
 
 function getCustomComponents() {
   const modules: ComponentModule = import.meta.glob('./**/index.ts', {
     eager: true
   })
 
-  const components = Object.values(modules)
-    .map(m => m.default)
-    .filter(c => !!c)
+  const components = []
+  for (const m of Object.values(modules)) {
+    for (const k of Object.keys(m)) {
+      if (k !== 'default' && m[k]?.name === k) {
+        components.push(m[k])
+      }
+    }
+  }
 
   return components
 }
@@ -21,7 +29,9 @@ export const setupComponents = (app: App<Element>) => {
   for (const component of customComponents) {
     app.component(component.name!, component)
   }
-  app.use(ElementPlusIcons)
+  for (const icon of Object.values(ElementPlusIcons)) {
+    app.component(icon.name!, icon)
+  }
   app.use(ZiMuIcons)
 }
 

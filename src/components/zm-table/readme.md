@@ -49,7 +49,7 @@
 
 | 名称       | 说明                      | 类型                       | 默认值 | 是否必需 |
 | ---------- | -------------------------------- | -------------------------- | ------- | -------- |
-| filter | 是否自动添加到筛选表单。默认 input 类型，若需要其他类型表单项，可通过传递对象实现详见 [filter](#filter) 部分。在使用 `filter` 插槽时无效| boolean / object | false | false |
+| filterable | 是否自动添加到筛选表单。默认 input 类型，若需要其他类型表单项，可通过传递对象实现详见 [filterable](#filterable) 部分。在使用 `filter` 插槽时无效| boolean / object | false | false |
 
 ### 2.2 插槽
 
@@ -58,9 +58,9 @@
 | - | 自定义列的内容 作用域参数为 { row, column, $index } |
 | header | 自定义表头的内容， 作用域参数为 { column, $index } |
 
-### filter
+### filterable
 
-`zm-table-column` `filter` 对象参数详情：
+`zm-table-column` `filterable` 对象参数详情：
 
 | 表单类型       | 参数                      | 说明 |
 | ---------- | -------------------------------- | -------------------------- |

@@ -1,9 +1,9 @@
 <template>
   <div class="menu-manage">
     <zm-table :table-props="tableProps" @size-change="handleSizeChange">
-      <el-table-column prop="date" label="Date" width="180" />
-      <el-table-column prop="name" label="Name" width="180" />
-      <el-table-column prop="address" label="Address" />
+      <zm-table-column prop="date" label="Date" width="180" filterable />
+      <zm-table-column prop="name" label="Name" width="180" filterable />
+      <zm-table-column prop="address" label="Address" filterable />
     </zm-table>
   </div>
 </template>
