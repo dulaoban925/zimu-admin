@@ -1,9 +1,14 @@
 <template>
   <div class="menu-manage">
-    <zm-table :table-props="tableProps" @size-change="handleSizeChange">
+    <zm-table
+      :table-props="tableProps"
+      @size-change="handleSizeChange"
+      @filter-reset="handleFilterReset"
+      @filter-search="handleFilterSearch"
+    >
       <zm-table-column prop="date" label="Date" width="180" filterable />
       <zm-table-column prop="name" label="Name" width="180" filterable />
-      <zm-table-column prop="address" label="Address" filterable />
+      <zm-table-column prop="address" label="Address" />
     </zm-table>
   </div>
 </template>
@@ -36,7 +41,15 @@ const tableProps = {
   data: tableData
 }
 
-function handleSizeChange(val) {
+function handleSizeChange(val: number) {
+  console.log('handleSizeChange', val)
+}
+
+const handleFilterReset = () => {
+  console.log('handleFilterReset')
+}
+
+const handleFilterSearch = (val: any) => {
   console.log('handleSizeChange', val)
 }
 </script>

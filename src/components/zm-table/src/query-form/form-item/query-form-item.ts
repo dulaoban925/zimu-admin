@@ -2,13 +2,13 @@ import type { PropType } from '@vue/runtime-core'
 import { ElFormItem, ElCol } from 'element-plus'
 import type { FormItemProps, ColProps } from 'element-plus'
 import type { ItemType, TagProps } from '../types'
-import { fillDefaultFormItemProps, getFormModelValueKey } from './helpers'
+import { fillDefaultFormItemProps } from './helpers'
 import { typeGeneratorMap } from './generators'
 
 const queryFormItemProps = {
-  formModel: {
-    type: Object,
-    default: () => ({})
+  modelValue: {
+    type: String,
+    required: true
   },
   // 表单组件类型
   tagType: {
@@ -29,34 +29,32 @@ const queryFormItemProps = {
   }
 }
 
-const queryFormItemEmits: string[] = ['update:formModel']
+const queryFormItemEmits: string[] = ['update:modelValue']
 
 export default defineComponent({
   name: 'ZmQueryFormItems',
   props: queryFormItemProps,
   emits: queryFormItemEmits,
   setup(props, { emit }) {
-    const formModel = computed({
+    const modelValue = computed({
       get() {
-        return props.formModel
+        return props.modelValue
       },
       set(val) {
-        emit('update:formModel', val)
+        emit('update:modelValue', val)
       }
     })
 
+    const formColProps = computed(() =>
+      Object.assign({}, { span: 8 }, props.colProps ?? {})
+    )
+
     // 处理 v-model 双向绑定
     function handleVModelProps(oProps: any) {
-      const key = getFormModelValueKey(oProps.modelKey)
-      // 解决表单组件数据响应问题
-      const mvRef = toRef(formModel.value[key])
-      oProps.modelValue = mvRef
+      oProps.modelValue = modelValue
       oProps['onUpdate:modelValue'] = (val: any) => {
-        mvRef.value = val
-        formModel.value[key] = val
+        modelValue.value = val
       }
-      // 清理非组件 props 的对象属性
-      delete oProps.modelKey
       return oProps
     }
 
@@ -68,8 +66,7 @@ export default defineComponent({
       h(
         ElCol,
         {
-          ...props?.colProps,
-          span: props?.colProps?.span || 8
+          ...formColProps.value
         },
         () => h(ElFormItem, fullFormItemProps, () => itemRender(componentProps))
       )

@@ -26,49 +26,59 @@ export type QueryFormItemProp = FormItemProps & {
   type: ItemType
 }
 
-type SelectProps = {}
+type CommonTagType = {
+  modelKey: string
+}
 
-type CheckboxProps = {}
+type InputTagProps = CommonTagType & InputProps
 
-type RadioProps = {}
+type InputNumberTagProps = CommonTagType & InputNumberProps
+
+type SelectTagProps = CommonTagType & {}
+
+type DatePickerTagProps = CommonTagType & {}
+
+type CheckboxTagProps = CommonTagType & {}
+
+type RadioTagProps = CommonTagType & DatePickerProps
 
 export type TagProps =
-  | InputProps
-  | InputNumberProps
-  | SelectProps
-  | CheckboxProps
-  | DatePickerProps
-  | RadioProps
+  | InputTagProps
+  | InputNumberTagProps
+  | SelectTagProps
+  | CheckboxTagProps
+  | DatePickerTagProps
+  | RadioTagProps
 
-interface CommonPart {
+export interface QueryFormItemType {
   uid?: string | number
   formModel?: any
-  tagType?: ItemType
   tagProps?: TagProps
+  tagType?: ItemType
   colProps?: ColProps
   formItemProps?: FormItemProps
 }
 
-export type ZmInputItemType = CommonPart & InputProps
+// export type ZmInputItemType = CommonPart & InputProps
 
-export type ZmInputNumberItemType = CommonPart & InputNumberProps
+// export type ZmInputNumberItemType = CommonPart & InputNumberProps
 
-export type ZmSelectItemType = CommonPart & SelectProps
+// export type ZmSelectItemType = CommonPart & {}
 
-export type ZmCheckboxItemType = CommonPart & CheckboxProps
+// export type ZmCheckboxItemType = CommonPart & {}
 
-export type ZmDatePickerItemType = CommonPart & DatePickerProps
+// export type ZmDatePickerItemType = CommonPart & {}
 
-export type ZmRadioItemType = CommonPart & RadioProps
+// export type ZmRadioItemType = CommonPart & {}
 
-export type QueryFormItemType =
-  | ZmInputItemType
-  | ZmInputNumberItemType
-  | ZmSelectItemType
-  | ZmCheckboxItemType
-  | ZmDatePickerItemType
-  | ZmRadioItemType
-  | never
+// export type QueryFormItemType =
+//   | ZmInputItemType
+//   | ZmInputNumberItemType
+//   | ZmSelectItemType
+//   | ZmCheckboxItemType
+//   | ZmDatePickerItemType
+//   | ZmRadioItemType
+//   | never
 
 export interface InputEventProps {
   onBlur: (evt: FocusEvent) => void

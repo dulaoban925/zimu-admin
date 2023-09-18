@@ -25,7 +25,6 @@ export const useRouteStore = defineStore('route-store', () => {
     // 将 路由配置 转化为可用的、平铺的 vue 路由
     const vueRoutes = transformRouteConfigToVueRoutes(routes)
     const matchedRoutes = matchRoutesByAuthMenus(vueRoutes, menus)
-    console.log('matchedRoutes', matchedRoutes)
     for (const route of matchedRoutes) {
       router.addRoute(route)
     }

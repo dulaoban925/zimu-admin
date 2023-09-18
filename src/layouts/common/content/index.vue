@@ -23,7 +23,6 @@ const menuStore = useMenuStore()
 watch(
   () => _route[VIEW_DIFF_PROP],
   () => {
-    console.log('_route', _route)
     menuStore.setActiveMenu(_route.name as string)
   },
   {

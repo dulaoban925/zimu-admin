@@ -20,3 +20,8 @@ export const CHECKBOX_NAME = 'Checkbox'
 export const DATE_PICKER_NAME = 'DatePicker'
 export const RADIO_NAME = 'Radio'
 /** queryForm end */
+
+export const EVENT_NAMES = {
+  FILTER_RESET: 'filterReset',
+  FILTER_SEARCH: 'filterSearch'
+}

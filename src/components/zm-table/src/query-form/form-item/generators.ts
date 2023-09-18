@@ -18,7 +18,6 @@ import { isObject } from '@/utils'
 
 // 生成 Input
 export function generateInput(props: ZmInputProps) {
-  console.log('props', props)
   return h(ElInput, props)
 }
 
@@ -71,29 +70,37 @@ export function generateFormItemsByColumns(columns?: VNode[]) {
 export function generateFormItemByColumn(column: VNode) {
   const filterableProp = column.props?.filterable ?? false
   if (!filterableProp && filterableProp !== '') return
+  const uid = uniqueId('zm')
   const formItem: QueryFormItemType = {
-    uid: uniqueId('zm')
+    uid
   }
 
-  // 设置了 filterable 且未设置具体属性，默认 input
-  if ((filterableProp && !isObject(filterableProp)) || filterableProp === '') {
-    if (!column.props?.prop)
-      console.warn('若设置了 filterable, zm-table-column 的 props 必需')
-
-    const defaultInputProps = {
-      tagType: INPUT_NAME,
-      tagProps: {
-        type: 'text',
-        modelKey: column.props?.prop,
-        placeholder: `请输入${column.props?.label ?? ''}`
-      },
-      formItemProps: {
-        label: column.props?.label ?? ''
+  if (filterableProp || filterableProp === '') {
+    const { prop, columnKey } = column.props ?? {}
+    if (!prop && !columnKey)
+      console.warn(
+        '若设置了 filterable, zm-table-column 必需配置 prop 或 column-key 属性'
+      )
+    const modelKey = prop ?? columnKey ?? uid
+    // 设置了 filterable 且未设置具体属性，默认 input
+    if (!isObject(filterableProp)) {
+      const defaultInputProps = {
+        tagType: INPUT_NAME,
+        tagProps: {
+          type: 'text',
+          modelKey,
+          placeholder: `请输入${column.props?.label ?? ''}`
+        },
+        formItemProps: {
+          label: column.props?.label ?? ''
+        }
       }
+      Object.assign(formItem, defaultInputProps)
+    } else {
+      if (!filterableProp.tagProps?.modelKey)
+        filterableProp.tagProps.modelKey = modelKey
+      Object.assign(formItem, filterableProp)
     }
-    Object.assign(formItem, defaultInputProps)
-  } else {
-    Object.assign(formItem, filterableProp)
   }
 
   return formItem

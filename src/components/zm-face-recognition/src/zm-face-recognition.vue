@@ -98,7 +98,6 @@ async function play() {
   const recognition = await FaceApi.detectSingleFace(
     videoRef.value
   ).withFaceExpressions()
-  console.log('recognition', recognition)
   setFaceExpression(recognition?.expressions as unknown as Expression)
 
   timer = setTimeout(play)

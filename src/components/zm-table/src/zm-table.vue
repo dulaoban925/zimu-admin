@@ -5,6 +5,8 @@
       v-if="showFilter"
       :form-items="filterFormItems"
       v-bind="filterFormProps"
+      @[FilterResetEvent]="handleFilterReset"
+      @[FilterSearchEvent]="handleFilterSearch"
     >
       <slot name="filter" />
     </zm-table-filter>
@@ -31,12 +33,14 @@ import { ElTable, ElPagination } from 'element-plus'
 import {
   DEFAULT_TABLE_PROPS,
   DEFAULT_PAGINATION_PROPS,
-  DEFAULT_FILTER_FORM_PROPS
+  DEFAULT_FILTER_FORM_PROPS,
+  EVENT_NAMES
 } from './constants'
 import ZmTablePagination from './table-pagination.vue'
 import ZmTableFilter from './table-filter.vue'
 import { generateFormItemsByColumns } from './query-form/form-item/generators'
 import { QueryFormItemType } from './query-form/types'
+import { useFilterEvents } from './hooks'
 
 defineOptions({
   name: 'ZmTable'
@@ -80,7 +84,7 @@ const fullPaginationProps = computed(() =>
 const emit = defineEmits([
   ...Object.keys(ElTable.emits ?? {}),
   ...Object.keys(ElPagination.emits ?? {}),
-  ...[]
+  ...[EVENT_NAMES.FILTER_RESET, EVENT_NAMES.FILTER_SEARCH]
 ])
 
 const tableEvents: Record<string, (...args: any[]) => void> = {}
@@ -135,9 +139,15 @@ watchEffect(() => {
     filterFormItems.value = generateFormItemsByColumns(filterableColumns.value)
   }
 })
+
+const {
+  FilterResetEvent,
+  FilterSearchEvent,
+  handleFilterReset,
+  handleFilterSearch
+} = useFilterEvents(emit)
 </script>
 
 <style lang="scss" scoped>
 @use '../style/zm-table.scss' as *;
 </style>
-./query-form/hooks/use-item-generator./query-form/form-item/hooks/use-generator

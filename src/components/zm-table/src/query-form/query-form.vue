@@ -6,7 +6,7 @@
           v-for="item in items"
           :key="item.uid"
           v-bind="item"
-          v-model:form-model="model"
+          v-model="model[item.tagProps!.modelKey]"
         />
       </el-row>
     </el-form>
@@ -38,6 +38,8 @@
 import type { FormProps } from 'element-plus'
 import type { QueryFormItemType } from './types'
 import QueryFormItem from './form-item/query-form-item'
+import { EVENT_NAMES } from '../constants'
+import { useFilterEvents } from '../hooks'
 
 defineOptions({
   name: 'ZmQueryForm'
@@ -55,7 +57,7 @@ withDefaults(defineProps<Props>(), {
   searchButtonText: '查询'
 })
 
-const emit = defineEmits(['triggerReset', 'triggerSearch'])
+const emit = defineEmits([EVENT_NAMES.FILTER_RESET, EVENT_NAMES.FILTER_SEARCH])
 
 const attrs: FormProps = useAttrs() as FormProps
 
@@ -67,13 +69,15 @@ const collapseBtnIcon = ref()
 
 const handleChangeCollapse = () => {}
 
+const { handleFilterReset, handleFilterSearch } = useFilterEvents(emit)
+
 const handleReset = () => {
-  emit('triggerReset')
+  model.value = {}
+  handleFilterReset()
 }
 
 const handleSearch = () => {
-  console.log(model.value)
-  emit('triggerSearch')
+  handleFilterSearch(model.value)
 }
 </script>
 <style lang="scss">
