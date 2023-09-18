@@ -1,6 +1,6 @@
-import type { RouteLocationRaw } from 'vue-router'
 import { Component } from 'vue'
 import { TOOLBAR_OPTION } from './constants'
+import type { RouteLocationRaw } from 'vue-router'
 
 export type ValueOf<T> = T[keyof T]
 

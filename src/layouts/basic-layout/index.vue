@@ -5,11 +5,11 @@
   <common-face />
 </template>
 <script setup lang="ts">
-import { useMenuStore } from '@/store'
-import { LAYOUT_PROVIDE_KEY } from './constants'
-import Wrapper from './horizontal-layout/index.vue'
 import CommonContent from '../common/content/index.vue'
 import CommonFace from '../common/face/index.vue'
+import { LAYOUT_PROVIDE_KEY } from './constants'
+import Wrapper from './horizontal-layout/index.vue'
+import { useMenuStore } from '@/store'
 
 defineOptions({
   name: 'Layout'

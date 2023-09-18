@@ -24,8 +24,8 @@
 </template>
 <script setup lang="ts">
 import BS from '@better-scroll/core'
-import type { Options } from '@better-scroll/core'
 import { useElementSize } from '@vueuse/core'
+import type { Options } from '@better-scroll/core'
 
 defineOptions({
   name: 'ZmScroll'

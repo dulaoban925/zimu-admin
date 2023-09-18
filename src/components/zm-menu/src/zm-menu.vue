@@ -41,16 +41,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { NavigationFailure } from 'vue-router'
-import type { ZmMenuItemClicked, ZmMenuDataItem, FilterParams } from './types'
+import { isString, isObject, isArray } from '@vue/shared'
+import { debounce } from 'lodash-es'
 import { MENU_TRIGGER } from './constants'
 import { checkIndexPath } from './zm-menu'
-import { isString, isObject, isArray } from '@vue/shared'
-import { isBoolean } from '@/utils'
 import ZmMenuToolbar from './toolbar.vue'
 import ZmMenuFilter from './filter.vue'
 import ZmMenuContent from './content'
-import { debounce } from 'lodash-es'
+import type { ZmMenuItemClicked, ZmMenuDataItem, FilterParams } from './types'
+import type { NavigationFailure } from 'vue-router'
+import { isBoolean } from '@/utils'
 
 defineOptions({
   name: 'ZmMenu'

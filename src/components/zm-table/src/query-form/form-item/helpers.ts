@@ -1,5 +1,5 @@
-import type { FormItemProps } from 'element-plus'
 import { uniqueId } from 'lodash-es'
+import type { FormItemProps } from 'element-plus'
 
 // 填充 formItem 默认属性
 export function fillDefaultFormItemProps(props?: Partial<FormItemProps>) {

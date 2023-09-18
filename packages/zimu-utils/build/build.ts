@@ -1,10 +1,10 @@
 import path from 'node:path'
 import { build } from 'esbuild'
-import type { BuildOptions, Format } from 'esbuild'
 import { emptyDir } from 'fs-extra'
 import chalk from 'chalk'
-import { pathSrc, pathOutput } from './paths'
 import { version } from '../package.json'
+import { pathSrc, pathOutput } from './paths'
+import type { BuildOptions, Format } from 'esbuild'
 
 const buildBundle = () => {
   const getBuildOptions = (format: Format): BuildOptions => {

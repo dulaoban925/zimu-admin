@@ -1,7 +1,7 @@
-import { ZiMuRoute } from '@/typings/route'
+import { RouteRecordRaw } from 'vue-router'
 import { LayoutType, getLayoutComponent } from './component'
 import { hasChildren, hasComponent } from './check'
-import { RouteRecordRaw } from 'vue-router'
+import { ZiMuRoute } from '@/typings/route'
 
 export function transformModulesToRoutes(modules: ZiMuRoute.RouteModule) {
   const routes: ZiMuRoute.Route[] = []

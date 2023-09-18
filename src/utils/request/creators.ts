@@ -2,6 +2,7 @@
  * 创建 request 的工厂
  */
 import axios from 'axios'
+import { extend, removeAuthorization } from './helpers'
 import type {
   AxiosInstance,
   AxiosRequestConfig,
@@ -10,7 +11,6 @@ import type {
   InternalAxiosRequestConfig,
   AxiosResponse
 } from 'axios'
-import { extend, removeAuthorization } from './helpers'
 import { useLocalStorage } from '@/hooks'
 import { AUTH_KEY } from '@/constants'
 

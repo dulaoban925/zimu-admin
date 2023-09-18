@@ -1,5 +1,5 @@
-import { STORAGE_VALUE_TYPE_KEY } from '@/constants'
 import { SerializerType, Serializers } from './serializer'
+import { STORAGE_VALUE_TYPE_KEY } from '@/constants'
 
 type StorageType = 'localStorage' | 'sessionStorage'
 

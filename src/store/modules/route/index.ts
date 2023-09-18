@@ -1,10 +1,10 @@
 /**
  * 路由 store
  */
-import { routes, router } from '@/router'
-import type { ValueOf } from '@/utils'
-import { transformRouteConfigToVueRoutes } from '@/router/helpers'
 import { matchRoutesByAuthMenus } from './helpers'
+import type { ValueOf } from '@/utils'
+import { routes, router } from '@/router'
+import { transformRouteConfigToVueRoutes } from '@/router/helpers'
 
 export const RouteMatchModeEnum = {
   Static: 'static',

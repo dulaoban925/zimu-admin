@@ -24,7 +24,40 @@ module.exports = {
     'vue/multi-word-component-names': 0,
     'vue/no-v-model-argument': 0,
     'vue/no-multiple-template-root': 0,
-    'no-void': 0
+    'no-void': 0,
+    'import/order': [
+      'error',
+      {
+        groups: [
+          'builtin',
+          'external',
+          'internal',
+          'parent',
+          'sibling',
+          'index',
+          'object',
+          'type'
+        ],
+
+        pathGroups: [
+          {
+            pattern: 'vue',
+            group: 'external',
+            position: 'before'
+          },
+          {
+            pattern: '@vue/**',
+            group: 'external',
+            position: 'before'
+          },
+          {
+            pattern: '@element-plus/**',
+            group: 'internal'
+          }
+        ],
+        pathGroupsExcludedImportTypes: ['type']
+      }
+    ]
   },
   globals: {
     NodeJS: true,

@@ -5,8 +5,8 @@ import camelcase from 'camelcase'
 import chalk from 'chalk'
 import glob from 'fast-glob'
 import { format } from 'prettier'
-import type { BuiltInParserName } from 'prettier'
 import { pathComponents, pathSvg } from './paths'
+import type { BuiltInParserName } from 'prettier'
 
 /**
  * 从文件路径中获取文件名及组件名

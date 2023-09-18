@@ -1,6 +1,6 @@
-import type { App, Component } from 'vue'
-import * as ElementPlusIcons from '@element-plus/icons-vue'
 import ZiMuIcons from '@zimu/icons'
+import * as ElementPlusIcons from '@element-plus/icons-vue'
+import type { App, Component } from 'vue'
 
 type ComponentModule = Record<
   string,

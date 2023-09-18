@@ -2,10 +2,10 @@
  * 视图页签 store
  */
 import type { RouteRecordName } from 'vue-router'
-import { routes } from '@/router'
 import type { WithNever } from '@/utils'
-import { VIEW_DIFF_PROP } from '@/constants'
 import type { ZiMuRoute } from '@/typings/route.d.ts'
+import { routes } from '@/router'
+import { VIEW_DIFF_PROP } from '@/constants'
 import { filterRoutesConfig, getRoutePath } from '@/router/helpers'
 
 export const useViewStore = defineStore('view-store', () => {

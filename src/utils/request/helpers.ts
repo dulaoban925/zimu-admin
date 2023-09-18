@@ -1,5 +1,5 @@
-import { useLocalStorage } from '@/hooks'
 import { isFunction } from '..'
+import { useLocalStorage } from '@/hooks'
 import { AUTH_KEY } from '@/constants'
 
 /**

@@ -35,11 +35,11 @@
   </div>
 </template>
 <script setup lang="ts">
-import type { FormProps } from 'element-plus'
-import type { QueryFormItemType } from './types'
-import QueryFormItem from './form-item/query-form-item'
 import { EVENT_NAMES } from '../constants'
 import { useFilterEvents } from '../hooks'
+import QueryFormItem from './form-item/query-form-item'
+import type { FormProps } from 'element-plus'
+import type { QueryFormItemType } from './types'
 
 defineOptions({
   name: 'ZmQueryForm'

@@ -1,7 +1,7 @@
-import { ZiMuRoute } from '@/typings/route'
-import { hasChildren } from './check'
 import { RouteRecordName } from 'vue-router'
+import { hasChildren } from './check'
 import { formatPathSlash } from './format'
+import { ZiMuRoute } from '@/typings/route'
 
 /**
  * 平铺路由配置

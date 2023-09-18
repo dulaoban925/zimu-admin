@@ -27,8 +27,6 @@
 </template>
 
 <script setup lang="ts">
-import type { Component, VNode } from 'vue'
-import type { TableProps, PaginationProps, FormProps } from 'element-plus'
 import { ElTable, ElPagination } from 'element-plus'
 import {
   DEFAULT_TABLE_PROPS,
@@ -41,6 +39,8 @@ import ZmTableFilter from './table-filter.vue'
 import { generateFormItemsByColumns } from './query-form/form-item/generators'
 import { QueryFormItemType } from './query-form/types'
 import { useFilterEvents } from './hooks'
+import type { TableProps, PaginationProps, FormProps } from 'element-plus'
+import type { Component, VNode } from 'vue'
 
 defineOptions({
   name: 'ZmTable'

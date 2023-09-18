@@ -9,9 +9,9 @@
 </template>
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
+import { TRANSITION_MODE } from '@components/zm-transition'
 import { useMenuStore } from '@/store'
 import { VIEW_DIFF_PROP } from '@/constants'
-import { TRANSITION_MODE } from '@components/zm-transition'
 
 defineOptions({
   name: 'CommonContent'

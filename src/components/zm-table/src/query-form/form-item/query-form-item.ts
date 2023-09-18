@@ -1,9 +1,9 @@
-import type { PropType } from '@vue/runtime-core'
 import { ElFormItem, ElCol } from 'element-plus'
-import type { FormItemProps, ColProps } from 'element-plus'
-import type { ItemType, TagProps } from '../types'
 import { fillDefaultFormItemProps } from './helpers'
 import { typeGeneratorMap } from './generators'
+import type { PropType } from '@vue/runtime-core'
+import type { FormItemProps, ColProps } from 'element-plus'
+import type { ItemType, TagProps } from '../types'
 
 const queryFormItemProps = {
   modelValue: {

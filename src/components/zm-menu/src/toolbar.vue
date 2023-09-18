@@ -44,10 +44,10 @@
   </div>
 </template>
 <script setup lang="ts">
+import { StartFilled } from '@zimu/icons'
+import { Expand, Fold, Menu, HomeFilled } from '@element-plus/icons'
 import { TOOLBAR_OPTION } from './constants'
 import type { ActionItem } from './types'
-import { Expand, Fold, Menu, HomeFilled } from '@element-plus/icons'
-import { StartFilled } from '@zimu/icons'
 
 defineOptions({
   name: 'ZmMenuToolbar'

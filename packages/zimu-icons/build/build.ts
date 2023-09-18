@@ -3,10 +3,10 @@ import path from 'node:path'
 import vue from 'unplugin-vue/esbuild'
 import { emptyDir } from 'fs-extra'
 import chalk from 'chalk'
-import { version } from '../package.json'
-import { pathSrc, pathOutput } from './paths'
 import { build } from 'esbuild'
 import GlobalsPlugin from 'esbuild-plugin-globals'
+import { version } from '../package.json'
+import { pathSrc, pathOutput } from './paths'
 import type { BuildOptions, Format } from 'esbuild'
 
 const buildBundle = () => {

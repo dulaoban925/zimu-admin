@@ -11,11 +11,11 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
 import ZmQueryForm from './query-form/query-form.vue'
-import type { QueryFormItemType } from './query-form/types'
 import { useFilterEvents } from './hooks'
 import { EVENT_NAMES } from './constants'
+import type { QueryFormItemType } from './query-form/types'
+import type { PropType } from 'vue'
 
 defineOptions({
   name: 'ZmTableFilter'
