@@ -3,6 +3,7 @@
  */
 import Crypto from 'crypto-js'
 
+// 加密秘钥
 const SecretKey = '__ZM_CRYPTO_SECRET__'
 
 // 加密

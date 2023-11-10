@@ -23,6 +23,7 @@ interface ResponseConfig {
 
 type RequestMethod = Method | string
 
+// 错误提示消息前缀
 const MessagePrefix = 'utils/request:'
 
 // const AuthUrlPrefix = '/auth'
