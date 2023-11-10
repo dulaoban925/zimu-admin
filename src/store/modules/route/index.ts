@@ -6,6 +6,7 @@ import type { ValueOf } from '@/utils'
 import { routes, router } from '@/router'
 import { transformRouteConfigToVueRoutes } from '@/router/helpers'
 
+// 路由匹配模式枚举
 export const RouteMatchModeEnum = {
   Static: 'static',
   Dynamic: 'dynamic'
@@ -17,7 +18,7 @@ export const useRouteStore = defineStore('route-store', () => {
   // 路由匹配模式
   // 1.static(静态：代码维护所有路由配置, 配合【菜单权限】控制)
   // 2.dynamic(动态：代码维护基础路由配置，配合【路由权限】控制)
-  const mode = ref<RouteMatchMode>('static')
+  const mode = ref<RouteMatchMode>(RouteMatchModeEnum.Static)
 
   // 初始化静态路由
   async function initStaticRoutes(menus: ZiMuAuth.Menu[]) {

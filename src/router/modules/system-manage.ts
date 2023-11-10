@@ -3,7 +3,9 @@ import { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
   UserManage: () => import('@/views/system-manage/user-manage/index.vue'),
-  MenuManage: () => import('@/views/system-manage/menu-manage/index.vue')
+  MenuManage: () => import('@/views/system-manage/menu-manage/index.vue'),
+  AuthManage: () => import('@/views/system-manage/auth-manage/index.vue'),
+  RoleManage: () => import('@/views/system-manage/role-manage/index.vue')
 }
 
 const systemSettingsRoutes: ZiMuRoute.Route = {
@@ -22,6 +24,18 @@ const systemSettingsRoutes: ZiMuRoute.Route = {
       path: 'menu-manage',
       component: RouteComponents.MenuManage,
       meta: { title: '菜单管理', keepAlive: true }
+    },
+    {
+      name: 'AuthManage',
+      path: 'auth-manage',
+      component: RouteComponents.AuthManage,
+      meta: { title: '权限管理', keepAlive: true }
+    },
+    {
+      name: 'RoleManage',
+      path: 'role-manage',
+      component: RouteComponents.RoleManage,
+      meta: { title: '角色管理', keepAlive: true }
     }
   ],
   meta: { title: '系统管理' }

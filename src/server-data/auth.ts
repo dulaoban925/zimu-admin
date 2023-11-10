@@ -39,5 +39,21 @@ export const menus: ZiMuAuth.Menu[] = [
     type: 'menu',
     level: 2,
     parent: 'SystemManage'
+  },
+  {
+    code: 'AuthManage',
+    label: '权限管理',
+    sort: 3,
+    type: 'menu',
+    level: 2,
+    parent: 'SystemManage'
+  },
+  {
+    code: 'RoleManage',
+    label: '角色管理',
+    sort: 4,
+    type: 'menu',
+    level: 2,
+    parent: 'SystemManage'
   }
 ]
