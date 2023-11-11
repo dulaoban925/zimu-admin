@@ -15,24 +15,10 @@
 </template>
 
 <script setup lang="ts">
-const tableData = [
-  {
-    name: 'Tom',
-    jobNumber: '123123123',
-    sex: '男',
-    tel: '139xxxx5507'
-  },
-  {
-    name: 'Jerry',
-    jobNumber: '124124124',
-    sex: '女',
-    tel: '139xxxx5507'
-  }
-]
-
-const tableProps = {
-  data: tableData
-}
+import { getList } from './api'
+const tableProps = reactive({
+  data: []
+})
 
 function handleSizeChange(val: number) {
   console.log('handleSizeChange', val)
@@ -45,6 +31,12 @@ const handleFilterReset = () => {
 const handleFilterSearch = (val: any) => {
   console.log('handleSizeChange', val)
 }
+
+onBeforeMount(() => {
+  getList().then((res: any) => {
+    tableProps.data = res
+  })
+})
 </script>
 
 <style scoped></style>

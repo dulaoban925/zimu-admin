@@ -11,11 +11,17 @@
 </template>
 
 <script setup lang="ts">
-const data = [{ code: 'admin', label: '管理员权限' }]
+import { getList } from './api'
 
-const tableProps = {
-  data
-}
+const tableProps = reactive({
+  data: []
+})
+
+onBeforeMount(() => {
+  getList().then((res: any) => {
+    tableProps.data = res
+  })
+})
 </script>
 
 <style scoped></style>

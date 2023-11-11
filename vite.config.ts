@@ -51,5 +51,13 @@ export default defineConfig({
         additionalData: `@use '@/styles/variables.scss' as *;@use '@/styles/global.scss' as *;`
       }
     }
+  },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+        changeOrigin: true
+      }
+    }
   }
 })

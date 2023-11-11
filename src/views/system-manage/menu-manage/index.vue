@@ -13,11 +13,17 @@
 </template>
 
 <script setup lang="ts">
-import { menus } from '@/server-data'
+import { getList } from './api'
 
-const tableProps = {
-  data: menus
-}
+const tableProps = reactive({
+  data: []
+})
+
+onBeforeMount(() => {
+  getList().then((res: any) => {
+    tableProps.data = res
+  })
+})
 </script>
 
 <style scoped></style>
