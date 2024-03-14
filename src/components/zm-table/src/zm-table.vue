@@ -12,8 +12,27 @@
     </zm-table-filter>
     <!-- 表体 -->
     <div class="zm-table__content">
-      <div class="zm-table__content-operation"></div>
-      <el-table v-bind="fullTableProps" v-on="tableEvents">
+      <div
+        :class="{
+          'zm-table__content-operation': true,
+          'zm-table__content-split-operation':
+            slots.leftOperation || slots.rightOperation
+        }"
+      >
+        <slot name="operation">
+          <div class="zm-table__content-split-operation-part">
+            <slot name="leftOperation" />
+          </div>
+          <div class="zm-table__content-split-operation-part">
+            <slot name="rightOperation" />
+          </div>
+        </slot>
+      </div>
+      <el-table
+        class="zm-table__content-table"
+        v-bind="fullTableProps"
+        v-on="tableEvents"
+      >
         <slot />
       </el-table>
     </div>

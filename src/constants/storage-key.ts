@@ -1,3 +1,6 @@
+/**
+ * storage 多处使用的常量
+ */
 // 主题key
 export const THEME_KEY = 'zm-theme'
 

@@ -9,8 +9,8 @@
     "preview": "vite preview",
     "icons:build": "pnpm run -C packages/zimu-icons build",
     "utils:build": "pnpm run -C packages/zimu-utils build",
-    "lint:check": "eslint --cache --ext .js,.ts,.jsx,tsx,vue src/",
-    "lint:fix": "eslint --cache --ext .js,.ts,.jsx,tsx,vue,json . --fix",
+    "lint:check": "eslint --cache --ext .js,.ts,.jsx,.tsx,.vue src/",
+    "lint:fix": "eslint --cache --ext .js,.ts,.jsx,.tsx,.vue,.json src/ --fix",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -20,7 +20,7 @@
     "@zimu/utils": "workspace:^1.0.0",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
-    "element-plus": "^2.3.5",
+    "element-plus": "^2.6.1",
     "face-api.js": "^0.22.2",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",

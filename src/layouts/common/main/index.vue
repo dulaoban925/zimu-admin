@@ -18,9 +18,13 @@ defineOptions({
 <style lang="scss" scoped>
 .main-content {
   padding: var(--zm-common-padding);
+  /** 视口大小 - header - padding * 2 - tab */
   height: calc(
-    100% - var(--zm-common-padding) * 2 - var(--zm-layout-tab-height)
+    100vh - var(--zm-toolbar-height) - var(--zm-common-padding) * 2 -
+      var(--zm-layout-tab-height)
   );
-  background-color: var(--el-color-white);
+  box-sizing: border-box;
+  background-color: var(--el-bg-color-page);
+  overflow: auto;
 }
 </style>

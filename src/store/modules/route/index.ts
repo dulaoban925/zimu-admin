@@ -16,8 +16,8 @@ type RouteMatchMode = ValueOf<typeof RouteMatchModeEnum>
 
 export const useRouteStore = defineStore('route-store', () => {
   // 路由匹配模式
-  // 1.static(静态：代码维护所有路由配置, 配合【菜单权限】控制)
-  // 2.dynamic(动态：代码维护基础路由配置，配合【路由权限】控制)
+  // 1.static(静态：代码维护所有路由配置, 配合【菜单权限】控制，菜单配置的编码需要与路由 name 属性一致)
+  // 2.【规划中...】dynamic(动态：代码维护基础路由配置，配合【路由权限】控制，路由信息完全由配置生成，无需在代码中编写)
   const mode = ref<RouteMatchMode>(RouteMatchModeEnum.Static)
 
   // 初始化静态路由

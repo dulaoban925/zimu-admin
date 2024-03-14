@@ -62,7 +62,7 @@ const handleClose = () => {
   }
 
   &.active {
-    background-color: var(--el-color-white);
+    background-color: var(--el-bg-color);
     color: var(--el-color-primary);
   }
 
