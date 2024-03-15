@@ -27,9 +27,9 @@
         <template #default="{ row }">
           <el-button link type="primary">编辑</el-button>
           <el-button link type="danger">删除</el-button>
-          <el-button v-if="isEnable(row.status)" link type="primary">
-            启用
-          </el-button>
+          <el-button v-if="isEnable(row.status)" link type="primary"
+            >启用</el-button
+          >
           <el-button v-else link type="primary">停用</el-button>
         </template>
       </zm-table-column>

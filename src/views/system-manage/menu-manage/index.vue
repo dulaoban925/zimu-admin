@@ -18,8 +18,9 @@
       />
       <zm-table-column prop="type" label="类型" filterable min-width="120" />
       <zm-table-column prop="icon" label="图标" min-width="120" />
-      <zm-table-column prop="level" label="层级" filterable min-width="60" />
+      <zm-table-column prop="level" label="层级" min-width="60" />
       <zm-table-column prop="sort" label="排序" min-width="60" />
+      <zm-table-column prop="sort" label="状态" min-width="80" />
       <zm-table-column fixed="right" label="操作" min-width="220">
         <template #default="{ row }">
           <el-button link type="primary">编辑</el-button>

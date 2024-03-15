@@ -4,7 +4,7 @@
 <template>
   <div class="wrapper-logo">
     <el-icon size="50px">
-      <paper-frog />
+      <pink-bear />
     </el-icon>
     <span>ZIMU</span>
   </div>
