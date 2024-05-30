@@ -20,6 +20,6 @@ export const pathSrc = resolve(pathRoot, dirsRelativePath.src)
 // vue 组件目录
 export const pathComponents = resolve(pathSrc, dirsRelativePath.components)
 // svg 资源目录
-export const pathSvg = resolve(pathRoot, dirsRelativePath.svg)
+export const pathSvg = resolve(pathSrc, dirsRelativePath.svg)
 // 编译输出目录
 export const pathOutput = resolve(pathRoot, dirsRelativePath.output)

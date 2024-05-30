@@ -59,6 +59,9 @@ async function transformToVueComponent(file: string) {
   writeFile(path.resolve(pathComponents, `${fileName}.vue`), vue, 'utf-8')
 }
 
+/**
+ * 生成 components 入口文件
+ */
 const generateEntry = async (files: string[]) => {
   const code = formatCode(
     files
@@ -71,17 +74,23 @@ const generateEntry = async (files: string[]) => {
   await writeFile(path.resolve(pathComponents, 'index.ts'), code, 'utf-8')
 }
 
+/**
+ * 获取 svg 文件
+ */
 function getSvgFiles() {
   return glob('*.svg', { cwd: pathSvg, absolute: true })
 }
 
-console.log(chalk.blue('generating vue components'))
+console.log(chalk.blue('开始生成 Vue 图标组件................................'))
 await ensureDir(pathComponents)
 await emptyDir(pathComponents)
 const files = await getSvgFiles()
 
-console.log(chalk.blue('generating vue files'))
+console.log(chalk.blue('开始生成 Vue 文件................................'))
 await Promise.all(files.map((file: string) => transformToVueComponent(file)))
 
-console.log(chalk.blue('generating entry file'))
+console.log(
+  chalk.blue('开始生成 Vue 组件入口文件................................')
+)
 await generateEntry(files)
+console.log(chalk.green('Vue 图标组件已生成'))

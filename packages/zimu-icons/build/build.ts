@@ -66,8 +66,9 @@ const buildBundle = () => {
   return Promise.all([doBuild(true), doBuild(false)])
 }
 
-console.log(chalk.blue('cleaning dist...'))
+console.log(chalk.blue('开始编译................................'))
+console.log(chalk.blue('清空 dist 目录................................'))
 await emptyDir(pathOutput)
-console.log(chalk.blue('building...'))
+console.log(chalk.blue('构建中................................'))
 await buildBundle()
-console.log(chalk.blue('build finished...'))
+console.log(chalk.green('构建完成。'))
