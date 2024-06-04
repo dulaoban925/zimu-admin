@@ -1,5 +1,6 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
+import consola from 'consola'
 import { emptyDir, ensureDir } from 'fs-extra'
 import camelcase from 'camelcase'
 import chalk from 'chalk'
@@ -28,8 +29,11 @@ function getName(file: string) {
  * @param parser 解析器类型
  * @returns 格式化后的代码
  */
-function formatCode(code: string, parser: BuiltInParserName = 'typescript') {
-  return format(code, {
+async function formatCode(
+  code: string,
+  parser: BuiltInParserName = 'typescript'
+) {
+  return await format(code, {
     parser,
     semi: false,
     trailingComma: 'none',
@@ -42,17 +46,16 @@ function formatCode(code: string, parser: BuiltInParserName = 'typescript') {
  * @param file 待转换的 file 路径
  */
 async function transformToVueComponent(file: string) {
-  const content = await readFile(file)
+  const content = await readFile(file, 'utf-8')
   const { fileName, componentName } = getName(file)
 
-  const vue = formatCode(
+  const vue = await formatCode(
     `<template> ${content} </template>
-    <script lang="ts">
-      import { defineComponent } from 'vue'
-      export default defineComponent({
-        name: '${componentName}'
+    <script lang="ts" setup>
+      defineOptions({
+        name: '${componentName}',
       })
-    </script>`,
+      </script>`,
     'vue'
   )
 
@@ -63,7 +66,7 @@ async function transformToVueComponent(file: string) {
  * 生成 components 入口文件
  */
 const generateEntry = async (files: string[]) => {
-  const code = formatCode(
+  const code = await formatCode(
     files
       .map(file => {
         const { fileName, componentName } = getName(file)
@@ -81,16 +84,16 @@ function getSvgFiles() {
   return glob('*.svg', { cwd: pathSvg, absolute: true })
 }
 
-console.log(chalk.blue('开始生成 Vue 图标组件................................'))
+consola.log(chalk.blue('开始生成 Vue 图标组件................................'))
 await ensureDir(pathComponents)
 await emptyDir(pathComponents)
 const files = await getSvgFiles()
 
-console.log(chalk.blue('开始生成 Vue 文件................................'))
+consola.log(chalk.blue('开始生成 Vue 文件................................'))
 await Promise.all(files.map((file: string) => transformToVueComponent(file)))
 
-console.log(
+consola.log(
   chalk.blue('开始生成 Vue 组件入口文件................................')
 )
 await generateEntry(files)
-console.log(chalk.green('Vue 图标组件已生成'))
+consola.log(chalk.green('Vue 图标组件已生成'))
