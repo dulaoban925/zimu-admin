@@ -4,7 +4,7 @@ import { setupRouterGuards } from './guards'
 import { transformRouteConfigToVueRoutes } from './helpers'
 import type { App } from 'vue'
 
-export const router = createRouter({
+const router = createRouter({
   history: createWebHashHistory(),
   routes: transformRouteConfigToVueRoutes(constantRoutes),
   strict: true,

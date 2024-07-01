@@ -31,7 +31,7 @@ async function handleDynamicRoutes(
   const menuStore = useMenuStore()
   // 是否已初始化权限菜单
   const isAuthInitialized = menuStore.isAuthInitialized
-  // 若为初始化，则执行初始化函数
+  // 若未初始化，则执行初始化函数
   if (!isAuthInitialized) {
     await menuStore.initAuthMenus()
 
