@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "pnpm dev",
     "dev": "vite",
     "build": "run-p icons:build utils:build && vue-tsc && vite build",
     "preview": "vite preview",
+    "server:start": "pnpm run -C server start",
     "icons:build": "pnpm run -C packages/zimu-icons build",
     "utils:build": "pnpm run -C packages/zimu-utils build",
     "lint:check": "eslint --cache --ext .js,.ts,.jsx,.tsx,.vue src/",

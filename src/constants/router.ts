@@ -11,5 +11,6 @@ export const ROUTE_COMPONENT_LAYOUT_VALUE = {
 export const STATIC_ROUTE_NAME = {
   ROOT: 'root',
   NOT_FOUND: 'not-found',
+  LOGIN: 'login',
   404: '404'
 }

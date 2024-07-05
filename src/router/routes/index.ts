@@ -2,7 +2,8 @@ import { STATIC_ROUTE_NAME } from '@/constants'
 import { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
-  404: () => import('@views/static/404/index.vue')
+  Login: () => import('@views/login/index.vue'), // 登录页
+  404: () => import('@views/static/404/index.vue') // 404 页
 }
 
 /** 根路由: */
@@ -12,6 +13,16 @@ export const ROOT_ROUTE: ZiMuRoute.Route = {
   redirect: import.meta.env.VITE_ROUTE_HOME_PATH,
   meta: {
     title: 'Root'
+  }
+}
+
+/** 登录路由 */
+const LOGIN_ROUTE: ZiMuRoute.Route = {
+  name: STATIC_ROUTE_NAME.LOGIN,
+  path: '/login',
+  component: RouteComponents.Login,
+  meta: {
+    title: 'Login'
   }
 }
 
@@ -27,6 +38,7 @@ const NotFound = {
 
 export const constantRoutes: ZiMuRoute.Route[] = [
   ROOT_ROUTE,
+  LOGIN_ROUTE,
   {
     name: STATIC_ROUTE_NAME[404],
     path: '/404',

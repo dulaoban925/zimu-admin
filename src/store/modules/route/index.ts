@@ -3,7 +3,7 @@
  */
 import { matchRoutesByAuthMenus } from './helpers'
 import type { ValueOf } from '@/utils'
-import { routes, router } from '@/router'
+import router, { routes } from '@/router'
 import { transformRouteConfigToVueRoutes } from '@/router/helpers'
 
 // 路由匹配模式枚举

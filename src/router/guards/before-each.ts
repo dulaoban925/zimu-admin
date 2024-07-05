@@ -31,8 +31,10 @@ async function handleDynamicRoutes(
   const menuStore = useMenuStore()
   // 是否已初始化权限菜单
   const isAuthInitialized = menuStore.isAuthInitialized
+  // 是否跳转到登录页面
+  const isToLogin = to.name === STATIC_ROUTE_NAME.LOGIN
   // 若未初始化，则执行初始化函数
-  if (!isAuthInitialized) {
+  if (!isAuthInitialized && !isToLogin) {
     await menuStore.initAuthMenus()
 
     /**
