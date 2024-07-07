@@ -4,11 +4,9 @@
 import { request } from '@/utils'
 
 // 获取菜单列表
-function getMenuList() {
+export function getMenuList() {
   return request({
     url: '/menu/list',
     method: 'get'
   })
 }
-
-export { getMenuList }

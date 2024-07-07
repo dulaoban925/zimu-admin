@@ -3,15 +3,13 @@
  */
 import { Controller, Get } from 'routing-controllers'
 import { UserService } from '../services/user.service'
+import { INTERFACE_PATH } from '../constants/path'
 
 @Controller('/user')
 export class UserController {
-  userService
-  constructor() {
-    this.userService = new UserService()
-  }
+  userService = new UserService()
 
-  @Get('/queryList')
+  @Get(`${INTERFACE_PATH.LIST}`)
   queryList() {
     return this.userService.queryList()
   }

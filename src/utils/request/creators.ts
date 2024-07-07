@@ -149,7 +149,7 @@ export function createRequestInstance(
   instance.interceptors.response.use(
     (response: AxiosResponse) => {
       const data = response.data
-      const { codeKey, dataKey, success } = responseConfig!
+      const { codeKey, success } = responseConfig!
       const isSuccess = success(data, Number(data[codeKey]))
 
       if (!isSuccess) {
@@ -157,7 +157,7 @@ export function createRequestInstance(
         return Promise.reject(data)
       }
 
-      return data[dataKey]
+      return data
     },
     e => {
       console.error(e)

@@ -8,8 +8,11 @@ export class User {
   @PrimaryGeneratedColumn()
   id!: number
 
-  @PrimaryColumn({ name: 'job_no' })
-  jobNo!: string
+  @PrimaryColumn({ name: 'user_name' })
+  username!: string
+
+  @Column()
+  password!: string
 
   @Column()
   name!: string

@@ -27,7 +27,8 @@ app.use(urlencoded({ extended: true }))
 useExpressServer(app, {
   routePrefix: '/api', // 接口统一前缀
   controllers: [path.join(__dirname, './controllers/*.ts')],
-  middlewares: [path.join(__dirname, './middlewares/*.global.ts')]
+  middlewares: [path.join(__dirname, './middlewares/*.global.ts')],
+  interceptors: [path.join(__dirname, './interceptors/*.global.ts')]
 })
 
 // 启动服务，监听 3000 端口

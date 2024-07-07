@@ -41,6 +41,8 @@
 </template>
 
 <script setup lang="ts">
+import { login } from '@/apis/login'
+
 // 登录信息
 const loginInfo = reactive({
   username: '',
@@ -53,10 +55,13 @@ const errorMessage = ref('')
 /**
  * 登录
  */
-const handleLogin = () => {
+const handleLogin = async () => {
   if (!loginInfo.username || !loginInfo.password) {
     errorMessage.value = '用户名或密码不能为空'
   }
+  const res = await login(loginInfo)
+
+  console.log(res)
 }
 
 /**

@@ -25,6 +25,7 @@ module.exports = {
     'vue/no-v-model-argument': 0,
     'vue/no-multiple-template-root': 0,
     'no-void': 0,
+    'no-redeclare': 0,
     'import/order': [
       'error',
       {
