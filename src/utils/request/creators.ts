@@ -2,7 +2,7 @@
  * 创建 request 的工厂
  */
 import axios from 'axios'
-import { extend, removeAuthorization } from './helpers'
+import { extend, reLogin, removeAuthorization } from './helpers'
 import type {
   AxiosInstance,
   AxiosRequestConfig,
@@ -165,7 +165,8 @@ export function createRequestInstance(
       if (needLogin) {
         // 清空权限相关缓存
         removeAuthorization()
-        // TODO:重新登录逻辑
+        // 重新登录逻辑
+        reLogin()
       }
       return Promise.reject(e)
     }

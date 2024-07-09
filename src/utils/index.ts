@@ -1,3 +1,5 @@
 export * from '@zimu/utils'
 export * from './request'
 export * from './crypt'
+export * from './wrapper'
+export * from './is'

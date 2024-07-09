@@ -4,9 +4,11 @@
 import { request } from '@/utils'
 
 // 获取菜单列表
-export function getMenuList() {
-  return request({
+export async function getMenuList() {
+  const result = await request({
     url: '/menu/list',
     method: 'get'
   })
+
+  return result.data.rows
 }

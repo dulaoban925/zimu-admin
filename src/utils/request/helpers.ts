@@ -38,3 +38,14 @@ export function removeAuthorization() {
   const ls = useLocalStorage()
   ls.remove(AUTH_KEY)
 }
+
+/**
+ * 登录
+ * 1. TODO: 刷新 token
+ * 2. 1 失败后跳转登录页
+ */
+export function reLogin() {
+  const loginUrl = `${window.location.origin}/#/login?redirectUrl=${window.location.href}`
+  window.location.replace(loginUrl)
+  window.location.reload()
+}
