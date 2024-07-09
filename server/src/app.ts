@@ -3,6 +3,7 @@ import { useExpressServer } from 'routing-controllers'
 import { json, urlencoded } from 'body-parser'
 import express from 'express'
 import ds from './data-source'
+import authChecker from './utils/auth-checker'
 
 // 初始化数据库
 ds.initialize()
@@ -26,9 +27,10 @@ app.use(urlencoded({ extended: true }))
 // 将当前实例注册到 routing-controllers
 useExpressServer(app, {
   routePrefix: '/api', // 接口统一前缀
-  controllers: [path.join(__dirname, './controllers/*.ts')],
+  controllers: [path.join(__dirname, './controllers/*.controller.ts')],
   middlewares: [path.join(__dirname, './middlewares/*.global.ts')],
-  interceptors: [path.join(__dirname, './interceptors/*.global.ts')]
+  interceptors: [path.join(__dirname, './interceptors/*.global.ts')],
+  authorizationChecker: authChecker
 })
 
 // 启动服务，监听 3000 端口
