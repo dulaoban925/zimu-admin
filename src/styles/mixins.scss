@@ -1,3 +1,48 @@
+@use './global.scss' as *;
+
+// BEM
+@mixin b($block) {
+  .#{$block} {
+    @content;
+  }
+}
+
+@mixin e($element) {
+  $selector: &;
+  $currentSelector: '';
+  @each $unit in $element {
+    $currentSelector: #{$currentSelector +
+      $selector +
+      $element-separator +
+      $unit +
+      ','};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
+@mixin m($modifier) {
+  $selector: &;
+  $currentSelector: '';
+  @each $unit in $modifier {
+    $currentSelector: #{$currentSelector +
+      $selector +
+      $modifier-separator +
+      $unit +
+      ','};
+  }
+
+  @at-root {
+    #{$currentSelector} {
+      @content;
+    }
+  }
+}
+
 @mixin flex-center-start {
   display: flex;
   align-items: center;
