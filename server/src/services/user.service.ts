@@ -1,7 +1,7 @@
 /**
  * 用户服务类
  */
-import db from '../data-source'
+import db from '../tools/data-source'
 import { User } from '../entities/user.entity'
 
 export class UserService {

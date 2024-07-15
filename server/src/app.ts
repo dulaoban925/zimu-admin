@@ -2,8 +2,9 @@ import path from 'path'
 import { useExpressServer } from 'routing-controllers'
 import { json, urlencoded } from 'body-parser'
 import express from 'express'
-import ds from './data-source'
+import ds from './tools/data-source'
 import authChecker from './utils/auth-checker'
+import { initRedis } from './tools/redis'
 
 // 初始化数据库
 ds.initialize()
@@ -13,6 +14,9 @@ ds.initialize()
   .catch((e: any) => {
     console.log('Error during Data Source initialization:', e)
   })
+
+// 初始化 redis
+initRedis()
 
 const app = express()
 

@@ -25,6 +25,8 @@
     "express": "^4.19.1",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.2",
+    "redis": "^4.6.15",
+    "redis-om": "^0.4.3",
     "reflect-metadata": "^0.2.1",
     "routing-controllers": "^0.10.4",
     "typeorm": "^0.3.20"

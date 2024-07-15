@@ -4,6 +4,8 @@ import { comparePassword } from '../utils/pwd'
 import { error, success } from '../utils/r'
 import { JWT_SECRET } from '../constants/secrets'
 import { UserService } from '../services/user.service'
+import { getRedisInstance } from '../tools/redis'
+import { PWD_ERROR_TIMES } from '../constants/redis-keys'
 
 /**
  * 登录 controller
@@ -42,7 +44,23 @@ export class LoginController {
         token
       })
     } else {
+      recordPwdErrorTimes(username)
       return error('密码错误，请检查后重试')
     }
   }
+}
+
+/**
+ * 记录密码错误次数
+ * @param username 用户名
+ */
+async function recordPwdErrorTimes(username: string) {
+  // 获取 redis 客户端实例
+  const client = getRedisInstance()
+  // 获取当前用于已输入错误次数，默认为 0
+  let errorTimes = (await client.hGet(PWD_ERROR_TIMES, username)) ?? 0
+  // 错误次数加 1
+  errorTimes++
+  // 更新 redis 中该用户密码错误次数数据
+  await client.hSet(PWD_ERROR_TIMES, { [username]: errorTimes })
 }
