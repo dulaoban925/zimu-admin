@@ -1,4 +1,5 @@
 import { createClient } from 'redis'
+import { get } from './env-config'
 
 // redis 客户端实例
 let redisInstance: any = null
@@ -16,9 +17,9 @@ export function initRedis() {
 
 // 获取 redis 客户端实例，单例模式
 export function getRedisInstance() {
-  if (!redisInstance)
-    redisInstance = createClient({
-      url: 'redis://localhost:6379'
-    })
+  if (!redisInstance) {
+    const redisConfig = get('redis')
+    redisInstance = createClient(redisConfig)
+  }
   return redisInstance
 }

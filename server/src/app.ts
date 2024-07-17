@@ -1,3 +1,4 @@
+import './tools/env-config'
 import path from 'path'
 import { useExpressServer } from 'routing-controllers'
 import { json, urlencoded } from 'body-parser'
