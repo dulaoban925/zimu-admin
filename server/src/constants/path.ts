@@ -2,8 +2,7 @@
 export const INTERFACE_PATH = {
   LIST: '/list',
   LIST_BY_PAGE: '/listByPage',
-  DETAIL: '/query/:id',
+  BY_ID: '/:id',
   INSERT: '/insert',
-  UPDATE: '/update',
-  DELETE: '/delete/:id'
+  UPDATE: '/update'
 }

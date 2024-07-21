@@ -1,20 +1,17 @@
 /**
  * 用户服务类
  */
-import db from '../tools/data-source'
 import { User } from '../entities/user.entity'
+import { BaseService } from './base-service'
 
-export class UserService {
-  userRepository = db.getRepository(User)
-
-  // 查询全部用户
-  async queryList() {
-    return await this.userRepository.findAndCount()
+export class UserService extends BaseService {
+  constructor() {
+    super(User)
   }
 
   // 根据用户名查询用户详情
   async queryByUsername(username: string) {
-    return await this.userRepository.findOneBy({
+    return await this.repository.findOneBy({
       username
     })
   }
