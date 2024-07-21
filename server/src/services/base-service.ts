@@ -9,8 +9,12 @@ export class BaseService {
   }
 
   // 查询列表
-  async queryList(params?: typeof this.entityClass) {
-    return await this.repository.findAndCountBy(params)
+  async queryList(params?: any) {
+    const [rows, total] = await this.repository.findAndCountBy(params)
+    return {
+      rows,
+      total
+    }
   }
 
   // 分页列表
@@ -49,7 +53,10 @@ export class BaseService {
   }
 
   // 新增
-  async insert(entity: any = {}) {
+  async insert(entity: any) {
+    if (!entity) {
+      return Promise.reject(new Error('不存在待插入的实体对象'))
+    }
     return await this.repository.insert(entity)
   }
 
@@ -63,11 +70,17 @@ export class BaseService {
 
   // 删除
   async delete(id: string) {
+    if (!id) {
+      return Promise.reject(new Error('id 不存在'))
+    }
     return await this.repository.delete(id)
   }
 
   // 逻辑删除
   async softDelete(id: string) {
+    if (!id) {
+      return Promise.reject(new Error('id 不存在'))
+    }
     return await this.repository.softDelete(id)
   }
 }
