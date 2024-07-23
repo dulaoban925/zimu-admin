@@ -26,6 +26,8 @@ module.exports = {
     'vue/no-multiple-template-root': 0,
     'no-void': 0,
     'no-redeclare': 0,
+    "no-unused-vars" : "off" ,
+    "@typescript-eslint/no-unused-vars" : [ "error" ],
     'import/order': [
       'error',
       {

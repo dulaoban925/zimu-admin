@@ -1,14 +1,11 @@
 /**
  * 用户服务类
  */
-import db from '@tools/data-source'
 import { Menu } from '@entities/menu.entity'
+import { BaseService } from './base-service'
 
-export class MenuService {
-  menuRepository = db.getRepository(Menu)
-
-  // 查询全部用户
-  async queryList() {
-    return await this.menuRepository.findAndCount()
+export class MenuService extends BaseService {
+  constructor() {
+    super(Menu)
   }
 }

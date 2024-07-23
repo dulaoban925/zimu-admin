@@ -2,6 +2,7 @@
  * 菜单实体
  */
 import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column } from 'typeorm'
+import { MENU_TYPE, MENU_STATUS } from '@constants/enums/menu'
 
 @Entity('menu')
 export class Menu {
@@ -16,9 +17,12 @@ export class Menu {
   @Column()
   name!: string
 
-  // 菜单类型(菜单menu or 按钮button)
-  @Column()
-  type!: string
+  // 菜单类型(菜单menu or 按钮button or 页面 page)
+  @Column({
+    type: 'enum',
+    enum: MENU_TYPE
+  })
+  type!: MENU_TYPE
 
   // 层级
   @Column()
@@ -32,9 +36,13 @@ export class Menu {
   @Column()
   icon!: string
 
-  // 状态
-  @Column()
-  status!: string
+  // 状态（激活 or 停用)
+  @Column({
+    type: 'enum',
+    enum: MENU_STATUS,
+    default: MENU_STATUS.ACTIVATED
+  })
+  status!: MENU_STATUS
 
   @Column({ name: 'created_by' })
   createdBy!: string
