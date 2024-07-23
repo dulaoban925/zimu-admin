@@ -1,3 +1,4 @@
+import 'module-alias/register'
 import './tools/env-config'
 import path from 'path'
 import { useExpressServer } from 'routing-controllers'

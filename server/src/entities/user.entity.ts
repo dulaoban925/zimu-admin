@@ -18,7 +18,7 @@ export class User {
   @Column({
     transformer: {
       to(entityValue) {
-        return encryptPassword(entityValue)
+        return entityValue ? encryptPassword(entityValue) : null
       },
       from(dbValue) {
         return dbValue

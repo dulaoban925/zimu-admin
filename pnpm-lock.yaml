@@ -219,6 +219,9 @@ importers:
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
+      module-alias:
+        specifier: ^2.2.3
+        version: 2.2.3
       mysql2:
         specifier: ^3.9.2
         version: 3.10.0
@@ -5474,6 +5477,10 @@ packages:
       pkg-types: 1.0.3
       ufo: 1.1.2
     dev: true
+
+  /module-alias@2.2.3:
+    resolution: {integrity: sha512-23g5BFj4zdQL/b6tor7Ji+QY4pEfNH784BMslY9Qb0UnJWRAt+lQGLYmRaM0KDBwIG23ffEBELhZDP2rhi9f/Q==}
+    dev: false
 
   /ms@2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
