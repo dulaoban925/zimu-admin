@@ -3,6 +3,7 @@
  */
 import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm'
 import { encryptPassword } from '@utils/pwd'
+import { USER_SEX, USER_STATUS } from '@constants/enums/user'
 
 @Entity('user')
 export class User {
@@ -32,8 +33,11 @@ export class User {
   name!: string
 
   // 性别
-  @Column()
-  sex!: string
+  @Column({
+    type: 'enum',
+    enum: USER_SEX
+  })
+  sex!: USER_SEX
 
   // 电话
   @Column()
@@ -46,6 +50,14 @@ export class User {
   // 住址
   @Column()
   address!: string
+
+  // 状态
+  @Column({
+    type: 'enum',
+    enum: USER_STATUS,
+    default: USER_STATUS.SERVING
+  })
+  status!: USER_STATUS
 
   // 创建人
   @Column({ name: 'created_by' })
