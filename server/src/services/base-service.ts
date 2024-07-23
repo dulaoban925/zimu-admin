@@ -57,7 +57,14 @@ export class BaseService {
     if (!entity) {
       return Promise.reject(new Error('不存在待插入的实体对象'))
     }
-    return await this.repository.insert(entity)
+    const { identifiers } = await this.repository.insert(entity)
+    // 获取主键
+    const id = identifiers[0].id
+    if (!id) {
+      return Promise.reject(new Error('保存失败, repository.insert 未生成 id'))
+    }
+
+    return await this.queryById(id)
   }
 
   // 修改
