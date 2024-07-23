@@ -1,12 +1,12 @@
 import 'module-alias/register'
-import './tools/env-config'
+import '@tools/env-config'
 import path from 'path'
 import { useExpressServer } from 'routing-controllers'
 import { json, urlencoded } from 'body-parser'
 import express from 'express'
-import ds from './tools/data-source'
-import authChecker from './utils/auth-checker'
-import { initRedis } from './tools/redis'
+import authChecker from '@utils/auth-checker'
+import ds from '@tools/data-source'
+import { initRedis } from '@tools/redis'
 
 // 初始化数据库
 ds.initialize()

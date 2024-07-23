@@ -2,8 +2,8 @@
  * 接口授权验证逻辑
  */
 import jwt from 'jsonwebtoken'
-import { JWT_SECRET } from '../constants/secrets'
-import { UserService } from '../services/user.service'
+import { JWT_SECRET } from '@constants/secrets'
+import { UserService } from '@services/user.service'
 import type { Action } from 'routing-controllers'
 
 export default function authChecker(action: Action, roles: string[]) {

@@ -7,7 +7,7 @@ import {
   Put,
   Delete
 } from 'routing-controllers'
-import { INTERFACE_PATH } from '../constants/path'
+import { INTERFACE_PATH } from '@constants/path'
 
 export class BaseController {
   currentService

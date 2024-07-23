@@ -1,4 +1,4 @@
-import db from '../tools/data-source'
+import db from '@tools/data-source'
 
 export class BaseService {
   repository

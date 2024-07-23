@@ -2,7 +2,7 @@
  * 用户实体
  */
 import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm'
-import { encryptPassword } from '../utils/pwd'
+import { encryptPassword } from '@utils/pwd'
 
 @Entity('user')
 export class User {

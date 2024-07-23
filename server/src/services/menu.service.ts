@@ -1,8 +1,8 @@
 /**
  * 用户服务类
  */
-import db from '../tools/data-source'
-import { Menu } from '../entities/menu.entity'
+import db from '@tools/data-source'
+import { Menu } from '@entities/menu.entity'
 
 export class MenuService {
   menuRepository = db.getRepository(Menu)

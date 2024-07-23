@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon ./src/app.ts",
     "prod:start": "cross-env NODE_ENV=production nodemon ./src/app.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "lint:fix": "eslint --cache --ext .js,.ts,.jsx,.tsx,.vue,.json src/ --fix"
   },
   "keywords": [
     "zimu-admin",
@@ -45,6 +46,10 @@
     "@controllers": "./src/controllers",
     "@services": "./src/services",
     "@entities": "./src/entities",
+    "@interceptors/*": "./src/interceptors/*",
+    "@middlewares/*": "./src/middlewares/*",
+    "@tools/*": "./src/tools/*",
+    "@constants/*": "./src/constants/*",
     "@utils": "./src/utils"
   }
 }

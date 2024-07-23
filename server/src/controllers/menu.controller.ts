@@ -2,7 +2,7 @@
  * 菜单 controller
  */
 import { Controller } from 'routing-controllers'
-import { MenuService } from '../services/menu.service'
+import { MenuService } from '@services/menu.service'
 import { BaseController } from './base-controller'
 
 @Controller('/menu')

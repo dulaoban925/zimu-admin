@@ -13,6 +13,10 @@
       "@controllers/*": ["./src/controllers/*"],
       "@services/*": ["./src/services/*"],
       "@entities/*": ["./src/entities/*"],
+      "@interceptors/*": ["./src/interceptors/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@tools/*": ["./src/tools/*"],
+      "@constants/*": ["./src/constants/*"],
       "@utils/*": ["./src/utils/*"]
     },
     "outDir": "dist",

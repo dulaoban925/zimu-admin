@@ -1,6 +1,6 @@
 import path from 'path'
 import { DataSource } from 'typeorm'
-import { get } from './env-config'
+import { get } from '@tools/env-config'
 
 const dbConfig = get('db')
 

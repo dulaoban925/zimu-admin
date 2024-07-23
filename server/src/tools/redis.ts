@@ -1,5 +1,5 @@
 import { createClient } from 'redis'
-import { get } from './env-config'
+import { get } from '@tools/env-config'
 
 // redis 客户端实例
 let redisInstance: any = null

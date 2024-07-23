@@ -1,4 +1,4 @@
-import { R_CODE, R_DESC } from '../constants/return-enum'
+import { R_CODE, R_DESC } from '@constants/return-enum'
 
 interface R {
   code: string
