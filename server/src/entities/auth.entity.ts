@@ -4,8 +4,8 @@
 import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column } from 'typeorm'
 import { ACTIVATION_STATUS } from '@constants/enums'
 
-@Entity('menu')
-export class Menu {
+@Entity('auth')
+export class Auth {
   @PrimaryGeneratedColumn()
   id!: number
 
