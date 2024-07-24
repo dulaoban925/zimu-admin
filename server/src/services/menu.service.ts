@@ -1,5 +1,5 @@
 /**
- * 用户服务类
+ * 菜单服务类
  */
 import { Menu } from '@entities/menu.entity'
 import { BaseService } from './base-service'
