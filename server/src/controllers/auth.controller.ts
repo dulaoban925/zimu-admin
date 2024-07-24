@@ -3,7 +3,7 @@
  */
 import { Controller } from 'routing-controllers'
 import { AuthService } from '@services/auth.service'
-import { BaseController } from './base-controller'
+import { BaseController } from './base/base-controller'
 
 @Controller('/auth')
 export class AuthController extends BaseController {

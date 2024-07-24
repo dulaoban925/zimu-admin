@@ -2,7 +2,7 @@
  * 用户服务类
  */
 import { User } from '@entities/user.entity'
-import { BaseService } from '@services/base-service'
+import { BaseService } from '@services/base/base-service'
 
 export class UserService extends BaseService {
   constructor() {

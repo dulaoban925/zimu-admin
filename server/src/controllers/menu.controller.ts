@@ -3,7 +3,7 @@
  */
 import { Controller } from 'routing-controllers'
 import { MenuService } from '@services/menu.service'
-import { BaseController } from './base-controller'
+import { BaseController } from './base/base-controller'
 
 @Controller('/menu')
 export class MenuController extends BaseController {
