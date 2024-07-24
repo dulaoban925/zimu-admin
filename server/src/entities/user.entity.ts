@@ -3,7 +3,7 @@
  */
 import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm'
 import { encryptPassword } from '@utils/pwd'
-import { USER_SEX, USER_STATUS } from '@constants/enums/user'
+import { USER_SEX, USER_STATUS } from '@constants/enums'
 
 @Entity('user')
 export class User {

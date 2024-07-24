@@ -79,7 +79,7 @@ export class BaseController {
    * 软删除
    * @returns
    */
-  @Delete(`soft/${INTERFACE_PATH.BY_ID}`)
+  @Delete(`/soft/${INTERFACE_PATH.BY_ID}`)
   @Authorized()
   async softDelete(@Param('id') id: string) {
     return await this.currentService.softDelete(id)

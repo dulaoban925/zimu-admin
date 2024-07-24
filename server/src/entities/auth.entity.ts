@@ -1,40 +1,21 @@
 /**
- * 菜单实体
+ * 权限实体
  */
 import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column } from 'typeorm'
-import { MENU_TYPE, ACTIVATION_STATUS } from '@constants/enums'
+import { ACTIVATION_STATUS } from '@constants/enums'
 
 @Entity('menu')
 export class Menu {
   @PrimaryGeneratedColumn()
   id!: number
 
-  // 菜单编码
+  // 权限编码
   @PrimaryColumn()
   code!: string
 
-  // 菜单名称
+  // 权限名称
   @Column()
   name!: string
-
-  // 菜单类型(菜单menu or 按钮button or 页面 page)
-  @Column({
-    type: 'enum',
-    enum: MENU_TYPE
-  })
-  type!: MENU_TYPE
-
-  // 层级
-  @Column()
-  level!: number
-
-  // 排序
-  @Column()
-  sort!: number
-
-  // 菜单图标
-  @Column()
-  icon!: string
 
   // 状态（激活 or 停用)
   @Column({

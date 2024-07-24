@@ -8,9 +8,3 @@ export enum USER_SEX {
   FEMALE = 'female', // 女性
   UNKNOWN = 'unknown' // 未知
 }
-
-// 用户状态
-export enum USER_STATUS {
-  SERVING = 'serving', // 在职
-  RESIGNED = 'resigned' // 离职
-}

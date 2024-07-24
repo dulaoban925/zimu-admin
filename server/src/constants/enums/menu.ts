@@ -12,14 +12,3 @@ export enum MENU_TYPE {
   BUTTON = 'button', // 按钮
   PAGE = 'page' // 系统页
 }
-
-/**
- * 菜单状态
- *
- * ACTIVATE - 激活
- * DEACTIVATE - 停用
- */
-export enum MENU_STATUS {
-  ACTIVATED = 'activated',
-  DEACTIVATED = 'deactivated'
-}
