@@ -201,13 +201,34 @@ alter table `zm-role-user-relation`
   add primary key (id);
 ```
 
+  7. 权限-菜单中间表
+
+```sql
+create table `zm-auth-menu-relation`
+(
+    id         int auto_increment
+        primary key,
+    auth_id    int          null comment '权限id',
+    menu_id    int          null comment '菜单id',
+    created_by varchar(100) null comment '创建人',
+    created_at datetime     null comment '创建时间',
+    updated_by varchar(100) null comment '更新人',
+    updated_at datetime     null comment '更新时间',
+    constraint `zm-auth-menu-relation_id_uindex`
+        unique (id)
+)
+    comment '权限-菜单中间表';
+```
+
 7. 创建期初数据
    1. 插入一个超级管理员用户（Super）（后门，默认赋予所有权限，不需要手动分配）。
 ```sql
 ```
 
-   2. 插入系统管理菜单（系统管理 =》角色管理、权限管理、用户管理、菜单管理）。
+   2. 插入系统管理菜单（系统管理 => 角色管理、权限管理、用户管理、菜单管理）。
 ```sql
 ```
 
-8. 根目录下执行 `pnpm server`，启动后端服务。
+#### 2.启服务
+
+根目录下执行 `pnpm server`，启动后端服务。
