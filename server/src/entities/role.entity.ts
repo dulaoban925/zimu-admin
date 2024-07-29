@@ -1,19 +1,19 @@
 /**
- * 权限实体
+ * 角色实体
  */
 import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column } from 'typeorm'
 import { ACTIVATION_STATUS } from '@constants/enums'
 
-@Entity('auth')
-export class Auth {
+@Entity('role')
+export class Role {
   @PrimaryGeneratedColumn()
   id!: number
 
-  // 权限编码
+  // 角色编码
   @PrimaryColumn()
   code!: string
 
-  // 权限名称
+  // 角色名称
   @Column()
   name!: string
 

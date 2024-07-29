@@ -1,0 +1,55 @@
+<mxfile host="65bd71144e">
+    <diagram id="bOpvKcAoaonIBbLBbahK" name="第 1 页">
+        <mxGraphModel dx="1112" dy="761" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="用户" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="80" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="角色" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="330" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="权限" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="570" y="360" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="810" y="215" width="120" height="350" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="资源" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="840" y="230" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="菜单" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="810" y="275" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="按钮" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="810" y="345" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="页面" style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="810" y="415" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="..." style="rounded=0;whiteSpace=wrap;html=1;fontSize=20;" vertex="1" parent="1">
+                    <mxGeometry x="810" y="485" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="shape=doubleArrow;whiteSpace=wrap;html=1;fontSize=20;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="1">
+                    <mxGeometry x="210" y="375" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="" style="shape=doubleArrow;whiteSpace=wrap;html=1;fontSize=20;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="1">
+                    <mxGeometry x="460" y="375" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="" style="shape=doubleArrow;whiteSpace=wrap;html=1;fontSize=20;fillColor=#cce5ff;strokeColor=#36393d;" vertex="1" parent="1">
+                    <mxGeometry x="700" y="375" width="100" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" value="n:n" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontColor=#FF0000;" vertex="1" parent="1">
+                    <mxGeometry x="230" y="356" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="n:n" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=20;fontColor=#FF0000;" vertex="1" parent="1">
+                    <mxGeometry x="480" y="356" width="60" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="n:n" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontColor=#FF0000;" vertex="1" parent="1">
+                    <mxGeometry x="720" y="356" width="60" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

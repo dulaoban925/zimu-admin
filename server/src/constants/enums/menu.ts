@@ -12,3 +12,9 @@ export enum MENU_TYPE {
   BUTTON = 'button', // 按钮
   PAGE = 'page' // 系统页
 }
+
+export enum MENU_TYPE_DESC {
+  menu = '菜单', // 菜单
+  button = '按钮', // 按钮
+  page = '系统页' // 系统页
+}
