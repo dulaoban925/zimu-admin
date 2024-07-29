@@ -1,8 +1,15 @@
 /**
  * 权限实体
  */
-import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  PrimaryColumn,
+  Column,
+  ManyToMany
+} from 'typeorm'
 import { ACTIVATION_STATUS } from '@constants/enums'
+import { Role } from './role.entity'
 
 @Entity('auth')
 export class Auth {
@@ -24,6 +31,9 @@ export class Auth {
     default: ACTIVATION_STATUS.ACTIVATED
   })
   status!: ACTIVATION_STATUS
+
+  @ManyToMany(() => Role, role => role.authorizations)
+  roles!: Role[]
 
   @Column({ name: 'created_by' })
   createdBy!: string

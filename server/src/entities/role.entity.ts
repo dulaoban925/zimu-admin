@@ -1,8 +1,16 @@
 /**
  * 角色实体
  */
-import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  PrimaryColumn,
+  Column,
+  ManyToMany,
+  JoinTable
+} from 'typeorm'
 import { ACTIVATION_STATUS } from '@constants/enums'
+import { Auth } from './auth.entity'
 
 @Entity('role')
 export class Role {
@@ -24,6 +32,18 @@ export class Role {
     default: ACTIVATION_STATUS.ACTIVATED
   })
   status!: ACTIVATION_STATUS
+
+  @ManyToMany(() => Auth, auth => auth.roles)
+  @JoinTable({
+    name: 'zm-role-auth-relation',
+    joinColumn: {
+      name: 'role_id'
+    },
+    inverseJoinColumn: {
+      name: 'auth_id'
+    }
+  })
+  authorizations!: Auth[]
 
   @Column({ name: 'created_by' })
   createdBy!: string
