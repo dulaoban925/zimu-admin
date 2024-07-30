@@ -1,8 +1,15 @@
 /**
  * 菜单实体
  */
-import { Entity, PrimaryGeneratedColumn, PrimaryColumn, Column } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  PrimaryColumn,
+  Column,
+  ManyToMany
+} from 'typeorm'
 import { MENU_TYPE, ACTIVATION_STATUS } from '@constants/enums'
+import { Auth } from './auth.entity'
 
 @Entity('menu')
 export class Menu {
@@ -23,6 +30,10 @@ export class Menu {
     enum: MENU_TYPE
   })
   type!: MENU_TYPE
+
+  // 关联的角色列表
+  @ManyToMany(() => Auth, auth => auth.menus)
+  authorizations!: Auth[]
 
   // 层级
   @Column()
