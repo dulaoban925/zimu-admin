@@ -1,16 +1,17 @@
 import db from '@tools/data-source'
+import { isEmpty } from 'lodash-es'
+import { FindManyOptions } from 'typeorm'
 
 export class BaseService {
   repository
-  entityClass
   constructor(entityClass: any) {
-    this.entityClass = entityClass
     this.repository = db.getRepository(entityClass)
   }
 
   // 查询列表
-  async queryList(params?: any) {
-    const [rows, total] = await this.repository.findAndCountBy(params)
+  async queryList(params: any = {}, options: FindManyOptions<any> = {}) {
+    if (!isEmpty(params)) options.where = params
+    const [rows, total] = await this.repository.findAndCount(options)
     return {
       rows,
       total
