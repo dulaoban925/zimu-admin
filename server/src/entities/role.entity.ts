@@ -11,6 +11,7 @@ import {
 } from 'typeorm'
 import { ACTIVATION_STATUS } from '@constants/enums'
 import { Auth } from './auth.entity'
+import { User } from './user.entity'
 
 @Entity('role')
 export class Role {
@@ -33,6 +34,7 @@ export class Role {
   })
   status!: ACTIVATION_STATUS
 
+  // 关联的权限列表
   @ManyToMany(() => Auth, auth => auth.roles)
   @JoinTable({
     name: 'zm-role-auth-relation',
@@ -44,6 +46,10 @@ export class Role {
     }
   })
   authorizations!: Auth[]
+
+  // 关联的用户列表
+  @ManyToMany(() => User, user => user.roles)
+  users!: User[]
 
   @Column({ name: 'created_by' })
   createdBy!: string

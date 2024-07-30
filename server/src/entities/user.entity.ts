@@ -1,9 +1,17 @@
 /**
  * 用户实体
  */
-import { Column, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryColumn,
+  PrimaryGeneratedColumn
+} from 'typeorm'
 import { encryptPassword } from '@utils/pwd'
 import { USER_SEX, USER_STATUS } from '@constants/enums'
+import { Role } from './role.entity'
 
 @Entity('user')
 export class User {
@@ -58,6 +66,19 @@ export class User {
     default: USER_STATUS.SERVING
   })
   status!: USER_STATUS
+
+  // 关联的角色列表
+  @ManyToMany(() => Role, role => role.users)
+  @JoinTable({
+    name: 'zm-role-user-relation',
+    joinColumn: {
+      name: 'user_id'
+    },
+    inverseJoinColumn: {
+      name: 'role_id'
+    }
+  })
+  roles!: Role[]
 
   // 创建人
   @Column({ name: 'created_by' })
