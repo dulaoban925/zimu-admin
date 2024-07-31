@@ -14,7 +14,9 @@ export class UserController extends BaseController {
 
   /**
    * 通过用户名获取所有权限，返回菜单、按钮、等所有资源
+   *
    * @param username 用户名
+   * @returns resources 所有菜单资源数组
    */
   @Get('/auth')
   @Authorized()
