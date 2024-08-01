@@ -12,6 +12,16 @@ export class UserController extends BaseController {
     super(new UserService())
   }
 
+  @Get('/info')
+  @Authorized()
+  async queryByUsername(
+    @QueryParam('username', { required: true }) username: string
+  ) {
+    const userInfo = await this.currentService.queryByUsername(username)
+
+    return success(userInfo)
+  }
+
   /**
    * 通过用户名获取所有权限，返回菜单、按钮、等所有资源
    *
