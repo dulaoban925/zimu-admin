@@ -3,7 +3,7 @@
  */
 import { transformFlatMenusToTree } from './helpers'
 import { useRouteStore } from '@/store'
-import { getMenuList } from '@/apis'
+import { getUserAuth } from '@/apis'
 
 export const useMenuStore = defineStore('menu-store', () => {
   // 所有权限菜单平铺结构
@@ -18,8 +18,8 @@ export const useMenuStore = defineStore('menu-store', () => {
   const routeStore = useRouteStore()
 
   // 初始化权限菜单
-  const initAuthMenus = async () => {
-    const menus = await getMenuList()
+  const initAuthMenus = async (username: string) => {
+    const menus = await getUserAuth(username)
     flatMenus.value = [...menus]
     await routeStore.initRoutes(flatMenus.value)
     authMenus.value = transformFlatMenusToTree(flatMenus.value)

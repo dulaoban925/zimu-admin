@@ -106,6 +106,7 @@ const defaultResponseConfig: ResponseConfig = {
   dataKey: 'data',
   messageKey: 'message',
   success: (response, code) => {
+    // TODO: 添加后端自定义校验判断
     return !!(code && ((code >= 200 && code < 300) || code === 304))
   }
 }

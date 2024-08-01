@@ -3,7 +3,7 @@ import type {
   NavigationGuardNext,
   NavigationGuardWithThis
 } from 'vue-router'
-import { useMenuStore } from '@/store'
+import { useMenuStore, useUserStore } from '@/store'
 import { STATIC_ROUTE_NAME } from '@/constants'
 import { useLoadingBar } from '@/hooks'
 
@@ -35,10 +35,11 @@ async function handleDynamicRoutes(
   const isToLogin = to.name === STATIC_ROUTE_NAME.LOGIN
   // 若未初始化，则执行初始化函数
   if (!isAuthInitialized && !isToLogin) {
-    await menuStore.initAuthMenus()
+    const userStore = useUserStore()
+    await menuStore.initAuthMenus(userStore.username)
 
     /**
-     * 路由初始化过程中，若跳转的路由为 “notfound”，可能为路由为加载完成导致的
+     * 路由初始化过程中，若跳转的路由为 “notfound”，可能未路由为加载完成导致的
      * 重新跳转到当前目标路由
      */
     if (to.name === STATIC_ROUTE_NAME.NOT_FOUND) {
