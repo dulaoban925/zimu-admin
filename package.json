@@ -62,7 +62,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
-      "npm run lint:check"
+      "npm run lint:fix"
     ]
   },
   "engines": {
