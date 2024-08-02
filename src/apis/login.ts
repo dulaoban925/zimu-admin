@@ -40,7 +40,7 @@ export async function login(data: { username: string; password: string }) {
     window.location.replace(redirectUrl)
 
     return token
-  })
+  })()
 }
 
 // 刷新 token
