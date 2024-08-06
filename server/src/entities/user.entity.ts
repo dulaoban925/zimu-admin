@@ -10,7 +10,7 @@ import {
   PrimaryGeneratedColumn
 } from 'typeorm'
 import { encryptPassword } from '@utils/pwd'
-import { USER_SEX, USER_STATUS } from '@constants/enums'
+import { USER_GENDER, USER_STATUS } from '@constants/enums'
 import { Role } from './role.entity'
 
 @Entity('user')
@@ -43,9 +43,9 @@ export class User {
   // 性别
   @Column({
     type: 'enum',
-    enum: USER_SEX
+    enum: USER_GENDER
   })
-  sex!: USER_SEX
+  gender!: USER_GENDER
 
   // 电话
   @Column()
