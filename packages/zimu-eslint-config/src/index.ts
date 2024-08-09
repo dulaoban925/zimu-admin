@@ -1,12 +1,15 @@
-import type { Linter } from 'eslint'
 import {
+  commentConfigs,
+  ignoreConfigs,
+  importConfigs,
+  javascriptConfigs,
   prettierConfigs,
   sortConfigs,
-  javascriptConfigs,
   typescriptConfigs,
   vueConfigs
 } from './configs'
 import { hasVue } from './env'
+import type { Linter } from 'eslint'
 
 /**
  * preset 支持环境参数类型
@@ -15,34 +18,55 @@ import { hasVue } from './env'
  *
  * TODO: markdown，yaml
  */
-type EnvOptions = {
-  vue: boolean,
+type EnvOptions = Partial<{
+  vue: boolean
   prettier: boolean
-}
+}>
 
-// 基础 config
-const BasicConfigs = [...javascriptConfigs, ...typescriptConfigs, ...sortConfigs]
+/**
+ * JavaScript 预置配置
+ *
+ * 包括：ignores、comments、javascript、sort
+ */
+export const presetJavascriptConfigs = [
+  ...ignoreConfigs,
+  ...commentConfigs,
+  ...javascriptConfigs,
+  ...importConfigs
+]
+
+/**
+ * 基础预置配置
+ *
+ * 包括：javascript、typescript、排序
+ */
+const presetBasicConfigs = [
+  ...presetJavascriptConfigs,
+  ...typescriptConfigs,
+  ...sortConfigs
+]
 
 /**
  * eslint config 预置函数
  *
  * @param config 覆盖配置
+ * @param evnOptions 环境配置项，可接受单个配置对象或多个配置数组
  * @returns
  */
-export function preset(config: Linter.Config | Linter.Config[], {
-  vue: vueSupport = hasVue,
-  prettier: prettierSupport = true
-}: EnvOptions) {
+export function preset(
+  config: Linter.Config | Linter.Config[] = [],
+  { vue: enableVue = hasVue, prettier: enablePrettier = true }: EnvOptions = {}
+) {
   // 预置 eslint config 集合
-  const configs: Linter.Config[] = BasicConfigs
+  const configs: Linter.Config[] = presetBasicConfigs
 
   // 支持 Vue
-  if (vueSupport) {
+  if (enableVue) {
     configs.push(...vueConfigs)
   }
 
   // 支持 Prettier
-  if (prettierSupport) {
+  if (enablePrettier) {
     configs.push(...prettierConfigs)
   }
 

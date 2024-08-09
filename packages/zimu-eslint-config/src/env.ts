@@ -13,4 +13,4 @@ export const isInEditor = !!(
 )
 
 // 是否包含 vue
-export const hasVue = isPackageExists('vue')
+export const hasVue = isPackageExists('vue') || isPackageExists('nuxt')

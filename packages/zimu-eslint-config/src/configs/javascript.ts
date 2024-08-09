@@ -9,27 +9,28 @@ import type { Linter } from 'eslint'
 export const restrictedSyntaxJs = [
   'ForInStatement',
   'LabeledStatement',
-  'WithStatement',
+  'WithStatement'
 ]
 
 export const javascriptConfigs: Linter.Config[] = [
   {
+    name: 'zimu/js',
     languageOptions: {
       globals: {
         ...globals.browser,
         ...globals.es2021,
-        ...globals.node,
+        ...globals.node
       },
       parserOptions: {
         ecmaFeatures: {
-          jsx: true,
+          jsx: true
         },
-        sourceType: 'module',
+        sourceType: 'module'
       },
-      sourceType: 'module',
+      sourceType: 'module'
     },
     plugins: {
-      'unused-imports': PluginUnusedImports,
+      'unused-imports': PluginUnusedImports
     },
     rules: {
       'array-callback-return': 'error',
@@ -64,7 +65,7 @@ export const javascriptConfigs: Linter.Config[] = [
       'no-extra-boolean-cast': 'error',
       'no-fallthrough': [
         'warn',
-        { commentPattern: String.raw`break[\s\w]*omitted` },
+        { commentPattern: String.raw`break[\s\w]*omitted` }
       ],
       'no-func-assign': 'error',
       'no-global-assign': 'error',
@@ -102,8 +103,8 @@ export const javascriptConfigs: Linter.Config[] = [
         {
           allowShortCircuit: true,
           allowTaggedTemplates: true,
-          allowTernary: true,
-        },
+          allowTernary: true
+        }
       ],
       'no-unused-labels': 'error',
       'no-unused-vars': 'off',
@@ -115,15 +116,15 @@ export const javascriptConfigs: Linter.Config[] = [
       'object-shorthand': [
         'error',
         'always',
-        { avoidQuotes: true, ignoreConstructors: false },
+        { avoidQuotes: true, ignoreConstructors: false }
       ],
       'prefer-arrow-callback': [
         'error',
-        { allowNamedFunctions: false, allowUnboundThis: true },
+        { allowNamedFunctions: false, allowUnboundThis: true }
       ],
       'prefer-const': [
         'warn',
-        { destructuring: 'all', ignoreReadBeforeAssign: true },
+        { destructuring: 'all', ignoreReadBeforeAssign: true }
       ],
       'prefer-exponentiation-operator': 'error',
       'prefer-regex-literals': ['error', { disallowRedundantWrapping: true }],
@@ -136,27 +137,27 @@ export const javascriptConfigs: Linter.Config[] = [
       'unused-imports/no-unused-imports': isInEditor ? 'off' : 'error',
       'unused-imports/no-unused-vars': [
         'error',
-        { args: 'after-used', ignoreRestSiblings: true },
+        { args: 'after-used', ignoreRestSiblings: true }
       ],
       'use-isnan': [
         'error',
-        { enforceForIndexOf: true, enforceForSwitchCase: true },
+        { enforceForIndexOf: true, enforceForSwitchCase: true }
       ],
       'valid-typeof': ['error', { requireStringLiterals: true }],
       'vars-on-top': 'error',
-      'wrap-iife': ['error', 'any', { functionPrototypeMethods: true }],
-    },
+      'wrap-iife': ['error', 'any', { functionPrototypeMethods: true }]
+    }
   },
   {
     files: ['**/scripts/*', '**/cli.*'],
     rules: {
-      'no-console': 'off',
-    },
+      'no-console': 'off'
+    }
   },
   {
     files: ['**/*.{test,spec}.js?(x)'],
     rules: {
-      'no-unused-expressions': 'off',
-    },
-  },
+      'no-unused-expressions': 'off'
+    }
+  }
 ]

@@ -31,16 +31,16 @@ export const reactivityTransform: Linter.Config[] = [
         $customRef: 'readonly',
         $ref: 'readonly',
         $shallowRef: 'readonly',
-        $toRef: 'readonly',
-      },
+        $toRef: 'readonly'
+      }
     },
     plugins: {
-      vue: PluginVue,
+      vue: PluginVue
     },
     rules: {
-      'vue/no-setup-props-reactivity-loss': 'off',
-    },
-  },
+      'vue/no-setup-props-reactivity-loss': 'off'
+    }
+  }
 ]
 
 const vueCustomRules: Linter.RulesRecord = {
@@ -53,11 +53,11 @@ const vueCustomRules: Linter.RulesRecord = {
       html: {
         component: 'always',
         normal: 'always',
-        void: 'any',
+        void: 'any'
       },
       math: 'always',
-      svg: 'always',
-    },
+      svg: 'always'
+    }
   ],
   'vue/max-attributes-per-line': 'off',
 
@@ -74,34 +74,34 @@ const vueCustomRules: Linter.RulesRecord = {
     'always',
     {
       avoidQuotes: true,
-      ignoreConstructors: false,
-    },
+      ignoreConstructors: false
+    }
   ],
   'vue/one-component-per-file': 'off',
   'vue/padding-line-between-blocks': ['error', 'always'],
   'vue/prefer-template': 'error',
   'vue/require-default-prop': 'off',
-  'vue/require-prop-types': 'off',
+  'vue/require-prop-types': 'off'
 }
 
 const vue3Rules: Linter.RulesRecord = {
   ...PluginVue.configs.base.rules,
   ...PluginVue.configs['vue3-essential'].rules,
   ...PluginVue.configs['vue3-strongly-recommended'].rules,
-  ...PluginVue.configs['vue3-recommended'].rules,
+  ...PluginVue.configs['vue3-recommended'].rules
 }
 
 const vue2Rules: Linter.RulesRecord = {
   ...PluginVue.configs.base.rules,
   ...PluginVue.configs.essential.rules,
   ...PluginVue.configs['strongly-recommended'].rules,
-  ...PluginVue.configs.recommended.rules,
+  ...PluginVue.configs.recommended.rules
 }
 
 export const vueConfigs: Linter.Config[] = [
   ...(tsEslint.config({
     extends: typescriptCoreConfigs as any[],
-    files: [GLOB_VUE],
+    files: [GLOB_VUE]
   }) as any),
   {
     files: [GLOB_VUE],
@@ -109,22 +109,22 @@ export const vueConfigs: Linter.Config[] = [
       parser: ParserVue,
       parserOptions: {
         ecmaFeatures: {
-          jsx: true,
+          jsx: true
         },
         extraFileExtensions: ['.vue'],
         parser: '@typescript-eslint/parser',
-        sourceType: 'module',
-      },
+        sourceType: 'module'
+      }
     },
     plugins: {
       '@typescript-eslint': tsEslint.plugin,
-      vue: PluginVue,
+      vue: PluginVue
     },
     processor: PluginVue.processors['.vue'],
     rules: {
       ...(isVue3 ? vue3Rules : vue2Rules),
-      ...vueCustomRules,
-    },
+      ...vueCustomRules
+    }
   },
-  ...reactivityTransform,
+  ...reactivityTransform
 ]
