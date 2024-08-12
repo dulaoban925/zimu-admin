@@ -1,7 +1,7 @@
 /**
  * eslint ignore 配置
  */
-import { GLOB_IGNORE } from '../glob-paths'
+import { GLOB_IGNORE } from '../globs'
 import { PluginIgnore } from '../plugins'
 import type { Linter } from 'eslint'
 

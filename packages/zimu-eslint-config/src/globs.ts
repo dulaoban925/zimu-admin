@@ -1,5 +1,5 @@
 /**
- * glob 文件检索路径
+ * 文件检索路径
  */
 // js/jsx
 export const GLOB_JS = '**/*.?([cm])js'

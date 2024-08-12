@@ -3,7 +3,7 @@
  */
 import process from 'node:process'
 import { getPackageInfoSync } from 'local-pkg'
-import { GLOB_VUE } from '../glob-paths'
+import { GLOB_VUE } from '../globs'
 import { ParserVue, PluginVue, tsEslint } from '../plugins'
 import { typescriptCoreConfigs } from './typescript'
 import type { Linter } from 'eslint'

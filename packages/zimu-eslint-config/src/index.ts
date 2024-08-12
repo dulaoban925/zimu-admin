@@ -1,12 +1,14 @@
 import {
-  commentConfigs,
-  ignoreConfigs,
-  importConfigs,
-  javascriptConfigs,
-  prettierConfigs,
-  sortConfigs,
-  typescriptConfigs,
-  vueConfigs
+  commentConfigs as comments,
+  ignoreConfigs as ignores,
+  importConfigs as imports,
+  importSortConfigs as importSort,
+  javascriptConfigs as javascript,
+  nodeConfigs as node,
+  prettierConfigs as prettier,
+  regexpConfigs as regexp,
+  typescriptConfigs as typescript,
+  vueConfigs as vue
 } from './configs'
 import { hasVue } from './env'
 import type { Linter } from 'eslint'
@@ -16,7 +18,7 @@ import type { Linter } from 'eslint'
  *
  * 目前支持 Vue、prettier
  *
- * TODO: markdown，yaml
+ * TODO: markdown，yaml，json
  */
 type EnvOptions = Partial<{
   vue: boolean
@@ -26,13 +28,15 @@ type EnvOptions = Partial<{
 /**
  * JavaScript 预置配置
  *
- * 包括：ignores、comments、javascript、sort
+ * 包括：ignores、comments、javascript、import、node、regexp
  */
 export const presetJavascriptConfigs = [
-  ...ignoreConfigs,
-  ...commentConfigs,
-  ...javascriptConfigs,
-  ...importConfigs
+  ...ignores,
+  ...comments,
+  ...javascript,
+  ...imports,
+  ...node,
+  ...regexp
 ]
 
 /**
@@ -42,8 +46,8 @@ export const presetJavascriptConfigs = [
  */
 const presetBasicConfigs = [
   ...presetJavascriptConfigs,
-  ...typescriptConfigs,
-  ...sortConfigs
+  ...typescript,
+  ...importSort
 ]
 
 /**
@@ -62,12 +66,12 @@ export function preset(
 
   // 支持 Vue
   if (enableVue) {
-    configs.push(...vueConfigs)
+    configs.push(...vue)
   }
 
   // 支持 Prettier
   if (enablePrettier) {
-    configs.push(...prettierConfigs)
+    configs.push(...prettier)
   }
 
   // 合并自定义配置

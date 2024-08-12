@@ -1,7 +1,7 @@
 /**
  * typescript config
  */
-import { GLOB_JS, GLOB_TS, GLOB_TSX } from '../glob-paths'
+import { GLOB_JS, GLOB_TS, GLOB_TSX } from '../globs'
 import { tsEslint } from '../plugins'
 import { restrictedSyntaxJs } from './javascript'
 import type { Linter } from 'eslint'

@@ -14,6 +14,16 @@ function getModule<T>(m: T): Module<T> {
 import tsEslint from 'typescript-eslint'
 export { tsEslint }
 
+// node
+import * as _pluginNode from 'eslint-plugin-n'
+export const PluginNode: typeof import('eslint-plugin-n') =
+  getModule(_pluginNode)
+
+// regexp
+import * as _pluginRegexp from 'eslint-plugin-regexp'
+export const PluginRegexp: typeof import('eslint-plugin-regexp') =
+  getModule(_pluginRegexp)
+
 // 移除未使用的 import 引入
 import * as _pluginUnusedImports from 'eslint-plugin-unused-imports'
 export const PluginUnusedImports: any = getModule(_pluginUnusedImports)

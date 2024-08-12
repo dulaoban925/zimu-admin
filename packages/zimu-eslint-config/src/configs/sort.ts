@@ -5,7 +5,7 @@ import { PluginPerfectionist } from '../plugins'
 import type { Linter } from 'eslint'
 
 // 导入语句排序配置
-const importSortConfigs: Linter.Config[] = [
+export const importSortConfigs: Linter.Config[] = [
   {
     name: 'zimu/import-sort',
     plugins: {
@@ -31,7 +31,7 @@ const importSortConfigs: Linter.Config[] = [
             'side-effect',
             'side-effect-style'
           ],
-          internalPattern: ['~/**', '@/**', '#**'],
+          internalPattern: ['@/**', '~/**', '#**'],
           newlinesBetween: 'ignore'
         }
       ],
@@ -46,6 +46,3 @@ const importSortConfigs: Linter.Config[] = [
     }
   }
 ]
-
-// 排序类配置
-export const sortConfigs = [...importSortConfigs]
