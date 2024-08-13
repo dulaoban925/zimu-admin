@@ -44,7 +44,7 @@ export const reactivityTransform: Linter.Config[] = [
 ]
 
 const vueCustomRules: Linter.RulesRecord = {
-  'vue/block-order': ['error', { order: ['script', 'template', 'style'] }],
+  'vue/block-order': ['error', { order: ['template', 'script', 'style'] }],
   'vue/custom-event-name-casing': ['error', 'camelCase'],
   'vue/eqeqeq': ['error', 'smart'],
   'vue/html-self-closing': [

@@ -1,6 +1,7 @@
 /**
  * 环境判断
  */
+import process from 'node:process'
 import { isPackageExists } from 'local-pkg'
 
 // 是否在编辑器环境
