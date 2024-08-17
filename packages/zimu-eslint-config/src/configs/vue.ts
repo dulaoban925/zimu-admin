@@ -23,6 +23,7 @@ const isVue3 = getVueVersion() === 3
 
 export const reactivityTransform: Linter.Config[] = [
   {
+    name: 'zimu/vue/reactivity',
     languageOptions: {
       globals: {
         $: 'readonly',
@@ -100,10 +101,12 @@ const vue2Rules: Linter.RulesRecord = {
 
 export const vueConfigs: Linter.Config[] = [
   ...(tsEslint.config({
+    name: 'zimu/vue/ts',
     extends: typescriptCoreConfigs as any[],
     files: [GLOB_VUE]
   }) as any),
   {
+    name: 'zimu/vue',
     files: [GLOB_VUE],
     languageOptions: {
       parser: ParserVue,

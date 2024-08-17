@@ -2,13 +2,16 @@ import {
   commentConfigs as comments,
   ignoreConfigs as ignores,
   importConfigs as imports,
-  importSortConfigs as importSort,
+  importsSortConfigs as importsSort,
   javascriptConfigs as javascript,
+  markdownConfigs as markdown,
   nodeConfigs as node,
   prettierConfigs as prettier,
   regexpConfigs as regexp,
   typescriptConfigs as typescript,
-  vueConfigs as vue
+  unicornConfigs as unicorn,
+  vueConfigs as vue,
+  jsonConfigs as json
 } from './configs'
 import { hasVue } from './env'
 import type { Linter } from 'eslint'
@@ -18,11 +21,12 @@ import type { Linter } from 'eslint'
  *
  * 目前支持 Vue、prettier
  *
- * TODO: markdown，yaml，json
+ * TODO: yaml、react
  */
 type EnvOptions = Partial<{
   vue: boolean
   prettier: boolean
+  markdown: boolean
 }>
 
 /**
@@ -35,20 +39,25 @@ export const presetJavascriptConfigs = [
   ...comments,
   ...javascript,
   ...imports,
+  ...importsSort,
+  ...unicorn,
   ...node,
   ...regexp
 ]
 
 /**
+ * 语言扩展
+ *
+ * 包括：markdown, json
+ */
+export const presetExtensionConfigs = [...markdown, ...json]
+
+/**
  * 基础预置配置
  *
- * 包括：javascript、typescript、排序
+ * 包括：javascript、typescript、json
  */
-const presetBasicConfigs = [
-  ...presetJavascriptConfigs,
-  ...typescript,
-  ...importSort
-]
+const presetBasicConfigs = [...presetJavascriptConfigs, ...typescript, ...json]
 
 /**
  * eslint config 预置函数
@@ -59,19 +68,28 @@ const presetBasicConfigs = [
  */
 export function preset(
   config: Linter.Config | Linter.Config[] = [],
-  { vue: enableVue = hasVue, prettier: enablePrettier = true }: EnvOptions = {}
+  {
+    vue: enableVue = hasVue,
+    prettier: enablePrettier = true,
+    markdown: enableMarkdown = true
+  }: EnvOptions = {}
 ) {
   // 预置 eslint config 集合
   const configs: Linter.Config[] = presetBasicConfigs
 
-  // 支持 Vue
+  // 启用 Vue
   if (enableVue) {
     configs.push(...vue)
   }
 
-  // 支持 Prettier
+  // 启用 Prettier
   if (enablePrettier) {
     configs.push(...prettier)
+  }
+
+  // 启用 markdown
+  if (enableMarkdown) {
+    configs.push(...markdown)
   }
 
   // 合并自定义配置

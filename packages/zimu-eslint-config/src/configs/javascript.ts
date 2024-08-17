@@ -6,11 +6,7 @@ import { isInEditor } from '../env'
 import { PluginUnusedImports } from '../plugins'
 import type { Linter } from 'eslint'
 
-export const restrictedSyntaxJs = [
-  'ForInStatement',
-  'LabeledStatement',
-  'WithStatement'
-]
+export const restrictedSyntaxJs = ['LabeledStatement', 'WithStatement']
 
 export const javascriptConfigs: Linter.Config[] = [
   {
@@ -149,12 +145,14 @@ export const javascriptConfigs: Linter.Config[] = [
     }
   },
   {
+    name: 'zimu/js/scripts',
     files: ['**/scripts/*', '**/cli.*'],
     rules: {
       'no-console': 'off'
     }
   },
   {
+    name: 'zimu/js/test',
     files: ['**/*.{test,spec}.js?(x)'],
     rules: {
       'no-unused-expressions': 'off'

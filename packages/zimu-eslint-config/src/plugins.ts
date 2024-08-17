@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 // @ts-nocheck
 /**
  * 插件集合
@@ -9,6 +10,10 @@ export type Module<T> = T extends { default: infer U } ? U : T
 function getModule<T>(m: T): Module<T> {
   return (m as any).default || m
 }
+
+import * as _pluginAntfu from 'eslint-plugin-antfu'
+export const PluginAntfu: typeof import('eslint-plugin-antfu').default =
+  getModule(_pluginAntfu)
 
 // 支持 typescript
 import tsEslint from 'typescript-eslint'
@@ -28,6 +33,10 @@ export const PluginRegexp: typeof import('eslint-plugin-regexp') =
 import * as _pluginUnusedImports from 'eslint-plugin-unused-imports'
 export const PluginUnusedImports: any = getModule(_pluginUnusedImports)
 
+// unicorn
+import * as _pluginUnicorn from 'eslint-plugin-unicorn'
+export const PluginUnicorn: any = getModule(_pluginUnicorn)
+
 // prettier 插件
 import _pluginPrettier from 'eslint-plugin-prettier'
 export const PluginPrettier: any = getModule(_pluginPrettier)
@@ -42,6 +51,14 @@ export const PluginVue: any = getModule(_pluginVue)
 
 // vue eslint 解析器，配合 eslint-plugin-vue 使用
 export * as ParserVue from 'vue-eslint-parser'
+
+// markdown
+import * as _pluginMarkdown from 'eslint-plugin-markdown'
+export const PluginMarkdown: any = getModule(_pluginMarkdown)
+
+// json
+export * as PluginJsonc from 'eslint-plugin-jsonc'
+export * as ParserJsonc from 'jsonc-eslint-parser'
 
 // gitignore
 import * as _pluginIgnore from 'eslint-config-flat-gitignore'

@@ -60,30 +60,28 @@ export const typescriptCoreConfigs = tsEslint.config({
 export const typescriptConfigs: Linter.Config[] = [
   ...typescriptCoreConfigs,
   {
+    name: 'zimu/ts/dts',
     files: ['**/*.d.ts'],
     rules: {
       'eslint-comments/no-unlimited-disable': 'off',
       'import/no-duplicates': 'off',
-      'unused-imports/no-unused-vars': 'off'
+      'unused-imports/no-unused-vars': 'off',
+      'no-restricted-syntax': ['error', ...restrictedSyntaxJs]
     }
   },
   {
+    name: 'zimu/ts/test',
     files: ['**/*.{test,spec}.ts?(x)'],
     rules: {
       'no-unused-expressions': 'off'
     }
   },
   {
+    name: 'zimu/ts/cjs',
     files: [GLOB_JS, '**/*.cjs'],
     rules: {
       '@typescript-eslint/no-require-imports': 'off',
       '@typescript-eslint/no-var-requires': 'off'
-    }
-  },
-  {
-    files: ['**/*.d.ts'],
-    rules: {
-      'no-restricted-syntax': ['error', ...restrictedSyntaxJs]
     }
   }
 ]

@@ -5,9 +5,9 @@ import { PluginPerfectionist } from '../plugins'
 import type { Linter } from 'eslint'
 
 // 导入语句排序配置
-export const importSortConfigs: Linter.Config[] = [
+export const importsSortConfigs: Linter.Config[] = [
   {
-    name: 'zimu/import-sort',
+    name: 'zimu/sort/imports',
     plugins: {
       perfectionist: PluginPerfectionist
     },

@@ -7,11 +7,11 @@ import type { Linter } from 'eslint'
 
 export const ignoreConfigs: Linter.Config[] = [
   {
-    ignores: GLOB_IGNORE,
-    name: 'zimu/global-ignores'
+    name: 'zimu/ignores/global',
+    ignores: GLOB_IGNORE
   },
   {
     ...PluginIgnore({ strict: false }),
-    name: 'zimu/gitignore'
+    name: 'zimu/ignores/git'
   }
 ]
