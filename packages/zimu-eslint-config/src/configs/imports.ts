@@ -28,7 +28,7 @@ export const importConfigs: Linter.Config[] = [
     name: 'zimu/imports/allow-default-export',
     files: [
       `**/*config*.${GLOB_SRC_EXT}`,
-      `**/{views,pages,routes,middleware,plugins,api}/${GLOB_SRC}`,
+      `**/{views,pages,router,store,routes,middleware,plugins,api}/${GLOB_SRC}`,
       `**/{index,vite,esbuild,rollup,rolldown,webpack,rspack}.ts`,
       '**/*.d.ts',
       `${GLOB_MARKDOWN}/**`,

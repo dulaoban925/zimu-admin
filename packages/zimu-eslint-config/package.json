@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "eslint-config-inspector --config eslint-inspector.config.ts",
     "build:dev": "eslint-config-inspector build --config eslint-inspector.config.ts",
-    "build": "tsup",
+    "typegen": "tsx scripts/typegen.ts",
+    "build": "pnpm run typegen && tsup",
     "lint": "eslint .",
     "lint:fix": "pnpm run lint --fix"
   },
@@ -44,6 +45,7 @@
     "eslint-plugin-unicorn": "^55.0.0",
     "eslint-plugin-unused-imports": "^4.0.1",
     "eslint-plugin-vue": "^9.27.0",
+    "eslint-typegen": "^0.3.1",
     "globals": "^15.9.0",
     "jsonc-eslint-parser": "^2.4.0",
     "local-pkg": "^0.5.0",
