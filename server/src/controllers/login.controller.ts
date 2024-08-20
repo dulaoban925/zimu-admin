@@ -1,11 +1,11 @@
-import { PWD_ERROR_TIMES } from '@constants/redis-keys'
+import { PWD_ERROR_TIMES, CURRENT_USER } from '@constants/redis-keys'
 import { JWT_SECRET } from '@constants/secrets'
 import { UserService } from '@services/user.service'
-import { getRedisInstance } from '@tools/redis'
 import { comparePassword } from '@utils/pwd'
 import { error, success } from '@utils/r'
 import jwt from 'jsonwebtoken'
 import { Body, Controller, Post } from 'routing-controllers'
+import { hGet, hSet } from '@utils/redis'
 
 /**
  * 登录 controller
@@ -40,6 +40,11 @@ export class LoginController {
         expiresIn: 60 * 60
       })
 
+      // 缓存当前用户
+      hSet(CURRENT_USER, user)
+      // 重置密码错误次数
+      recordPwdErrorTimes(username, true)
+
       return success({
         token
       })
@@ -54,13 +59,19 @@ export class LoginController {
  * 记录密码错误次数
  * @param username 用户名
  */
-async function recordPwdErrorTimes(username: string) {
-  // 获取 redis 客户端实例
-  const client = getRedisInstance()
+async function recordPwdErrorTimes(username: string, reset: boolean = false) {
+  if (reset) {
+    // 重置密码错误次数
+    await hSet(PWD_ERROR_TIMES, {
+      [username]: 0
+    })
+    return
+  }
   // 获取当前用于已输入错误次数，默认为 0
-  let errorTimes = (await client.hGet(PWD_ERROR_TIMES, username)) ?? 0
+  let errorTimes: number =
+    ((await hGet(PWD_ERROR_TIMES, username)) as number) ?? 0
   // 错误次数加 1
   errorTimes++
   // 更新 redis 中该用户密码错误次数数据
-  await client.hSet(PWD_ERROR_TIMES, { [username]: errorTimes })
+  await hSet(PWD_ERROR_TIMES, { [username]: errorTimes })
 }
