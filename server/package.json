@@ -7,7 +7,7 @@
     "start": "nodemon ./src/app.ts",
     "prod:start": "cross-env NODE_ENV=production nodemon ./src/app.ts",
     "build": "tsc",
-    "lint:fix": "eslint --cache --ext .js,.ts,.jsx,.tsx,.vue,.json src/ --fix"
+    "lint:fix": "eslint . --fix"
   },
   "keywords": [
     "zimu-admin",
@@ -33,7 +33,7 @@
     "config": "^3.3.12",
     "express": "^4.19.1",
     "jsonwebtoken": "^9.0.2",
-    "lodash-es": "^4.17.21",
+    "lodash": "^4.17.21",
     "module-alias": "^2.2.3",
     "mysql2": "^3.9.2",
     "redis": "^4.6.15",

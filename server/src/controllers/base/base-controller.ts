@@ -20,7 +20,7 @@ export class BaseController {
    * @returns
    */
   @Get(`${INTERFACE_PATH.LIST}`)
-  @Authorized()
+  // @Authorized()
   async list() {
     return await this.currentService.queryList()
   }

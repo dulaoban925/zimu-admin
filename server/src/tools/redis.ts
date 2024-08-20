@@ -1,5 +1,7 @@
 import { get } from '@tools/env-config'
 import { createClient } from 'redis'
+// eslint-disable-next-line no-duplicate-imports
+import type { RedisClientOptions } from 'redis'
 
 // redis 客户端实例
 let redisInstance: any = null
@@ -9,7 +11,7 @@ export function initRedis() {
   const redis = getRedisInstance()
 
   redis.on('error', (err: any) => console.error('Redis Client Error:', err))
-  redis.on('connect', () => console.success('Redis Client connected'))
+  redis.on('connect', () => console.log('Redis Client connected'))
 
   // 连接 redis
   redis.connect()
@@ -18,7 +20,7 @@ export function initRedis() {
 // 获取 redis 客户端实例，单例模式
 export function getRedisInstance() {
   if (!redisInstance) {
-    const redisConfig = get('redis')
+    const redisConfig: RedisClientOptions = get('redis') as RedisClientOptions
     redisInstance = createClient(redisConfig)
   }
   return redisInstance

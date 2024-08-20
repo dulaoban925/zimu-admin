@@ -1,11 +1,11 @@
-import db from '@tools/data-source'
-import { isEmpty } from 'lodash-es'
-import type { FindManyOptions } from 'typeorm'
+import { getDataSourceInstance } from '@tools/data-source'
+import { isEmpty } from 'lodash'
+import type { FindManyOptions, Repository } from 'typeorm'
 
 export class BaseService {
-  repository
+  repository: Repository<any>
   constructor(entityClass: any) {
-    this.repository = db.getRepository(entityClass)
+    this.repository = getDataSourceInstance().getRepository(entityClass)
   }
 
   // 查询列表

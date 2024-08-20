@@ -70,7 +70,7 @@ export class User {
   // 关联的角色列表
   @ManyToMany(() => Role, role => role.users)
   @JoinTable({
-    name: 'zm-role-user-relation',
+    name: 'role-user-relation',
     joinColumn: {
       name: 'user_id'
     },

@@ -11,7 +11,7 @@ import {
 @Interceptor()
 export class ResponseGlobalInterceptor implements InterceptorInterface {
   intercept(action: Action, content: any) {
-    console.log('🚀 ~ ResponseGlobalInterceptor ~ intercept:')
+    console.log('🚀 ~ ResponseGlobalInterceptor ~ intercept:', action, content)
     if (content instanceof Error)
       return error(`${content.name}: ${content.message}`)
     if (!content.code) return success(content)

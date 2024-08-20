@@ -35,13 +35,13 @@ export class Auth {
   status!: ACTIVATION_STATUS
 
   // 关联的角色列表
-  @ManyToMany(() => Role, role => role.authorizations)
-  roles!: Role[]
+  // @ManyToMany(() => Role, role => role.authorizations)
+  // roles!: Role[]
 
   // 关联的菜单列表
   @ManyToMany(() => Menu, menu => menu.authorizations)
   @JoinTable({
-    name: 'zm-auth-menu-relation',
+    name: 'auth-menu-relation',
     joinColumn: {
       name: 'auth_id'
     },

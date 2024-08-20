@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable import/no-default-export */
+const defaultEnvConfigs = {
   // 数据库配置
   db: {
     type: 'mysql', // 类型
@@ -13,3 +14,5 @@ module.exports = {
     url: 'redis://localhost:6379'
   }
 }
+
+export default defaultEnvConfigs

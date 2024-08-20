@@ -1,21 +1,16 @@
+import 'module-alias/register'
+// eslint-disable-next-line perfectionist/sort-imports
 import path from 'node:path'
-import ds from '@tools/data-source'
+import { initDataSource } from '@tools/data-source'
 import { initRedis } from '@tools/redis'
-import authChecker from '@utils/auth-checker'
+import { authChecker } from '@utils/auth-checker'
 import { json, urlencoded } from 'body-parser'
 import express from 'express'
 import { useExpressServer } from 'routing-controllers'
 import '@tools/env-config'
-import 'module-alias/register'
 
-// 初始化数据库
-ds.initialize()
-  .then(() => {
-    console.log('Data Source has been initialized!')
-  })
-  .catch((error: any) => {
-    console.log('Error during Data Source initialization:', error)
-  })
+// 初始化 datasource
+initDataSource()
 
 // 初始化 redis
 initRedis()

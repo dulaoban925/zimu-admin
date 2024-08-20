@@ -28,13 +28,13 @@ export class UserController extends BaseController {
    * @param username 用户名
    * @returns resources 所有菜单资源数组
    */
-  @Get('/auth')
-  @Authorized()
-  async queryAuthByUsername(
-    @QueryParam('username', { required: true }) username: string
-  ) {
-    const resources = await this.currentService.queryAuthByUsername(username)
+  // @Get('/auth')
+  // @Authorized()
+  // async queryAuthByUsername(
+  //   @QueryParam('username', { required: true }) username: string
+  // ) {
+  //   const resources = await this.currentService.queryAuthByUsername(username)
 
-    return success(resources)
-  }
+  //   return success(resources)
+  // }
 }

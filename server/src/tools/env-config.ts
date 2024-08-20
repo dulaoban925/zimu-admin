@@ -1,20 +1,17 @@
 import path from 'node:path'
 import process from 'node:process'
-import type { IConfig } from 'config'
-
 // 定义 config 文件存储路径
 process.env.NODE_CONFIG_DIR = path.resolve(__dirname, '../config')
-
-// node-config 配置对象
-let config: IConfig
+// eslint-disable-next-line import/first
+import config from 'config'
 
 /**
  * 获取指定 key 对应的环境变量
  * @param key
  * @returns
  */
-export async function get(key: string) {
-  const hasKey = await has(key)
+export function get(key: string) {
+  const hasKey = has(key)
   if (hasKey) {
     return config.get(key)
   } else {
@@ -28,7 +25,6 @@ export async function get(key: string) {
  * @param key
  * @returns
  */
-export async function has(key: string) {
-  if (!config) config = await import('config')
+export function has(key: string) {
   return config.has(key)
 }

@@ -34,18 +34,18 @@ export class Role {
   })
   status!: ACTIVATION_STATUS
 
-  // 关联的权限列表
-  @ManyToMany(() => Auth, auth => auth.roles)
-  @JoinTable({
-    name: 'zm-role-auth-relation',
-    joinColumn: {
-      name: 'role_id'
-    },
-    inverseJoinColumn: {
-      name: 'auth_id'
-    }
-  })
-  authorizations!: Auth[]
+  // // 关联的权限列表
+  // @ManyToMany(() => Auth, auth => auth.roles)
+  // @JoinTable({
+  //   name: 'role-auth-relation',
+  //   joinColumn: {
+  //     name: 'role_id'
+  //   },
+  //   inverseJoinColumn: {
+  //     name: 'auth_id'
+  //   }
+  // })
+  // authorizations!: Auth[]
 
   // 关联的用户列表
   @ManyToMany(() => User, user => user.roles)
