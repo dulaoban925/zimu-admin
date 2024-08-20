@@ -2,7 +2,8 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "packageManager": "pnpm@9.7.1",
+  "main": "./dist/app.js",
   "scripts": {
     "start": "nodemon ./src/app.ts",
     "prod:start": "cross-env NODE_ENV=production nodemon ./src/app.ts",
