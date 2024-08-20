@@ -1,13 +1,5 @@
 import { INTERFACE_PATH } from '@constants/path'
-import {
-  Authorized,
-  Body,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put
-} from 'routing-controllers'
+import { Body, Delete, Get, Param, Post, Put } from 'routing-controllers'
 
 export class BaseController {
   currentService
@@ -20,7 +12,6 @@ export class BaseController {
    * @returns
    */
   @Get(`${INTERFACE_PATH.LIST}`)
-  // @Authorized()
   async list() {
     return await this.currentService.queryList()
   }
@@ -30,7 +21,6 @@ export class BaseController {
    * @returns
    */
   @Get(`${INTERFACE_PATH.LIST_BY_PAGE}`)
-  @Authorized()
   async listByPage() {
     return await this.currentService.queryByPage()
   }
@@ -40,7 +30,6 @@ export class BaseController {
    * @returns
    */
   @Get(`${INTERFACE_PATH.BY_ID}`)
-  @Authorized()
   async detail(@Param('id') id: string) {
     return await this.currentService.queryById(id)
   }
@@ -50,7 +39,6 @@ export class BaseController {
    * @returns
    */
   @Post(`${INTERFACE_PATH.INSERT}`)
-  @Authorized()
   async insert(@Body() entity: any) {
     return await this.currentService.insert(entity)
   }
@@ -60,7 +48,6 @@ export class BaseController {
    * @returns
    */
   @Put(`${INTERFACE_PATH.BY_ID}`)
-  @Authorized()
   async update(@Body() entity: any) {
     return await this.currentService.update(entity)
   }
@@ -70,7 +57,6 @@ export class BaseController {
    * @returns
    */
   @Delete(`${INTERFACE_PATH.BY_ID}`)
-  @Authorized()
   async delete(@Param('id') id: string) {
     return await this.currentService.delete(id)
   }
@@ -80,7 +66,6 @@ export class BaseController {
    * @returns
    */
   @Delete(`/soft/${INTERFACE_PATH.BY_ID}`)
-  @Authorized()
   async softDelete(@Param('id') id: string) {
     return await this.currentService.softDelete(id)
   }

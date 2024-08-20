@@ -48,9 +48,11 @@ export class BaseService {
    * @param id 主键
    */
   async queryById(id: string) {
-    return await this.repository.findOneBy({
+    const detail = await this.repository.findOneBy({
       id
     })
+
+    return detail ?? {}
   }
 
   // 新增
@@ -65,7 +67,10 @@ export class BaseService {
       return Promise.reject(new Error('保存失败, repository.insert 未生成 id'))
     }
 
-    return await this.queryById(id)
+    const detail = await this.queryById(id)
+
+    // 返回插入数据详细信息
+    return detail
   }
 
   // 修改

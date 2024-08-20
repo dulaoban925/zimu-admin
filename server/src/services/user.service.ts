@@ -36,72 +36,72 @@ export class UserService extends BaseService {
    * 根据用户名查询所有资源数据
    * @param username 用户名
    */
-  // async queryAuthByUsername(username: string) {
-  //   // 1. 当前用户绑定的角色
-  //   const { roles } = await this.queryByUsername(username, {
-  //     relations: {
-  //       roles: true
-  //     }
-  //   })
-  //   const roleIds = roles.map((r: Role) => r.id)
+  async queryAuthByUsername(username: string) {
+    // 1. 当前用户绑定的角色
+    const { roles } = await this.queryByUsername(username, {
+      relations: {
+        roles: true
+      }
+    })
+    const roleIds = roles.map((r: Role) => r.id)
 
-  //   if (!roleIds.length) return []
+    if (!roleIds.length) return []
 
-  //   const { rows: rolesWithAuth, total } = await this.roleService.queryList(
-  //     {
-  //       id: In(roleIds)
-  //     },
-  //     {
-  //       relations: {
-  //         authorizations: true
-  //       }
-  //     }
-  //   )
-  //   if (!total) return []
+    const { rows: rolesWithAuth, total } = await this.roleService.queryList(
+      {
+        id: In(roleIds)
+      },
+      {
+        relations: {
+          authorizations: true
+        }
+      }
+    )
+    if (!total) return []
 
-  //   // 2. 所有角色关联的权限
-  //   const authIds = [
-  //     ...new Set(
-  //       rolesWithAuth.reduce((ret: number[], role: Role) => {
-  //         if (role.authorizations.length) {
-  //           const authIdsOfRole = role.authorizations.map((a: Auth) => a.id)
-  //           ret.push(...authIdsOfRole)
-  //         }
-  //         return ret
-  //       }, []) as number[]
-  //     )
-  //   ]
-  //   if (!authIds.length) return []
+    // 2. 所有角色关联的权限
+    const authIds = [
+      ...new Set(
+        rolesWithAuth.reduce((ret: number[], role: Role) => {
+          if (role.authorizations.length) {
+            const authIdsOfRole = role.authorizations.map((a: Auth) => a.id)
+            ret.push(...authIdsOfRole)
+          }
+          return ret
+        }, []) as number[]
+      )
+    ]
+    if (!authIds.length) return []
 
-  //   const { rows: authsWithMenus, total: authTotal } =
-  //     await this.authService.queryList(
-  //       {
-  //         id: In(authIds)
-  //       },
-  //       {
-  //         relations: {
-  //           menus: true
-  //         }
-  //       }
-  //     )
-  //   if (!authTotal) return []
+    const { rows: authsWithMenus, total: authTotal } =
+      await this.authService.queryList(
+        {
+          id: In(authIds)
+        },
+        {
+          relations: {
+            menus: true
+          }
+        }
+      )
+    if (!authTotal) return []
 
-  //   // 3. 所有权限关联的资源列表
-  //   const menuIds = [
-  //     ...new Set(
-  //       authsWithMenus.reduce((ret: number[], auth: Auth) => {
-  //         if (auth.menus.length) {
-  //           const menuIdsOfAuth = auth.menus.map((m: Menu) => m.id)
-  //           ret.push(...menuIdsOfAuth)
-  //         }
-  //         return ret
-  //       }, []) as number[]
-  //     )
-  //   ]
-  //   const { rows: allMenus } = await this.menuService.queryList({
-  //     id: In(menuIds)
-  //   })
+    // 3. 所有权限关联的资源列表
+    const menuIds = [
+      ...new Set(
+        authsWithMenus.reduce((ret: number[], auth: Auth) => {
+          if (auth.menus.length) {
+            const menuIdsOfAuth = auth.menus.map((m: Menu) => m.id)
+            ret.push(...menuIdsOfAuth)
+          }
+          return ret
+        }, []) as number[]
+      )
+    ]
+    const { rows: allMenus } = await this.menuService.queryList({
+      id: In(menuIds)
+    })
 
-  //   return allMenus
-  // }
+    return allMenus
+  }
 }
