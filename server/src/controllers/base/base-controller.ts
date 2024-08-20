@@ -1,13 +1,13 @@
-import {
-  Get,
-  Authorized,
-  Param,
-  Body,
-  Post,
-  Put,
-  Delete
-} from 'routing-controllers'
 import { INTERFACE_PATH } from '@constants/path'
+import {
+  Authorized,
+  Body,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put
+} from 'routing-controllers'
 
 export class BaseController {
   currentService

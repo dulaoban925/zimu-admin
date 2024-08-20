@@ -5,9 +5,9 @@
 -->
 <template>
   <div class="vertical-wrapper layout-wrapper">
-    <el-header></el-header>
+    <el-header />
     <el-content>
-      <el-aside></el-aside>
+      <el-aside />
       <el-main>
         <slot />
       </el-main>

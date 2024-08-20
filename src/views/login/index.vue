@@ -30,12 +30,12 @@
     </div>
     <!-- 雷达效果 -->
     <div class="radar-ripples">
-      <div class="rr0"></div>
-      <div class="rr1"></div>
-      <div class="rr2"></div>
-      <div class="rr3"></div>
-      <div class="rr4"></div>
-      <div class="rr5"></div>
+      <div class="rr0" />
+      <div class="rr1" />
+      <div class="rr2" />
+      <div class="rr3" />
+      <div class="rr4" />
+      <div class="rr5" />
     </div>
   </div>
 </template>
@@ -55,13 +55,11 @@ const errorMessage = ref('')
 /**
  * 登录
  */
-const handleLogin = async () => {
+const handleLogin = () => {
   if (!loginInfo.username || !loginInfo.password) {
     errorMessage.value = '用户名或密码不能为空'
   }
-  const res = await login(loginInfo)
-
-  console.log(res)
+  login(loginInfo)
 }
 
 /**

@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
 import { LAYOUT_PROVIDE_KEY } from '@/layouts/basic-layout/constants'
-import { LayoutProvide } from '@/layouts/basic-layout/types'
+import type { LayoutProvide } from '@/layouts/basic-layout/types'
 
 defineOptions({
   name: 'HorizontalLayoutSidebar'

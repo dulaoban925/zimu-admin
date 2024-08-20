@@ -1,5 +1,5 @@
-import type { NavigationHookAfter } from 'vue-router'
 import { useLoadingBar } from '@/hooks'
+import type { NavigationHookAfter } from 'vue-router'
 
 export default function createAfterEachGuard(): NavigationHookAfter {
   return () => {

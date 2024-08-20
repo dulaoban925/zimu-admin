@@ -1,12 +1,13 @@
 import path from 'node:path'
-import consola from 'consola'
-import vue from 'unplugin-vue/esbuild'
-import { emptyDir } from 'fs-extra'
 import chalk from 'chalk'
+import consola from 'consola'
 import { build } from 'esbuild'
 import GlobalsPlugin from 'esbuild-plugin-globals'
+import { emptyDir } from 'fs-extra'
+import vue from 'unplugin-vue/esbuild'
 import { version } from '../package.json'
-import { pathSrc, pathOutput } from './paths'
+import { pathOutput, pathSrc } from './paths'
+// eslint-disable-next-line no-duplicate-imports
 import type { BuildOptions, Format } from 'esbuild'
 
 /**

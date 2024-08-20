@@ -1,7 +1,6 @@
-import { RouteRecordRaw } from 'vue-router'
-import { LayoutType, getLayoutComponent } from './component'
+import type { ZiMuRoute } from '@/typings/route'
 import { hasChildren, hasComponent } from './check'
-import { ZiMuRoute } from '@/typings/route'
+import { getLayoutComponent, type LayoutType } from './component'
 
 export function transformModulesToRoutes(modules: ZiMuRoute.RouteModule) {
   const routes: ZiMuRoute.Route[] = []
@@ -25,7 +24,7 @@ export function transformModulesToRoutes(modules: ZiMuRoute.RouteModule) {
  */
 export function transformRouteConfigToVueRoutes(routes: ZiMuRoute.Route[]) {
   if (!routes.length) return []
-  const resultRoutes: RouteRecordRaw[] = routes.map(route =>
+  const resultRoutes: ZiMuRoute.Route[] = routes.map(route =>
     transformRouteConfigToVueRoute(route)
   )
   return resultRoutes
@@ -36,11 +35,9 @@ export function transformRouteConfigToVueRoutes(routes: ZiMuRoute.Route[]) {
  * @param route 路由配置
  */
 function transformRouteConfigToVueRoute(route: ZiMuRoute.Route) {
-  const resultRoute: RouteRecordRaw = { ...route } as RouteRecordRaw
-  if (hasComponent(route)) {
-    if (typeof route.component === 'string') {
-      resultRoute.component = getLayoutComponent(route.component as LayoutType)
-    }
+  const resultRoute: ZiMuRoute.Route = { ...route }
+  if (hasComponent(route) && typeof route.component === 'string') {
+    resultRoute.component = getLayoutComponent(route.component as LayoutType)
   }
   if (hasChildren(route)) {
     const children = route.children?.map(route =>

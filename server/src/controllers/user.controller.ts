@@ -1,9 +1,9 @@
 /**
  * 用户 controller
  */
-import { Authorized, Controller, Get, QueryParam } from 'routing-controllers'
 import { UserService } from '@services/user.service'
 import { success } from '@utils/r'
+import { Authorized, Controller, Get, QueryParam } from 'routing-controllers'
 import { BaseController } from './base/base-controller'
 
 @Controller('/user')

@@ -4,18 +4,18 @@ import {
   importConfigs as imports,
   importsSortConfigs as importsSort,
   javascriptConfigs as javascript,
+  jsonConfigs as json,
   markdownConfigs as markdown,
   nodeConfigs as node,
   prettierConfigs as prettier,
   regexpConfigs as regexp,
   typescriptConfigs as typescript,
   unicornConfigs as unicorn,
-  vueConfigs as vue,
-  jsonConfigs as json
+  vueConfigs as vue
 } from './configs'
 import { hasVue } from './env'
-import type { Linter } from 'eslint'
 import type { FlatConfigs } from './types'
+import type { Linter } from 'eslint'
 
 /**
  * preset 支持环境参数类型

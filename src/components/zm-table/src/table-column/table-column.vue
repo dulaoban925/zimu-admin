@@ -5,9 +5,10 @@
     </template>
   </el-table-column>
 </template>
+
 <script setup lang="ts">
 import { ElTableColumn } from 'element-plus'
-import { QueryFormItemType } from '../query-form/types'
+import type { QueryFormItemType } from '../query-form/types'
 
 defineOptions({
   name: 'ZmTableColumn'

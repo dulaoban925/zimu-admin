@@ -1,11 +1,10 @@
-/* eslint-disable no-unused-vars */
+import type { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
 import type { ValueOf } from '@/utils'
 import type {
-  RouteRecordRaw,
+  RouteLocationNormalizedLoaded,
   RouteRecordName,
-  RouteLocationNormalizedLoaded
+  RouteRecordRaw
 } from 'vue-router'
-import { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
 
 declare namespace ZiMuRoute {
   type RouteComponent =

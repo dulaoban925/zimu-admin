@@ -22,9 +22,11 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import BS from '@better-scroll/core'
 import { useElementSize } from '@vueuse/core'
+// eslint-disable-next-line no-duplicate-imports
 import type { Options } from '@better-scroll/core'
 
 defineOptions({
@@ -68,6 +70,7 @@ defineExpose({
   instance
 })
 </script>
+
 <style lang="scss" scoped>
 @import '../style/zm-scroll.scss';
 </style>

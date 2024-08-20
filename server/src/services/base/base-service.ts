@@ -1,6 +1,6 @@
 import db from '@tools/data-source'
 import { isEmpty } from 'lodash-es'
-import { FindManyOptions } from 'typeorm'
+import type { FindManyOptions } from 'typeorm'
 
 export class BaseService {
   repository

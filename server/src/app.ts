@@ -1,20 +1,20 @@
-import 'module-alias/register'
-import '@tools/env-config'
-import path from 'path'
-import { useExpressServer } from 'routing-controllers'
-import { json, urlencoded } from 'body-parser'
-import express from 'express'
-import authChecker from '@utils/auth-checker'
+import path from 'node:path'
 import ds from '@tools/data-source'
 import { initRedis } from '@tools/redis'
+import authChecker from '@utils/auth-checker'
+import { json, urlencoded } from 'body-parser'
+import express from 'express'
+import { useExpressServer } from 'routing-controllers'
+import '@tools/env-config'
+import 'module-alias/register'
 
 // 初始化数据库
 ds.initialize()
   .then(() => {
     console.log('Data Source has been initialized!')
   })
-  .catch((e: any) => {
-    console.log('Error during Data Source initialization:', e)
+  .catch((error: any) => {
+    console.log('Error during Data Source initialization:', error)
   })
 
 // 初始化 redis

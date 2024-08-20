@@ -1,11 +1,11 @@
-import type {
-  RouteLocationNormalized,
-  NavigationGuardNext,
-  NavigationGuardWithThis
-} from 'vue-router'
-import { useMenuStore, useUserStore } from '@/store'
 import { STATIC_ROUTE_NAME } from '@/constants'
 import { useLoadingBar } from '@/hooks'
+import { useMenuStore, useUserStore } from '@/store'
+import type {
+  NavigationGuardNext,
+  NavigationGuardWithThis,
+  RouteLocationNormalized
+} from 'vue-router'
 
 export default function createBeforeEachGuard(): NavigationGuardWithThis<undefined> {
   return async (

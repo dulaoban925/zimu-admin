@@ -20,7 +20,7 @@
       >
         <span>{{ collapseBtnText }}</span>
         <el-icon>
-          <component :is="collapseBtnIcon"></component>
+          <component :is="collapseBtnIcon" />
         </el-icon>
       </el-button>
       <slot name="operations">
@@ -34,12 +34,13 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 import { EVENT_NAMES } from '../constants'
 import { useFilterEvents } from '../hooks'
 import QueryFormItem from './form-item/query-form-item'
-import type { FormProps } from 'element-plus'
 import type { QueryFormItemType } from './types'
+import type { FormProps } from 'element-plus'
 
 defineOptions({
   name: 'ZmQueryForm'
@@ -80,6 +81,7 @@ const handleSearch = () => {
   handleFilterSearch(model.value)
 }
 </script>
+
 <style lang="scss">
 @use '../../style/query-form.scss' as *;
 </style>

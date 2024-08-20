@@ -40,11 +40,12 @@
     </el-input>
   </div>
 </template>
+
 <script setup lang="ts">
-import { reactive, ref, watchEffect, PropType } from 'vue'
 import { Search } from '@element-plus/icons'
+import { reactive, ref, watchEffect, type PropType } from 'vue'
 import { FILTER_MODE } from './constants'
-import { ZmMenuDataItem } from './types'
+import type { ZmMenuDataItem } from './types'
 
 defineOptions({
   name: 'ZmMenuFilter'
@@ -57,7 +58,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['select-change', 'input-change', 'input-input'])
+const emit = defineEmits(['selectChange', 'inputChange', 'inputInput'])
 
 // 当前筛选模式
 const filterMode = ref(FILTER_MODE.SELECT)
@@ -79,24 +80,23 @@ const filterState = reactive({
 
 // 菜单下拉框筛选切换
 const handleSelectChange = () => {
-  emit('select-change', filterState)
+  emit('selectChange', filterState)
 }
 
 // 菜单输入框筛选变更
 const handleInputChange = () => {
-  emit('input-change', filterState)
+  emit('inputChange', filterState)
 }
 
 // 菜单输入框筛选输入
 const handleInputInput = () => {
-  emit('input-input', filterState)
+  emit('inputInput', filterState)
 }
 
 watchEffect(() => {
   filterState.selectLabel = filterState.selectValue
-    ? props.menuOptions.filter(
-        menu => menu.index === filterState.selectValue
-      )[0]?.label
+    ? (props.menuOptions.find(menu => menu.index === filterState.selectValue)
+        ?.label ?? '')
     : ''
 })
 </script>

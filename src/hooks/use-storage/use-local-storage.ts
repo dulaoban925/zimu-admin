@@ -1,8 +1,8 @@
 /**
  * localStorage hook
  */
+import { decrypt, encrypt } from '@/utils'
 import { getSerializer } from './serializer'
-import { encrypt, decrypt } from '@/utils'
 
 /**
  *

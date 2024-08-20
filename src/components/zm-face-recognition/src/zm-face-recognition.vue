@@ -49,7 +49,7 @@ withDefaults(defineProps<Props>(), {
   videoHeight: '100'
 })
 
-const emit = defineEmits(['theme-change'])
+const emit = defineEmits(['themeChange'])
 
 const videoRef = ref<HTMLVideoElement>()
 
@@ -61,8 +61,8 @@ function initMedia() {
     .then(mediaStream => {
       videoRef.value!.srcObject = mediaStream
     })
-    .catch(e => {
-      console.error(e.message)
+    .catch(error => {
+      console.error(error.message)
     })
 }
 
@@ -83,7 +83,7 @@ function setFaceExpression(expressions?: Expression) {
 
   if (expression) {
     const theme = EXPRESSION_THEME_MAP[expression]
-    emit('theme-change', theme)
+    emit('themeChange', theme)
   }
 }
 
@@ -113,6 +113,7 @@ onMounted(() => {
   init()
 })
 </script>
+
 <style lang="scss" scoped>
 @import '../style/zm-face-recognition.scss';
 </style>

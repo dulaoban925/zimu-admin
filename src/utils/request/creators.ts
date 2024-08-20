@@ -2,17 +2,18 @@
  * 创建 request 的工厂
  */
 import axios from 'axios'
+import { AUTH_KEY } from '@/constants'
+import { useLocalStorage } from '@/hooks'
 import { extend, reLogin, removeAuthorization } from './helpers'
+// eslint-disable-next-line no-duplicate-imports
 import type {
   AxiosInstance,
   AxiosRequestConfig,
   AxiosRequestHeaders,
-  Method,
+  AxiosResponse,
   InternalAxiosRequestConfig,
-  AxiosResponse
+  Method
 } from 'axios'
-import { useLocalStorage } from '@/hooks'
-import { AUTH_KEY } from '@/constants'
 
 interface ResponseConfig {
   codeKey: string

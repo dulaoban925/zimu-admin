@@ -1,6 +1,8 @@
 /**
  * 用户实体
  */
+import { USER_GENDER, USER_STATUS } from '@constants/enums'
+import { encryptPassword } from '@utils/pwd'
 import {
   Column,
   Entity,
@@ -9,8 +11,6 @@ import {
   PrimaryColumn,
   PrimaryGeneratedColumn
 } from 'typeorm'
-import { encryptPassword } from '@utils/pwd'
-import { USER_GENDER, USER_STATUS } from '@constants/enums'
 import { Role } from './role.entity'
 
 @Entity('user')

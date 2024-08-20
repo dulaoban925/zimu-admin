@@ -14,8 +14,8 @@ export type SerializerType =
   | 'date'
 
 interface Serializer<T> {
-  read(raw: string): T
-  write(value: T): string
+  read: (raw: string) => T
+  write: (value: T) => string
 }
 
 export const Serializers: Record<SerializerType, Serializer<any>> = {
@@ -60,27 +60,27 @@ export function guessSerializerType<
   return raw == null
     ? 'any'
     : raw instanceof Set
-    ? 'set'
-    : raw instanceof Map
-    ? 'map'
-    : raw instanceof Date
-    ? 'date'
-    : typeof raw === 'boolean'
-    ? 'boolean'
-    : typeof raw === 'string'
-    ? 'string'
-    : typeof raw === 'object'
-    ? 'object'
-    : !Number.isNaN(raw)
-    ? 'number'
-    : 'any'
+      ? 'set'
+      : raw instanceof Map
+        ? 'map'
+        : raw instanceof Date
+          ? 'date'
+          : typeof raw === 'boolean'
+            ? 'boolean'
+            : typeof raw === 'string'
+              ? 'string'
+              : typeof raw === 'object'
+                ? 'object'
+                : !Number.isNaN(raw)
+                  ? 'number'
+                  : 'any'
 }
 
 // 获取序列化程序
 export function getSerializer(k: string, v?: any, cache?: boolean) {
   const vType: SerializerType = v
-    ? getStorageValueType(k) ?? guessSerializerType(toValue(v)) ?? 'any'
-    : getStorageValueType(k) ?? 'any'
+    ? (getStorageValueType(k) ?? guessSerializerType(toValue(v)) ?? 'any')
+    : (getStorageValueType(k) ?? 'any')
 
   // 缓存 k-vType
   cache && addStorageValueTypeCache(k, vType)

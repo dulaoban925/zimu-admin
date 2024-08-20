@@ -31,8 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { getList } from './api'
 import { isEnable } from '@/utils/is'
+import { getList } from './api'
 
 const tableProps = reactive({
   data: []

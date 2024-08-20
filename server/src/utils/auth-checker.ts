@@ -1,12 +1,12 @@
 /**
  * 接口授权验证逻辑
  */
-import jwt from 'jsonwebtoken'
 import { JWT_SECRET } from '@constants/secrets'
 import { UserService } from '@services/user.service'
+import jwt from 'jsonwebtoken'
 import type { Action } from 'routing-controllers'
 
-export default function authChecker(action: Action, roles: string[]) {
+export default function authChecker(action: Action) {
   // 请求头 Authorization 获取 token
   const token = action.request.headers.authorization?.split(' ')[1]
   // 若 token 不存在，不通过

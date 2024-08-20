@@ -1,10 +1,10 @@
 /**
  * 路由 store
  */
-import { matchRoutesByAuthMenus } from './helpers'
-import type { ValueOf } from '@/utils'
 import router, { routes } from '@/router'
 import { transformRouteConfigToVueRoutes } from '@/router/helpers'
+import type { ValueOf } from '@/utils'
+import { matchRoutesByAuthMenus } from './helpers'
 
 // 路由匹配模式枚举
 export const RouteMatchModeEnum = {
@@ -21,7 +21,7 @@ export const useRouteStore = defineStore('route-store', () => {
   const mode = ref<RouteMatchMode>(RouteMatchModeEnum.Static)
 
   // 初始化静态路由
-  async function initStaticRoutes(menus: ZiMuAuth.Menu[]) {
+  function initStaticRoutes(menus: ZiMuAuth.Menu[]) {
     if (!routes.length) return
     // 将 路由配置 转化为可用的、平铺的 vue 路由
     const vueRoutes = transformRouteConfigToVueRoutes(routes)

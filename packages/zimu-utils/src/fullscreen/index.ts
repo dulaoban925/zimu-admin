@@ -89,7 +89,7 @@ export function launchFullScreen(
   if (backgroundColor) {
     if (!headEl) headEl = document.createElement('head')
     styleEl.innerHTML = `:fullscreen { background-color: ${backgroundColor}; }`
-    headEl?.appendChild(styleEl)
+    headEl?.append(styleEl)
   }
   return getCurrentElement(el)[REQUEST_FULL_SCREEN_METHOD]()
 }
@@ -135,7 +135,6 @@ export function toggleFullScreen(
  * @param listener 监听事件
  */
 export function toggleFullScreenEventListener(
-  // eslint-disable-next-line no-undef
   listener: EventListenerOrEventListenerObject,
   add: boolean
 ) {

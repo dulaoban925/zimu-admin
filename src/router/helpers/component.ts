@@ -1,5 +1,4 @@
-import { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
-import { ValueOf, Lazy } from '@/utils'
+import type { Lazy, ValueOf } from '@/utils'
 
 // layout 布局类型，更多布局待扩展
 export type LayoutType = ValueOf<typeof ROUTE_COMPONENT_LAYOUT_VALUE>

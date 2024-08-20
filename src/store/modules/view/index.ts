@@ -1,12 +1,12 @@
 /**
  * 视图页签 store
  */
-import type { RouteRecordName } from 'vue-router'
-import type { WithNever } from '@/utils'
-import type { ZiMuRoute } from '@/typings/route.d.ts'
-import { routes } from '@/router'
 import { VIEW_DIFF_PROP } from '@/constants'
+import { routes } from '@/router'
 import { filterRoutesConfig, getRoutePath } from '@/router/helpers'
+import type { ZiMuRoute } from '@/typings/route.d.ts'
+import type { WithNever } from '@/utils'
+import type { RouteRecordName } from 'vue-router'
 
 export const useViewStore = defineStore('view-store', () => {
   // 缓存视图，路由名称集合
@@ -101,13 +101,14 @@ export const useViewStore = defineStore('view-store', () => {
         matched: [],
         query: {},
         hash: '',
-        redirectedFrom: void 0
+        redirectedFrom: undefined
       }
       addView(affixView)
     }
     // 若当前跳转的视图，不在固定视图内，新增
-    const currentViewInFilteredRoutes =
-      affixViewRoutes.findIndex(r => r.name === view.name) > -1
+    const currentViewInFilteredRoutes = affixViewRoutes.some(
+      r => r.name === view.name
+    )
     !currentViewInFilteredRoutes && addView(view)
     setActiveView(view)
   }

@@ -1,9 +1,9 @@
 /**
  * 权限 store
  */
-import { transformFlatMenusToTree } from './helpers'
-import { useRouteStore } from '@/store'
 import { getUserAuth } from '@/apis'
+import { useRouteStore } from '@/store'
+import { transformFlatMenusToTree } from './helpers'
 
 export const useMenuStore = defineStore('menu-store', () => {
   // 所有权限菜单平铺结构

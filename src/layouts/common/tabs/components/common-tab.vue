@@ -1,6 +1,6 @@
 <template>
   <router-link :class="{ 'common-tab': true, active }" :to="to">
-    <slot name="active-icon" v-if="active">
+    <slot v-if="active" name="active-icon">
       <el-icon size="16"><postcard /></el-icon>
     </slot>
     <span class="common-tab__label">{{ label }}</span>

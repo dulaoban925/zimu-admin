@@ -1,5 +1,5 @@
 import { STATIC_ROUTE_NAME } from '@/constants'
-import { ZiMuRoute } from '@/typings/route'
+import type { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
   Login: () => import('@views/login/index.vue'), // 登录页

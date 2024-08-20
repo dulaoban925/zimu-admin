@@ -1,11 +1,11 @@
-import { Body, Controller, Post } from 'routing-controllers'
-import jwt from 'jsonwebtoken'
-import { comparePassword } from '@utils/pwd'
-import { error, success } from '@utils/r'
+import { PWD_ERROR_TIMES } from '@constants/redis-keys'
 import { JWT_SECRET } from '@constants/secrets'
 import { UserService } from '@services/user.service'
 import { getRedisInstance } from '@tools/redis'
-import { PWD_ERROR_TIMES } from '@constants/redis-keys'
+import { comparePassword } from '@utils/pwd'
+import { error, success } from '@utils/r'
+import jwt from 'jsonwebtoken'
+import { Body, Controller, Post } from 'routing-controllers'
 
 /**
  * 登录 controller

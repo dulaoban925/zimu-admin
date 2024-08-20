@@ -43,9 +43,10 @@
     </el-icon>
   </div>
 </template>
+
 <script setup lang="ts">
+import { Expand, Fold, HomeFilled, Menu } from '@element-plus/icons'
 import { StartFilled } from '@zimu/icons'
-import { Expand, Fold, Menu, HomeFilled } from '@element-plus/icons'
 import { TOOLBAR_OPTION } from './constants'
 import type { ActionItem } from './types'
 
@@ -66,7 +67,7 @@ const props = defineProps({
   showCollect: Boolean
 })
 
-const emit = defineEmits(['action-click', 'collapse'])
+const emit = defineEmits(['actionClick', 'collapse'])
 
 const tooltipVisible = ref(false)
 
@@ -106,7 +107,7 @@ const toolbarActions = computed(() =>
 
 const handleActionClick = (action: ActionItem) => {
   activeAction.value = action.key
-  emit('action-click', action)
+  emit('actionClick', action)
 }
 
 const handleCollapsed = () => {

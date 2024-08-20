@@ -1,17 +1,9 @@
-import {
-  INPUT_NAME,
-  INPUT_NUMBER_NAME,
-  SELECT_NAME,
-  DATE_PICKER_NAME,
-  CHECKBOX_NAME,
-  RADIO_NAME
-} from '../constants'
 import type {
+  ColProps,
   DatePickerProps,
   FormItemProps,
   InputNumberProps,
-  InputProps,
-  ColProps
+  InputProps
 } from 'element-plus'
 
 export type ItemType =

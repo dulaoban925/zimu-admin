@@ -1,8 +1,8 @@
 /**
  * 菜单 controller
  */
-import { Controller } from 'routing-controllers'
 import { MenuService } from '@services/menu.service'
+import { Controller } from 'routing-controllers'
 import { BaseController } from './base/base-controller'
 
 @Controller('/menu')

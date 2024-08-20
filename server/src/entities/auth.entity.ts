@@ -1,17 +1,17 @@
 /**
  * 权限实体
  */
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  PrimaryColumn,
-  Column,
-  ManyToMany,
-  JoinTable
-} from 'typeorm'
 import { ACTIVATION_STATUS } from '@constants/enums'
-import { Role } from './role.entity'
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryColumn,
+  PrimaryGeneratedColumn
+} from 'typeorm'
 import { Menu } from './menu.entity'
+import { Role } from './role.entity'
 
 @Entity('auth')
 export class Auth {

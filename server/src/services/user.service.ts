@@ -1,15 +1,15 @@
 /**
  * 用户服务类
  */
-import { Role } from '@entities/role.entity'
 import { User } from '@entities/user.entity'
 import { BaseService } from '@services/base/base-service'
-import { FindOneOptions, In } from 'typeorm'
-import { Auth } from '@entities/auth.entity'
-import { Menu } from '@entities/menu.entity'
-import { RoleService } from './role.service'
+import { In, type FindOneOptions } from 'typeorm'
 import { AuthService } from './auth.service'
 import { MenuService } from './menu.service'
+import { RoleService } from './role.service'
+import type { Auth } from '@entities/auth.entity'
+import type { Menu } from '@entities/menu.entity'
+import type { Role } from '@entities/role.entity'
 
 export class UserService extends BaseService {
   roleService = new RoleService()

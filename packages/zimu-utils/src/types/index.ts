@@ -23,8 +23,7 @@ export const isRegExp = (val: unknown): val is RegExp =>
   toTypeString(val) === '[object RegExp]'
 
 // 是否为 函数
-export const isFunction = (val: unknown): val is Function =>
-  typeof val === 'function'
+export const isFunction = (val: unknown) => typeof val === 'function'
 
 // 是否为 字符串
 export const isString = (val: unknown): val is string => typeof val === 'string'
@@ -50,4 +49,4 @@ export const isIntegerKey = (key: unknown) =>
   isString(key) &&
   key !== 'NaN' &&
   key[0] !== '-' &&
-  '' + parseInt(key, 10) === key
+  `${Number.parseInt(key, 10)}` === key

@@ -46,19 +46,20 @@
 </template>
 
 <script setup lang="ts">
-import { ElTable, ElPagination } from 'element-plus'
+import { ElPagination, ElTable } from 'element-plus'
 import {
-  DEFAULT_TABLE_PROPS,
-  DEFAULT_PAGINATION_PROPS,
   DEFAULT_FILTER_FORM_PROPS,
+  DEFAULT_PAGINATION_PROPS,
+  DEFAULT_TABLE_PROPS,
   EVENT_NAMES
 } from './constants'
-import ZmTablePagination from './table-pagination.vue'
-import ZmTableFilter from './table-filter.vue'
-import { generateFormItemsByColumns } from './query-form/form-item/generators'
-import { QueryFormItemType } from './query-form/types'
 import { useFilterEvents } from './hooks'
-import type { TableProps, PaginationProps, FormProps } from 'element-plus'
+import { generateFormItemsByColumns } from './query-form/form-item/generators'
+import ZmTableFilter from './table-filter.vue'
+import ZmTablePagination from './table-pagination.vue'
+import type { QueryFormItemType } from './query-form/types'
+// eslint-disable-next-line no-duplicate-imports
+import type { FormProps, PaginationProps, TableProps } from 'element-plus'
 import type { Component, VNode } from 'vue'
 
 defineOptions({

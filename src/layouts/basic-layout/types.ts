@@ -1,4 +1,4 @@
-import { ZmMenuDataItem } from '@/components'
+import type { ZmMenuDataItem } from '@/components'
 
 export interface LayoutProvide {
   menus?: ZmMenuDataItem[]

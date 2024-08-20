@@ -1,8 +1,12 @@
 /**
  * 响应全局拦截器
  */
-import { Action, Interceptor, InterceptorInterface } from 'routing-controllers'
-import { success, error } from '@utils/r'
+import { error, success } from '@utils/r'
+import {
+  Interceptor,
+  type Action,
+  type InterceptorInterface
+} from 'routing-controllers'
 
 @Interceptor()
 export class ResponseGlobalInterceptor implements InterceptorInterface {

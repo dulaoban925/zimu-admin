@@ -7,11 +7,12 @@
     </zm-transition>
   </router-view>
 </template>
+
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
 import { TRANSITION_MODE } from '@components/zm-transition'
-import { useMenuStore } from '@/store'
+import { useRoute } from 'vue-router'
 import { VIEW_DIFF_PROP } from '@/constants'
+import { useMenuStore } from '@/store'
 
 defineOptions({
   name: 'CommonContent'

@@ -21,15 +21,17 @@
     </el-container>
   </div>
 </template>
+
 <script setup lang="ts">
-import Toolbar from './toolbar.vue'
-import Sidebar from './sidebar.vue'
 import CommonMain from '@/layouts/common/main/index.vue'
+import Sidebar from './sidebar.vue'
+import Toolbar from './toolbar.vue'
 
 defineOptions({
   name: 'HorizontalLayout'
 })
 </script>
+
 <style lang="scss">
 @import '../style.scss';
 </style>

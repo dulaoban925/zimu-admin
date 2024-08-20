@@ -2,7 +2,7 @@
   <h1>我是粉色小熊：</h1>
   <pink-bear />
   <h1>我是所有图标：</h1>
-  <component v-for="icon in icons" :key="icon.name" :is="icon"></component>
+  <component :is="icon" v-for="icon in icons" :key="icon.name" />
 </template>
 
 <script setup>

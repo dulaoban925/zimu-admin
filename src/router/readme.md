@@ -18,7 +18,7 @@ import DashBoard from '@/layouts/dashboard/index.vue'
 
 const dashboardRoute = {
   component: BasicLayout
-  ...,
+  // ...,
   children: [{
     component: Dashboard
   }]
@@ -29,7 +29,7 @@ const dashboardRoute = {
 
 ```javascript
 const DashboardModules = {
-  Dashboard: () => import(@/layouts/dashboard/index.vue)
+  Dashboard: () => import(`@/layouts/dashboard/index.vue`)
 }
 const dashboardRoute = {
   component: ROUTE_COMPONENT_LAYOUT_VALUE.BASIC,

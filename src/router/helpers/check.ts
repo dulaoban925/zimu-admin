@@ -1,4 +1,4 @@
-import { ZiMuRoute } from '@/typings/route'
+import type { ZiMuRoute } from '@/typings/route'
 
 /**
  * 是否有子路由

@@ -9,8 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { TRANSITION_NAME, TRANSITION_MODE } from './constants'
-import { ValueOf } from '@/utils'
+import type { ValueOf } from '@/utils'
+import { TRANSITION_MODE, TRANSITION_NAME } from './constants'
 
 defineOptions({
   name: 'ZmTransition'

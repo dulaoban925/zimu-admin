@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { constantRoutes } from './routes'
 import { setupRouterGuards } from './guards'
 import { transformRouteConfigToVueRoutes } from './helpers'
+import { constantRoutes } from './routes'
 import type { App } from 'vue'
 
 const router = createRouter({

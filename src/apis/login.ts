@@ -2,14 +2,14 @@
  * 登录相关 api
  */
 import { parse } from 'qs'
+import { AUTH_KEY } from '@/constants'
+import { useLocalStorage } from '@/hooks'
+import { useUserStore } from '@/store'
 import { request } from '@/utils'
 import { promiseWrapper } from '@/utils/wrapper'
-import { useLocalStorage } from '@/hooks'
-import { AUTH_KEY } from '@/constants'
-import { useUserStore } from '@/store'
 
 // 登录
-export async function login(data: { username: string; password: string }) {
+export function login(data: { username: string; password: string }) {
   return promiseWrapper(async () => {
     const {
       data: { token }

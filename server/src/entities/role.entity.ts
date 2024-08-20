@@ -1,15 +1,15 @@
 /**
  * 角色实体
  */
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  PrimaryColumn,
-  Column,
-  ManyToMany,
-  JoinTable
-} from 'typeorm'
 import { ACTIVATION_STATUS } from '@constants/enums'
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  PrimaryColumn,
+  PrimaryGeneratedColumn
+} from 'typeorm'
 import { Auth } from './auth.entity'
 import { User } from './user.entity'
 

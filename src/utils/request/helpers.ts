@@ -1,6 +1,6 @@
-import { isFunction } from '..'
-import { useLocalStorage } from '@/hooks'
 import { AUTH_KEY } from '@/constants'
+import { useLocalStorage } from '@/hooks'
+import { isFunction } from '..'
 
 /**
  * 类似 Function.prototype.bind，修改执行上下文指向
@@ -8,9 +8,9 @@ import { AUTH_KEY } from '@/constants'
  * @param fn 函数
  * @param context 执行上下文
  */
-function bind(fn: Function, context: any) {
-  return function () {
-    return fn.apply(context, [...arguments])
+function bind(fn: (...args: any[]) => void, context: any) {
+  return function (...args: any[]) {
+    return fn.apply(context, ...args)
   }
 }
 

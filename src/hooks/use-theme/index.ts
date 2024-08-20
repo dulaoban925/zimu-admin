@@ -1,7 +1,7 @@
 /**
  * 主题操作 hook
  */
-import { BasicColorSchema, useColorMode, useDark } from '@vueuse/core'
+import { useColorMode, useDark, type BasicColorSchema } from '@vueuse/core'
 import { THEME_KEY } from '@/constants'
 export function useTheme() {
   const ORIGIN_THEMES: Record<string, BasicColorSchema> = {

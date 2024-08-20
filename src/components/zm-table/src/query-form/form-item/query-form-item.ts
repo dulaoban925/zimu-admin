@@ -1,9 +1,10 @@
-import { ElFormItem, ElCol } from 'element-plus'
-import { fillDefaultFormItemProps } from './helpers'
-import { typeGeneratorMap } from './generators'
-import type { PropType } from '@vue/runtime-core'
-import type { FormItemProps, ColProps } from 'element-plus'
+import { ElCol, ElFormItem } from 'element-plus'
 import type { ItemType, TagProps } from '../types'
+import { typeGeneratorMap } from './generators'
+import { fillDefaultFormItemProps } from './helpers'
+import type { PropType } from '@vue/runtime-core'
+// eslint-disable-next-line no-duplicate-imports
+import type { ColProps, FormItemProps } from 'element-plus'
 
 const queryFormItemProps = {
   modelValue: {

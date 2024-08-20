@@ -1,5 +1,5 @@
 import { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
-import { ZiMuRoute } from '@/typings/route'
+import type { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
   UserManage: () => import('@/views/system-manage/user-manage/index.vue'),

@@ -1,17 +1,24 @@
-import { ref, h, PropType, defineComponent, watchEffect, VNode } from 'vue'
-import { isString, isObject } from '@vue/shared'
-import {
-  ElMenu,
-  ElSubMenu,
-  ElMenuItem,
-  ElIcon,
-  ElScrollbar
-} from 'element-plus'
 import * as icons from '@element-plus/icons'
+import { isObject, isString } from '@vue/shared'
+import {
+  ElIcon,
+  ElMenu,
+  ElMenuItem,
+  ElScrollbar,
+  ElSubMenu
+} from 'element-plus'
+import {
+  defineComponent,
+  h,
+  ref,
+  watchEffect,
+  type PropType,
+  type VNode
+} from 'vue'
+import { isBoolean, type Nullable } from '@/utils'
 import { checkIndexPath } from './zm-menu'
-import { ZmMenuDataItem, ZmMenuItemClicked } from './types'
+import type { ZmMenuDataItem, ZmMenuItemClicked } from './types'
 import type { NavigationFailure } from 'vue-router'
-import { isBoolean, Nullable } from '@/utils'
 
 const props = {
   // 菜单数据

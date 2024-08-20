@@ -45,7 +45,7 @@ const cacheStringFunction = <T extends (str: string) => string>(fn: T): T => {
 // 短横线连接转驼峰
 const camelizeRE = /-(\w)/g
 export const camelize = cacheStringFunction((str: string): string => {
-  return str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
+  return str.replaceAll(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''))
 })
 
 // 首字母大写
@@ -62,7 +62,7 @@ export const hasChanged = (value: any, oldValue: any): boolean =>
  * "123-foo" will be parsed to 123
  */
 export const looseToNumber = (val: any): any => {
-  const n = parseFloat(val)
+  const n = Number.parseFloat(val)
   return isNaN(n) ? val : n
 }
 
@@ -71,6 +71,6 @@ export const looseToNumber = (val: any): any => {
  * "123-foo" will be returned as-is
  */
 export const toNumber = (val: any): any => {
-  const n = isString(val) ? Number(val) : NaN
+  const n = isString(val) ? Number(val) : Number.NaN
   return isNaN(n) ? val : n
 }

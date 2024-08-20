@@ -21,10 +21,10 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import CommonTab from './components/common-tab.vue'
-import { ZiMuRoute } from '@/typings/route'
-import { useViewStore } from '@/store'
 import { VIEW_DIFF_PROP } from '@/constants'
+import { useViewStore } from '@/store'
+import type { ZiMuRoute } from '@/typings/route'
+import CommonTab from './components/common-tab.vue'
 
 const _route = useRoute()
 

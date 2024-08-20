@@ -1,12 +1,13 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
-import consola from 'consola'
-import { emptyDir, ensureDir } from 'fs-extra'
 import camelcase from 'camelcase'
 import chalk from 'chalk'
+import consola from 'consola'
 import glob from 'fast-glob'
+import { emptyDir, ensureDir } from 'fs-extra'
 import { format } from 'prettier'
 import { pathComponents, pathSvg } from './paths'
+// eslint-disable-next-line no-duplicate-imports
 import type { BuiltInParserName } from 'prettier'
 
 /**

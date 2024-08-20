@@ -15,8 +15,8 @@ export function encryptPassword(password: string): Promise<string> {
       .then((hash: string) => {
         return resolve(hash)
       })
-      .catch(e => {
-        return reject(e)
+      .catch(error => {
+        return reject(error)
       })
   })
 }

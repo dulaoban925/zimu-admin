@@ -1,20 +1,20 @@
 import { ElInput, ElInputNumber } from 'element-plus'
 import { uniqueId } from 'lodash-es'
+import { isObject } from '@/utils'
 import {
-  INPUT_NAME,
-  INPUT_NUMBER_NAME,
-  SELECT_NAME,
   CHECKBOX_NAME,
   DATE_PICKER_NAME,
-  RADIO_NAME
+  INPUT_NAME,
+  INPUT_NUMBER_NAME,
+  RADIO_NAME,
+  SELECT_NAME
 } from '../../constants'
 import type {
   ItemType,
   QueryFormItemType,
-  ZmInputProps,
-  ZmInputNumberProps
+  ZmInputNumberProps,
+  ZmInputProps
 } from '../types'
-import { isObject } from '@/utils'
 
 // 生成 Input
 export function generateInput(props: ZmInputProps) {

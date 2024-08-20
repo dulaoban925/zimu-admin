@@ -40,17 +40,18 @@
     />
   </div>
 </template>
+
 <script setup lang="ts">
-import { isString, isObject, isArray } from '@vue/shared'
 import { debounce } from 'lodash-es'
-import { MENU_TRIGGER } from './constants'
-import { checkIndexPath } from './zm-menu'
-import ZmMenuToolbar from './toolbar.vue'
-import ZmMenuFilter from './filter.vue'
-import ZmMenuContent from './content'
-import type { ZmMenuItemClicked, ZmMenuDataItem, FilterParams } from './types'
-import type { NavigationFailure } from 'vue-router'
+import { isArray, isObject, isString } from 'vue'
 import { isBoolean } from '@/utils'
+import { MENU_TRIGGER } from './constants'
+import ZmMenuContent from './content'
+import ZmMenuFilter from './filter.vue'
+import ZmMenuToolbar from './toolbar.vue'
+import { checkIndexPath } from './zm-menu'
+import type { FilterParams, ZmMenuDataItem, ZmMenuItemClicked } from './types'
+import type { NavigationFailure } from 'vue-router'
 
 defineOptions({
   name: 'ZmMenu'
@@ -169,10 +170,8 @@ const matchMenus = (value: string, menus: Array<ZmMenuDataItem>) => {
           }
           result.push(item)
         }
-      } else {
-        if (menu.label.indexOf(value) > -1) {
-          result.push(menu)
-        }
+      } else if (menu.label.includes(value)) {
+        result.push(menu)
       }
     })
   }
@@ -216,6 +215,7 @@ const handleSelect = (
 }
 /** content end */
 </script>
+
 <style lang="scss">
 @import '../style/zm-menu.scss';
 </style>

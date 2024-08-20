@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 declare namespace ZiMuAuth {
   interface Menu {
     code: string // 菜单编码

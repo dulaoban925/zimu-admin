@@ -1,14 +1,14 @@
 /**
  * 菜单实体
  */
+import { ACTIVATION_STATUS, MENU_TYPE } from '@constants/enums'
 import {
-  Entity,
-  PrimaryGeneratedColumn,
-  PrimaryColumn,
   Column,
-  ManyToMany
+  Entity,
+  ManyToMany,
+  PrimaryColumn,
+  PrimaryGeneratedColumn
 } from 'typeorm'
-import { MENU_TYPE, ACTIVATION_STATUS } from '@constants/enums'
 import { Auth } from './auth.entity'
 
 @Entity('menu')

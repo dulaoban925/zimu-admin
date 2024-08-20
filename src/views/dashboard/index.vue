@@ -3,6 +3,7 @@
     <el-button @click="handleClick">{{ text }}</el-button>
   </div>
 </template>
+
 <script setup lang="ts">
 const text = ref('我是主页')
 
