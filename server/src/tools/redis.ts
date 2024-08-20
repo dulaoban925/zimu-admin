@@ -3,8 +3,12 @@ import { createClient } from 'redis'
 // eslint-disable-next-line no-duplicate-imports
 import type { RedisClientOptions } from 'redis'
 
-// redis 客户端实例
-let redisInstance: any = null
+/**
+ * redis 客户端实例
+ *
+ * TODO: 完善类型
+ */
+let redisInstance: any
 
 // 初始化 redis
 export function initRedis() {
