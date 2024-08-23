@@ -38,10 +38,14 @@ export const GLOB_LOCKFILE = [
   '**/bun.lockb'
 ]
 
+// public
+export const GLOB_PUBLIC = '**/public'
+
 // eslint ignore 路径
 export const GLOB_IGNORE = [
   GLOB_NODE_MODULES,
   GLOB_DIST,
+  GLOB_PUBLIC,
   ...GLOB_LOCKFILE,
 
   '**/output',

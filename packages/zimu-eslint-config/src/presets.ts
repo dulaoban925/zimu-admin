@@ -7,8 +7,10 @@ import {
   jsonConfigs as json,
   markdownConfigs as markdown,
   nodeConfigs as node,
+  packageJsonSortConfigs as packageJsonSort,
   prettierConfigs as prettier,
   regexpConfigs as regexp,
+  tsconfigSortConfigs as tsconfigSort,
   typescriptConfigs as typescript,
   unicornConfigs as unicorn,
   vueConfigs as vue
@@ -22,7 +24,7 @@ import type { Linter } from 'eslint'
  *
  * 目前支持 Vue、prettier
  *
- * TODO: yaml、react
+ * TODO: yaml、react、unocss、tailwindcss...
  */
 type EnvOptions = Partial<{
   vue: boolean
@@ -46,19 +48,26 @@ export const presetJavascriptConfigs = [
   ...regexp
 ]
 
+// JSON 配置
+export const presetJsonConfigs = [...json, ...packageJsonSort, ...tsconfigSort]
+
 /**
  * 语言扩展
  *
  * 包括：markdown, json
  */
-export const presetExtensionConfigs = [...markdown, ...json]
+export const presetExtensionConfigs = [...markdown, ...presetJsonConfigs]
 
 /**
  * 基础预置配置
  *
  * 包括：javascript、typescript、json
  */
-const presetBasicConfigs = [...presetJavascriptConfigs, ...typescript, ...json]
+const presetBasicConfigs = [
+  ...presetJavascriptConfigs,
+  ...typescript,
+  ...presetJsonConfigs
+]
 
 /**
  * eslint config 预置函数
