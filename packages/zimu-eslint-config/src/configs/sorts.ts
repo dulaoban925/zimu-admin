@@ -1,6 +1,7 @@
 /**
  * 排序类规则
  */
+import { GLOB_TSCONFIG } from '../globs'
 import { PluginPerfectionist } from '../plugins'
 import type { Linter } from 'eslint'
 
@@ -129,7 +130,7 @@ export const packageJsonSortConfigs: Linter.Config[] = [
 // tsconfig.json 属性排序
 export const tsconfigSortConfigs: Linter.Config[] = [
   {
-    files: ['**/tsconfig.json', '**/tsconfig.*.json'],
+    files: GLOB_TSCONFIG,
     name: 'zimu/sort/tsconfig',
     rules: {
       'jsonc/sort-keys': [

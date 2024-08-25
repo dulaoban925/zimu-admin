@@ -41,6 +41,9 @@ export const GLOB_LOCKFILE = [
 // public
 export const GLOB_PUBLIC = '**/public'
 
+// ts 配置文件
+export const GLOB_TSCONFIG = ['**/tsconfig.json', '**/tsconfig.*.json']
+
 // eslint ignore 路径
 export const GLOB_IGNORE = [
   GLOB_NODE_MODULES,
