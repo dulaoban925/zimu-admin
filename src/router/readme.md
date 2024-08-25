@@ -13,11 +13,11 @@
 ### 例1（不推荐）
 
 ```javascript
-import BasicLayout from '@/layouts/index.vue'
 import DashBoard from '@/layouts/dashboard/index.vue'
+import BasicLayout from '@/layouts/index.vue'
 
 const dashboardRoute = {
-  component: BasicLayout
+  component: BasicLayout,
   // ...,
   children: [{
     component: Dashboard
@@ -33,7 +33,7 @@ const DashboardModules = {
 }
 const dashboardRoute = {
   component: ROUTE_COMPONENT_LAYOUT_VALUE.BASIC,
-  ...,
+  // ...
   children: [{
     component: DashboardModules.Dashboard
   }]

@@ -1,7 +1,7 @@
 {
   "name": "zimu-admin",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "packageManager": "pnpm@9.7.1",
   "type": "module",
   "scripts": {
@@ -61,12 +61,12 @@
     "unplugin-auto-import": "^0.18.2",
     "vite": "^4.3.2"
   },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
       "npm run lint:fix"
     ]
-  },
-  "engines": {
-    "node": ">=16.0.0"
   }
 }

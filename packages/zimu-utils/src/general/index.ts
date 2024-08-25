@@ -63,7 +63,7 @@ export const hasChanged = (value: any, oldValue: any): boolean =>
  */
 export const looseToNumber = (val: any): any => {
   const n = Number.parseFloat(val)
-  return isNaN(n) ? val : n
+  return Number.isNaN(n) ? val : n
 }
 
 /**
@@ -72,5 +72,5 @@ export const looseToNumber = (val: any): any => {
  */
 export const toNumber = (val: any): any => {
   const n = isString(val) ? Number(val) : Number.NaN
-  return isNaN(n) ? val : n
+  return Number.isNaN(n) ? val : n
 }

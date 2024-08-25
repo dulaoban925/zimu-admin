@@ -32,7 +32,7 @@ const queryFormItemProps = {
 
 const queryFormItemEmits: string[] = ['update:modelValue']
 
-export default defineComponent({
+export const ZmQueryFormItems = defineComponent({
   name: 'ZmQueryFormItems',
   props: queryFormItemProps,
   emits: queryFormItemEmits,

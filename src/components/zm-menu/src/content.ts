@@ -27,7 +27,11 @@ const props = {
     default: () => []
   },
   // menu item index 属性对应 menu 数据对象的 key 值
-  indexKey: String,
+  indexKey: {
+    type: String,
+    required: true,
+    default: ''
+  },
   // 筛选输入框输入的值
   filterInputValue: String
 }
@@ -54,7 +58,7 @@ const emits = {
   collapseChange: (collapseFlag: boolean) => isBoolean(collapseFlag)
 }
 
-export default defineComponent({
+export const ZmMenuContent = defineComponent({
   name: 'ZmMenuContent',
   components: {
     ElMenu,

@@ -99,7 +99,7 @@ export function launchFullScreen(
  * @returns Promise<void>
  */
 export function exitFullScreen(): Promise<void> {
-  if (DOC_EL.contains(styleEl)) headEl?.removeChild(styleEl)
+  if (DOC_EL.contains(styleEl)) styleEl?.remove()
   return document[EXIT_FULL_SCREEN_METHOD]()
 }
 

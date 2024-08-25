@@ -1,11 +1,11 @@
-import { PWD_ERROR_TIMES, CURRENT_USER } from '@constants/redis-keys'
+import { CURRENT_USER, PWD_ERROR_TIMES } from '@constants/redis-keys'
 import { JWT_SECRET } from '@constants/secrets'
 import { UserService } from '@services/user.service'
 import { comparePassword } from '@utils/pwd'
 import { error, success } from '@utils/r'
+import { hGet, hSet } from '@utils/redis'
 import jwt from 'jsonwebtoken'
 import { Body, Controller, Post } from 'routing-controllers'
-import { hGet, hSet } from '@utils/redis'
 
 /**
  * 登录 controller

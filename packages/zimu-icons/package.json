@@ -3,27 +3,20 @@
   "version": "1.0.0",
   "description": "梓沐 icons",
   "type": "module",
-  "sideEffects": false,
-  "scripts": {
-    "build": "pnpm run build:generate && run-p build:build build:types",
-    "build:generate": "tsx build/generate.ts",
-    "build:build": "tsx build/build.ts",
-    "build:types": "vue-tsc --declaration --emitDeclarationOnly"
-  },
   "keywords": [
     "zimu",
     "icons",
     "图标",
     "梓沐"
   ],
-  "author": "SuperYing",
   "license": "ISC",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/types/index.d.ts",
+  "author": "SuperYing",
   "files": [
     "dist"
   ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -31,6 +24,13 @@
       "import": "./dist/index.js"
     },
     "./*": "./*"
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "pnpm run build:generate && run-p build:build build:types",
+    "build:generate": "tsx build/generate.ts",
+    "build:build": "tsx build/build.ts",
+    "build:types": "vue-tsc --declaration --emitDeclarationOnly"
   },
   "peerDependencies": {
     "vue": "^3.3.4"

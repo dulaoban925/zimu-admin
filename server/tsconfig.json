@@ -1,13 +1,11 @@
 {
   "compilerOptions": {
-    "target": "es6",                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
-    "module": "CommonJS",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
-    "lib": ["es5", "es6"],                             /* Specify library files to be included in the compilation. */
-    "strict": true,                           /* Enable all strict type-checking options. */
-    "moduleResolution": "Node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-    "esModuleInterop": true,                   /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
-    "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
-    "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+    "target": "es6",                     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
+    "lib": ["es5", "es6"],        /* Enables experimental support for ES7 decorators. */
+    "emitDecoratorMetadata": true,                   /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
+    "experimentalDecorators": true,                          /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'. */
+    "module": "CommonJS",                           /* Enable all strict type-checking options. */
+    "moduleResolution": "Node",         /* Enables experimental support for emitting type metadata for decorators. */
     "paths": {
       "@": ["./src"],
       "@controllers/*": ["./src/controllers/*"],
@@ -18,8 +16,10 @@
       "@tools/*": ["./src/tools/*"],
       "@constants/*": ["./src/constants/*"],
       "@utils/*": ["./src/utils/*"]
-    },
-    "outDir": "dist",
+    },                             /* Specify library files to be included in the compilation. */
+    "strict": true,
+    "outDir": "dist",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "esModuleInterop": true,
   },
   "include": [
     "src/**/*"
