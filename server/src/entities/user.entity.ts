@@ -26,10 +26,10 @@ export class User {
   // 用户密码
   @Column({
     transformer: {
-      to(entityValue) {
+      to(entityValue: string) {
         return entityValue ? encryptPassword(entityValue) : null
       },
-      from(dbValue) {
+      from(dbValue: string) {
         return dbValue
       }
     }
@@ -68,7 +68,7 @@ export class User {
   status!: USER_STATUS
 
   // 关联的角色列表
-  @ManyToMany(() => Role, role => role.users)
+  @ManyToMany(() => Role, (role: Role) => role.users)
   @JoinTable({
     name: 'role-user-relation',
     joinColumn: {
@@ -79,6 +79,10 @@ export class User {
     }
   })
   roles!: Role[]
+
+  // 是否超管
+  @Column({ name: 'is_admin' })
+  isAdmin!: boolean
 
   // 创建人
   @Column({ name: 'created_by' })

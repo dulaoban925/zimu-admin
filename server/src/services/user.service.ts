@@ -38,15 +38,20 @@ export class UserService extends BaseService {
    */
   async queryAuthByUsername(username: string) {
     // 1. 当前用户绑定的角色
-    const { roles } = await this.queryByUsername(username, {
+    const { isAdmin, roles } = await this.queryByUsername(username, {
       relations: {
         roles: true
       }
     })
+
+    // 若为超管权限，则返回所有的资源
+    if (isAdmin) {
+      const { rows: allMenus } = await this.menuService.queryList()
+      return allMenus
+    }
+
     const roleIds = roles.map((r: Role) => r.id)
-
     if (!roleIds.length) return []
-
     const { rows: rolesWithAuth, total } = await this.roleService.queryList(
       {
         id: In(roleIds)
