@@ -1,3 +1,5 @@
+import { constantVueRoutes } from '@/router'
+import { isConstantRoute } from '@/router/helpers'
 import type { RouteRecordRaw } from 'vue-router'
 
 /**
@@ -11,13 +13,22 @@ export function matchRoutesByAuthMenus(
   if (!menus.length || !routes.length) return []
   const menuCodes = menus.map(m => m.code)
   const matchRoutes = (routes: RouteRecordRaw[]) => {
-    const target: RouteRecordRaw[] = []
+    // 系统固定路由不参与匹配，直接允许访问
+    const target: RouteRecordRaw[] = [...constantVueRoutes]
     for (const route of routes) {
-      const matched = !route.name || menuCodes.includes(route.name as string)
+      /**
+       * 匹配条件：
+       * 1. route 未定义 name 属性，通常不存在该情况 或 route.name 在权限菜单内
+       * 2. route 不是固定路由配置(即无需权限配置，即可访问的路由，通常包括 登录页，错误页，首页等)
+       */
+      const matched =
+        (!route.name || menuCodes.includes(route.name as string)) &&
+        isConstantRoute(route)
       if (matched) {
         if (route.children?.length) {
           route.children = matchRoutes(route.children)
         }
+        // 若 target 中不存在该 route，则加入 target
         target.push(route)
       }
     }

@@ -1,12 +1,19 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHashHistory,
+  type RouteRecordRaw
+} from 'vue-router'
 import { setupRouterGuards } from './guards'
 import { transformRouteConfigToVueRoutes } from './helpers'
 import { constantRoutes } from './routes'
 import type { App } from 'vue'
 
+export const constantVueRoutes: RouteRecordRaw[] =
+  transformRouteConfigToVueRoutes(constantRoutes) as RouteRecordRaw[]
+
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: transformRouteConfigToVueRoutes(constantRoutes),
+  routes: constantVueRoutes,
   strict: true,
   sensitive: true
 })

@@ -1,6 +1,7 @@
 import type { ZiMuRoute } from '@/typings/route'
 import { hasChildren, hasComponent } from './check'
 import { getLayoutComponent, type LayoutType } from './component'
+import type { RouteRecordRaw } from 'vue-router'
 
 export function transformModulesToRoutes(modules: ZiMuRoute.RouteModule) {
   const routes: ZiMuRoute.Route[] = []
@@ -22,9 +23,11 @@ export function transformModulesToRoutes(modules: ZiMuRoute.RouteModule) {
  * 将路由配置转化为可用的 vue route
  * @param routes 路由配置
  */
-export function transformRouteConfigToVueRoutes(routes: ZiMuRoute.Route[]) {
+export function transformRouteConfigToVueRoutes(
+  routes: ZiMuRoute.Route[]
+): RouteRecordRaw[] {
   if (!routes.length) return []
-  const resultRoutes: ZiMuRoute.Route[] = routes.map(route =>
+  const resultRoutes = routes.map(route =>
     transformRouteConfigToVueRoute(route)
   )
   return resultRoutes
@@ -34,8 +37,10 @@ export function transformRouteConfigToVueRoutes(routes: ZiMuRoute.Route[]) {
  * 将路由配置转化为可用的 Vue 路由
  * @param route 路由配置
  */
-function transformRouteConfigToVueRoute(route: ZiMuRoute.Route) {
-  const resultRoute: ZiMuRoute.Route = { ...route }
+function transformRouteConfigToVueRoute(
+  route: ZiMuRoute.Route
+): RouteRecordRaw {
+  const resultRoute = { ...route }
   if (hasComponent(route) && typeof route.component === 'string') {
     resultRoute.component = getLayoutComponent(route.component as LayoutType)
   }
@@ -46,5 +51,5 @@ function transformRouteConfigToVueRoute(route: ZiMuRoute.Route) {
     resultRoute.children = children
   }
 
-  return resultRoute
+  return resultRoute as RouteRecordRaw
 }

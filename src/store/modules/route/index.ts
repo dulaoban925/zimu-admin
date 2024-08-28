@@ -5,6 +5,7 @@ import router, { routes } from '@/router'
 import { transformRouteConfigToVueRoutes } from '@/router/helpers'
 import type { ValueOf } from '@/utils'
 import { matchRoutesByAuthMenus } from './helpers'
+import type { RouteRecordRaw } from 'vue-router'
 
 // 路由匹配模式枚举
 export const RouteMatchModeEnum = {
@@ -24,7 +25,9 @@ export const useRouteStore = defineStore('route-store', () => {
   function initStaticRoutes(menus: ZiMuAuth.Menu[]) {
     if (!routes.length) return
     // 将 路由配置 转化为可用的、平铺的 vue 路由
-    const vueRoutes = transformRouteConfigToVueRoutes(routes)
+    const vueRoutes = transformRouteConfigToVueRoutes(
+      routes
+    ) as RouteRecordRaw[]
     const matchedRoutes = matchRoutesByAuthMenus(vueRoutes, menus)
     for (const route of matchedRoutes) {
       router.addRoute(route)
