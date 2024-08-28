@@ -1,8 +1,6 @@
 import path from 'node:path'
 import { get } from '@tools/env-config'
-import { DataSource } from 'typeorm'
-// eslint-disable-next-line no-duplicate-imports
-import type { DataSourceOptions } from 'typeorm'
+import { DataSource, type DataSourceOptions } from 'typeorm'
 
 let dataSource: DataSource
 

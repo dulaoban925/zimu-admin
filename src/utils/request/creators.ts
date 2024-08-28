@@ -1,19 +1,17 @@
 /**
  * 创建 request 的工厂
  */
-import axios from 'axios'
+import axios, {
+  type AxiosInstance,
+  type AxiosRequestConfig,
+  type AxiosRequestHeaders,
+  type AxiosResponse,
+  type InternalAxiosRequestConfig,
+  type Method
+} from 'axios'
 import { AUTH_KEY } from '@/constants'
 import { useLocalStorage } from '@/hooks'
 import { extend, reLogin, removeAuthorization } from './helpers'
-// eslint-disable-next-line no-duplicate-imports
-import type {
-  AxiosInstance,
-  AxiosRequestConfig,
-  AxiosRequestHeaders,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-  Method
-} from 'axios'
 
 interface ResponseConfig {
   codeKey: string

@@ -1,14 +1,12 @@
 import path from 'node:path'
 import chalk from 'chalk'
 import consola from 'consola'
-import { build } from 'esbuild'
+import { build, type BuildOptions, type Format } from 'esbuild'
 import GlobalsPlugin from 'esbuild-plugin-globals'
 import { emptyDir } from 'fs-extra'
 import vue from 'unplugin-vue/esbuild'
 import { version } from '../package.json'
 import { pathOutput, pathSrc } from './paths'
-// eslint-disable-next-line no-duplicate-imports
-import type { BuildOptions, Format } from 'esbuild'
 
 /**
  * 获取 esbuild 构建配置项

@@ -1,7 +1,5 @@
 import { get } from '@tools/env-config'
-import { createClient } from 'redis'
-// eslint-disable-next-line no-duplicate-imports
-import type { RedisClientOptions } from 'redis'
+import { createClient, type RedisClientOptions } from 'redis'
 
 /**
  * redis 客户端实例

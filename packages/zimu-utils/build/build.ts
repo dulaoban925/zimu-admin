@@ -1,11 +1,9 @@
 import path from 'node:path'
 import chalk from 'chalk'
-import { build } from 'esbuild'
+import { build, type BuildOptions, type Format } from 'esbuild'
 import { emptyDir } from 'fs-extra'
 import { version } from '../package.json'
 import { pathOutput, pathSrc } from './paths'
-// eslint-disable-next-line no-duplicate-imports
-import type { BuildOptions, Format } from 'esbuild'
 
 const buildBundle = () => {
   const getBuildOptions = (format: Format): BuildOptions => {

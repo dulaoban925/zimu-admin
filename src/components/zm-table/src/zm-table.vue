@@ -46,7 +46,13 @@
 </template>
 
 <script setup lang="ts">
-import { ElPagination, ElTable } from 'element-plus'
+import {
+  ElPagination,
+  ElTable,
+  type FormProps,
+  type PaginationProps,
+  type TableProps
+} from 'element-plus'
 import {
   DEFAULT_FILTER_FORM_PROPS,
   DEFAULT_PAGINATION_PROPS,
@@ -58,8 +64,6 @@ import { generateFormItemsByColumns } from './query-form/form-item/generators'
 import ZmTableFilter from './table-filter.vue'
 import ZmTablePagination from './table-pagination.vue'
 import type { QueryFormItemType } from './query-form/types'
-// eslint-disable-next-line no-duplicate-imports
-import type { FormProps, PaginationProps, TableProps } from 'element-plus'
 import type { Component, VNode } from 'vue'
 
 defineOptions({

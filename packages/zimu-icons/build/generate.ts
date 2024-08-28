@@ -5,10 +5,8 @@ import chalk from 'chalk'
 import consola from 'consola'
 import glob from 'fast-glob'
 import { emptyDir, ensureDir } from 'fs-extra'
-import { format } from 'prettier'
+import { format, type BuiltInParserName } from 'prettier'
 import { pathComponents, pathSvg } from './paths'
-// eslint-disable-next-line no-duplicate-imports
-import type { BuiltInParserName } from 'prettier'
 
 /**
  * 从文件路径中获取文件名及组件名
