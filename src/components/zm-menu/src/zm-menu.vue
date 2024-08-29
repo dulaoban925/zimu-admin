@@ -42,11 +42,10 @@
 </template>
 
 <script setup lang="ts">
-import { debounce } from 'lodash-es'
-import { isArray, isObject, isString } from 'vue'
+import { debounce, isArray, isObject, isString } from 'lodash-es'
 import { isBoolean } from '@/utils'
 import { MENU_TRIGGER } from './constants'
-import ZmMenuContent from './content'
+import { ZmMenuContent } from './content'
 import ZmMenuFilter from './filter.vue'
 import ZmMenuToolbar from './toolbar.vue'
 import { checkIndexPath } from './zm-menu'

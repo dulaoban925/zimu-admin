@@ -2,7 +2,7 @@
   <div class="zm-query-form">
     <el-form :model="model" v-bind="attrs">
       <el-row>
-        <query-form-item
+        <zm-query-form-item
           v-for="item in items"
           :key="item.uid"
           v-bind="item"
@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { EVENT_NAMES } from '../constants'
 import { useFilterEvents } from '../hooks'
-import QueryFormItem from './form-item/query-form-item'
+import { ZmQueryFormItem } from './form-item/query-form-item'
 import type { QueryFormItemType } from './types'
 import type { FormProps } from 'element-plus'
 

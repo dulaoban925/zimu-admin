@@ -1,4 +1,4 @@
-import { STATIC_ROUTE_NAME } from '@/constants'
+import { ROUTE_COMPONENT_LAYOUT_VALUE, STATIC_ROUTE_NAME } from '@/constants'
 import type { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
@@ -30,7 +30,7 @@ const LOGIN_ROUTE: ZiMuRoute.Route = {
 const NotFound = {
   name: STATIC_ROUTE_NAME.NOT_FOUND,
   path: '/:pathMatch(.*)*',
-  component: 'blank',
+  component: ROUTE_COMPONENT_LAYOUT_VALUE.BLANK,
   meta: {
     title: '未找到'
   }

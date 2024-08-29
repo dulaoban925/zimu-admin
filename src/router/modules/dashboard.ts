@@ -1,6 +1,5 @@
 import { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
 import type { ZiMuRoute } from '@/typings/route'
-import { getLayoutComponent } from '../helpers'
 
 const RouteComponents = {
   Dashboard: () => import('@/views/dashboard/index.vue')
@@ -9,7 +8,7 @@ const RouteComponents = {
 const dashboardModule: ZiMuRoute.Route = {
   name: 'Dashboard',
   path: '/dashboard',
-  component: getLayoutComponent(ROUTE_COMPONENT_LAYOUT_VALUE.BASIC),
+  component: ROUTE_COMPONENT_LAYOUT_VALUE.BASIC,
   children: [
     {
       name: 'Home',
