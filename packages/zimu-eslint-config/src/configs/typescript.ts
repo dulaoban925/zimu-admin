@@ -7,9 +7,9 @@ import { restrictedSyntaxJs } from './javascript'
 import type { Linter } from 'eslint'
 
 export const typescriptCoreConfigs = tsEslint.config({
-  extends: [...tsEslint.configs.recommended],
-  files: [GLOB_TS, GLOB_TSX],
   name: 'zimu/ts',
+  files: [GLOB_TS, GLOB_TSX],
+  extends: [...tsEslint.configs.recommended],
   languageOptions: {
     parser: tsEslint.parser,
     parserOptions: {
