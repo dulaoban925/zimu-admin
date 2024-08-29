@@ -6,7 +6,6 @@ let dataSource: DataSource
 
 // 获取 dataSource 实例
 export function getDataSourceInstance() {
-  console.log('getDataSourceInstance', dataSource)
   if (dataSource) return dataSource
   const dbConfig: DataSourceOptions = get('db') as DataSourceOptions
   dataSource = new DataSource({
@@ -21,7 +20,7 @@ export function getDataSourceInstance() {
 // 初始化 datasource
 export function initDataSource() {
   // 初始化数据库
-  getDataSourceInstance()
+  return getDataSourceInstance()
     .initialize()
     .then(() => {
       console.log('Data Source has been initialized!')
