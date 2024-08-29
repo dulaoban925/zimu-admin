@@ -3,7 +3,9 @@ import type { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
   Login: () => import('@views/login/index.vue'), // 登录页
-  404: () => import('@views/static/404/index.vue') // 404 页
+  403: () => import('@views/error/403/index.vue'), // 403 页
+  404: () => import('@views/error/404/index.vue'), // 404 页
+  500: () => import('@views/error/500/index.vue') // 500 页
 }
 
 /** 根路由: */
@@ -27,8 +29,8 @@ const LOGIN_ROUTE: ZiMuRoute.Route = {
 }
 
 // 匹配无效路径的路由
-const NotFound = {
-  name: STATIC_ROUTE_NAME.NOT_FOUND,
+const NO_MATCH_ROUTE: ZiMuRoute.Route = {
+  name: STATIC_ROUTE_NAME.NO_MATCH,
   path: '/:pathMatch(.*)*',
   component: ROUTE_COMPONENT_LAYOUT_VALUE.BLANK,
   meta: {
@@ -36,9 +38,15 @@ const NotFound = {
   }
 }
 
-export const constantRoutes: ZiMuRoute.Route[] = [
-  ROOT_ROUTE,
-  LOGIN_ROUTE,
+const ERROR_ROUTES: ZiMuRoute.Route[] = [
+  {
+    name: STATIC_ROUTE_NAME[403],
+    path: '/403',
+    component: RouteComponents[403],
+    meta: {
+      title: '未授权'
+    }
+  },
   {
     name: STATIC_ROUTE_NAME[404],
     path: '/404',
@@ -47,5 +55,19 @@ export const constantRoutes: ZiMuRoute.Route[] = [
       title: '未找到'
     }
   },
-  NotFound
+  {
+    name: STATIC_ROUTE_NAME[500],
+    path: '/500',
+    component: RouteComponents[500],
+    meta: {
+      title: '服务器错误'
+    }
+  }
+]
+
+export const constantRoutes: ZiMuRoute.Route[] = [
+  ROOT_ROUTE,
+  LOGIN_ROUTE,
+  ...ERROR_ROUTES,
+  NO_MATCH_ROUTE
 ]

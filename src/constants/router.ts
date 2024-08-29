@@ -10,7 +10,9 @@ export const ROUTE_COMPONENT_LAYOUT_VALUE = {
 // 固定路由名称
 export const STATIC_ROUTE_NAME = {
   ROOT: 'root',
-  NOT_FOUND: 'not-found',
+  NO_MATCH: 'no_match',
   LOGIN: 'login',
-  404: '404'
+  403: '403',
+  404: '404',
+  500: '500'
 }
