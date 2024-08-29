@@ -39,10 +39,10 @@ async function handleDynamicRoutes(
     await menuStore.initAuthMenus(userStore.username)
 
     /**
-     * 路由初始化过程中，若跳转的路由为 “notfound”，可能未路由为加载完成导致的
+     * 路由初始化过程中，若跳转的路由为 “no_match”，可能未路由为加载完成导致的
      * 重新跳转到当前目标路由
      */
-    if (to.name === STATIC_ROUTE_NAME.NOT_FOUND) {
+    if (to.name === STATIC_ROUTE_NAME.NO_MATCH) {
       // 重定向的路由路径
       const path =
         to.redirectedFrom?.name === STATIC_ROUTE_NAME.ROOT ? '/' : to.fullPath
@@ -51,7 +51,7 @@ async function handleDynamicRoutes(
     }
   }
 
-  if (to.name === STATIC_ROUTE_NAME.NOT_FOUND) {
+  if (to.name === STATIC_ROUTE_NAME.NO_MATCH) {
     next({ name: STATIC_ROUTE_NAME[404], replace: true })
     return false
   }
