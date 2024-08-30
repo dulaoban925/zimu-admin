@@ -9,15 +9,15 @@ import express from 'express'
 import { useExpressServer } from 'routing-controllers'
 import '@tools/env-config'
 
-export async function init() {
+async function initTools() {
   // 初始化 DataSource
   await initDataSource()
-
   // 初始化 redis
-  initRedis()
+  await initRedis()
+}
 
+function initApp() {
   const app = express()
-
   // body 解析相关中间件
   // 解析 json 格式
   app.use(json())
@@ -41,4 +41,9 @@ export async function init() {
     console.log(`  App is running at http://localhost:${PORT}\n`)
     console.log('  Press CTRL-C to stop\n')
   })
+}
+
+export async function init() {
+  await initTools()
+  initApp()
 }
