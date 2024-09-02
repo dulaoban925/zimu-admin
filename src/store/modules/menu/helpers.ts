@@ -1,3 +1,5 @@
+import { ZiMuRoute } from '@/typings/route'
+
 /**
  * 将平铺的菜单结构转化为树形结构
  * @param flatMenus 平铺的菜单列表
@@ -19,6 +21,7 @@ export function transformFlatMenusToTree(flatMenus: ZiMuAuth.Menu[]) {
     if (parent) parent.children.push(menu)
     else result.push(menu)
   }
+  console.log('🚀 ~ transformFlatMenusToTree ~ result:', result)
 
   return sortMenuTree(result)
 }

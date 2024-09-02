@@ -13,3 +13,9 @@ export const ENABLE_STATUS_DESC = {
   [ENABLE_STATUS.ENABLED]: '启用',
   [ENABLE_STATUS.DISABLED]: '停用'
 }
+
+// 菜单类型
+export const MENU_TYPE = {
+  MENU: 'menu',
+  BUTTON: 'button'
+}

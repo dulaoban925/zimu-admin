@@ -2,6 +2,7 @@
  * 权限 store
  */
 import { getUserAuth } from '@/apis'
+import { MENU_TYPE } from '@/constants'
 import { useRouteStore } from '@/store'
 import { transformFlatMenusToTree } from './helpers'
 
@@ -19,8 +20,12 @@ export const useMenuStore = defineStore('menu-store', () => {
 
   // 初始化权限菜单
   const initAuthMenus = async (username: string) => {
+    // menus 包含所有权限资源，菜单、按钮等
     const menus = await getUserAuth(username)
-    flatMenus.value = [...menus]
+    // 筛选菜单类型
+    flatMenus.value = menus.filter(
+      (m: ZiMuAuth.Menu) => m.type === MENU_TYPE.MENU
+    )
     await routeStore.initRoutes(flatMenus.value)
     authMenus.value = transformFlatMenusToTree(flatMenus.value)
     isAuthInitialized.value = true

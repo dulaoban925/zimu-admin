@@ -106,7 +106,7 @@ export const ZmMenuContent = defineComponent({
           // @ts-ignore
           const iconComp = menu.icon ? icons[menu.icon!] : null
           const iconVnode = iconComp ? h(ElIcon, () => h(iconComp)) : null
-          const titleVnode = h('span', menu.label)
+          const titleVnode = h('span', menu.name)
           subComp = h(
             ElSubMenu,
             {
@@ -125,7 +125,7 @@ export const ZmMenuContent = defineComponent({
               index: menu[props.indexKey] as string,
               disabled: menu.disabled
             },
-            () => renderHighlightMenuItem(menu.label)
+            () => renderHighlightMenuItem(menu.name)
           )
         }
         subComp && result.push(subComp)

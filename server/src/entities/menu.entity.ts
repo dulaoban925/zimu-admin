@@ -55,6 +55,10 @@ export class Menu {
   })
   status!: ACTIVATION_STATUS
 
+  // 父菜单 id
+  @Column()
+  parent!: string
+
   @Column({ name: 'created_by' })
   createdBy!: string
 
