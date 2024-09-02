@@ -109,4 +109,14 @@ export class UserService extends BaseService {
 
     return allMenus
   }
+
+  /**
+   * 更新密码
+   *
+   * @param username 用户名
+   * @param password 密码
+   */
+  updatePassword(username: string, password: string) {
+    return this.repository.update({ username }, { password })
+  }
 }

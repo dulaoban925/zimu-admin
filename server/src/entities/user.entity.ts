@@ -24,16 +24,7 @@ export class User {
   username!: string
 
   // 用户密码
-  @Column({
-    transformer: {
-      to(entityValue: string) {
-        return entityValue ? encryptPassword(entityValue) : null
-      },
-      from(dbValue: string) {
-        return dbValue
-      }
-    }
-  })
+  @Column()
   password!: string
 
   // 姓名

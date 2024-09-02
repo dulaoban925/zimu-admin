@@ -1,7 +1,8 @@
 import { CURRENT_USER, PWD_ERROR_TIMES } from '@constants/redis-keys'
 import { JWT_SECRET } from '@constants/secrets'
+import { User } from '@entities/user.entity'
 import { UserService } from '@services/user.service'
-import { comparePassword } from '@utils/pwd'
+import { comparePassword, encryptPassword } from '@utils/pwd'
 import { error, success } from '@utils/r'
 import { hGet, hSet } from '@utils/redis'
 import jwt from 'jsonwebtoken'
@@ -26,15 +27,14 @@ export class LoginController {
       return error('用户名和密码不允许为空')
     }
 
-    // 校验用户是否存在
-    const user = await this.userService.queryByUsername(username)
+    // 验证用户名和密码是否正确
+    const { user, isSamePwd } = await this.checkUser(username, password)
+
     if (!user) {
       return error('用户不存在')
     }
 
-    // 验证用户名和密码是否正确
-    const isPwdSame = await comparePassword(password, user.password)
-    if (isPwdSame) {
+    if (isSamePwd) {
       // 生成 jwt
       const token = jwt.sign({ username }, JWT_SECRET, {
         expiresIn: 60 * 60
@@ -45,12 +45,66 @@ export class LoginController {
       // 重置密码错误次数
       recordPwdErrorTimes(username, true)
 
-      return success({
+      return {
         token
-      })
+      }
     } else {
       recordPwdErrorTimes(username)
       return error('密码错误，请检查后重试')
+    }
+  }
+
+  @Post('/resetPassword')
+  async resetPassword(
+    @Body()
+    body: {
+      username: string
+      originPassword: string
+      newPassword: string
+    }
+  ) {
+    const { username, originPassword, newPassword } = body
+
+    // 数据判断
+    if (!username || !originPassword || !newPassword) {
+      return error('用户名、原密码和新密码不允许为空')
+    }
+    // 检查原密码是否匹配
+    const { user, isSamePwd: isOriginPwdMatch } = await this.checkUser(
+      username,
+      originPassword
+    )
+    if (!user) {
+      return error('用户不存在')
+    }
+
+    if (!isOriginPwdMatch) {
+      return error('原密码不正确')
+    }
+
+    // 加密妈妈
+    const newPasswordHash = await encryptPassword(newPassword)
+    // 更新用户密码
+    await this.userService.updatePassword(username, newPasswordHash)
+
+    return true
+  }
+
+  async checkUser(username: string, password: string) {
+    // 校验用户是否存在
+    const user = await this.userService.queryByUsername(username)
+    if (!user) {
+      return {
+        user: null
+      }
+    }
+
+    // 验证用户名和密码是否正确
+    const isSamePwd = await comparePassword(password, user.password)
+
+    return {
+      user,
+      isSamePwd
     }
   }
 }
