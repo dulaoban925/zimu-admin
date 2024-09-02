@@ -34,7 +34,7 @@ export const useRouteStore = defineStore('route-store', () => {
     }
   }
 
-  // 初始化动态路由
+  //TODO: 初始化动态路由
   function initDynamicRoutes() {}
 
   // 初始化权限路由

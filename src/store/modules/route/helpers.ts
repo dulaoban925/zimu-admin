@@ -7,14 +7,14 @@ import type { RouteRecordRaw } from 'vue-router'
  * @param menus 权限菜单
  */
 export function matchRoutesByAuthMenus(
-  routes: RouteRecordRaw[],
+  vueRoutes: RouteRecordRaw[],
   menus: ZiMuAuth.Menu[]
 ) {
-  if (!menus.length || !routes.length) return []
+  if (!menus.length || !vueRoutes.length) return [...constantVueRoutes]
   const menuCodes = menus.map(m => m.code)
   const matchRoutes = (routes: RouteRecordRaw[]) => {
     // 系统固定路由不参与匹配，直接允许访问
-    const target: RouteRecordRaw[] = [...constantVueRoutes]
+    const target: RouteRecordRaw[] = []
     for (const route of routes) {
       /**
        * 匹配条件：
@@ -23,7 +23,7 @@ export function matchRoutesByAuthMenus(
        */
       const matched =
         (!route.name || menuCodes.includes(route.name as string)) &&
-        isConstantRoute(route)
+        !isConstantRoute(route)
       if (matched) {
         if (route.children?.length) {
           route.children = matchRoutes(route.children)
@@ -36,6 +36,7 @@ export function matchRoutesByAuthMenus(
     return target
   }
 
-  const result: RouteRecordRaw[] = matchRoutes(routes)
-  return result
+  const matchedRoutes: RouteRecordRaw[] = matchRoutes(vueRoutes)
+  const allRoutes = [...constantVueRoutes, ...matchedRoutes]
+  return allRoutes
 }

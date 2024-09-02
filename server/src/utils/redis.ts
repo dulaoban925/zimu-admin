@@ -19,7 +19,7 @@ export function set(key: string, value: any) {
     if (value === null || value === undefined)
       return reject(new Error('Invalid value'))
     const redis = getRedisInstance()
-    return redis.set(key, value)
+    redis.set(key, value).then(resolve)
   })
 }
 

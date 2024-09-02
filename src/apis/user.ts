@@ -19,7 +19,7 @@ export async function getUserAuth(username: string) {
 // 获取用户信息
 export async function getUserInfo(username: string) {
   const result = await request({
-    url: '/user/info',
+    url: '/user/me',
     method: 'get',
     query: {
       username

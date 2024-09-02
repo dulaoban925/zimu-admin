@@ -2,8 +2,10 @@
  * 用户 controller
  */
 import { INTERFACE_PATH } from '@constants/path'
+import { CURRENT_USER } from '@constants/redis-keys'
 import { UserService } from '@services/user.service'
 import { success } from '@utils/r'
+import { get, hGet } from '@utils/redis'
 import {
   Authorized,
   Controller,
@@ -34,10 +36,10 @@ export class UserController extends BaseController {
    * 获取个人信息
    */
   @Get('/me')
-  async queryByUsername(
-    @QueryParam('username', { required: true }) username: string
-  ) {
-    const userInfo = await this.currentService.queryByUsername(username)
+  async queryByUsername() {
+    const currentUsername = await get(CURRENT_USER)
+    console.log('currentUsername', currentUsername)
+    const userInfo = await this.currentService.queryByUsername(currentUsername)
 
     return success(userInfo)
   }
@@ -49,10 +51,11 @@ export class UserController extends BaseController {
    * @returns resources 所有菜单资源数组
    */
   @Get('/auth')
-  async queryAuthByUsername(
-    @QueryParam('username', { required: true }) username: string
-  ) {
-    const resources = await this.currentService.queryAuthByUsername(username)
+  async queryAuthByUsername(@QueryParam('username') username?: string) {
+    // 若为显示传递，则获取当前登录用户权限
+    const currentUsername = username ?? (await get(CURRENT_USER))
+    const resources =
+      await this.currentService.queryAuthByUsername(currentUsername)
 
     return success(resources)
   }

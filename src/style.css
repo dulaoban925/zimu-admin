@@ -67,7 +67,6 @@ button:focus-visible {
   height: inherit;
   margin: 0;
   text-align: left;
-  background-color: var(--el-bg-color-page);
 }
 
 @media (prefers-color-scheme: light) {

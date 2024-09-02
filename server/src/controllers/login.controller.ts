@@ -4,7 +4,7 @@ import { User } from '@entities/user.entity'
 import { UserService } from '@services/user.service'
 import { comparePassword, encryptPassword } from '@utils/pwd'
 import { error, success } from '@utils/r'
-import { hGet, hSet } from '@utils/redis'
+import { hGet, hSet, set } from '@utils/redis'
 import jwt from 'jsonwebtoken'
 import { Body, Controller, Post } from 'routing-controllers'
 
@@ -41,15 +41,15 @@ export class LoginController {
       })
 
       // 缓存当前用户
-      hSet(CURRENT_USER, user)
+      set(CURRENT_USER, username)
       // 重置密码错误次数
-      recordPwdErrorTimes(username, true)
+      await recordPwdErrorTimes(username, true)
 
       return {
         token
       }
     } else {
-      recordPwdErrorTimes(username)
+      await recordPwdErrorTimes(username)
       return error('密码错误，请检查后重试')
     }
   }
@@ -114,18 +114,20 @@ export class LoginController {
  * @param username 用户名
  */
 async function recordPwdErrorTimes(username: string, reset: boolean = false) {
-  if (reset) {
-    // 重置密码错误次数
-    await hSet(PWD_ERROR_TIMES, {
-      [username]: 0
-    })
-    return
-  }
   // 获取当前用于已输入错误次数，默认为 0
   let errorTimes: number =
     ((await hGet(PWD_ERROR_TIMES, username)) as number) ?? 0
-  // 错误次数加 1
-  errorTimes++
-  // 更新 redis 中该用户密码错误次数数据
-  await hSet(PWD_ERROR_TIMES, { [username]: errorTimes })
+
+  if (reset) {
+    // 重置密码错误次数
+    errorTimes > 0 &&
+      (await hSet(PWD_ERROR_TIMES, {
+        [username]: 0
+      }))
+  } else {
+    // 错误次数加 1
+    errorTimes++
+    // 更新 redis 中该用户密码错误次数数据
+    await hSet(PWD_ERROR_TIMES, { [username]: errorTimes })
+  }
 }
