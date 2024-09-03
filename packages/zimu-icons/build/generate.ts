@@ -65,13 +65,15 @@ async function transformToVueComponent(file: string) {
  * 生成 components 入口文件
  */
 const generateEntry = async (files: string[]) => {
+  const elePlusIconsExport = `export * from '@element-plus/icons-vue'`
   const code = await formatCode(
-    files
-      .map(file => {
+    [
+      ...files.map(file => {
         const { fileName, componentName } = getName(file)
         return `export { default as ${componentName} } from './${fileName}.vue'`
-      })
-      .join('\n')
+      }),
+      elePlusIconsExport
+    ].join('\n')
   )
   await writeFile(path.resolve(pathComponents, 'index.ts'), code, 'utf-8')
 }

@@ -6,9 +6,9 @@ export interface Options {
 }
 
 export default (app: App, { prefix = '' }: Options = {}) => {
-  Object.entries(icons).forEach(([k, component]) => {
-    app.component(`${prefix}${k}`, component)
-  })
+  for (const [key, component] of Object.entries(icons)) {
+    app.component(`${prefix}${key}`, component)
+  }
 }
 
 export { icons }

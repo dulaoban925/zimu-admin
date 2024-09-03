@@ -33,7 +33,10 @@
     "build:types": "vue-tsc --declaration --emitDeclarationOnly"
   },
   "peerDependencies": {
-    "vue": "^3.3.4"
+    "vue": "^3.4.21"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1"
   },
   "devDependencies": {
     "@babel/types": "^7.22.4",
