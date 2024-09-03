@@ -10,8 +10,10 @@ export interface ZmMenuDataItem {
   icon?: string
   isCollected?: boolean
   disabled?: boolean
+  level?: number
+  sort?: number
   children?: Array<ZmMenuDataItem>
-  [props: string]: string | boolean | Array<ZmMenuDataItem> | undefined
+  [props: string]: string | number | boolean | Array<ZmMenuDataItem> | undefined
 }
 
 export interface ZmMenuItemClicked {

@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { Search } from '@element-plus/icons'
+import { Search } from '@zimu/icons'
 import { reactive, ref, watchEffect, type PropType } from 'vue'
 import { FILTER_MODE } from './constants'
 import type { ZmMenuDataItem } from './types'

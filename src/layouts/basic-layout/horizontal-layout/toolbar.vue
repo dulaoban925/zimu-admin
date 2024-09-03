@@ -19,8 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { FullScreen, Moon, Sunny } from '@element-plus/icons'
-import { ExitFullscreen } from '@zimu/icons'
+import { ExitFullscreen, FullScreen, Moon, Sunny } from '@zimu/icons'
 import { useTheme } from '@/hooks'
 import CommonHeader from '@/layouts/common/header/index.vue'
 import { toggleFullScreen } from '@/utils'

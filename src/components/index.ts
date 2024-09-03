@@ -1,4 +1,3 @@
-import * as ElementPlusIcons from '@element-plus/icons-vue'
 import ZiMuIcons from '@zimu/icons'
 import type { App, Component } from 'vue'
 
@@ -28,9 +27,6 @@ export const setupComponents = (app: App<Element>) => {
   const customComponents = getCustomComponents()
   for (const component of customComponents) {
     app.component(component.name!, component)
-  }
-  for (const icon of Object.values(ElementPlusIcons)) {
-    app.component(icon.name!, icon)
   }
   app.use(ZiMuIcons)
 }

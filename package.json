@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "@better-scroll/core": "^2.5.1",
-    "@element-plus/icons": "^0.0.11",
     "@vueuse/core": "^10.1.2",
     "@zimu/icons": "workspace:^",
     "@zimu/utils": "workspace:^1.0.0",
@@ -31,7 +30,7 @@
     "nprogress": "^0.2.0",
     "pinia": "^2.1.3",
     "qs": "^6.12.2",
-    "vue": "^3.3.4",
+    "vue": "^3.4.21",
     "vue-router": "^4.2.0"
   },
   "devDependencies": {

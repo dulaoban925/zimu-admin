@@ -1,5 +1,5 @@
-import * as icons from '@element-plus/icons'
 import { isObject, isString } from '@vue/shared'
+import * as icons from '@zimu/icons'
 import {
   ElIcon,
   ElMenu,
@@ -97,16 +97,20 @@ export const ZmMenuContent = defineComponent({
       return h('span', childSpans)
     }
 
-    // 渲染菜单子项
+    /**
+     * 渲染菜单项
+     * @param menus
+     * @returns
+     */
     const renderMenuChildren = (menus: ZmMenuDataItem[]) => {
+      console.log('🚀 ~ renderMenuChildren ~ icons:', icons)
       const result: any = []
       for (const menu of menus) {
         let subComp: any = null
+
+        const titleVnode = h('span', menu.name)
+
         if (menu.children?.length) {
-          // @ts-ignore
-          const iconComp = menu.icon ? icons[menu.icon!] : null
-          const iconVnode = iconComp ? h(ElIcon, () => h(iconComp)) : null
-          const titleVnode = h('span', menu.name)
           subComp = h(
             ElSubMenu,
             {
@@ -115,17 +119,28 @@ export const ZmMenuContent = defineComponent({
             },
             {
               default: () => renderMenuChildren(menu.children!),
-              title: () => [iconVnode, titleVnode]
+              title: () => [titleVnode]
             }
           )
         } else {
+          let renderTitle = null
+          // 仅第一层级的菜单展示图标，其余层级仅展示文字描述
+          if (menu.level === 1) {
+            const iconComp = menu.icon ? (icons as any)[menu.icon!] : null
+            const iconVnode = iconComp ? h(ElIcon, () => h(iconComp)) : null
+
+            renderTitle = () => [iconVnode, titleVnode]
+          } else {
+            renderTitle = () => renderHighlightMenuItem(menu.name)
+          }
+
           subComp = h(
             ElMenuItem,
             {
               index: menu[props.indexKey] as string,
               disabled: menu.disabled
             },
-            () => renderHighlightMenuItem(menu.name)
+            renderTitle
           )
         }
         subComp && result.push(subComp)
