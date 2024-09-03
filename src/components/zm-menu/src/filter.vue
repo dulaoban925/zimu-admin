@@ -10,13 +10,17 @@
       v-show="filterMode === FILTER_MODE.SELECT"
       class="zm-menu__filter--select"
     >
-      <el-select v-model="filterState.selectValue" @change="handleSelectChange">
+      <el-select
+        v-model="filterState.selectValue"
+        placeholder="一级菜单"
+        @change="handleSelectChange"
+      >
         <el-option key="" value="" label="全部" />
         <el-option
           v-for="menu in menuOptions"
           :key="menu.index"
           :value="menu.index"
-          :label="menu.label"
+          :label="menu.name"
         />
       </el-select>
       <el-button :icon="Search" @click="handleSwitchFilterMode" />
@@ -96,7 +100,7 @@ const handleInputInput = () => {
 watchEffect(() => {
   filterState.selectLabel = filterState.selectValue
     ? (props.menuOptions.find(menu => menu.index === filterState.selectValue)
-        ?.label ?? '')
+        ?.name ?? '')
     : ''
 })
 </script>

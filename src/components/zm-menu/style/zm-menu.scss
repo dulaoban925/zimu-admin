@@ -1,5 +1,4 @@
 .zm-menu {
-
   --zm-menu-expend-width: 250px;
   --zm-menu-collapse-width: 64px;
 
@@ -10,7 +9,7 @@
   max-width: var(--zm-menu-expend-width);
   min-width: var(--zm-menu-expend-width);
   height: 100%;
-  transition: ease .2s;
+  transition: ease 0.2s;
   overflow: hidden;
 
   &.is-collapse {
@@ -45,6 +44,14 @@
 
     &--select {
       display: inline-flex;
+      width: 100%;
+
+      .el-select__wrapper {
+        border-radius: 0;
+        border: 1px solid var(--el-border-color);
+        border-right: 0;
+        box-shadow: none;
+      }
     }
 
     .el-button {
@@ -61,7 +68,13 @@
   }
 
   &__content {
-    height: calc(100% - (var(--zm-menu-toolbar-height) + var(--zm-menu-filter-height) + var(--zm-common-padding) * 2));
+    height: calc(
+      100% -
+        (
+          var(--zm-menu-toolbar-height) + var(--zm-menu-filter-height) +
+            var(--zm-common-padding) * 2
+        )
+    );
 
     .el-menu {
       border-right: none;

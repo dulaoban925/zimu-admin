@@ -137,11 +137,11 @@ watchEffect(() => {
   data.value = props.data
 })
 
-// 删选组件-下拉框选项，仅去第一层菜单
+// 筛选组件-下拉框选项，仅取第一层菜单
 const filterOptions = computed(
   () =>
     props.data.reduce((ret: ZmMenuDataItem[], item: ZmMenuDataItem) => {
-      ret.push({ index: item[props.indexKey] as string, label: item.label })
+      ret.push({ index: item[props.indexKey] as string, name: item.name })
       return ret
     }, []) ?? []
 )
@@ -169,7 +169,7 @@ const matchMenus = (value: string, menus: Array<ZmMenuDataItem>) => {
           }
           result.push(item)
         }
-      } else if (menu.label.includes(value)) {
+      } else if (menu.name.includes(value)) {
         result.push(menu)
       }
     })
