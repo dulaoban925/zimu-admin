@@ -1,7 +1,7 @@
 declare namespace ZiMuAuth {
   interface Menu {
     code: string // 菜单编码
-    label: string // 菜单描述
+    name: string // 菜单名称
     type: string // 类型：菜单 or 按钮
     sort: string | number // 排序
     level: string | number // 菜单层级

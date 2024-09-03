@@ -1,3 +1,4 @@
+import type { TOOLBAR_OPTION } from './constants'
 import type { Component } from 'vue'
 import type { RouteLocationRaw } from 'vue-router'
 
@@ -5,7 +6,7 @@ export type ValueOf<T> = T[keyof T]
 
 export interface ZmMenuDataItem {
   index: string
-  label: string
+  name: string
   icon?: string
   isCollected?: boolean
   disabled?: boolean
