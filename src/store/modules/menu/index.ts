@@ -26,7 +26,9 @@ export const useMenuStore = defineStore('menu-store', () => {
     flatMenus.value = menus.filter(
       (m: ZiMuAuth.Menu) => m.type === MENU_TYPE.MENU
     )
-    await routeStore.initRoutes(flatMenus.value)
+    // 初始化 Vue 路由
+    routeStore.initRoutes(flatMenus.value)
+    // 导航菜单树形结构
     authMenus.value = transformFlatMenusToTree(flatMenus.value)
     isAuthInitialized.value = true
   }

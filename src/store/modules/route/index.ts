@@ -38,9 +38,9 @@ export const useRouteStore = defineStore('route-store', () => {
   function initDynamicRoutes() {}
 
   // 初始化权限路由
-  const initRoutes = async (menus: ZiMuAuth.Menu[]) => {
-    if (mode.value === RouteMatchModeEnum.Static) await initStaticRoutes(menus)
-    else await initDynamicRoutes()
+  const initRoutes = (menus: ZiMuAuth.Menu[]) => {
+    if (mode.value === RouteMatchModeEnum.Static) initStaticRoutes(menus)
+    else initDynamicRoutes()
   }
 
   return {

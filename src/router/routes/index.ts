@@ -2,6 +2,7 @@ import { ROUTE_COMPONENT_LAYOUT_VALUE, STATIC_ROUTE_NAME } from '@/constants'
 import type { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
+  Dashboard: () => import('@/views/dashboard/index.vue'), // 控制台
   Login: () => import('@views/login/index.vue'), // 登录页
   403: () => import('@views/error/403/index.vue'), // 403 页
   404: () => import('@views/error/404/index.vue'), // 404 页
@@ -16,6 +17,21 @@ export const ROOT_ROUTE: ZiMuRoute.Route = {
   meta: {
     title: 'Root'
   }
+}
+
+/** 控制台路由 */
+const DASHBOARD_ROUTE: ZiMuRoute.Route = {
+  name: 'Dashboard',
+  path: '/dashboard',
+  component: ROUTE_COMPONENT_LAYOUT_VALUE.BASIC,
+  children: [
+    {
+      name: 'Home',
+      path: '',
+      component: RouteComponents.Dashboard
+    }
+  ],
+  meta: { title: '主页', affix: true }
 }
 
 /** 登录路由 */
@@ -68,6 +84,7 @@ const ERROR_ROUTES: ZiMuRoute.Route[] = [
 export const constantRoutes: ZiMuRoute.Route[] = [
   ROOT_ROUTE,
   LOGIN_ROUTE,
+  DASHBOARD_ROUTE,
   ...ERROR_ROUTES,
   NO_MATCH_ROUTE
 ]

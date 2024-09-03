@@ -103,7 +103,6 @@ export const ZmMenuContent = defineComponent({
      * @returns
      */
     const renderMenuChildren = (menus: ZmMenuDataItem[]) => {
-      console.log('🚀 ~ renderMenuChildren ~ icons:', icons)
       const result: any = []
       for (const menu of menus) {
         let subComp: any = null
