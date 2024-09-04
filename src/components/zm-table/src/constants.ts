@@ -6,6 +6,7 @@ export const DEFAULT_TABLE_PROPS = {
 // 分页器默认 props
 export const DEFAULT_PAGINATION_PROPS = {
   total: 0,
+  pageSizes: [10, 20, 50, 100],
   layout: 'total, sizes, prev, pager, next, jumper'
 }
 
