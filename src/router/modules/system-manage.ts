@@ -12,6 +12,7 @@ const systemSettingsRoutes: ZiMuRoute.Route = {
   name: 'SystemManage',
   path: '/system-manage',
   component: ROUTE_COMPONENT_LAYOUT_VALUE.BASIC,
+  meta: { title: '系统管理' },
   children: [
     {
       name: 'UserManage',
@@ -37,8 +38,7 @@ const systemSettingsRoutes: ZiMuRoute.Route = {
       component: RouteComponents.RoleManage,
       meta: { title: '角色管理', keepAlive: true }
     }
-  ],
-  meta: { title: '系统管理' }
+  ]
 }
 
 export default systemSettingsRoutes
