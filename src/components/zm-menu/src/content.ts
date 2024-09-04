@@ -106,7 +106,15 @@ export const ZmMenuContent = defineComponent({
       const result: any = []
       for (const menu of menus) {
         let subComp: any = null
-
+        // 图标部分
+        const iconComp = menu.icon ? (icons as any)[menu.icon!] : null
+        console.log(
+          '🚀 ~ renderMenuChildren ~ icons:',
+          icons,
+          (icons as any)[menu.icon!]
+        )
+        const iconVnode = iconComp ? h(ElIcon, () => h(iconComp)) : null
+        // 标题部分
         const titleVnode = h('span', menu.name)
 
         if (menu.children?.length) {
@@ -118,28 +126,19 @@ export const ZmMenuContent = defineComponent({
             },
             {
               default: () => renderMenuChildren(menu.children!),
-              title: () => [titleVnode]
+              title: () => [iconVnode, titleVnode]
             }
           )
         } else {
-          let renderTitle = null
-          // 仅第一层级的菜单展示图标，其余层级仅展示文字描述
-          if (menu.level === 1) {
-            const iconComp = menu.icon ? (icons as any)[menu.icon!] : null
-            const iconVnode = iconComp ? h(ElIcon, () => h(iconComp)) : null
-
-            renderTitle = () => [iconVnode, titleVnode]
-          } else {
-            renderTitle = () => renderHighlightMenuItem(menu.name)
-          }
-
           subComp = h(
             ElMenuItem,
             {
               index: menu[props.indexKey] as string,
               disabled: menu.disabled
             },
-            renderTitle
+            {
+              default: [iconVnode, renderHighlightMenuItem(menu.name)]
+            }
           )
         }
         subComp && result.push(subComp)
