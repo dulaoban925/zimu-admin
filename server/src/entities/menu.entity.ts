@@ -1,13 +1,18 @@
 /**
  * 菜单实体
  */
-import { ACTIVATION_STATUS, MENU_TYPE } from '@constants/enums'
+import { ACTIVATION_STATUS, MENU_TYPE, MENU_TYPE_DESC } from '@constants/enums'
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   ManyToMany,
   PrimaryColumn,
-  PrimaryGeneratedColumn
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+  VersionColumn,
+  VirtualColumn
 } from 'typeorm'
 import { Auth } from './auth.entity'
 
@@ -30,6 +35,11 @@ export class Menu {
     enum: MENU_TYPE
   })
   type!: MENU_TYPE
+
+  // 类型描述
+  get typeText(): string {
+    return MENU_TYPE_DESC[this.type] ?? null
+  }
 
   // 关联的角色列表
   @ManyToMany(() => Auth, auth => auth.menus)
@@ -59,15 +69,27 @@ export class Menu {
   @Column()
   parent!: string
 
+  // 数据版本
+  @VersionColumn()
+  version!: number
+
+  // 创建人
   @Column({ name: 'created_by' })
   createdBy!: string
 
-  @Column({ type: 'date', name: 'created_at' })
+  // 创建时间
+  @CreateDateColumn({ type: 'date', name: 'created_at' })
   createdAt!: string
 
+  // 更新人
   @Column({ name: 'updated_by' })
   updatedBy!: string
 
-  @Column({ type: 'date', name: 'updated_at' })
+  // 更新时间
+  @UpdateDateColumn({ type: 'date', name: 'updated_at' })
   updatedAt!: string
+
+  // 删除时间
+  @DeleteDateColumn({ type: 'date', name: 'delete_at' })
+  deleteAt!: string
 }

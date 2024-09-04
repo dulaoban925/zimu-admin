@@ -19,16 +19,12 @@ export class BaseService {
   }
 
   // 分页列表
-  async queryByPage(
-    params: any = {},
-    pageSize: number = 10,
-    pageNum: number = 1
-  ) {
+  async queryByPage(page: number = 1, pageSize: number = 10, params: any = {}) {
     // 总数
     const total = await this.repository.countBy(params)
 
     // 数据列表
-    const skip = pageSize * (pageNum - 1)
+    const skip = pageSize * (page - 1)
     const rows = await this.repository.find({
       where: params,
       skip,
@@ -38,7 +34,7 @@ export class BaseService {
     return {
       total,
       pageSize,
-      pageNum,
+      page,
       rows
     }
   }

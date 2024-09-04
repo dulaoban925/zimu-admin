@@ -1,5 +1,13 @@
 import { INTERFACE_PATH } from '@constants/path'
-import { Body, Delete, Get, Param, Post, Put } from 'routing-controllers'
+import {
+  Body,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  QueryParam
+} from 'routing-controllers'
 
 export class BaseController {
   currentService
@@ -21,8 +29,11 @@ export class BaseController {
    * @returns
    */
   @Get(`${INTERFACE_PATH.LIST_BY_PAGE}`)
-  async listByPage() {
-    return await this.currentService.queryByPage()
+  async listByPage(
+    @QueryParam('page') page: number,
+    @QueryParam('pageSize') pageSize: number
+  ) {
+    return await this.currentService.queryByPage(page, pageSize)
   }
 
   /**
