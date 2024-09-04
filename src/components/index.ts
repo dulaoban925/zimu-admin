@@ -1,4 +1,4 @@
-import ZiMuIcons from '@zimu/icons'
+import { setupZimuIcons } from '@/utils/icons'
 import type { App, Component } from 'vue'
 
 type ComponentModule = Record<
@@ -28,7 +28,7 @@ export const setupComponents = (app: App<Element>) => {
   for (const component of customComponents) {
     app.component(component.name!, component)
   }
-  app.use(ZiMuIcons)
+  setupZimuIcons(app)
 }
 
 export default (app: App<Element>) => {
