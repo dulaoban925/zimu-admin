@@ -43,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^8.0.0",
     "@typescript-eslint/parser": "^8.0.0",
     "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue-jsx": "^4.0.1",
     "@zimu/eslint-config": "workspace:^",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.1.0",
