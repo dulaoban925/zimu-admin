@@ -12,10 +12,10 @@ function getCustomComponents() {
   })
 
   const components = []
-  for (const m of Object.values(modules)) {
-    for (const k of Object.keys(m)) {
-      if (k !== 'default' && m[k]?.name === k) {
-        components.push(m[k])
+  for (const module of Object.values(modules)) {
+    for (const key of Object.keys(module)) {
+      if (key !== 'default' && module[key]?.name === key) {
+        components.push(module[key])
       }
     }
   }
