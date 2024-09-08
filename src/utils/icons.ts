@@ -13,7 +13,6 @@ export function getIcon(icon: string) {
  */
 export function setupZimuIcons(app: App<any>) {
   for (const [key, component] of Object.entries(icons)) {
-    console.log('🚀 ~ setupZimuIcons ~ key, component:', key, component)
     app.component(key, component)
   }
 }

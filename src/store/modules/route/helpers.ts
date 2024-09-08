@@ -40,6 +40,6 @@ export function matchRoutesByAuthMenus(
 
   const matchedRoutes: RouteRecordRaw[] = matchRoutes(vueRoutes)
   const allRoutes = [...constantVueRoutes, ...matchedRoutes]
-  console.log('🚀 ~ allRoutes:', allRoutes)
+
   return allRoutes
 }
