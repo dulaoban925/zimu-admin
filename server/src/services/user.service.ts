@@ -1,6 +1,7 @@
 /**
  * 用户服务类
  */
+import { Y_N } from '@constants/enums'
 import { User } from '@entities/user.entity'
 import { BaseService } from '@services/base/base-service'
 import { In, type FindOneOptions } from 'typeorm'
@@ -45,7 +46,7 @@ export class UserService extends BaseService {
     })
 
     // 若为超管权限，则返回所有的资源
-    if (isAdmin) {
+    if (isAdmin === Y_N.Y) {
       const { rows: allMenus } = await this.menuService.queryList()
       return allMenus
     }
