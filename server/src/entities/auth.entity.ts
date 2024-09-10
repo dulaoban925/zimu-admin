@@ -39,7 +39,7 @@ export class Auth {
   roles!: Role[]
 
   // 关联的菜单列表
-  @ManyToMany(() => Menu, menu => menu.authorizations)
+  @ManyToMany(() => Menu)
   @JoinTable({
     name: 'auth-menu-relation',
     joinColumn: {

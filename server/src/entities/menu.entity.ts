@@ -11,10 +11,8 @@ import {
   PrimaryColumn,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  VersionColumn,
-  VirtualColumn
+  VersionColumn
 } from 'typeorm'
-import { Auth } from './auth.entity'
 
 @Entity('menu')
 export class Menu {
@@ -40,10 +38,6 @@ export class Menu {
   get typeText(): string {
     return MENU_TYPE_DESC[this.type] ?? null
   }
-
-  // 关联的角色列表
-  @ManyToMany(() => Auth, auth => auth.menus)
-  authorizations!: Auth[]
 
   // 层级
   @Column()

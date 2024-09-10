@@ -1,8 +1,7 @@
 /**
  * 用户实体
  */
-import { USER_GENDER, USER_STATUS } from '@constants/enums'
-import { encryptPassword } from '@utils/pwd'
+import { USER_GENDER, USER_STATUS, Y_N } from '@constants/enums'
 import {
   Column,
   Entity,
@@ -72,8 +71,12 @@ export class User {
   roles!: Role[]
 
   // 是否超管
-  @Column({ name: 'is_admin' })
-  isAdmin!: boolean
+  @Column({
+    name: 'is_admin',
+    type: 'enum',
+    enum: Y_N
+  })
+  isAdmin!: Y_N
 
   // 创建人
   @Column({ name: 'created_by' })
