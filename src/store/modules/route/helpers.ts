@@ -25,9 +25,7 @@ export function matchRoutesByAuthMenus(
         (!route.name || menuCodes.includes(route.name as string)) &&
         !isConstantRoute(route)
       if (matched) {
-        // 首页控制台路由，可能存在二级的路由，但不需要维护二级菜单，跳过 children 路由匹配
-        const isDashboard = route.path === import.meta.env.VITE_ROUTE_HOME_PATH
-        if (route.children?.length && !isDashboard) {
+        if (route.children?.length) {
           route.children = matchRoutes(route.children)
         }
         // 若 target 中不存在该 route，则加入 target

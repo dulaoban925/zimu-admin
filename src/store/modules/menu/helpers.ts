@@ -15,6 +15,10 @@ export function transformFlatMenusToTree(flatMenus: ZiMuAuth.Menu[]) {
   }
 
   for (const menu of flatMenus) {
+    /**
+     * 1. 若当前菜单存在父菜单 parent，则将其加入到父菜单的 children 中
+     * 2. 若无父菜单，插入结果数组
+     */
     const parent = menuCodeMap.get(menu.parent)
     if (parent) parent.children.push(menu)
     else result.push(menu)
