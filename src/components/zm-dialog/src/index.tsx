@@ -3,7 +3,6 @@
  * 支持 Dialog 和 Drawer
  */
 import { dialogProps, ElButton, ElDialog } from 'element-plus'
-import type { ExtractPropTypes } from 'vue'
 
 const zmDialogProps = {
   ...dialogProps,
@@ -16,6 +15,11 @@ const zmDialogProps = {
   confirmButtonText: {
     type: String,
     default: '确定'
+  },
+  // 确认后是否关闭弹窗
+  closeAfterConfirm: {
+    type: Boolean,
+    default: false
   }
 }
 
@@ -26,6 +30,7 @@ export const ZmDialog = defineComponent({
   props: zmDialogProps,
   emits: zmDialogEmits,
   setup(props, { emit }) {
+    // 弹窗显隐标识
     const visible = computed({
       get() {
         return props.modelValue
@@ -35,6 +40,7 @@ export const ZmDialog = defineComponent({
       }
     })
 
+    // 传递给 ElDialog 的 props
     const elDialogProps = computed(() =>
       Object.keys(dialogProps).reduce((pre: any, cur: any) => {
         pre[cur] = props[cur]
@@ -42,12 +48,15 @@ export const ZmDialog = defineComponent({
       }, {})
     )
 
+    // 取消操作
     const onCancel = () => {
       visible.value = false
       emit('cancel')
     }
 
+    // 确认操作
     const onConfirm = () => {
+      if (props.closeAfterConfirm) visible.value = false
       emit('confirm')
     }
 
