@@ -70,26 +70,31 @@ export class BaseService {
   }
 
   // 修改
-  async update(entity: any = {}) {
+  update(entity: any = {}) {
     if (!entity.id) {
       return Promise.reject(new Error('id 不存在'))
     }
-    return await this.repository.update(entity, { id: entity.id })
+    return this.repository.update({ id: entity.id }, entity)
+  }
+
+  // 新增 or 更新
+  upsert(entity: any = {}) {
+    return this.repository.save(entity)
   }
 
   // 删除
-  async delete(id: string) {
+  delete(id: string) {
     if (!id) {
       return Promise.reject(new Error('id 不存在'))
     }
-    return await this.repository.delete(id)
+    return this.repository.delete(id)
   }
 
   // 逻辑删除
-  async softDelete(id: string) {
+  softDelete(id: string) {
     if (!id) {
       return Promise.reject(new Error('id 不存在'))
     }
-    return await this.repository.softDelete(id)
+    return this.repository.softDelete(id)
   }
 }

@@ -2,25 +2,13 @@
  * 菜单实体
  */
 import { ACTIVATION_STATUS, MENU_TYPE, MENU_TYPE_DESC } from '@constants/enums'
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  ManyToMany,
-  PrimaryColumn,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-  VersionColumn
-} from 'typeorm'
+import { Column, Entity } from 'typeorm'
+import { BaseEntity } from './base/base.entity'
 
-@Entity('menu')
-export class Menu {
-  @PrimaryGeneratedColumn()
-  id!: number
-
+@Entity({ name: 'menu' })
+export class Menu extends BaseEntity {
   // 菜单编码
-  @PrimaryColumn()
+  @Column({ unique: true })
   code!: string
 
   // 菜单名称
@@ -59,31 +47,7 @@ export class Menu {
   })
   status!: ACTIVATION_STATUS
 
-  // 父菜单 id
+  // 父菜单编码
   @Column()
   parent!: string
-
-  // 数据版本
-  @VersionColumn()
-  version!: number
-
-  // 创建人
-  @Column({ name: 'created_by' })
-  createdBy!: string
-
-  // 创建时间
-  @CreateDateColumn({ type: 'date', name: 'created_at' })
-  createdAt!: string
-
-  // 更新人
-  @Column({ name: 'updated_by' })
-  updatedBy!: string
-
-  // 更新时间
-  @UpdateDateColumn({ type: 'date', name: 'updated_at' })
-  updatedAt!: string
-
-  // 删除时间
-  @DeleteDateColumn({ type: 'date', name: 'delete_at' })
-  deleteAt!: string
 }

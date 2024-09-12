@@ -27,9 +27,9 @@ export class UserController extends BaseController {
     return await super.list()
   }
 
-  @Get(`${INTERFACE_PATH.BY_ID}`)
-  async detail(@Param('id') id: string) {
-    return await super.detail(id)
+  @Get(`${INTERFACE_PATH.QUERY_BY_ID}`)
+  detail(@Param('id') id: number) {
+    return super.detail(id)
   }
 
   /**
@@ -38,7 +38,6 @@ export class UserController extends BaseController {
   @Get('/me')
   async queryByUsername() {
     const currentUsername = await get(CURRENT_USER)
-    console.log('currentUsername', currentUsername)
     const userInfo = await this.currentService.queryByUsername(currentUsername)
 
     return success(userInfo)

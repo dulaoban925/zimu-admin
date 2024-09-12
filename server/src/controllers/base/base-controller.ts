@@ -1,13 +1,4 @@
-import { INTERFACE_PATH } from '@constants/path'
-import {
-  Body,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  QueryParam
-} from 'routing-controllers'
+import { success } from '@utils/r'
 
 export class BaseController {
   currentService
@@ -19,65 +10,70 @@ export class BaseController {
    * 全列表查询
    * @returns
    */
-  @Get(`${INTERFACE_PATH.LIST}`)
   async list() {
-    return await this.currentService.queryList()
+    const list = await this.currentService.queryList()
+    return success(list)
   }
 
   /**
    * 分页列表查询
    * @returns
    */
-  @Get(`${INTERFACE_PATH.LIST_BY_PAGE}`)
-  async listByPage(
-    @QueryParam('page') page: number,
-    @QueryParam('pageSize') pageSize: number
-  ) {
-    return await this.currentService.queryByPage(page, pageSize)
+  async listByPage(page: number, pageSize: number) {
+    const list = await this.currentService.queryByPage(page, pageSize)
+    return success(list)
   }
 
   /**
    * 详情查询
    * @returns
    */
-  @Get(`${INTERFACE_PATH.BY_ID}`)
-  async detail(@Param('id') id: string) {
-    return await this.currentService.queryById(id)
+  async detail(id: number) {
+    const detail = await this.currentService.queryById(id)
+    return success(detail)
   }
 
   /**
    * 新增
    * @returns
    */
-  @Post(`${INTERFACE_PATH.INSERT}`)
-  async insert(@Body() entity: any) {
-    return await this.currentService.insert(entity)
+  async insert(entity: any) {
+    const detail = await this.currentService.insert(entity)
+    return success(detail)
   }
 
   /**
    * 修改
    * @returns
    */
-  @Put(`${INTERFACE_PATH.BY_ID}`)
-  async update(@Body() entity: any) {
-    return await this.currentService.update(entity)
+  async update(entity: any) {
+    const detail = await this.currentService.update(entity)
+    return success(detail)
+  }
+
+  /**
+   * 新增 or 编辑
+   */
+  async upsert(entity: any) {
+    const data = await this.currentService.upsert(entity)
+    return success(data)
   }
 
   /**
    * 删除
    * @returns
    */
-  @Delete(`${INTERFACE_PATH.BY_ID}`)
-  async delete(@Param('id') id: string) {
-    return await this.currentService.delete(id)
+  async delete(id: number) {
+    const data = await this.currentService.delete(id)
+    return success(data)
   }
 
   /**
    * 软删除
    * @returns
    */
-  @Delete(`/soft/${INTERFACE_PATH.BY_ID}`)
-  async softDelete(@Param('id') id: string) {
-    return await this.currentService.softDelete(id)
+  async softDelete(id: number) {
+    const data = await this.currentService.softDelete(id)
+    return success(data)
   }
 }
