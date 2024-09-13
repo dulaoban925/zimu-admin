@@ -3,32 +3,12 @@
  * 支持 Dialog 和 Drawer
  */
 import { dialogProps, ElButton, ElDialog } from 'element-plus'
+import { zmPopperEmits, zmPopperProps } from './popper'
 
-const zmDialogProps = {
-  ...dialogProps,
-  // 取消按钮文本
-  cancelButtonText: {
-    type: String,
-    default: '取消'
-  },
-  // 确定按钮文本
-  confirmButtonText: {
-    type: String,
-    default: '确定'
-  },
-  // 确认后是否关闭弹窗
-  closeAfterConfirm: {
-    type: Boolean,
-    default: false
-  }
-}
-
-const zmDialogEmits = ['confirm', 'cancel']
-
-export const ZmDialog = defineComponent({
-  name: 'ZmDialog',
-  props: zmDialogProps,
-  emits: zmDialogEmits,
+export const ZmPopper = defineComponent({
+  name: 'ZmPopper',
+  props: zmPopperProps,
+  emits: zmPopperEmits,
   setup(props, { emit }) {
     // 弹窗显隐标识
     const visible = computed({

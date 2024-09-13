@@ -2,7 +2,7 @@
   编辑弹窗，可操作：新增、编辑
 -->
 <template>
-  <zm-dialog
+  <zm-popper
     v-model="visible"
     :title="dialogTitle"
     width="35%"
@@ -58,7 +58,7 @@
         />
       </el-form-item>
     </el-form>
-  </zm-dialog>
+  </zm-popper>
 </template>
 
 <script setup lang="ts">
