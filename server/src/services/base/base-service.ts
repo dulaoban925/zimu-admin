@@ -4,7 +4,9 @@ import type { FindManyOptions, Repository } from 'typeorm'
 
 export class BaseService {
   repository: Repository<any>
+  entityClass: any
   constructor(entityClass: any) {
+    this.entityClass = entityClass
     this.repository = getDataSourceInstance().getRepository(entityClass)
   }
 
@@ -78,8 +80,11 @@ export class BaseService {
   }
 
   // 新增 or 更新
-  upsert(entity: any = {}) {
-    return this.repository.save(entity)
+  upsert(entity: any) {
+    if (!entity) {
+      return Promise.reject(new Error('插入数据为空'))
+    }
+    return this.repository.save(new this.entityClass(entity))
   }
 
   // 删除

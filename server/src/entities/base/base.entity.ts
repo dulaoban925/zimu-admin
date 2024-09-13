@@ -1,7 +1,11 @@
 /**
  * 实体通用字段
  */
+import { CURRENT_USER } from '@constants/redis-keys'
+import { get } from '@utils/redis'
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   DeleteDateColumn,
@@ -10,7 +14,11 @@ import {
   VersionColumn
 } from 'typeorm'
 
-export class BaseEntity {
+export abstract class BaseEntity {
+  constructor(entity: any) {
+    Object.assign(this, entity)
+  }
+
   @PrimaryGeneratedColumn()
   id!: number
 
@@ -37,4 +45,14 @@ export class BaseEntity {
   // 删除时间
   @DeleteDateColumn({ type: 'datetime', name: 'deleted_at' })
   deletedAt!: Date
+
+  @BeforeInsert()
+  async beforeInsert() {
+    this.createdBy = (await get(CURRENT_USER)) as string
+  }
+
+  @BeforeUpdate()
+  async beforeUpdate() {
+    this.updatedBy = (await get(CURRENT_USER)) as string
+  }
 }

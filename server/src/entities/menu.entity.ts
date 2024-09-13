@@ -2,7 +2,9 @@
  * 菜单实体
  */
 import { ACTIVATION_STATUS, MENU_TYPE, MENU_TYPE_DESC } from '@constants/enums'
-import { Column, Entity } from 'typeorm'
+import { CURRENT_USER } from '@constants/redis-keys'
+import { get } from '@utils/redis'
+import { BeforeInsert, BeforeUpdate, Column, Entity } from 'typeorm'
 import { BaseEntity } from './base/base.entity'
 
 @Entity({ name: 'menu' })

@@ -2,7 +2,6 @@
  * 菜单服务类
  */
 import { Menu } from '@entities/menu.entity'
-import { LessThanOrEqual } from 'typeorm'
 import { BaseService } from './base/base-service'
 
 export class MenuService extends BaseService {
