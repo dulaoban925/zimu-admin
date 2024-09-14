@@ -9,11 +9,9 @@ import express from 'express'
 import { useExpressServer } from 'routing-controllers'
 import '@tools/env-config'
 
-async function initTools() {
-  // 初始化 DataSource
-  await initDataSource()
-  // 初始化 redis
-  await initRedis()
+function initTools() {
+  // 初始化 DataSource,redis
+  return Promise.all([initDataSource(), initRedis()])
 }
 
 function initApp() {
