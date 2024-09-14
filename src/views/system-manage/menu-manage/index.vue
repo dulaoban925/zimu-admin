@@ -3,7 +3,11 @@
 -->
 <template>
   <div class="menu-manage">
-    <zm-table :table-props="tableProps" :pagination-props="paginationProps">
+    <zm-table
+      :table-props="tableProps"
+      :pagination-props="paginationProps"
+      @filter-search="handleSearch"
+    >
       <zm-table-column
         prop="code"
         label="菜单编码"
@@ -96,6 +100,8 @@ const paginationProps = reactive({
   currentPage: 1,
   pageSize: 10
 })
+// 筛选对象
+const filterModel = ref<Record<string, string>>({})
 
 onBeforeMount(() => {
   init()
@@ -109,11 +115,20 @@ const dialogProps = reactive<{
   menuId?: string
 }>({})
 
-const init = (page = 1, pageSize = 10) => {
-  getList(page, pageSize).then(({ rows, total }: any) => {
+/**
+ * 初始化函数
+ */
+const init = (page = 1, pageSize = 10, filter?: Record<string, string>) => {
+  getList(page, pageSize, filter).then(({ rows, total }: any) => {
     tableProps.data = rows
     paginationProps.total = total
   })
+}
+
+// 筛选查询
+const handleSearch = (filter: any) => {
+  filterModel.value = { ...filter }
+  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
 }
 
 // 新增
@@ -136,14 +151,18 @@ const handleEdit = (id: string) => {
 
 // 保存回调
 const handleSaved = () => {
-  init(paginationProps.currentPage, paginationProps.pageSize)
+  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
 }
 
 // 确认删除
 const handleDelConfirm = (id: number) => {
   del(id).then(() => {
     ElMessage.success('删除成功')
-    init(paginationProps.currentPage, paginationProps.pageSize)
+    init(
+      paginationProps.currentPage,
+      paginationProps.pageSize,
+      filterModel.value
+    )
   })
 }
 
@@ -168,7 +187,11 @@ const handleChangeStatusConfirm = ({
 
   changeStatus(id, newStatus).then(() => {
     ElMessage.success(`${getStatusText(status)}成功`)
-    init(paginationProps.currentPage, paginationProps.pageSize)
+    init(
+      paginationProps.currentPage,
+      paginationProps.pageSize,
+      filterModel.value
+    )
   })
 }
 </script>

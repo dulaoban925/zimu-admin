@@ -58,7 +58,6 @@ export const ZmButton = defineComponent({
     }
   },
   render() {
-    console.log('🚀 ~ render ~ this:', this)
     const buttonSlots = {
       default: this.$slots.default,
       loading: this.$slots.loading,

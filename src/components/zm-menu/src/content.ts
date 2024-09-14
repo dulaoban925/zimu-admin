@@ -108,11 +108,6 @@ export const ZmMenuContent = defineComponent({
         let subComp: any = null
         // 图标部分
         const iconComp = menu.icon ? (icons as any)[menu.icon!] : null
-        console.log(
-          '🚀 ~ renderMenuChildren ~ icons:',
-          icons,
-          (icons as any)[menu.icon!]
-        )
         const iconVnode = iconComp ? h(ElIcon, () => h(iconComp)) : null
         // 标题部分
         const titleVnode = h('span', menu.name)

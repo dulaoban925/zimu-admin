@@ -2,6 +2,7 @@
  * 菜单管理接口请求集合
  */
 import { request, type Nullable, type ValueOf } from '@/utils'
+import { objectToQueryString } from '@/utils/normal'
 import type { ACTIVATION_STATUS } from '@/constants'
 import type { MenuItem } from './types'
 
@@ -13,10 +14,15 @@ import type { MenuItem } from './types'
  */
 export async function getList(
   page: number,
-  pageSize: number
+  pageSize: number,
+  filter: Record<string, string> = {}
 ): Promise<MenuItem[]> {
+  const query = objectToQueryString(
+    Object.assign({}, filter, { page, pageSize })
+  )
+  console.log(query)
   const { data } = await request({
-    url: `/menu/listByPage?page=${page}&pageSize=${pageSize}`,
+    url: `/menu/listByPage?${query}`,
     method: 'get'
   })
 
