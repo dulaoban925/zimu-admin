@@ -1,7 +1,13 @@
 /**
  * 用户实体
  */
-import { USER_GENDER, USER_STATUS, Y_N } from '@constants/enums'
+import {
+  USER_GENDER,
+  USER_GENDER_DESC,
+  USER_STATUS,
+  USER_STATUS_DESC,
+  Y_N
+} from '@constants/enums'
 import {
   Column,
   Entity,
@@ -37,6 +43,10 @@ export class User {
   })
   gender!: USER_GENDER
 
+  get genderText() {
+    return USER_GENDER_DESC[this.gender] ?? ''
+  }
+
   // 电话
   @Column()
   tel!: string
@@ -56,6 +66,10 @@ export class User {
     default: USER_STATUS.SERVING
   })
   status!: USER_STATUS
+
+  get statusText() {
+    return USER_STATUS_DESC[this.status] ?? ''
+  }
 
   // 关联的角色列表
   @ManyToMany(() => Role, (role: Role) => role.users)

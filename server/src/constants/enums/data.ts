@@ -5,6 +5,12 @@ export enum USER_GENDER {
   FEMALE = 'female', // 女性
   UNKNOWN = 'unknown' // 未知
 }
+
+export enum USER_GENDER_DESC {
+  male = '男', // 男性
+  female = '女', // 女性
+  unknown = '未知' // 未知
+}
 /** 用户模块枚举 end */
 
 /** 菜单相关枚举 start */
