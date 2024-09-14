@@ -7,7 +7,7 @@ import type { ACTIVATION_STATUS } from '@/constants'
 import type { MenuItem } from './types'
 
 /**
- * 获取菜单列表
+ * 获取列表
  * @param page 当前页数
  * @param pageSize 每页数据量
  * @returns
@@ -20,7 +20,6 @@ export async function getList(
   const query = objectToQueryString(
     Object.assign({}, filter, { page, pageSize })
   )
-  console.log(query)
   const { data } = await request({
     url: `/menu/listByPage?${query}`,
     method: 'get'
@@ -30,13 +29,13 @@ export async function getList(
 }
 
 /**
- * 获取菜单详情
- * @param id 菜单 id
+ * 获取详情
+ * @param id id
  * @returns
  */
 export async function getDetail(id: string): Promise<Nullable<MenuItem>> {
   if (!id) {
-    console.error('菜单 id 为空，请检查')
+    console.error('id 为空，请检查')
     return null
   }
 
@@ -50,7 +49,7 @@ export async function getDetail(id: string): Promise<Nullable<MenuItem>> {
 
 /**
  * 保存
- * @param id 菜单 id
+ * @param id id
  * @returns
  */
 export async function save(menu: MenuItem): Promise<MenuItem> {
@@ -65,7 +64,7 @@ export async function save(menu: MenuItem): Promise<MenuItem> {
 
 /**
  * 删除
- * @param id 菜单 id
+ * @param id id
  * @returns
  */
 export async function del(id: number): Promise<MenuItem> {
@@ -79,7 +78,7 @@ export async function del(id: number): Promise<MenuItem> {
 
 /**
  * 启用/停用
- * @param id 菜单 id
+ * @param id id
  * @param status 要变更的状态
  * @returns
  */
