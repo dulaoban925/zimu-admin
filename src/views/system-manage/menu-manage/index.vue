@@ -20,12 +20,7 @@
         filterable
         min-width="180"
       />
-      <zm-table-column
-        prop="typeText"
-        label="类型"
-        filterable
-        min-width="100"
-      />
+      <zm-table-column prop="typeText" label="类型" min-width="100" />
       <zm-table-column prop="parent" label="父菜单编码" min-width="150" />
       <zm-table-column label="图标" min-width="60">
         <template #default="{ row: { icon } }">

@@ -51,7 +51,7 @@
         />
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <status-selector
+        <activation-status-selector
           v-model="dialogFormModel.status"
           placeholder="请输入..."
           :disabled="isEdit"
@@ -71,7 +71,6 @@ import {
 } from '@/constants'
 import { getDetail, save } from '../api'
 import type { MenuItem } from '../types'
-import StatusSelector from './selectors/status-selector.vue'
 import TypeSelector from './selectors/type-selector.vue'
 
 defineOptions({
