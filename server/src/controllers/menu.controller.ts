@@ -6,11 +6,13 @@ import { MenuService } from '@services/menu.service'
 import {
   Authorized,
   Body,
+  BodyParam,
   Controller,
   Delete,
   Get,
   Param,
   Post,
+  Put,
   QueryParam
 } from 'routing-controllers'
 import { BaseController } from './base/base-controller'
@@ -58,5 +60,16 @@ export class MenuController extends BaseController {
   @Delete(`${INTERFACE_PATH.BY_ID}`)
   softDelete(@Param('id') id: number) {
     return super.delete(id)
+  }
+
+  /**
+   * 启用/停用
+   */
+  @Put(`${INTERFACE_PATH.CHANGE_STATUS}`)
+  changeStatus(
+    @BodyParam('id') id: number,
+    @BodyParam('status') status: string
+  ) {
+    return super.changeStatus(id, status)
   }
 }

@@ -102,4 +102,17 @@ export class BaseService {
     }
     return this.repository.softDelete(id)
   }
+
+  /**
+   * 变更状态
+   */
+  changeStatus(id: number, status: string) {
+    if (!id) {
+      return Promise.reject(new Error('id 不存在'))
+    }
+    if (!status) {
+      return Promise.reject(new Error('状态不能为空'))
+    }
+    return this.upsert({ id, status })
+  }
 }

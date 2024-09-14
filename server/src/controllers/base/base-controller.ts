@@ -76,4 +76,12 @@ export class BaseController {
     const data = await this.currentService.softDelete(id)
     return success(data)
   }
+
+  /**
+   * 变更状态
+   */
+  async changeStatus(id: number, status: string) {
+    const data = await this.currentService.changeStatus(id, status)
+    return success(data)
+  }
 }
