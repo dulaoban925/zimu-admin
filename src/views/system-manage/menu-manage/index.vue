@@ -33,16 +33,31 @@
       <zm-table-column prop="sort" label="状态" min-width="80" />
       <zm-table-column fixed="right" label="操作" min-width="180">
         <template #default="{ row }">
-          <el-button link type="primary" @click="handleEdit(row.id)"
-            >编辑</el-button
+          <zm-button link type="primary" @click="handleEdit(row.id)">
+            编辑
+          </zm-button>
+          <zm-button
+            link
+            type="danger"
+            need-confirm
+            :pop-confirm-props="{
+              title: '确认删除？'
+            }"
+            @confirm="handleDelConfirm(row.id)"
           >
-          <el-button link type="danger" @click="handleDelete(row.id)"
-            >删除</el-button
+            删除
+          </zm-button>
+          <zm-button
+            link
+            type="primary"
+            need-confirm
+            :pop-confirm-props="{
+              title: `确认${getStatusText(row.status)}？`
+            }"
+            @confirm="handleChangeStatusConfirm(row)"
           >
-          <el-button v-if="isEnable(row.status)" link type="primary">
-            启用
-          </el-button>
-          <el-button v-else link type="primary">停用</el-button>
+            {{ getStatusText(row.status) }}
+          </zm-button>
         </template>
       </zm-table-column>
       <template #rightOperation>
@@ -59,11 +74,13 @@
 </template>
 
 <script setup lang="ts">
-import { PAGE_OPERATION } from '@/constants'
+import { ElMessage } from 'element-plus'
+import { ACTIVATION_STATUS, PAGE_OPERATION } from '@/constants'
 import { getIcon } from '@/utils/icons'
 import { isEnable } from '@/utils/is'
-import { del, getList } from './api'
+import { changeStatus, del, getList } from './api'
 import editDialog from './components/edit-dialog.vue'
+import { MenuItem } from './types'
 
 const tableProps = reactive({
   data: []
@@ -117,11 +134,37 @@ const handleSaved = () => {
   init(paginationProps.currentPage, paginationProps.pageSize)
 }
 
-// 删除
-const handleDelete = (id: number) => {
-  del(id).then(() =>
+// 确认删除
+const handleDelConfirm = (id: number) => {
+  del(id).then(() => {
+    ElMessage.success('删除成功')
     init(paginationProps.currentPage, paginationProps.pageSize)
-  )
+  })
+}
+
+// 停用/启用描述
+const getStatusText = (status: string) => {
+  return isEnable(status) ? '停用' : '启用'
+}
+
+/**
+ * 启用/停用
+ */
+const handleChangeStatusConfirm = ({
+  id,
+  status
+}: {
+  id: number
+  status: string
+}) => {
+  const newStatus = isEnable(status)
+    ? ACTIVATION_STATUS.DEACTIVATED
+    : ACTIVATION_STATUS.ACTIVATED
+
+  changeStatus(id, newStatus).then(() => {
+    ElMessage.success(`${getStatusText(status)}成功`)
+    init(paginationProps.currentPage, paginationProps.pageSize)
+  })
 }
 </script>
 

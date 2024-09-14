@@ -5,7 +5,7 @@
 export const ACTIVATION_STATUS = {
   ACTIVATED: 'activated',
   DEACTIVATED: 'deactivated'
-}
+} as const
 
 export const ACTIVATION_STATUS_DESC = {
   [ACTIVATION_STATUS.ACTIVATED]: '启用',
@@ -18,7 +18,7 @@ export const MENU_TYPE = {
   MENU: 'menu',
   BUTTON: 'button',
   PAGE: 'page'
-}
+} as const
 
 export const MENU_TYPE_DESC = {
   [MENU_TYPE.MENU]: '菜单',
@@ -32,7 +32,7 @@ export const PAGE_OPERATION = {
   NEW: 'new',
   EDIT: 'edit',
   VIEW: 'view'
-}
+} as const
 
 export const PAGE_OPERATION_DESC = {
   [PAGE_OPERATION.NEW]: '新增',

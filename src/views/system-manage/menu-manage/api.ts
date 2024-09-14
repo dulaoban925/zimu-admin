@@ -1,7 +1,8 @@
 /**
  * 菜单管理接口请求集合
  */
-import { request, type Nullable } from '@/utils'
+import { request, type Nullable, type ValueOf } from '@/utils'
+import type { ACTIVATION_STATUS } from '@/constants'
 import type { MenuItem } from './types'
 
 /**
@@ -27,7 +28,7 @@ export async function getList(
  * @param id 菜单 id
  * @returns
  */
-export async function getDetail(id: string): Promise<MenuItem | null> {
+export async function getDetail(id: string): Promise<Nullable<MenuItem>> {
   if (!id) {
     console.error('菜单 id 为空，请检查')
     return null
@@ -65,6 +66,28 @@ export async function del(id: number): Promise<MenuItem> {
   const { data } = await request({
     url: `/menu/${id}`,
     method: 'delete'
+  })
+
+  return data
+}
+
+/**
+ * 启用/停用
+ * @param id 菜单 id
+ * @param status 要变更的状态
+ * @returns
+ */
+export async function changeStatus(
+  id: number,
+  status: ValueOf<typeof ACTIVATION_STATUS>
+): Promise<MenuItem> {
+  const { data } = await request({
+    url: `/menu/changeStatus`,
+    method: 'put',
+    data: {
+      id,
+      status
+    }
   })
 
   return data
