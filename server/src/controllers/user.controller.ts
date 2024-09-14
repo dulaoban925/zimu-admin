@@ -23,8 +23,8 @@ export class UserController extends BaseController {
   }
 
   @Get(`${INTERFACE_PATH.LIST}`)
-  async list() {
-    return await super.list()
+  async list(params: Record<string, any>) {
+    return await super.list(params)
   }
 
   @Get(`${INTERFACE_PATH.QUERY_BY_ID}`)

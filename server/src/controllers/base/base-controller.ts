@@ -10,8 +10,8 @@ export class BaseController {
    * 全列表查询
    * @returns
    */
-  async list() {
-    const list = await this.currentService.queryList()
+  async list(params: Record<string, any>) {
+    const list = await this.currentService.queryList(params)
     return success(list)
   }
 
@@ -19,8 +19,13 @@ export class BaseController {
    * 分页列表查询
    * @returns
    */
-  async listByPage(page: number, pageSize: number) {
-    const list = await this.currentService.queryByPage(page, pageSize)
+  async listByPage(params: Record<string, any>) {
+    const { page, pageSize, ...filterParams } = params
+    const list = await this.currentService.queryByPage(
+      page,
+      pageSize,
+      filterParams
+    )
     return success(list)
   }
 

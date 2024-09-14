@@ -13,7 +13,7 @@ import {
   Param,
   Post,
   Put,
-  QueryParam
+  QueryParams
 } from 'routing-controllers'
 import { BaseController } from './base/base-controller'
 
@@ -29,11 +29,8 @@ export class MenuController extends BaseController {
    * @returns
    */
   @Get(`${INTERFACE_PATH.LIST_BY_PAGE}`)
-  listByPage(
-    @QueryParam('page') page: number,
-    @QueryParam('pageSize') pageSize: number
-  ) {
-    return super.listByPage(page, pageSize)
+  listByPage(@QueryParams() params: Record<string, any>) {
+    return super.listByPage(params)
   }
 
   /**
