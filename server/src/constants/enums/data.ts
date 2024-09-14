@@ -40,7 +40,7 @@ export enum ACTIVATION_STATUS {
 }
 
 export enum ACTIVATION_STATUS_DESC {
-  activated = '激活',
+  activated = '启用',
   deactivated = '停用'
 }
 

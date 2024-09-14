@@ -1,7 +1,12 @@
 /**
  * 菜单实体
  */
-import { ACTIVATION_STATUS, MENU_TYPE, MENU_TYPE_DESC } from '@constants/enums'
+import {
+  ACTIVATION_STATUS,
+  ACTIVATION_STATUS_DESC,
+  MENU_TYPE,
+  MENU_TYPE_DESC
+} from '@constants/enums'
 import { CURRENT_USER } from '@constants/redis-keys'
 import { get } from '@utils/redis'
 import { BeforeInsert, BeforeUpdate, Column, Entity } from 'typeorm'
@@ -48,6 +53,11 @@ export class Menu extends BaseEntity {
     default: ACTIVATION_STATUS.ACTIVATED
   })
   status!: ACTIVATION_STATUS
+
+  // 状态描述
+  get statusText(): string {
+    return ACTIVATION_STATUS_DESC[this.status] ?? null
+  }
 
   // 父菜单编码
   @Column()
