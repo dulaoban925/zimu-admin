@@ -20,9 +20,9 @@
         prop="typeText"
         label="类型"
         filterable
-        min-width="120"
+        min-width="100"
       />
-      <zm-table-column prop="parent" label="父菜单编码" min-width="180" />
+      <zm-table-column prop="parent" label="父菜单编码" min-width="150" />
       <zm-table-column label="图标" min-width="60">
         <template #default="{ row: { icon } }">
           <el-icon size="18"><component :is="getIcon(icon)" /></el-icon>
@@ -30,7 +30,13 @@
       </zm-table-column>
       <zm-table-column prop="level" label="层级" min-width="60" />
       <zm-table-column prop="sort" label="排序" min-width="60" />
-      <zm-table-column prop="sort" label="状态" min-width="80" />
+      <zm-table-column prop="statusText" label="状态" min-width="80">
+        <template #default="{ row: { status, statusText } }">
+          <el-tag :type="isEnable(status) ? 'primary' : 'danger'">{{
+            statusText
+          }}</el-tag>
+        </template>
+      </zm-table-column>
       <zm-table-column fixed="right" label="操作" min-width="180">
         <template #default="{ row }">
           <zm-button link type="primary" @click="handleEdit(row.id)">
@@ -80,7 +86,6 @@ import { getIcon } from '@/utils/icons'
 import { isEnable } from '@/utils/is'
 import { changeStatus, del, getList } from './api'
 import editDialog from './components/edit-dialog.vue'
-import { MenuItem } from './types'
 
 const tableProps = reactive({
   data: []
