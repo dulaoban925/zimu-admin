@@ -1,10 +1,4 @@
-/**
- * 使用 cjs 文件后缀
- * 因为 package.json 设置了 type：”module“，而 prettier 暂未支持
- * issue: https://github.com/prettier/prettier/issues/12701
- * 计划 v3 版本支持
- */
-module.exports = {
+export default {
   // 语句结尾不加分号
   semi: false,
   // 使用单引号
