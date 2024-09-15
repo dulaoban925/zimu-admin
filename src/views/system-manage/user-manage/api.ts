@@ -1,9 +1,8 @@
 /**
  * 用户管理接口请求集合
  */
-import { request, type Nullable, type ValueOf } from '@/utils'
+import { request, type Nullable } from '@/utils'
 import { objectToQueryString } from '@/utils/normal'
-import type { ACTIVATION_STATUS } from '@/constants'
 import type { UserItem } from './types'
 
 /**
@@ -54,7 +53,7 @@ export async function getDetail(id: string): Promise<Nullable<UserItem>> {
  */
 export async function save(user: UserItem): Promise<UserItem> {
   const { data } = await request({
-    url: `/user/upsert`,
+    url: `/user/save`,
     method: 'post',
     data: user
   })

@@ -54,7 +54,7 @@ export async function getDetail(id: string): Promise<Nullable<MenuItem>> {
  */
 export async function save(menu: MenuItem): Promise<MenuItem> {
   const { data } = await request({
-    url: `/menu/upsert`,
+    url: `/menu/save`,
     method: 'post',
     data: menu
   })

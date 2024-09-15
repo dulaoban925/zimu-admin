@@ -34,7 +34,7 @@ export class MenuController extends BaseController {
   }
 
   /**
-   * 分页列表查询
+   * 详情查询
    * @returns
    */
   @Get(`${INTERFACE_PATH.QUERY_BY_ID}`)
@@ -43,12 +43,12 @@ export class MenuController extends BaseController {
   }
 
   /**
-   * 新增 or 修改
+   * 保存
    * @returns
    */
-  @Post(`${INTERFACE_PATH.UPSERT}`)
-  upsert(@Body() entity: any) {
-    return super.upsert(entity)
+  @Post(`${INTERFACE_PATH.SAVE}`)
+  save(@Body() entity: any) {
+    return super.save(entity)
   }
 
   /**

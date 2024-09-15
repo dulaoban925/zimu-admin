@@ -79,8 +79,8 @@ export class BaseService {
     return this.repository.update({ id: entity.id }, entity)
   }
 
-  // 新增 or 更新
-  upsert(entity: any) {
+  // 保存
+  save(entity: any) {
     if (!entity) {
       return Promise.reject(new Error('插入数据为空'))
     }
@@ -113,6 +113,6 @@ export class BaseService {
     if (!status) {
       return Promise.reject(new Error('状态不能为空'))
     }
-    return this.upsert({ id, status })
+    return this.save({ id, status })
   }
 }

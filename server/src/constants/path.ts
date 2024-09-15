@@ -6,7 +6,7 @@ export const INTERFACE_PATH = {
   QUERY_BY_ID: '/query/:id', // 查询详情
   INSERT: '/insert', // 新增
   UPDATE: '/update', // 更新
-  UPSERT: '/upsert', // 保存
+  SAVE: '/save', // 保存
   SOFT_DELETE_BY_ID: '/soft/:id', // 软删除
   CHANGE_STATUS: '/changeStatus' // 变更状态
 }

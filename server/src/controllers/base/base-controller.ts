@@ -57,10 +57,10 @@ export class BaseController {
   }
 
   /**
-   * 新增 or 编辑
+   * 保存
    */
-  async upsert(entity: any) {
-    const data = await this.currentService.upsert(entity)
+  async save(entity: any) {
+    const data = await this.currentService.save(entity)
     return success(data)
   }
 
