@@ -1,3 +1,4 @@
-import ActivationStatusSelector from './index.vue'
+import ActivationStatusSelector from './src/index.vue'
 
+export { ActivationStatusSelector }
 export default ActivationStatusSelector
