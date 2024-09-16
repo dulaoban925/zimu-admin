@@ -13,19 +13,19 @@ import {
   Entity,
   JoinTable,
   ManyToMany,
-  PrimaryColumn,
   PrimaryGeneratedColumn
 } from 'typeorm'
+import { BaseEntity } from './base/base.entity'
 import { Role } from './role.entity'
 
 @Entity('user')
-export class User {
+export class User extends BaseEntity {
   // rowId
   @PrimaryGeneratedColumn()
   id!: number
 
   // 用户账号/工号
-  @PrimaryColumn({ name: 'user_name' })
+  @Column({ name: 'user_name', unique: true })
   username!: string
 
   // 用户密码
@@ -48,7 +48,7 @@ export class User {
   }
 
   // 电话
-  @Column()
+  @Column({ unique: true })
   tel!: string
 
   // 电子邮箱
@@ -91,20 +91,4 @@ export class User {
     enum: Y_N
   })
   isAdmin!: Y_N
-
-  // 创建人
-  @Column({ name: 'created_by' })
-  createdBy!: string
-
-  // 创建时间
-  @Column({ type: 'date', name: 'created_at' })
-  createdAt!: string
-
-  // 更新人
-  @Column({ name: 'updated_by' })
-  updatedBy!: string
-
-  // 更新时间
-  @Column({ type: 'date', name: 'updated_at' })
-  updatedAt!: string
 }

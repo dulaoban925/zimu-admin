@@ -20,6 +20,24 @@ export class UserService extends BaseService {
     super(User)
   }
 
+  // 分页列表
+  async queryByPage(page: number = 1, pageSize: number = 10, params: any = {}) {
+    let { total, rows } = await super.queryByPage(page, pageSize, params)
+
+    rows = rows.map((m: User) => ({
+      ...m,
+      genderText: m.genderText,
+      statusText: m.statusText
+    }))
+
+    return {
+      total,
+      pageSize,
+      page,
+      rows
+    }
+  }
+
   // 根据用户名查询用户详情
   queryByUsername(
     username: string,

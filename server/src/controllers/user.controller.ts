@@ -4,14 +4,20 @@
 import { INTERFACE_PATH } from '@constants/path'
 import { CURRENT_USER } from '@constants/redis-keys'
 import { UserService } from '@services/user.service'
+import { get as getConfig } from '@tools/env-config'
+import { encryptPassword } from '@utils/pwd'
 import { success } from '@utils/r'
 import { get, hGet } from '@utils/redis'
 import {
   Authorized,
+  Body,
   Controller,
+  Delete,
   Get,
   Param,
-  QueryParam
+  Post,
+  QueryParam,
+  QueryParams
 } from 'routing-controllers'
 import { BaseController } from './base/base-controller'
 
@@ -22,14 +28,39 @@ export class UserController extends BaseController {
     super(new UserService())
   }
 
-  @Get(`${INTERFACE_PATH.LIST}`)
-  async list(params: Record<string, any>) {
-    return await super.list(params)
+  /**
+   * 分页列表查询
+   * @returns
+   */
+  @Get(`${INTERFACE_PATH.LIST_BY_PAGE}`)
+  listByPage(@QueryParams() params: Record<string, any>) {
+    return super.listByPage(params)
   }
 
+  /**
+   * 详情查询
+   * @returns
+   */
   @Get(`${INTERFACE_PATH.QUERY_BY_ID}`)
   detail(@Param('id') id: number) {
     return super.detail(id)
+  }
+
+  /**
+   * 保存
+   * @returns
+   */
+  @Post(`${INTERFACE_PATH.SAVE}`)
+  save(@Body() entity: any) {
+    return super.save(entity)
+  }
+
+  /**
+   * 删除
+   */
+  @Delete(`${INTERFACE_PATH.BY_ID}`)
+  softDelete(@Param('id') id: number) {
+    return super.delete(id)
   }
 
   /**
@@ -57,5 +88,17 @@ export class UserController extends BaseController {
       await this.currentService.queryAuthByUsername(currentUsername)
 
     return success(resources)
+  }
+
+  @Get('/resetPassword/:id')
+  async resetPassword(@Param('id') id: number) {
+    // 加密密码
+    const resetPassword = await encryptPassword(
+      getConfig('resetPassword') as string
+    )
+    // 更新用户密码
+    await this.currentService.save({ id, password: resetPassword })
+
+    return true
   }
 }

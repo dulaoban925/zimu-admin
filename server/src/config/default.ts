@@ -12,7 +12,9 @@ const defaultEnvConfigs = {
   // Redis 配置
   redis: {
     url: 'redis://localhost:6379'
-  }
+  },
+  // 用户重置密码
+  resetPassword: 'password'
 }
 
 export default defaultEnvConfigs
