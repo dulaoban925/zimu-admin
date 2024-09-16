@@ -12,31 +12,35 @@
         prop="username"
         label="账号"
         filterable
-        min-width="180"
+        min-width="120"
       />
       <zm-table-column prop="name" label="姓名" filterable min-width="100" />
       <zm-table-column
         prop="genderText"
         label="性别"
         filterable
-        min-width="100"
+        min-width="80"
       />
-      <zm-table-column prop="tel" label="电话" min-width="150" />
-      <zm-table-column prop="email" label="电子邮箱" min-width="60" />
-      <zm-table-column prop="address" label="住址" min-width="60" />
+      <zm-table-column prop="tel" label="电话" min-width="120" />
+      <zm-table-column prop="email" label="电子邮箱" min-width="120" />
+      <zm-table-column prop="address" label="住址" min-width="180" />
       <zm-table-column prop="isAdmin" label="超管权限" min-width="80">
         <template #default="{ row: { isAdmin } }">
-          <el-checkbox :value="isYes(isAdmin)" />
+          <el-tag v-if="isAdmin" :type="isYes(isAdmin) ? 'primary' : 'danger'"
+            >{{ Y_N_DESC[isAdmin as keyof typeof Y_N_DESC] }}
+          </el-tag>
         </template>
       </zm-table-column>
       <zm-table-column prop="statusText" label="状态" min-width="80">
         <template #default="{ row: { status, statusText } }">
-          <el-tag :type="isServing(status) ? 'primary' : 'danger'">{{
-            statusText
-          }}</el-tag>
+          <el-tag
+            v-if="status"
+            :type="isServing(status) ? 'primary' : 'danger'"
+            >{{ statusText }}</el-tag
+          >
         </template>
       </zm-table-column>
-      <zm-table-column fixed="right" label="操作" min-width="120">
+      <zm-table-column fixed="right" label="操作" min-width="180">
         <template #default="{ row }">
           <zm-button link type="primary" @click="handleEdit(row.id)">
             编辑
@@ -51,6 +55,17 @@
             @confirm="handleDelConfirm(row.id)"
           >
             删除
+          </zm-button>
+          <zm-button
+            link
+            type="primary"
+            need-confirm
+            :pop-confirm-props="{
+              title: '确认重置？'
+            }"
+            @confirm="handleResetPassword(row.id)"
+          >
+            重置密码
           </zm-button>
         </template>
       </zm-table-column>
@@ -69,9 +84,9 @@
 
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
-import { PAGE_OPERATION } from '@/constants'
+import { PAGE_OPERATION, Y_N_DESC } from '@/constants'
 import { isServing, isYes } from '@/utils/is'
-import { del, getList } from './api'
+import { del, getList, resetPassword } from './api'
 import editDialog from './components/edit-dialog.vue'
 
 const tableProps = reactive({
@@ -95,7 +110,7 @@ const dialogVisible = ref(false)
 // dialog props
 const dialogProps = reactive<{
   operation?: string
-  menuId?: string
+  userId?: string
 }>({})
 
 /**
@@ -117,7 +132,7 @@ const handleSearch = (filter: any) => {
 // 新增
 const handleAdd = () => {
   Object.assign(dialogProps, {
-    menuId: '',
+    userId: '',
     operation: PAGE_OPERATION.NEW
   })
   dialogVisible.value = true
@@ -126,7 +141,7 @@ const handleAdd = () => {
 // 编辑
 const handleEdit = (id: string) => {
   Object.assign(dialogProps, {
-    menuId: id,
+    userId: id,
     operation: PAGE_OPERATION.EDIT
   })
   dialogVisible.value = true
@@ -141,6 +156,18 @@ const handleSaved = () => {
 const handleDelConfirm = (id: number) => {
   del(id).then(() => {
     ElMessage.success('删除成功')
+    init(
+      paginationProps.currentPage,
+      paginationProps.pageSize,
+      filterModel.value
+    )
+  })
+}
+
+// 重置密码
+const handleResetPassword = (id: number) => {
+  resetPassword(id).then(() => {
+    ElMessage.success('密码重置成功')
     init(
       paginationProps.currentPage,
       paginationProps.pageSize,

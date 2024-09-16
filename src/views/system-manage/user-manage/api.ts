@@ -74,3 +74,16 @@ export async function del(id: number): Promise<UserItem> {
 
   return data
 }
+
+/**
+ * 重置密码
+ * @param id id
+ * @returns
+ */
+export async function resetPassword(id: number): Promise<UserItem> {
+  const { data } = await request({
+    url: `/user/resetPassword/${id}`
+  })
+
+  return data
+}

@@ -47,14 +47,13 @@
         />
       </el-form-item>
       <el-form-item label="超管权限" prop="isAdmin">
-        <el-input
+        <y-n-selector
           v-model="dialogFormModel.isAdmin"
-          type="number"
           placeholder="请输入..."
         />
       </el-form-item>
       <el-form-item label="状态" prop="status">
-        <activation-status-selector
+        <employee-status-selector
           v-model="dialogFormModel.status"
           placeholder="请输入..."
         />
@@ -74,7 +73,6 @@ import {
 import type { ValueOf } from '@/utils'
 import { getDetail, save } from '../api'
 import type { UserItem } from '../types'
-import GenderSelector from './selectors/gender-selector.vue.vue'
 
 defineOptions({
   name: 'UserEditDialog'
@@ -118,15 +116,14 @@ const dialogFormRules = ref<FormRules<UserItem>>({
   name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
   gender: [{ required: true, message: '请选择性别', trigger: 'blur' }],
   tel: [{ required: true, message: '请输入电话', trigger: 'blur' }],
-  sort: [{ required: true, message: '请输入排序', trigger: 'blur' }],
   status: [{ required: true, message: '请选择状态', trigger: 'blur' }]
 })
 
 // 初始化
 const init = async () => {
   if (props.operation === PAGE_OPERATION.EDIT) {
-    const menu = await getDetail(props.userId)
-    if (menu) dialogFormModel.value = menu
+    const user = await getDetail(props.userId)
+    if (user) dialogFormModel.value = user
   }
 }
 
