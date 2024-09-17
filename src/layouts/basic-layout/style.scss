@@ -1,12 +1,13 @@
 @use '@/styles/mixins.scss' as *;
 
 .layout-wrapper {
-
-  --zm-toolbar-height:  2.75rem;
+  --zm-toolbar-height: 3.25rem;
   --zm-toolbar-icon-size: 1.75rem;
   --zm-toolbar-logo-size: 2.5rem;
 
-  .el-header, .el-aside, .el-main {
+  .el-header,
+  .el-aside,
+  .el-main {
     padding: 0;
   }
 
@@ -29,7 +30,8 @@
     height: var(--zm-toolbar-height);
     background-color: var(--el-bg-color);
     border-bottom: 1px solid var(--el-color-info-light-5);
-    padding: calc(var(--zm-common-padding) / 4) calc(var(--zm-common-padding));
+    padding: calc(var(--zm-common-padding) / 4) var(--zm-common-padding);
+    box-sizing: border-box;
 
     @include flex-center-space-between();
 
