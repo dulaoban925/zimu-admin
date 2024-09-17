@@ -17,43 +17,18 @@
       label-suffix=":"
       :rules="dialogFormRules"
     >
-      <el-form-item label="用户名" prop="username">
+      <el-form-item label="编码" prop="code">
         <el-input
-          v-model="dialogFormModel.username"
+          v-model="dialogFormModel.code"
           placeholder="请输入..."
           :disabled="isEdit"
         />
       </el-form-item>
-      <el-form-item label="姓名" prop="name">
+      <el-form-item label="名称" prop="name">
         <el-input v-model="dialogFormModel.name" placeholder="请输入..." />
       </el-form-item>
-      <el-form-item label="性别" prop="gender">
-        <gender-selector
-          v-model="dialogFormModel.gender"
-          placeholder="请输入..."
-        />
-      </el-form-item>
-      <el-form-item label="电话" prop="tel">
-        <el-input v-model="dialogFormModel.tel" placeholder="请输入..." />
-      </el-form-item>
-      <el-form-item label="电子邮箱" prop="email">
-        <el-input v-model="dialogFormModel.email" placeholder="请输入..." />
-      </el-form-item>
-      <el-form-item label="住址" prop="address">
-        <el-input
-          v-model="dialogFormModel.address"
-          type="number"
-          placeholder="请输入..."
-        />
-      </el-form-item>
-      <el-form-item label="超管权限" prop="isAdmin">
-        <y-n-selector
-          v-model="dialogFormModel.isAdmin"
-          placeholder="请输入..."
-        />
-      </el-form-item>
       <el-form-item label="状态" prop="status">
-        <employee-status-selector
+        <activation-status-selector
           v-model="dialogFormModel.status"
           placeholder="请输入..."
         />
@@ -65,17 +40,16 @@
 <script setup lang="ts">
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import {
-  EMPLOYEE_STATUS,
+  ACTIVATION_STATUS,
   PAGE_OPERATION,
-  PAGE_OPERATION_DESC,
-  Y_N
+  PAGE_OPERATION_DESC
 } from '@/constants'
 import type { ValueOf } from '@/utils'
 import { getDetail, save } from '../api'
-import type { UserItem } from '../types'
+import type { RoleItem } from '../types'
 
 defineOptions({
-  name: 'UserEditDialog'
+  name: 'RoleEditDialog'
 })
 
 const props = defineProps({
@@ -84,8 +58,8 @@ const props = defineProps({
     type: String as PropType<ValueOf<typeof PAGE_OPERATION>>,
     default: PAGE_OPERATION.NEW
   },
-  // 用户 id
-  userId: {
+  // 角色 id
+  roleId: {
     type: String,
     default: ''
   }
@@ -99,31 +73,28 @@ const visible = defineModel({ type: Boolean, default: false })
 const isEdit = computed(() => props.operation === PAGE_OPERATION.EDIT)
 // 弹窗标题
 const dialogTitle = computed(
-  () => `${PAGE_OPERATION_DESC[props.operation]}用户`
+  () => `${PAGE_OPERATION_DESC[props.operation]}角色`
 )
 // 表单 ref
 const dialogFormRef = ref<FormInstance>()
 // 表单默认值
 const dialogFormDefault = {
-  isAdmin: Y_N.N,
-  status: EMPLOYEE_STATUS.SERVING
+  status: ACTIVATION_STATUS.ACTIVATED
 }
 // 表单对象
-const dialogFormModel = ref<UserItem>({ ...dialogFormDefault })
+const dialogFormModel = ref<RoleItem>({ ...dialogFormDefault })
 // 表单规则
-const dialogFormRules = ref<FormRules<UserItem>>({
-  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-  name: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
-  gender: [{ required: true, message: '请选择性别', trigger: 'blur' }],
-  tel: [{ required: true, message: '请输入电话', trigger: 'blur' }],
+const dialogFormRules = ref<FormRules<RoleItem>>({
+  code: [{ required: true, message: '请输入编码', trigger: 'blur' }],
+  name: [{ required: true, message: '请输入名称', trigger: 'blur' }],
   status: [{ required: true, message: '请选择状态', trigger: 'blur' }]
 })
 
 // 初始化
 const init = async () => {
   if (props.operation === PAGE_OPERATION.EDIT) {
-    const user = await getDetail(props.userId)
-    if (user) dialogFormModel.value = user
+    const role = await getDetail(props.roleId)
+    if (role) dialogFormModel.value = role
   }
 }
 

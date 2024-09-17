@@ -18,6 +18,7 @@ import {
 import { BaseController } from './base/base-controller'
 
 @Controller('/auth')
+@Authorized()
 export class AuthController extends BaseController {
   constructor() {
     super(new AuthService())

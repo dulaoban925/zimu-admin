@@ -1,7 +1,13 @@
 /**
  * 用户数据类型
  */
-import type { EMPLOYEE_STATUS, GENDER, Y_N } from '@/constants'
+import type {
+  EMPLOYEE_STATUS,
+  EMPLOYEE_STATUS_DESC,
+  GENDER,
+  GENDER_DESC,
+  Y_N
+} from '@/constants'
 import type { ValueOf } from '@/utils'
 
 export type UserItem = {
@@ -9,9 +15,17 @@ export type UserItem = {
   username?: string
   name?: string
   gender?: ValueOf<typeof GENDER>
+  genderText?: ValueOf<typeof GENDER_DESC>
   tel?: string
   email?: string
   address?: string
   isAdmin?: ValueOf<typeof Y_N>
   status?: ValueOf<typeof EMPLOYEE_STATUS>
+  statusText?: ValueOf<typeof EMPLOYEE_STATUS_DESC>
+  version?: number
+  createdBy?: string
+  createdAt?: string
+  updatedBy?: string
+  updatedAt?: string
+  deletedAt?: string
 }

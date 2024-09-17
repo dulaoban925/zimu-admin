@@ -7,7 +7,7 @@ import { UserService } from '@services/user.service'
 import { get as getConfig } from '@tools/env-config'
 import { encryptPassword } from '@utils/pwd'
 import { success } from '@utils/r'
-import { get, hGet } from '@utils/redis'
+import { get } from '@utils/redis'
 import {
   Authorized,
   Body,

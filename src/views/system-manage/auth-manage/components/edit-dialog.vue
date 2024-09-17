@@ -58,7 +58,7 @@ const props = defineProps({
     type: String as PropType<ValueOf<typeof PAGE_OPERATION>>,
     default: PAGE_OPERATION.NEW
   },
-  // 菜单 id
+  // 权限 id
   authId: {
     type: String,
     default: ''
@@ -73,7 +73,7 @@ const visible = defineModel({ type: Boolean, default: false })
 const isEdit = computed(() => props.operation === PAGE_OPERATION.EDIT)
 // 弹窗标题
 const dialogTitle = computed(
-  () => `${PAGE_OPERATION_DESC[props.operation]}用户`
+  () => `${PAGE_OPERATION_DESC[props.operation]}权限`
 )
 // 表单 ref
 const dialogFormRef = ref<FormInstance>()
