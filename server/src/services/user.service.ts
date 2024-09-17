@@ -24,10 +24,10 @@ export class UserService extends BaseService {
   async queryByPage(page: number = 1, pageSize: number = 10, params: any = {}) {
     let { total, rows } = await super.queryByPage(page, pageSize, params)
 
-    rows = rows.map((m: User) => ({
-      ...m,
-      genderText: m.genderText,
-      statusText: m.statusText
+    rows = rows.map((r: User) => ({
+      ...r,
+      genderText: r.genderText,
+      statusText: r.statusText
     }))
 
     return {

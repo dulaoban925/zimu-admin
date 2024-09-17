@@ -13,10 +13,10 @@ export class MenuService extends BaseService {
   async queryByPage(page: number = 1, pageSize: number = 10, params: any = {}) {
     let { total, rows } = await super.queryByPage(page, pageSize, params)
 
-    rows = rows.map((m: Menu) => ({
-      ...m,
-      typeText: m.typeText,
-      statusText: m.statusText
+    rows = rows.map((r: Menu) => ({
+      ...r,
+      typeText: r.typeText,
+      statusText: r.statusText
     }))
 
     return {

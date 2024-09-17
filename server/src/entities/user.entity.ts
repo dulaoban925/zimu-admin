@@ -20,10 +20,6 @@ import { Role } from './role.entity'
 
 @Entity('user')
 export class User extends BaseEntity {
-  // rowId
-  @PrimaryGeneratedColumn()
-  id!: number
-
   // 用户账号/工号
   @Column({ name: 'user_name', unique: true })
   username!: string
