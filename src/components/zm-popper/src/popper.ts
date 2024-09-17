@@ -1,4 +1,4 @@
-import { dialogProps } from 'element-plus'
+import { dialogProps, drawerProps } from 'element-plus'
 import type { ValueOf } from '@/utils'
 import type { PropType } from 'vue'
 
@@ -9,6 +9,7 @@ export const PopperTypes = {
 
 export const zmPopperProps = {
   ...dialogProps,
+  ...drawerProps,
   // popper 类型
   type: {
     type: String as PropType<ValueOf<typeof PopperTypes>>,

@@ -2,8 +2,14 @@
  * 弹窗组件
  * 支持 Dialog 和 Drawer
  */
-import { dialogProps, ElButton, ElDialog } from 'element-plus'
-import { zmPopperEmits, zmPopperProps } from './popper'
+import {
+  dialogProps,
+  drawerProps,
+  ElButton,
+  ElDialog,
+  ElDrawer
+} from 'element-plus'
+import { PopperTypes, zmPopperEmits, zmPopperProps } from './popper'
 
 export const ZmPopper = defineComponent({
   name: 'ZmPopper',
@@ -28,6 +34,14 @@ export const ZmPopper = defineComponent({
       }, {})
     )
 
+    // 传递给 ElDrawer 的 props
+    const elDrawerProps = computed(() =>
+      Object.keys(drawerProps).reduce((pre: any, cur: any) => {
+        pre[cur] = props[cur]
+        return pre
+      }, {})
+    )
+
     // 取消操作
     const onCancel = () => {
       visible.value = false
@@ -43,6 +57,7 @@ export const ZmPopper = defineComponent({
     return {
       visible,
       elDialogProps,
+      elDrawerProps,
       onCancel,
       onConfirm
     }
@@ -66,12 +81,24 @@ export const ZmPopper = defineComponent({
       default: this.$slots.default,
       footer
     }
-    return (
+
+    // Dialog 组件
+    const renderDialog = (
       <ElDialog
         {...this.elDialogProps}
         v-model={this.visible}
         v-slots={slots}
       ></ElDialog>
     )
+
+    // Drawer 组件
+    const renderDrawer = (
+      <ElDrawer
+        {...this.elDrawerProps}
+        v-model={this.visible}
+        v-slots={slots}
+      ></ElDrawer>
+    )
+    return this.type === PopperTypes.DIALOG ? renderDialog : renderDrawer
   }
 })
