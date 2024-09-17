@@ -5,6 +5,8 @@ import { request, type Nullable } from '@/utils'
 import { objectToQueryString } from '@/utils/normal'
 import type { UserItem } from './types'
 
+const INTERFACE_PREFIX = '/user'
+
 /**
  * 获取列表
  * @param page 当前页数
@@ -20,7 +22,7 @@ export async function getList(
     Object.assign({}, filter, { page, pageSize })
   )
   const { data } = await request({
-    url: `/user/listByPage?${query}`,
+    url: `${INTERFACE_PREFIX}/listByPage?${query}`,
     method: 'get'
   })
 
@@ -39,7 +41,7 @@ export async function getDetail(id: string): Promise<Nullable<UserItem>> {
   }
 
   const { data } = await request({
-    url: `/user/query/${id}`,
+    url: `${INTERFACE_PREFIX}/query/${id}`,
     method: 'get'
   })
 
@@ -53,7 +55,7 @@ export async function getDetail(id: string): Promise<Nullable<UserItem>> {
  */
 export async function save(user: UserItem): Promise<UserItem> {
   const { data } = await request({
-    url: `/user/save`,
+    url: `${INTERFACE_PREFIX}/save`,
     method: 'post',
     data: user
   })
@@ -68,7 +70,7 @@ export async function save(user: UserItem): Promise<UserItem> {
  */
 export async function del(id: number): Promise<UserItem> {
   const { data } = await request({
-    url: `/user/${id}`,
+    url: `${INTERFACE_PREFIX}/${id}`,
     method: 'delete'
   })
 
@@ -82,7 +84,7 @@ export async function del(id: number): Promise<UserItem> {
  */
 export async function resetPassword(id: number): Promise<UserItem> {
   const { data } = await request({
-    url: `/user/resetPassword/${id}`
+    url: `${INTERFACE_PREFIX}/resetPassword/${id}`
   })
 
   return data

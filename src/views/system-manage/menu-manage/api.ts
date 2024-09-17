@@ -6,6 +6,8 @@ import { objectToQueryString } from '@/utils/normal'
 import type { ACTIVATION_STATUS } from '@/constants'
 import type { MenuItem } from './types'
 
+const INTERFACE_PREFIX = '/menu'
+
 /**
  * 获取列表
  * @param page 当前页数
@@ -21,7 +23,7 @@ export async function getList(
     Object.assign({}, filter, { page, pageSize })
   )
   const { data } = await request({
-    url: `/menu/listByPage?${query}`,
+    url: `${INTERFACE_PREFIX}/listByPage?${query}`,
     method: 'get'
   })
 
@@ -40,7 +42,7 @@ export async function getDetail(id: string): Promise<Nullable<MenuItem>> {
   }
 
   const { data } = await request({
-    url: `/menu/query/${id}`,
+    url: `${INTERFACE_PREFIX}/query/${id}`,
     method: 'get'
   })
 
@@ -54,7 +56,7 @@ export async function getDetail(id: string): Promise<Nullable<MenuItem>> {
  */
 export async function save(menu: MenuItem): Promise<MenuItem> {
   const { data } = await request({
-    url: `/menu/save`,
+    url: `${INTERFACE_PREFIX}/save`,
     method: 'post',
     data: menu
   })
@@ -69,7 +71,7 @@ export async function save(menu: MenuItem): Promise<MenuItem> {
  */
 export async function del(id: number): Promise<MenuItem> {
   const { data } = await request({
-    url: `/menu/${id}`,
+    url: `${INTERFACE_PREFIX}/${id}`,
     method: 'delete'
   })
 
@@ -87,7 +89,7 @@ export async function changeStatus(
   status: ValueOf<typeof ACTIVATION_STATUS>
 ): Promise<MenuItem> {
   const { data } = await request({
-    url: `/menu/changeStatus`,
+    url: `${INTERFACE_PREFIX}/changeStatus`,
     method: 'put',
     data: {
       id,
