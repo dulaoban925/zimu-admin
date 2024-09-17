@@ -1,7 +1,7 @@
 /**
  * 权限实体
  */
-import { ACTIVATION_STATUS } from '@constants/enums'
+import { ACTIVATION_STATUS, ACTIVATION_STATUS_DESC } from '@constants/enums'
 import {
   Column,
   Entity,
@@ -10,16 +10,14 @@ import {
   PrimaryColumn,
   PrimaryGeneratedColumn
 } from 'typeorm'
+import { BaseEntity } from './base/base.entity'
 import { Menu } from './menu.entity'
 import { Role } from './role.entity'
 
 @Entity('auth')
-export class Auth {
-  @PrimaryGeneratedColumn()
-  id!: number
-
+export class Auth extends BaseEntity {
   // 权限编码
-  @PrimaryColumn()
+  @Column({ unique: true })
   code!: string
 
   // 权限名称
@@ -33,6 +31,10 @@ export class Auth {
     default: ACTIVATION_STATUS.ACTIVATED
   })
   status!: ACTIVATION_STATUS
+
+  get statusText() {
+    return ACTIVATION_STATUS_DESC[this.status] ?? ''
+  }
 
   // 关联的角色列表
   @ManyToMany(() => Role, role => role.authorizations)
@@ -50,16 +52,4 @@ export class Auth {
     }
   })
   menus!: Menu[]
-
-  @Column({ name: 'created_by' })
-  createdBy!: string
-
-  @Column({ type: 'date', name: 'created_at' })
-  createdAt!: string
-
-  @Column({ name: 'updated_by' })
-  updatedBy!: string
-
-  @Column({ type: 'date', name: 'updated_at' })
-  updatedAt!: string
 }
