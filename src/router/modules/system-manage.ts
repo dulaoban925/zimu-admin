@@ -8,7 +8,7 @@ const RouteComponents = {
   RoleManage: () => import('@/views/system-manage/role-manage/index.vue')
 }
 
-const systemSettingsRoutes: ZiMuRoute.Route = {
+const systemManageRoutes: ZiMuRoute.Route = {
   name: 'SystemManage',
   path: '/system-manage',
   component: ROUTE_COMPONENT_LAYOUT_VALUE.BASIC,
@@ -41,4 +41,4 @@ const systemSettingsRoutes: ZiMuRoute.Route = {
   ]
 }
 
-export default systemSettingsRoutes
+export default systemManageRoutes
