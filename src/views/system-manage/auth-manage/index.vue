@@ -57,9 +57,15 @@
     </zm-table>
 
     <edit-dialog
-      v-model="dialogVisible"
-      v-bind="dialogProps"
-      @saved="handleSaved"
+      v-model="editDialogVisible"
+      v-bind="editDialogProps"
+      @saved="handleReload"
+    />
+    <!-- 分配资源弹窗 -->
+    <distribute-dialog
+      v-model="distributeDialogVisible"
+      v-bind="distributeDialogProps"
+      @distribute="handleReload"
     />
   </div>
 </template>
@@ -68,7 +74,9 @@
 import { ElMessage } from 'element-plus'
 import { ACTIVATION_STATUS, PAGE_OPERATION } from '@/constants'
 import { isEnable } from '@/utils/is'
+import type { ValueOf } from '@/utils'
 import { changeStatus, del, getList } from './api'
+import DistributeDialog from './components/distribute-dialog.vue'
 import editDialog from './components/edit-dialog.vue'
 
 const tableProps = reactive({
@@ -88,10 +96,10 @@ onBeforeMount(() => {
 })
 
 // 弹窗显隐
-const dialogVisible = ref(false)
+const editDialogVisible = ref(false)
 // dialog props
-const dialogProps = reactive<{
-  operation?: string
+const editDialogProps = reactive<{
+  operation?: ValueOf<typeof PAGE_OPERATION>
   authId?: string
 }>({})
 
@@ -113,24 +121,24 @@ const handleSearch = (filter: any) => {
 
 // 新增
 const handleAdd = () => {
-  Object.assign(dialogProps, {
+  Object.assign(editDialogProps, {
     authId: '',
     operation: PAGE_OPERATION.NEW
   })
-  dialogVisible.value = true
+  editDialogVisible.value = true
 }
 
 // 编辑
 const handleEdit = (id: string) => {
-  Object.assign(dialogProps, {
+  Object.assign(editDialogProps, {
     authId: id,
     operation: PAGE_OPERATION.EDIT
   })
-  dialogVisible.value = true
+  editDialogVisible.value = true
 }
 
-// 保存回调
-const handleSaved = () => {
+// 重新加载
+const handleReload = () => {
   init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
 }
 
@@ -175,12 +183,26 @@ const handleChangeStatusConfirm = ({
   })
 }
 
+/** 分配资源弹窗 start */
+// 弹窗显隐
+const distributeDialogVisible = ref(false)
+// DistributeDialog Props
+const distributeDialogProps = reactive<{
+  operation?: ValueOf<typeof PAGE_OPERATION>
+  authId?: string
+}>({})
+
 /**
  * 分配资源
  */
 const handleDistribute = (id: number) => {
-  console.log('🚀 ~ handleDistribute ~ id:', id)
+  Object.assign(editDialogProps, {
+    authId: id,
+    operation: PAGE_OPERATION.EDIT
+  })
+  distributeDialogVisible.value = true
 }
+/** 分配资源弹窗 end */
 </script>
 
 <style scoped></style>

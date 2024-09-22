@@ -1,6 +1,7 @@
 /**
  * 权限管理接口请求集合
  */
+import { transformFlatMenusToTree } from '@/store/modules/menu/helpers'
 import { request, type Nullable, type ValueOf } from '@/utils'
 import { objectToQueryString } from '@/utils/normal'
 import type { ACTIVATION_STATUS } from '@/constants'
@@ -98,5 +99,45 @@ export async function changeStatus(
     }
   })
 
+  return data
+}
+
+/**
+ * 获取树形结构菜单
+ */
+export async function getMenuTree() {
+  const {
+    data: { rows }
+  } = await request({
+    url: '/menu/list'
+  })
+
+  if (!rows.length) return []
+  const result = transformFlatMenusToTree(rows)
+  return result
+}
+
+/**
+ * 获取当前权限已分配的菜单
+ */
+export async function getDistributedMenu(authId: number) {
+  const { data } = await request({
+    url: `${INTERFACE_PREFIX}/distributedMenus?id=${authId}`
+  })
+  return data
+}
+
+/**
+ * 分配菜单
+ */
+export async function distribute(authId: number, menuIds: number[]) {
+  const { data } = await request({
+    url: `${INTERFACE_PREFIX}/distribute`,
+    method: 'post',
+    data: {
+      authId,
+      menuIds
+    }
+  })
   return data
 }
