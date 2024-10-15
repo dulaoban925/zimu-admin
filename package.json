@@ -13,7 +13,7 @@
     "build:icons": "pnpm run -C packages/zimu-icons build",
     "build:utils": "pnpm run -C packages/zimu-utils build",
     "preview": "vite preview",
-    "lint": "eslint ./src --cache",
+    "lint": "eslint . --cache",
     "lint:fix": "pnpm run lint --fix",
     "prepare": "husky install"
   },
@@ -59,8 +59,8 @@
     "node": ">=16.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx}": [
-      "npm run lint:fix"
+    "*.{js,jsx,vue,ts,tsx,json}": [
+      "eslint --cache --fix"
     ]
   }
 }
