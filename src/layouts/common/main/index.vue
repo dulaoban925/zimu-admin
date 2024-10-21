@@ -26,7 +26,7 @@ defineOptions({
       )
   );
   box-sizing: border-box;
-  background-color: var(--el-bg-color-page);
+  background-color: var(--el-bg-color);
   overflow: auto;
 }
 </style>

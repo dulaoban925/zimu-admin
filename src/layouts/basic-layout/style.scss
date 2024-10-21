@@ -2,8 +2,10 @@
 
 .layout-wrapper {
   --zm-toolbar-height: 3.25rem;
-  --zm-toolbar-icon-size: 1.75rem;
+  --zm-toolbar-icon-size: 1.5rem;
   --zm-toolbar-logo-size: 2.5rem;
+
+  background-color: var(--zm-layout-bg-color);
 
   .el-header,
   .el-aside,
@@ -46,7 +48,7 @@
     max-height: 100%;
     cursor: pointer;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     font-size: var(--zm-toolbar-logo-size);
     font-weight: bold;
     color: var(--el-text-color-primary);

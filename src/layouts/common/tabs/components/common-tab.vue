@@ -53,9 +53,10 @@ const handleClose = () => {
   height: var(--zm-layout-tab-height);
   line-height: var(--zm-layout-tab-height);
   color: var(--el-text-color-primary);
-  background: var(--zm-tab-bg-color);
+  background: var(--el-bg-color-page);
   padding: 0 var(--zm-tab-padding);
   font-size: var(--zm-tab-font-size);
+  border-radius: 10px 10px 0 0;
 
   &:not(:last-child) {
     margin-right: var(--zm-tab-margin);

@@ -20,7 +20,7 @@
 
   &__toolbar {
     height: var(--zm-menu-toolbar-height);
-    padding: calc(var(--zm-common-padding) / 2) var(--zm-common-padding);
+    padding: calc(var(zm-common-padding) / 2) var(--zm-common-padding);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -90,7 +90,7 @@
 
     &--inactive {
       margin-right: var(--zm-common-padding);
-      background-color: var(--el-color-primary-light-9);
+      background-color: var(--el-color-info-light-5);
     }
 
     &--active {

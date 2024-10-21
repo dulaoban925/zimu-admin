@@ -6,7 +6,7 @@
     <el-icon size="50px">
       <pink-bear />
     </el-icon>
-    <span>ZIMU</span>
+    <span>ZIMU-ADMIN</span>
   </div>
 </template>
 
