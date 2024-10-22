@@ -37,9 +37,11 @@
 
     @include flex-center-space-between();
 
-    .el-icon {
-      color: var(--el-text-color-primary);
-      font-size: var(--zm-toolbar-icon-size);
+    &__operation {
+      .el-icon {
+        color: var(--el-text-color-primary);
+        font-size: var(--zm-toolbar-icon-size);
+      }
     }
   }
 
@@ -52,6 +54,10 @@
     font-size: var(--zm-toolbar-logo-size);
     font-weight: bold;
     color: var(--el-text-color-primary);
+
+    .el-icon {
+      font-size: 3rem;
+    }
   }
 }
 

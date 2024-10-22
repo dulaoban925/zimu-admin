@@ -1,6 +1,6 @@
 import { AUTH_KEY } from '@/constants'
 import { useLocalStorage } from '@/hooks'
-import { isFunction } from '..'
+import { isFunction, type Nullable } from '..'
 
 /**
  * 类似 Function.prototype.bind，修改执行上下文指向
@@ -8,8 +8,8 @@ import { isFunction } from '..'
  * @param fn 函数
  * @param context 执行上下文
  */
-function bind(fn: (...args: any[]) => void, context: any) {
-  return function (...args: any[]) {
+function bind(fn: (...args: [...any]) => void, context: any) {
+  return function (...args: [...any]) {
     return fn.apply(context, ...args)
   }
 }
@@ -20,7 +20,11 @@ function bind(fn: (...args: any[]) => void, context: any) {
  * @param source 来源对象
  * @param context 执行上下文
  */
-export function extend(target: any, source: any, context?: any) {
+export function extend(
+  target: Record<string, any>,
+  source: Nullable<Record<string, any>>,
+  context?: any
+) {
   if (!source) return target
   for (const key in source) {
     const value = source[key]

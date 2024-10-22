@@ -24,8 +24,7 @@ export function login(data: { username: string; password: string }) {
     }
 
     // 查询用户信息
-    const userStore = useUserStore()
-    await userStore.getUserInfo(data.username)
+    await useUserStore().getUserInfo(data.username)
 
     // 登录成功后重定向地址
     const href = window.location.href
@@ -53,8 +52,13 @@ export function refreshToken() {
 
 // 登出
 export function logout() {
-  return request({
-    url: '/logout',
-    method: 'get'
+  return promiseWrapper(async () => {
+    await request({
+      url: '/logout',
+      method: 'get'
+    })
+    // 跳转登录
+    const loginUrl = `${window.location.origin}/#/login`
+    window.location.replace(loginUrl)
   })
 }

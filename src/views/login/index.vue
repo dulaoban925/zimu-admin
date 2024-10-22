@@ -27,6 +27,7 @@
           >忘记密码?</el-button
         >
       </div>
+      <test-accounts @click-account="handleTestButtonClick" />
     </div>
     <!-- 雷达效果 -->
     <div class="radar-ripples">
@@ -42,7 +43,7 @@
 
 <script setup lang="ts">
 import { login } from '@/apis/login'
-
+import testAccounts from './components/test-accounts.vue'
 // 登录信息
 const loginInfo = reactive({
   username: '',
@@ -74,6 +75,21 @@ const handleRegister = () => {
  */
 const handleForgetPassword = () => {
   console.log('忘记密码')
+}
+
+/**
+ * 点击测试账号
+ */
+const handleTestButtonClick = (account: string) => {
+  loginInfo.username = account
+  switch (account) {
+    case 'admin':
+      loginInfo.password = 'password'
+      break
+    default:
+      break
+  }
+  handleLogin()
 }
 </script>
 

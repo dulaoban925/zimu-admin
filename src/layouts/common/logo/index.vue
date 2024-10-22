@@ -3,7 +3,7 @@
 -->
 <template>
   <div class="wrapper-logo" @click="handleClick">
-    <el-icon size="50px">
+    <el-icon>
       <pink-bear />
     </el-icon>
     <span>ZIMU-ADMIN</span>
