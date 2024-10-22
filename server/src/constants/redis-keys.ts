@@ -3,3 +3,6 @@ export const PWD_ERROR_TIMES = 'pwd_error_times'
 
 // 当前用户信息，登录时缓存，登出时清空
 export const CURRENT_USER = 'current_user'
+
+// token 黑名单
+export const TOKEN_BLACK_LIST = 'token_black_list'

@@ -10,7 +10,7 @@ import config from 'config'
  * @param key
  * @returns
  */
-export function get(key: string) {
+export function get(key: string): any {
   const hasKey = has(key)
   if (hasKey) {
     return config.get(key)

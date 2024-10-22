@@ -14,7 +14,9 @@ const defaultEnvConfigs = {
     url: 'redis://localhost:6379'
   },
   // 用户重置密码
-  resetPassword: 'password'
+  resetPassword: 'password',
+  // token 过期时间
+  tokenExpire: 60 * 60
 }
 
 export default defaultEnvConfigs

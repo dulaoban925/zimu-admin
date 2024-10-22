@@ -10,7 +10,7 @@ interface R {
  * 成功返回结果
  */
 export function success(
-  data?: Record<string, any>,
+  data?: Record<string, any> | null,
   message?: null | string,
   code?: null | string
 ): R {

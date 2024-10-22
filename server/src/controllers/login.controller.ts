@@ -2,11 +2,17 @@ import { CURRENT_USER, PWD_ERROR_TIMES } from '@constants/redis-keys'
 import { JWT_SECRET } from '@constants/secrets'
 import { User } from '@entities/user.entity'
 import { UserService } from '@services/user.service'
+import { get } from '@tools/env-config'
+import {
+  addTokenToBlackList,
+  clearCurrentUser,
+  getCurrentUserFromToken
+} from '@utils/auth'
 import { comparePassword, encryptPassword } from '@utils/pwd'
 import { error, success } from '@utils/r'
 import { hGet, hSet, set } from '@utils/redis'
 import jwt from 'jsonwebtoken'
-import { Body, Controller, Post } from 'routing-controllers'
+import { Body, Controller, Get, HeaderParam, Post } from 'routing-controllers'
 
 /**
  * 登录 controller
@@ -35,9 +41,11 @@ export class LoginController {
     }
 
     if (isSamePwd) {
+      // 配置的 token 时间，单位为秒
+      const tokenExpire = get('tokenExpire') as number
       // 生成 jwt
       const token = jwt.sign({ username }, JWT_SECRET, {
-        expiresIn: 60 * 60
+        expiresIn: tokenExpire
       })
 
       // 缓存当前用户
@@ -88,6 +96,23 @@ export class LoginController {
     await this.userService.updatePassword(username, newPasswordHash)
 
     return true
+  }
+
+  @Get('/logout')
+  async logout(@HeaderParam('Authorization') authorization: string) {
+    const token = authorization.split(' ')[1]
+    if (!token) {
+      return error('用户未登录')
+    }
+    // 1.验证用户
+    const currentUser = getCurrentUserFromToken(token)
+    if (!currentUser) {
+      return error('用户不存在')
+    }
+    // 2. 失效 token，加入黑名单
+    // 3. 删除 redis currentUser
+    await Promise.all([addTokenToBlackList(token), clearCurrentUser()])
+    return success(null, '退出登录成功')
   }
 
   async checkUser(username: string, password: string) {
