@@ -1,5 +1,5 @@
 <template>
-  <el-table-column v-bind="attrs">
+  <el-table-column v-bind="{ ...props, ...attrs }">
     <template v-if="slots.default" #default="scope">
       <slot v-bind="scope" />
     </template>
@@ -16,10 +16,12 @@ defineOptions({
 
 interface Props {
   filterable?: boolean | QueryFormItemType
+  showOverflowTooltip?: boolean
 }
 
-withDefaults(defineProps<Props>(), {
-  filterable: false
+const props = withDefaults(defineProps<Props>(), {
+  filterable: false,
+  showOverflowTooltip: true
 })
 
 const attrs = useAttrs()
