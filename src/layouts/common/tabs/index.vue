@@ -7,8 +7,8 @@
       <div class="common-tabs__content">
         <common-tab
           v-for="tab in tabs"
-          :key="tab.fullPath"
-          :to="tab"
+          :key="tab[VIEW_DIFF_PROP]"
+          :to="tab[VIEW_DIFF_PROP]"
           :label="tab.meta?.title"
           :closeable="!tab.meta?.affix"
           :active="tab[VIEW_DIFF_PROP] === activeTab"
