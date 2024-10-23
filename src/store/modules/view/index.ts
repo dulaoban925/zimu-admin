@@ -2,7 +2,7 @@
  * 视图页签 store
  */
 import { VIEW_DIFF_PROP } from '@/constants'
-import { routes } from '@/router'
+import { allRoutes, routes } from '@/router'
 import { filterRoutesConfig, getRoutePath } from '@/router/helpers'
 import type { ZiMuRoute } from '@/typings/route.d.ts'
 import type { WithNever } from '@/utils'
@@ -86,7 +86,7 @@ export const useViewStore = defineStore('view-store', () => {
    */
   const initViews = (view: ZiMuRoute.RouteLocationNormalized) => {
     const affixViewRoutes: ZiMuRoute.Route[] = filterRoutesConfig(
-      routes,
+      allRoutes,
       (route: ZiMuRoute.Route) => !!route.meta?.affix
     )
     for (const route of affixViewRoutes) {

@@ -26,4 +26,4 @@ export async function setupRouter(app: App<Element>) {
 }
 
 export default router
-export * from './modules'
+export * from './routes'

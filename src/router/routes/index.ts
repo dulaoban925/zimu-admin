@@ -1,5 +1,6 @@
 import { ROUTE_COMPONENT_LAYOUT_VALUE, STATIC_ROUTE_NAME } from '@/constants'
 import type { ZiMuRoute } from '@/typings/route'
+import { routes } from '../modules'
 
 const RouteComponents = {
   Dashboard: () => import('@/views/dashboard/index.vue'), // 控制台
@@ -81,6 +82,7 @@ const ERROR_ROUTES: ZiMuRoute.Route[] = [
   }
 ]
 
+// 固定路由配置
 export const constantRoutes: ZiMuRoute.Route[] = [
   ROOT_ROUTE,
   LOGIN_ROUTE,
@@ -88,3 +90,9 @@ export const constantRoutes: ZiMuRoute.Route[] = [
   ...ERROR_ROUTES,
   NO_MATCH_ROUTE
 ]
+
+// 动态路由配置
+export { routes }
+
+// 所有路由配置
+export const allRoutes: ZiMuRoute.Route[] = [...constantRoutes, ...routes]
