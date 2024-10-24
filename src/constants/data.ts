@@ -78,3 +78,11 @@ export const Y_N_DESC = {
   [Y_N.N]: '否'
 }
 /** 页面操作类型 end */
+
+/** 主题类型 start */
+export const THEME_SCHEMES = {
+  LIGHT: 'light',
+  DARK: 'dark',
+  AUTO: 'auto'
+} as const
+/** 主题类型 end */

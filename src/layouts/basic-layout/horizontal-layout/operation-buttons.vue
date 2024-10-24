@@ -7,7 +7,14 @@
       />
     </el-icon>
     <el-icon>
-      <component :is="isDark ? Sunny : Moon" @click="toggleThemeMode()" />
+      <component
+        :is="THEME_ICON_MAP[themeStore.themeScheme]"
+        @click="
+          themeStore.setThemeScheme(
+            themeStore.darkMode ? THEME_SCHEMES.LIGHT : THEME_SCHEMES.DARK
+          )
+        "
+      />
     </el-icon>
     <el-dropdown trigger="click" @command="handleUserDropdownCommand">
       <el-icon><avatar-line /></el-icon>
@@ -21,17 +28,23 @@
 </template>
 
 <script setup lang="ts">
-import { ExitFullscreen, FullScreen, Moon, Sunny } from '@zimu/icons'
+import { ExitFullscreen, FullScreen, Moon, Sunny, Sunrise } from '@zimu/icons'
 import { logout } from '@/apis'
-import { useTheme } from '@/hooks'
+import { THEME_SCHEMES } from '@/constants'
+import { useThemeStore } from '@/store'
 import { toggleFullScreen } from '@/utils'
+
+const THEME_ICON_MAP = {
+  dark: Moon,
+  light: Sunny,
+  auto: Sunrise
+}
 
 defineOptions({
   name: 'HeaderOperationButtons'
 })
 
-const { mode, toggleThemeMode } = useTheme()
-const isDark = computed(() => mode.value === 'dark')
+const themeStore = useThemeStore()
 
 // TODO:后续走配置，存 pinia
 const fullScreen = ref(false)
