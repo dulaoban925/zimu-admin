@@ -25,6 +25,7 @@ import {
 } from 'echarts/components'
 import { LabelLayout, UniversalTransition } from 'echarts/features'
 import { CanvasRenderer } from 'echarts/renderers'
+import { useThemeStore } from '@/store'
 import type { Nullable } from '@/utils'
 import type { ComposeOption } from 'echarts/core'
 
@@ -56,6 +57,7 @@ export function useEcharts(
   options: ComputedRef<ECOption> | Ref<ECOption>,
   renderFn?: (chartInstance: echarts.ECharts) => void
 ) {
+  const themeStore = useThemeStore()
   // 渲染图表的元素
   const domRef = ref(null)
   // echarts 实例
@@ -87,8 +89,8 @@ export function useEcharts(
   // 渲染函数
   const render = () => {
     if (!domRef.value) return
-    // TODO: 切换主题
-    chart = echarts.init(domRef.value)
+    const theme = themeStore.themeScheme
+    chart = echarts.init(domRef.value, theme)
     if (renderFn) renderFn(chart)
     updateRender(options.value)
   }
@@ -96,6 +98,12 @@ export function useEcharts(
   // 销毁实例
   function destroy() {
     chart?.dispose()
+  }
+
+  // 更新主题
+  const changeTheme = async () => {
+    await destroy()
+    await render()
   }
 
   // 响应式
@@ -124,6 +132,7 @@ export function useEcharts(
         deep: true
       }
     )
+    watch(() => themeStore.themeScheme, changeTheme)
   })
   onScopeDispose(() => {
     destroy()
