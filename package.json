@@ -24,6 +24,7 @@
     "@zimu/utils": "workspace:^1.0.0",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
+    "echarts": "^5.5.1",
     "element-plus": "^2.6.1",
     "face-api.js": "^0.22.2",
     "lodash-es": "^4.17.21",
