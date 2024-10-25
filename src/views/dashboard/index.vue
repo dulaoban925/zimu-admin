@@ -1,15 +1,24 @@
 <template>
   <div class="dashboard">
-    <el-button @click="handleClick">{{ text }}</el-button>
+    <!-- 数据指标 -->
+    <data-card class="part" />
+    <!-- 图表 -->
+    <charts class="part" />
+    <!-- TODO: 代办 & 消息 -->
   </div>
 </template>
 
 <script setup lang="ts">
-const text = ref('我是主页')
+import Charts from './components/charts.vue'
+import DataCard from './components/data-card.vue'
 
-const _router = useRouter()
-
-const handleClick = () => {
-  _router.push('/system-manage/user-manage')
-}
+defineOptions({
+  name: 'Dashboard'
+})
 </script>
+
+<style scoped lang="scss">
+.part {
+  margin-bottom: var(--zm-common-padding);
+}
+</style>
