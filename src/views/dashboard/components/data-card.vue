@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 import { DataAnalysis, Edit, Finished, User } from '@zimu/icons'
+import { useThemeStore } from '@/store'
 import DataCardItem from './data-card-item.vue'
 
 type CardData = {
@@ -25,33 +26,42 @@ type CardData = {
   icon: Component
 }
 
-const cardData = ref<CardData[]>([
+const themeStore = useThemeStore()
+
+const cardBgMap = computed(() => ({
+  userCount: `linear-gradient(to right bottom, ${themeStore.darkMode ? '#f759ab, #eb2f96' : '#ffadd2, #ff85c0'})`,
+  todoCount: `linear-gradient(to right bottom, ${themeStore.darkMode ? '#4096ff, #1677ff' : '#91caff, #69b1ff'})`,
+  downloadCount: `linear-gradient(to right bottom, ${themeStore.darkMode ? '#9254de, #722ed1' : '#d3adf7, #b37feb'})`,
+  dealCount: `linear-gradient(to right bottom, ${themeStore.darkMode ? '#ffc53d, #faad14' : '#ffe58f, #ffd666'})`
+}))
+
+const cardData = computed<CardData[]>(() => [
   {
-    key: 'visitCount',
+    key: 'userCount',
     title: '用户数',
     value: 9527,
-    bg: 'linear-gradient(to right bottom, #ffadd2, #ff85c0)',
+    bg: cardBgMap.value.userCount,
     icon: User
   },
   {
-    key: 'turnover',
+    key: 'todoCount',
     title: '代办数',
     value: 1314,
-    bg: 'linear-gradient(to right bottom, #91caff, #69b1ff)',
+    bg: cardBgMap.value.todoCount,
     icon: Edit
   },
   {
     key: 'downloadCount',
     title: '下载量',
     value: 1425,
-    bg: 'linear-gradient(to right bottom, #d3adf7, #b37feb)',
+    bg: cardBgMap.value.downloadCount,
     icon: DataAnalysis
   },
   {
     key: 'dealCount',
     title: '成交量',
     value: 1104,
-    bg: 'linear-gradient(to right bottom, #ffe58f, #ffd666)',
+    bg: cardBgMap.value.dealCount,
     icon: Finished
   }
 ])
