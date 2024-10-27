@@ -2,8 +2,8 @@
  右键菜单：关闭；关闭其他；关闭左侧；关闭右侧；关闭全部
 -->
 <template>
-  <Teleport :to="to">
-    <Transition>
+  <Teleport :disabled="!teleported" :to="to">
+    <Transition name="zoom-in-top">
       <div v-show="visible" class="context-menu">
         <div
           v-for="m in menuList"
@@ -23,6 +23,7 @@
 import { Close } from '@zimu/icons'
 
 type Props = {
+  teleported?: boolean
   teleportTo: string
 }
 
@@ -33,7 +34,7 @@ type MenuItem = {
   disabled: boolean
 }
 
-const { teleportTo: to } = defineProps<Props>()
+const { teleported = true, teleportTo: to } = defineProps<Props>()
 const emit = defineEmits<{
   itemClick: [item: MenuItem]
 }>()
@@ -88,6 +89,25 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
+$transition-duration: 0.3s;
+$transition-function-fast-bezier: cubic-bezier(0.23, 1, 0.32, 1);
+
+.zoom-in-top-enter-active,
+.zoom-in-top-leave-active {
+  opacity: 1;
+  transform: scaleY(1);
+  transition: (
+    transform $transition-duration $transition-function-fast-bezier,
+    opacity $transition-duration $transition-function-fast-bezier
+  );
+  transform-origin: center top;
+}
+.zoom-in-top-enter-from,
+.zoom-in-top-leave-active {
+  opacity: 0;
+  transform: scaleY(0);
+}
+
 .context-menu {
   position: absolute;
   z-index: 2037;
