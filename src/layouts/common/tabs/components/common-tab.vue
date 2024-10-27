@@ -1,9 +1,16 @@
 <template>
-  <router-link :class="{ 'common-tab': true, active }" :to="to">
+  <router-link
+    v-click-outside="contextMenuRef?.close"
+    :class="{ 'common-tab': true, active }"
+    :to="to[VIEW_DIFF_PROP]"
+    @contextmenu="handleContextMenu"
+  >
     <slot v-if="active" name="active-icon">
       <el-icon size="16"><postcard /></el-icon>
     </slot>
-    <span class="common-tab__label">{{ label }}</span>
+    <span :id="contextMenuTeleportTo" class="common-tab__label">{{
+      label
+    }}</span>
     <el-icon
       v-if="closeable"
       size="16"
@@ -13,10 +20,16 @@
       <close />
     </el-icon>
   </router-link>
+  <context-menu ref="contextMenu" :teleport-to="`#${contextMenuTeleportTo}`" />
 </template>
 
 <script setup lang="ts">
-import type { RouteLocationRaw } from 'vue-router'
+import { ClickOutside as vClickOutside } from 'element-plus'
+import { VIEW_DIFF_PROP } from '@/constants'
+import type { ZiMuRoute } from '@/typings/route'
+import ContextMenu from './context-menu.vue'
+
+type ContextMenuType = InstanceType<typeof ContextMenu>
 
 defineOptions({
   name: 'CommonTab'
@@ -24,7 +37,7 @@ defineOptions({
 
 const props = defineProps({
   to: {
-    type: Object as PropType<RouteLocationRaw>,
+    type: Object as PropType<ZiMuRoute.RouteLocationNormalized>,
     required: true
   },
   label: String,
@@ -36,6 +49,21 @@ const emit = defineEmits(['close'])
 
 const handleClose = () => {
   emit('close', props.to)
+}
+
+const contextMenuTeleportTo = computed(
+  () => `${String(props.to.name)}_${useId()}`
+)
+
+const contextMenuRef = useTemplateRef<ContextMenuType>('contextMenu')
+
+const handleContextMenu = (e: MouseEvent) => {
+  e.preventDefault()
+  console.log(
+    '🚀 ~ handleContextMenu ~ contextMenuRef.value:',
+    contextMenuRef.value
+  )
+  contextMenuRef.value?.open?.()
 }
 </script>
 
