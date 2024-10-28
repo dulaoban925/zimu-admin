@@ -79,6 +79,10 @@ import { changeStatus, del, getList } from './api'
 import DistributeDialog from './components/distribute-dialog.vue'
 import editDialog from './components/edit-dialog.vue'
 
+defineOptions({
+  name: 'AuthManage'
+})
+
 const tableProps = reactive({
   data: []
 })

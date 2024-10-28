@@ -1,7 +1,7 @@
 <template>
   <router-view v-slot="{ Component, route }">
     <zm-transition :mode="TRANSITION_MODE.OUT_IN">
-      <keep-alive :include="[]">
+      <keep-alive :include="cachedViews">
         <component
           :is="Component"
           v-if="appStore.loadedFlag"
@@ -16,7 +16,7 @@
 import { TRANSITION_MODE } from '@components/zm-transition'
 import { useRoute } from 'vue-router'
 import { VIEW_DIFF_PROP } from '@/constants'
-import { useAppStore, useMenuStore } from '@/store'
+import { useAppStore, useMenuStore, useViewStore } from '@/store'
 
 defineOptions({
   name: 'CommonContent'
@@ -25,6 +25,10 @@ defineOptions({
 const _route = useRoute()
 const menuStore = useMenuStore()
 const appStore = useAppStore()
+const viewStore = useViewStore()
+
+// 缓存的视图
+const cachedViews = computed(() => (viewStore.cachedViews ?? []) as string[])
 
 watch(
   () => _route[VIEW_DIFF_PROP],

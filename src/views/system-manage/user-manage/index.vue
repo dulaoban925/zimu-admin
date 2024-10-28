@@ -89,6 +89,10 @@ import { isServing, isYes } from '@/utils/is'
 import { del, getList, resetPassword } from './api'
 import editDialog from './components/edit-dialog.vue'
 
+defineOptions({
+  name: 'UserManage'
+})
+
 const tableProps = reactive({
   data: []
 })

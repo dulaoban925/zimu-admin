@@ -50,7 +50,7 @@ export const useViewStore = defineStore('view-store', () => {
       !view.name ||
       cachedViews.value.includes(view.name!) ||
       !view.meta?.keepAlive ||
-      !view.meta?.blank
+      view.meta?.blank
     if (noNeedCache) return
     cachedViews.value.push(view.name!)
   }

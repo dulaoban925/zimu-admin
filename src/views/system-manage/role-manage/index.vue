@@ -71,6 +71,10 @@ import { isEnable } from '@/utils/is'
 import { changeStatus, del, getList } from './api'
 import editDialog from './components/edit-dialog.vue'
 
+defineOptions({
+  name: 'RoleManage'
+})
+
 const tableProps = reactive({
   data: []
 })

@@ -86,6 +86,10 @@ import { isEnable } from '@/utils/is'
 import { changeStatus, del, getList } from './api'
 import editDialog from './components/edit-dialog.vue'
 
+defineOptions({
+  name: 'MenuManage'
+})
+
 const tableProps = reactive({
   data: []
 })
