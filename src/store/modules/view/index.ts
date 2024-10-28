@@ -1,11 +1,13 @@
 /**
  * 视图页签 store
  */
+import { cloneDeep } from 'lodash-es'
 import { VIEW_DIFF_PROP } from '@/constants'
 import { allRoutes, routes } from '@/router'
 import { filterRoutesConfig, getRoutePath } from '@/router/helpers'
 import type { ZiMuRoute } from '@/typings/route.d.ts'
 import type { WithNever } from '@/utils'
+import { getViews } from './helpers'
 import type { RouteRecordName } from 'vue-router'
 
 export const useViewStore = defineStore('view-store', () => {
@@ -27,7 +29,7 @@ export const useViewStore = defineStore('view-store', () => {
     )
     const exist = matchIndex > -1
     if (exist) return
-    visitedViews.value.push(view)
+    visitedViews.value.push(cloneDeep(view))
   }
 
   // 删除访问视图
@@ -37,6 +39,7 @@ export const useViewStore = defineStore('view-store', () => {
     )
     const exist = matchIndex > -1
     if (!exist) return
+    if (view.meta?.affix) return
     visitedViews.value.splice(matchIndex, 1)
   }
 
@@ -62,8 +65,6 @@ export const useViewStore = defineStore('view-store', () => {
 
   // 新增视图
   const addView = (view: ZiMuRoute.RouteLocationNormalized) => {
-    // 类似深拷贝的作用，避免引用关系导致 visitedViews 元素随路由变化而改变，导致功能失效
-    view = { ...view }
     addVisitedView(view)
     addCachedView(view)
   }
@@ -75,8 +76,8 @@ export const useViewStore = defineStore('view-store', () => {
   }
 
   // 设置激活视图
-  const setActiveView = (view: ZiMuRoute.RouteLocationNormalized) => {
-    activeView.value = view[VIEW_DIFF_PROP]
+  const setActiveView = (view?: ZiMuRoute.RouteLocationNormalized) => {
+    activeView.value = view ? view[VIEW_DIFF_PROP] : ''
   }
 
   /**
@@ -113,6 +114,22 @@ export const useViewStore = defineStore('view-store', () => {
     setActiveView(view)
   }
 
+  /**
+   * 删除 view 左侧的页签
+   * @param view 当前页签
+   * @returns
+   */
+  const delViews = (
+    view: ZiMuRoute.RouteLocationNormalized,
+    type: 'left' | 'right' | 'others' | 'all'
+  ) => {
+    const views = getViews(visitedViews.value, view, type)
+    if (!views.length) return
+    for (const v of views) {
+      delView(v)
+    }
+  }
+
   return {
     /** state start */
     cachedViews,
@@ -128,7 +145,8 @@ export const useViewStore = defineStore('view-store', () => {
     delView,
     delVisitedView,
     delCachedView,
-    setActiveView
+    setActiveView,
+    delViews
     /** action end */
   }
 })

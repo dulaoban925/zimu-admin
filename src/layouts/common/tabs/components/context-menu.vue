@@ -9,7 +9,7 @@
           v-for="m in menuList"
           :key="m.key"
           :class="{ 'context-menu-item': true, 'is-disabled': m.disabled }"
-          @click="handleItemClick(m)"
+          @click.prevent.stop="handleItemClick(m)"
         >
           <el-icon><component :is="m.icon" /></el-icon>
           <span class="context-menu-item__label">{{ m.label }}</span>
@@ -21,30 +21,24 @@
 
 <script setup lang="ts">
 import { Close } from '@zimu/icons'
+import type { ContextMenuItem } from '../types'
 
 type Props = {
   teleported?: boolean
   teleportTo: string
 }
 
-type MenuItem = {
-  key: string
-  label: string
-  icon: Component
-  disabled: boolean
-}
-
 const { teleported = true, teleportTo: to } = defineProps<Props>()
 const emit = defineEmits<{
-  itemClick: [item: MenuItem]
+  itemClick: [item: ContextMenuItem]
 }>()
 
-const menuList = ref<MenuItem[]>([
+const menuList = ref<ContextMenuItem[]>([
   {
-    key: 'closeSelf',
+    key: 'close',
     label: '关闭',
     icon: Close,
-    disabled: true
+    disabled: false
   },
   {
     key: 'closeLeft',
@@ -73,7 +67,7 @@ const menuList = ref<MenuItem[]>([
 ])
 
 const visible = ref(false)
-const handleItemClick = (item: MenuItem) => {
+const handleItemClick = (item: ContextMenuItem) => {
   if (item.disabled) return
   emit('itemClick', item)
   close()

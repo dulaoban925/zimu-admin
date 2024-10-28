@@ -12,7 +12,11 @@
           :label="tab.meta?.title"
           :closeable="!tab.meta?.affix"
           :active="tab[VIEW_DIFF_PROP] === activeTab"
-          @close="handleTabClose"
+          @close="handleTabClose(tab)"
+          @close-left="handleCloseTabs(tab, 'left')"
+          @close-right="handleCloseTabs(tab, 'right')"
+          @close-others="handleCloseTabs(tab, 'others')"
+          @close-all="handleCloseTabs(tab, 'all')"
         />
       </div>
     </zm-scroll>
@@ -58,6 +62,23 @@ const handleTabClose = (tab: ZiMuRoute.RouteLocationNormalized) => {
   }
   // 清除 tab
   viewStore.delView(tab)
+  console.log('🚀 ~ handleTabClose ~ viewStore:', viewStore)
+}
+
+// 批量关闭页签
+const handleCloseTabs = (
+  tab: ZiMuRoute.RouteLocationNormalized,
+  type: 'left' | 'right' | 'others' | 'all'
+) => {
+  viewStore.delViews(tab, type)
+  const visitedViews = viewStore.visitedViews
+  const activeView = viewStore.activeView
+  const activeIndex = visitedViews.findIndex(
+    v => v[VIEW_DIFF_PROP] === activeView
+  )
+  if (activeIndex > -1) return
+  console.log('🚀 ~ activeIndex:', activeIndex)
+  _router.push(visitedViews.at(-1)?.fullPath ?? '/')
 }
 
 // 切换激活的页签
@@ -86,6 +107,7 @@ watch(
   () => {
     viewStore.addView(_route)
     viewStore.setActiveView(_route)
+    console.log('🚀 ~ viewStore:', viewStore)
   }
 )
 
