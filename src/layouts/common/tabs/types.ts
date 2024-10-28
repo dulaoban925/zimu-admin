@@ -7,6 +7,7 @@ export type ContextMenuItem = {
 
 export type ContextMenuItemType =
   | 'close'
+  | 'refresh'
   | 'closeLeft'
   | 'closeRight'
   | 'closeOthers'

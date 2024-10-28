@@ -50,6 +50,7 @@ const { to, active } = defineProps<Props>()
 
 const emit = defineEmits([
   'close',
+  'refresh',
   'closeLeft',
   'closeRight',
   'closeOthers',
@@ -62,9 +63,10 @@ const handleClose = () => {
 
 const closeable = computed(() => !to.meta?.affix)
 
-const contextMenuDisabledKeys = computed(() =>
-  closeable.value ? [] : ['close']
-)
+const contextMenuDisabledKeys = computed(() => [
+  closeable.value ? null : 'close',
+  active ? null : 'refresh'
+])
 
 const contextMenuTeleportTo = computed(() => `${String(to.name)}_${useId()}`)
 

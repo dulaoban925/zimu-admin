@@ -11,6 +11,7 @@
           :to="tab"
           :active="tab[VIEW_DIFF_PROP] === activeTab"
           @close="handleTabClose(tab)"
+          @refresh="handleTabRefresh()"
           @close-left="handleCloseTabs(tab, 'left')"
           @close-right="handleCloseTabs(tab, 'right')"
           @close-others="handleCloseTabs(tab, 'others')"
@@ -24,7 +25,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { VIEW_DIFF_PROP } from '@/constants'
-import { useViewStore } from '@/store'
+import { useAppStore, useViewStore } from '@/store'
 import type { ZiMuRoute } from '@/typings/route'
 import CommonTab from './components/common-tab.vue'
 
@@ -35,6 +36,7 @@ const scrollOptions = {
 const _route = useRoute()
 const _router = useRouter()
 const viewStore = useViewStore()
+const appStore = useAppStore()
 
 defineOptions({
   name: 'CommonTabs'
@@ -60,7 +62,13 @@ const handleTabClose = (tab: ZiMuRoute.RouteLocationNormalized) => {
   }
   // 清除 tab
   viewStore.delView(tab)
-  console.log('🚀 ~ handleTabClose ~ viewStore:', viewStore)
+}
+
+/**
+ * 刷新
+ */
+const handleTabRefresh = () => {
+  appStore.reloadPage(500)
 }
 
 // 批量关闭页签

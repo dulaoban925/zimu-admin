@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { Close } from '@zimu/icons'
+import { Close, Refresh } from '@zimu/icons'
 import type { ContextMenuItem } from '../types'
 
 type Props = {
@@ -44,6 +44,12 @@ const menuList = computed<ContextMenuItem[]>(() => [
     label: '关闭',
     icon: Close,
     disabled: disabledKeys.includes('close')
+  },
+  {
+    key: 'refresh',
+    label: '刷新',
+    icon: Refresh,
+    disabled: disabledKeys.includes('refresh')
   },
   {
     key: 'closeLeft',
