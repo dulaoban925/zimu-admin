@@ -9,7 +9,7 @@
       <el-icon size="16"><postcard /></el-icon>
     </slot>
     <span :id="contextMenuTeleportTo" class="common-tab__label">{{
-      label
+      to.meta?.title ?? 'title 未定义'
     }}</span>
     <el-icon
       v-if="closeable"
@@ -23,6 +23,7 @@
   <context-menu
     ref="contextMenu"
     :teleport-to="`#${contextMenuTeleportTo}`"
+    :disabled-keys="contextMenuDisabledKeys"
     @item-click="handleContextMenuItemClick"
   />
 </template>
@@ -40,15 +41,12 @@ defineOptions({
   name: 'CommonTab'
 })
 
-const props = defineProps({
-  to: {
-    type: Object as PropType<ZiMuRoute.RouteLocationNormalized>,
-    required: true
-  },
-  label: String,
-  closeable: Boolean,
-  active: Boolean
-})
+type Props = {
+  to: ZiMuRoute.RouteLocationNormalized
+  active: boolean
+}
+
+const { to, active } = defineProps<Props>()
 
 const emit = defineEmits([
   'close',
@@ -62,9 +60,13 @@ const handleClose = () => {
   emit('close')
 }
 
-const contextMenuTeleportTo = computed(
-  () => `${String(props.to.name)}_${useId()}`
+const closeable = computed(() => !to.meta?.affix)
+
+const contextMenuDisabledKeys = computed(() =>
+  closeable.value ? [] : ['close']
 )
+
+const contextMenuTeleportTo = computed(() => `${String(to.name)}_${useId()}`)
 
 const contextMenuRef = useTemplateRef<ContextMenuType>('contextMenu')
 

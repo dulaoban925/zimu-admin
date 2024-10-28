@@ -9,8 +9,6 @@
           v-for="tab in tabs"
           :key="tab[VIEW_DIFF_PROP]"
           :to="tab"
-          :label="tab.meta?.title"
-          :closeable="!tab.meta?.affix"
           :active="tab[VIEW_DIFF_PROP] === activeTab"
           @close="handleTabClose(tab)"
           @close-left="handleCloseTabs(tab, 'left')"

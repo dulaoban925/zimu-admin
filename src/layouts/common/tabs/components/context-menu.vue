@@ -26,43 +26,48 @@ import type { ContextMenuItem } from '../types'
 type Props = {
   teleported?: boolean
   teleportTo: string
+  disabledKeys?: string[]
 }
 
-const { teleported = true, teleportTo: to } = defineProps<Props>()
+const {
+  teleported = true,
+  teleportTo: to,
+  disabledKeys = []
+} = defineProps<Props>()
 const emit = defineEmits<{
   itemClick: [item: ContextMenuItem]
 }>()
 
-const menuList = ref<ContextMenuItem[]>([
+const menuList = computed<ContextMenuItem[]>(() => [
   {
     key: 'close',
     label: '关闭',
     icon: Close,
-    disabled: false
+    disabled: disabledKeys.includes('close')
   },
   {
     key: 'closeLeft',
     label: '关闭左侧',
     icon: Close,
-    disabled: false
+    disabled: disabledKeys.includes('closeLeft')
   },
   {
     key: 'closeRight',
     label: '关闭右侧',
     icon: Close,
-    disabled: false
+    disabled: disabledKeys.includes('closeRight')
   },
   {
     key: 'closeOthers',
     label: '关闭其他',
     icon: Close,
-    disabled: false
+    disabled: disabledKeys.includes('closeOthers')
   },
   {
     key: 'closeAll',
     label: '关闭全部',
     icon: Close,
-    disabled: false
+    disabled: disabledKeys.includes('closeAll')
   }
 ])
 
