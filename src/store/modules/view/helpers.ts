@@ -19,6 +19,6 @@ export function getViews(
     case 'others':
       return views.filter(v => v.name !== view.name)
     case 'all':
-      return views
+      return [...views]
   }
 }

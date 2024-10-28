@@ -83,7 +83,6 @@ const handleCloseTabs = (
     v => v[VIEW_DIFF_PROP] === activeView
   )
   if (activeIndex > -1) return
-  console.log('🚀 ~ activeIndex:', activeIndex)
   _router.push(visitedViews.at(-1)?.fullPath ?? '/')
 }
 

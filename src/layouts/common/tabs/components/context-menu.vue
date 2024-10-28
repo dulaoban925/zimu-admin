@@ -21,12 +21,13 @@
 
 <script setup lang="ts">
 import { Close, Refresh } from '@zimu/icons'
+import type { Nullable } from '@/utils'
 import type { ContextMenuItem } from '../types'
 
 type Props = {
   teleported?: boolean
   teleportTo: string
-  disabledKeys?: string[]
+  disabledKeys?: Nullable<string>[]
 }
 
 const {
