@@ -89,6 +89,7 @@ import { ElMessage } from 'element-plus'
 import { ACTIVATION_STATUS, PAGE_OPERATION } from '@/constants'
 import { getIcon } from '@/utils/icons'
 import { isEnable } from '@/utils/is'
+import type { ValueOf } from '@/utils'
 import { changeStatus, del, getList } from './api'
 import editDialog from './components/edit-dialog.vue'
 
@@ -116,7 +117,7 @@ onBeforeMount(() => {
 const dialogVisible = ref(false)
 // dialog props
 const dialogProps = reactive<{
-  operation?: string
+  operation?: ValueOf<typeof PAGE_OPERATION>
   menuId?: string
 }>({})
 
