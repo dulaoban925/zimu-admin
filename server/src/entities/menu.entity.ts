@@ -4,6 +4,8 @@
 import {
   ACTIVATION_STATUS,
   ACTIVATION_STATUS_DESC,
+  MENU_NAVIGATE_TYPE,
+  MENU_NAVIGATE_TYPE_DESC,
   MENU_TYPE,
   MENU_TYPE_DESC
 } from '@constants/enums'
@@ -33,6 +35,19 @@ export class Menu extends BaseEntity {
   get typeText(): string {
     return MENU_TYPE_DESC[this.type] ?? null
   }
+
+  // 跳转类型
+  @Column({ name: 'navigate_type', type: 'enum', enum: MENU_NAVIGATE_TYPE })
+  navigateType!: MENU_NAVIGATE_TYPE
+
+  // 跳转类型描述
+  get navigateTypeText(): string {
+    return MENU_NAVIGATE_TYPE_DESC[this.navigateType] ?? null
+  }
+
+  // 路径
+  @Column()
+  path!: string
 
   // 层级
   @Column()

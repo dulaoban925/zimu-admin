@@ -16,7 +16,8 @@ export class MenuService extends BaseService {
     rows = rows.map((r: Menu) => ({
       ...r,
       typeText: r.typeText,
-      statusText: r.statusText
+      statusText: r.statusText,
+      navigateTypeText: r.navigateTypeText
     }))
 
     return {

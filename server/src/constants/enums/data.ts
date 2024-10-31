@@ -31,6 +31,21 @@ export enum MENU_TYPE_DESC {
   button = '按钮', // 按钮
   page = '系统页' // 系统页
 }
+
+/**
+ * 菜单跳转类型
+ */
+export enum MENU_NAVIGATE_TYPE {
+  INTERNAL = 'internal', // 内部跳转
+  EXTERNAL = 'external', // 外部跳转
+  NONE = 'none' // 无跳转
+}
+
+export enum MENU_NAVIGATE_TYPE_DESC {
+  internal = '内部跳转',
+  external = '外部跳转',
+  none = '无跳转'
+}
 /** 菜单相关枚举 end */
 
 /** 状态 start */

@@ -28,13 +28,22 @@
         <el-input v-model="dialogFormModel.name" placeholder="请输入..." />
       </el-form-item>
       <el-form-item label="类型" prop="type">
-        <type-selector v-model="dialogFormModel.type" placeholder="请输入..." />
+        <type-selector v-model="dialogFormModel.type" placeholder="请选择..." />
       </el-form-item>
       <el-form-item label="父菜单编码" prop="parent">
         <el-input v-model="dialogFormModel.parent" placeholder="请输入..." />
       </el-form-item>
       <el-form-item label="图标" prop="icon">
         <el-input v-model="dialogFormModel.icon" placeholder="请输入..." />
+      </el-form-item>
+      <el-form-item label="跳转类型" prop="navigateType">
+        <navigate-type-selector
+          v-model="dialogFormModel.navigateType"
+          placeholder="请选择..."
+        />
+      </el-form-item>
+      <el-form-item label="地址 URL" prop="path">
+        <el-input v-model="dialogFormModel.path" placeholder="请输入..." />
       </el-form-item>
       <el-form-item label="层级" prop="level">
         <el-input
@@ -64,47 +73,43 @@
 import { ElMessage, type FormInstance, type FormRules } from 'element-plus'
 import {
   ACTIVATION_STATUS,
+  MENU_NAVIGATE_TYPE,
   MENU_TYPE,
   PAGE_OPERATION,
   PAGE_OPERATION_DESC
 } from '@/constants'
+import type { ValueOf } from '@/utils'
 import { getDetail, save } from '../api'
 import type { MenuItem } from '../types'
+import NavigateTypeSelector from './selectors/navigate-type-selector.vue'
 import TypeSelector from './selectors/type-selector.vue'
 
 defineOptions({
   name: 'MenuEditDialog'
 })
 
-const props = defineProps({
-  // 弹窗操作，默认新增
-  operation: {
-    type: String,
-    default: PAGE_OPERATION.NEW
-  },
-  // 菜单 id
-  menuId: {
-    type: String,
-    default: ''
-  }
-})
+type Props = {
+  operation: ValueOf<typeof PAGE_OPERATION>
+  menuId?: string
+}
+
+const { operation = PAGE_OPERATION.NEW, menuId = '' } = defineProps<Props>()
 
 const emit = defineEmits(['saved'])
 
 // 弹窗显隐
 const visible = defineModel({ type: Boolean, default: false })
 // 是否编辑
-const isEdit = computed(() => props.operation === PAGE_OPERATION.EDIT)
+const isEdit = computed(() => operation === PAGE_OPERATION.EDIT)
 // 弹窗标题
-const dialogTitle = computed(
-  () => `${PAGE_OPERATION_DESC[props.operation]}菜单`
-)
+const dialogTitle = computed(() => `${PAGE_OPERATION_DESC[operation]}菜单`)
 // 表单 ref
 const dialogFormRef = ref<FormInstance>()
 // 表单默认值
 const dialogFormDefault = {
   type: MENU_TYPE.MENU,
-  status: ACTIVATION_STATUS.ACTIVATED
+  status: ACTIVATION_STATUS.ACTIVATED,
+  navigateType: MENU_NAVIGATE_TYPE.INTERNAL
 }
 // 表单对象
 const dialogFormModel = ref<MenuItem>({ ...dialogFormDefault })
@@ -120,8 +125,8 @@ const dialogFormRules = ref<FormRules<MenuItem>>({
 
 // 初始化
 const init = async () => {
-  if (props.operation === PAGE_OPERATION.EDIT) {
-    const menu = await getDetail(props.menuId)
+  if (operation === PAGE_OPERATION.EDIT) {
+    const menu = await getDetail(menuId)
     if (menu) dialogFormModel.value = menu
   }
 }

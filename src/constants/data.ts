@@ -53,6 +53,20 @@ export const MENU_TYPE_DESC = {
 }
 /** 菜单类型 end */
 
+/** 菜单跳转类型 start */
+export const MENU_NAVIGATE_TYPE = {
+  INTERNAL: 'internal', // 内部跳转
+  EXTERNAL: 'external', // 外部跳转
+  NONE: 'none' // 无跳转
+}
+
+export const MENU_NAVIGATE_TYPE_DESC = {
+  [MENU_NAVIGATE_TYPE.INTERNAL]: '内部跳转',
+  [MENU_NAVIGATE_TYPE.EXTERNAL]: '外部跳转',
+  [MENU_NAVIGATE_TYPE.NONE]: '无跳转'
+}
+/** 菜单跳转类型 end */
+
 /** 页面操作类型 start */
 export const PAGE_OPERATION = {
   NEW: 'new',

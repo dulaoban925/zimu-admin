@@ -17,6 +17,8 @@ export type MenuItem = {
   typeText?: ValueOf<typeof MENU_TYPE_DESC>
   parent?: string
   icon?: string
+  navigateType?: string
+  path?: string
   level?: number
   sort?: number
   status?: ValueOf<typeof ACTIVATION_STATUS>
