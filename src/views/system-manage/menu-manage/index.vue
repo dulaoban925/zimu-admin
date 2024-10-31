@@ -27,7 +27,11 @@
           <el-icon size="18"><component :is="getIcon(icon)" /></el-icon>
         </template>
       </zm-table-column>
-      <zm-table-column prop="navigateType" label="跳转类型" min-width="100" />
+      <zm-table-column
+        prop="navigateTypeText"
+        label="跳转类型"
+        min-width="100"
+      />
       <zm-table-column prop="path" label="地址 URL" min-width="120" />
       <zm-table-column prop="level" label="层级" min-width="60" />
       <zm-table-column prop="sort" label="排序" min-width="60" />
