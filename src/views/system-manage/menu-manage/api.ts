@@ -18,14 +18,11 @@ export async function getList(
   page: number,
   pageSize: number,
   filter: Record<string, string> = {}
-): Promise<MenuItem[]> {
+): Promise<ZiMuInterface.QueryListByPageResponse<MenuItem>> {
   const query = objectToQueryString(
     Object.assign({}, filter, { page, pageSize })
   )
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/listByPage?${query}`,
-    method: 'get'
-  })
+  const { data } = await request.get(`${INTERFACE_PREFIX}/listByPage?${query}`)
 
   return data
 }
@@ -41,10 +38,7 @@ export async function getDetail(id: string): Promise<Nullable<MenuItem>> {
     return null
   }
 
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/query/${id}`,
-    method: 'get'
-  })
+  const { data } = await request.get(`${INTERFACE_PREFIX}/query/${id}`)
 
   return data
 }
@@ -55,9 +49,7 @@ export async function getDetail(id: string): Promise<Nullable<MenuItem>> {
  * @returns
  */
 export async function save(menu: MenuItem): Promise<MenuItem> {
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/save`,
-    method: 'post',
+  const { data } = await request.post(`${INTERFACE_PREFIX}/save`, {
     data: menu
   })
 
@@ -70,10 +62,7 @@ export async function save(menu: MenuItem): Promise<MenuItem> {
  * @returns
  */
 export async function del(id: number): Promise<MenuItem> {
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/${id}`,
-    method: 'delete'
-  })
+  const { data } = await request.delete(`${INTERFACE_PREFIX}/${id}`)
 
   return data
 }
@@ -88,9 +77,7 @@ export async function changeStatus(
   id: number,
   status: ValueOf<typeof ACTIVATION_STATUS>
 ): Promise<MenuItem> {
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/changeStatus`,
-    method: 'put',
+  const { data } = await request.put(`${INTERFACE_PREFIX}/changeStatus`, {
     data: {
       id,
       status

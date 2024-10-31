@@ -6,7 +6,10 @@
     <zm-table
       :table-props="tableProps"
       :pagination-props="paginationProps"
-      @filter-search="handleSearch"
+      @filter-search="handleFilterSearch"
+      @filter-reset="handleFilterReset"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
     >
       <zm-table-column
         prop="code"
@@ -87,6 +90,7 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
 import { ACTIVATION_STATUS, PAGE_OPERATION } from '@/constants'
+import { useTable } from '@/hooks'
 import { getIcon } from '@/utils/icons'
 import { isEnable } from '@/utils/is'
 import type { ValueOf } from '@/utils'
@@ -97,21 +101,27 @@ defineOptions({
   name: 'MenuManage'
 })
 
-const tableProps = reactive({
-  data: []
-})
+const {
+  currentPage,
+  pageSize,
+  total,
+  data,
+  filterModel,
+  handleFilterSearch,
+  handleFilterReset,
+  handleSizeChange,
+  handleCurrentChange
+} = useTable(undefined, getList)
 
-const paginationProps = reactive({
-  total: 0,
-  currentPage: 1,
-  pageSize: 10
-})
-// 筛选对象
-const filterModel = ref<Record<string, string>>({})
+const tableProps = computed(() => ({
+  data: data.value
+}))
 
-onBeforeMount(() => {
-  init()
-})
+const paginationProps = computed(() => ({
+  total: total.value,
+  currentPage: currentPage.value,
+  pageSize: pageSize.value
+}))
 
 // 弹窗显隐
 const dialogVisible = ref(false)
@@ -120,22 +130,6 @@ const dialogProps = reactive<{
   operation?: ValueOf<typeof PAGE_OPERATION>
   menuId?: string
 }>({})
-
-/**
- * 初始化函数
- */
-const init = (page = 1, pageSize = 10, filter?: Record<string, string>) => {
-  getList(page, pageSize, filter).then(({ rows, total }: any) => {
-    tableProps.data = rows
-    paginationProps.total = total
-  })
-}
-
-// 筛选查询
-const handleSearch = (filter: any) => {
-  filterModel.value = { ...filter }
-  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
-}
 
 // 新增
 const handleAdd = () => {
@@ -157,18 +151,14 @@ const handleEdit = (id: string) => {
 
 // 保存回调
 const handleSaved = () => {
-  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
+  handleFilterSearch(filterModel.value)
 }
 
 // 确认删除
 const handleDelConfirm = (id: number) => {
   del(id).then(() => {
     ElMessage.success('删除成功')
-    init(
-      paginationProps.currentPage,
-      paginationProps.pageSize,
-      filterModel.value
-    )
+    handleFilterSearch(filterModel.value)
   })
 }
 
@@ -193,11 +183,7 @@ const handleChangeStatusConfirm = ({
 
   changeStatus(id, newStatus).then(() => {
     ElMessage.success(`${getStatusText(status)}成功`)
-    init(
-      paginationProps.currentPage,
-      paginationProps.pageSize,
-      filterModel.value
-    )
+    handleFilterSearch(filterModel.value)
   })
 }
 </script>

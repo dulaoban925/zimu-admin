@@ -14,7 +14,7 @@
       "@components/*": ["./src/components/*"]
     },
     "resolveJsonModule": true,
-    "types": ["nprogress", "node", "element-plus/global.d.ts", "prettier"],
+    "types": ["nprogress", "node", "element-plus/global.d.ts", "prettier", "src/typings/*.d.ts"],
     "allowImportingTsExtensions": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,

@@ -78,7 +78,7 @@ export function createRequest(
   }
 
   const createSpecificRequest = (method: RequestMethod) => {
-    return (url: string, config: AxiosRequestConfig) => {
+    return (url: string, config: AxiosRequestConfig = {}) => {
       Object.assign(config, { url, method })
       return request(config)
     }

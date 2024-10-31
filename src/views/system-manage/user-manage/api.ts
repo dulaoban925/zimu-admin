@@ -16,15 +16,12 @@ const INTERFACE_PREFIX = '/user'
 export async function getList(
   page: number,
   pageSize: number,
-  filter: Record<string, string> = {}
+  filter: Record<string, any> = {}
 ): Promise<UserItem[]> {
   const query = objectToQueryString(
     Object.assign({}, filter, { page, pageSize })
   )
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/listByPage?${query}`,
-    method: 'get'
-  })
+  const { data } = await request.get(`${INTERFACE_PREFIX}/listByPage?${query}`)
 
   return data
 }
@@ -40,10 +37,7 @@ export async function getDetail(id: string): Promise<Nullable<UserItem>> {
     return null
   }
 
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/query/${id}`,
-    method: 'get'
-  })
+  const { data } = await request.get(`${INTERFACE_PREFIX}/query/${id}`)
 
   return data
 }
@@ -54,9 +48,7 @@ export async function getDetail(id: string): Promise<Nullable<UserItem>> {
  * @returns
  */
 export async function save(user: UserItem): Promise<UserItem> {
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/save`,
-    method: 'post',
+  const { data } = await request.post(`${INTERFACE_PREFIX}/save`, {
     data: user
   })
 
@@ -69,10 +61,7 @@ export async function save(user: UserItem): Promise<UserItem> {
  * @returns
  */
 export async function del(id: number): Promise<UserItem> {
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/${id}`,
-    method: 'delete'
-  })
+  const { data } = await request.delete(`${INTERFACE_PREFIX}/${id}`)
 
   return data
 }
@@ -83,9 +72,7 @@ export async function del(id: number): Promise<UserItem> {
  * @returns
  */
 export async function resetPassword(id: number): Promise<UserItem> {
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/resetPassword/${id}`
-  })
+  const { data } = await request.get(`${INTERFACE_PREFIX}/resetPassword/${id}`)
 
   return data
 }
