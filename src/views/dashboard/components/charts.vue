@@ -1,6 +1,6 @@
 <template>
   <div class="charts">
-    <el-row gutter="10">
+    <el-row :gutter="10">
       <el-col :span="14"
         ><zm-line-chart chart-height="360px" :options="lineChartOptions"
       /></el-col>

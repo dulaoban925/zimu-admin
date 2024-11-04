@@ -1,7 +1,7 @@
 /**
  * 用户服务类
  */
-import { Y_N } from '@constants/enums'
+import { ACTIVATION_STATUS, Y_N } from '@constants/enums'
 import { User } from '@entities/user.entity'
 import { BaseService } from '@services/base/base-service'
 import { In, type FindOneOptions } from 'typeorm'
@@ -65,7 +65,9 @@ export class UserService extends BaseService {
 
     // 若为超管权限，则返回所有的资源
     if (isAdmin === Y_N.Y) {
-      const { rows: allMenus } = await this.menuService.queryList()
+      const { rows: allMenus } = await this.menuService.queryList({
+        status: ACTIVATION_STATUS.ACTIVATED
+      })
       return allMenus
     }
 
@@ -73,7 +75,8 @@ export class UserService extends BaseService {
     if (!roleIds.length) return []
     const { rows: rolesWithAuth, total } = await this.roleService.queryList(
       {
-        id: In(roleIds)
+        id: In(roleIds),
+        status: ACTIVATION_STATUS.ACTIVATED
       },
       {
         relations: {
@@ -100,7 +103,8 @@ export class UserService extends BaseService {
     const { rows: authsWithMenus, total: authTotal } =
       await this.authService.queryList(
         {
-          id: In(authIds)
+          id: In(authIds),
+          status: ACTIVATION_STATUS.ACTIVATED
         },
         {
           relations: {
@@ -123,7 +127,8 @@ export class UserService extends BaseService {
       )
     ]
     const { rows: allMenus } = await this.menuService.queryList({
-      id: In(menuIds)
+      id: In(menuIds),
+      status: ACTIVATION_STATUS.ACTIVATED
     })
 
     return allMenus

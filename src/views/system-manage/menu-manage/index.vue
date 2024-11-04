@@ -75,7 +75,9 @@
         </template>
       </zm-table-column>
       <template #rightOperation>
-        <el-button type="primary" @click="handleAdd">新增</el-button>
+        <el-button v-auth-button="'AddButton'" type="primary" @click="handleAdd"
+          >新增</el-button
+        >
       </template>
     </zm-table>
 

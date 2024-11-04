@@ -20,7 +20,7 @@ const router = createRouter({
 
 export async function setupRouter(app: App<Element>) {
   app.use(router)
-  setupRouterGuards(router)
+  await setupRouterGuards(router)
   // 等待路由初始化完成
   await router.isReady()
 }

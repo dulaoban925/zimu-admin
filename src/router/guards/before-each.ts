@@ -1,6 +1,6 @@
 import { STATIC_ROUTE_NAME } from '@/constants'
 import { useLoadingBar } from '@/hooks'
-import { useMenuStore, useUserStore } from '@/store'
+import { useAuthStore, useUserStore } from '@/store'
 import type {
   NavigationGuardNext,
   NavigationGuardWithThis,
@@ -28,15 +28,15 @@ async function handleDynamicRoutes(
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) {
-  const menuStore = useMenuStore()
+  const authStore = useAuthStore()
   // 是否已初始化权限菜单
-  const isAuthInitialized = menuStore.isAuthInitialized
+  const isAuthInitialized = authStore.isAuthInitialized
   // 是否跳转到登录页面
   const isToLogin = to.name === STATIC_ROUTE_NAME.LOGIN
   // 若未初始化，则执行初始化函数
   if (!isAuthInitialized && !isToLogin) {
     const userStore = useUserStore()
-    await menuStore.initAuthMenus(userStore.username)
+    await authStore.initAuth(userStore.username)
 
     /**
      * 路由初始化过程中，若跳转的路由为 “no_match”，可能未路由为加载完成导致的

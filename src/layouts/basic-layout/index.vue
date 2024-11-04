@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { useMenuStore } from '@/store'
+import { useAuthStore, useMenuStore } from '@/store'
 import CommonContent from '../common/content/index.vue'
 import CommonFace from '../common/face/index.vue'
 import { LAYOUT_PROVIDE_KEY } from './constants'
@@ -17,9 +17,12 @@ defineOptions({
 })
 
 const menuStore = useMenuStore()
+const authStore = useAuthStore()
 
-const menus = computed(() => menuStore.authMenus)
+const menus = computed(() => authStore.authMenus)
 const activeMenu = computed(() => menuStore.activeMenu)
+
+watch(menus, val => console.log(val))
 
 provide(LAYOUT_PROVIDE_KEY, {
   menus,

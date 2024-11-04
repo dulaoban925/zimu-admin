@@ -9,9 +9,7 @@ import {
   MENU_TYPE,
   MENU_TYPE_DESC
 } from '@constants/enums'
-import { CURRENT_USER } from '@constants/redis-keys'
-import { get } from '@utils/redis'
-import { BeforeInsert, BeforeUpdate, Column, Entity } from 'typeorm'
+import { Column, Entity } from 'typeorm'
 import { BaseEntity } from './base/base.entity'
 
 @Entity({ name: 'menu' })

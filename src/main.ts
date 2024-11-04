@@ -1,6 +1,7 @@
 import ElementPlus from 'element-plus'
 import { createApp } from 'vue'
 import { setupComponents } from '@/components'
+import { setup as setupDirective } from '@/directives'
 import { setupRouter } from '@/router'
 import { setupStore } from '@/store'
 import App from './App.vue'
@@ -15,6 +16,8 @@ async function setup() {
   setupComponents(app)
 
   setupStore(app)
+
+  setupDirective(app)
 
   await setupRouter(app)
 
