@@ -218,4 +218,3 @@ const handleSelect = (
 <style lang="scss">
 @import '../style/zm-menu.scss';
 </style>
-./constants./types

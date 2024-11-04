@@ -100,3 +100,23 @@ export const THEME_SCHEMES = {
   AUTO: 'auto'
 } as const
 /** 主题类型 end */
+
+/** 菜单权限编码 start */
+export const AUTH_BUTTON = {
+  ADD: 'AddButton',
+  EDIT: 'EditButton',
+  DELETE: 'DeleteButton',
+  VIEW: 'ViewButton',
+  ENABLE: 'EnableButton',
+  EXPORT: 'ExportButton',
+  IMPORT: 'ImportButton',
+  UPLOAD: 'UploadButton',
+  DOWNLOAD: 'DownloadButton',
+  PRINT: 'PrintButton',
+  REFRESH: 'RefreshButton',
+  SEARCH: 'SearchButton',
+  RESET: 'ResetButton',
+  SUBMIT: 'SubmitButton',
+  CANCEL: 'CancelButton'
+}
+/** 菜单权限编码 end */

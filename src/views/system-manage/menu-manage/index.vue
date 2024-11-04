@@ -47,10 +47,16 @@
       </zm-table-column>
       <zm-table-column fixed="right" label="操作" min-width="180">
         <template #default="{ row }">
-          <zm-button link type="primary" @click="handleEdit(row.id)">
+          <zm-button
+            v-auth-button="AUTH_BUTTON.EDIT"
+            link
+            type="primary"
+            @click="handleEdit(row.id)"
+          >
             编辑
           </zm-button>
           <zm-button
+            v-auth-button="AUTH_BUTTON.DELETE"
             link
             type="danger"
             need-confirm
@@ -62,6 +68,7 @@
             删除
           </zm-button>
           <zm-button
+            v-auth-button="AUTH_BUTTON.ENABLE"
             link
             type="primary"
             need-confirm
@@ -75,7 +82,10 @@
         </template>
       </zm-table-column>
       <template #rightOperation>
-        <el-button v-auth-button="'AddButton'" type="primary" @click="handleAdd"
+        <el-button
+          v-auth-button="AUTH_BUTTON.ADD"
+          type="primary"
+          @click="handleAdd"
           >新增</el-button
         >
       </template>
@@ -91,7 +101,7 @@
 
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
-import { ACTIVATION_STATUS, PAGE_OPERATION } from '@/constants'
+import { ACTIVATION_STATUS, AUTH_BUTTON, PAGE_OPERATION } from '@/constants'
 import { useTable } from '@/hooks'
 import { getIcon } from '@/utils/icons'
 import { isEnable } from '@/utils/is'

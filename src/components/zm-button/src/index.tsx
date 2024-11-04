@@ -1,13 +1,10 @@
 /**
  * 按钮组件
  */
-import {
-  buttonProps,
-  popconfirmProps,
-  type PopconfirmProps
-} from 'element-plus'
+import { buttonProps, type PopconfirmProps } from 'element-plus'
 import type { ValueOf } from '@/utils'
 import type { PropType } from 'vue'
+import '../style/zm-button.scss'
 
 const ZM_BUTTON_CONFIRM_SHOW_TYPE = {
   // 弹出确认框
@@ -69,13 +66,15 @@ export const ZmButton = defineComponent({
 
     // popconfirm button
     const PopConfirmButton = (
-      <el-popconfirm
-        {...this.popConfirmProps}
-        v-slots={{
-          reference: () => ElButton,
-          actions: this.$slots.popConfirmActions
-        }}
-      ></el-popconfirm>
+      <span class="zm-button">
+        <el-popconfirm
+          {...this.popConfirmProps}
+          v-slots={{
+            reference: () => ElButton,
+            actions: this.$slots.popConfirmActions
+          }}
+        ></el-popconfirm>
+      </span>
     )
 
     const renderButton = () => {
