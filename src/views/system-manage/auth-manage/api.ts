@@ -27,9 +27,8 @@ export async function getList(
   const query = objectToQueryString(
     Object.assign({}, filter, { page, pageSize })
   )
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/listByPage?${query}`,
-    method: 'get'
+  const { data } = await request.get({
+    url: `${INTERFACE_PREFIX}/listByPage?${query}`
   })
 
   return data
@@ -46,9 +45,8 @@ export async function getDetail(id: string): Promise<Nullable<AuthItem>> {
     return null
   }
 
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/query/${id}`,
-    method: 'get'
+  const { data } = await request.get({
+    url: `${INTERFACE_PREFIX}/query/${id}`
   })
 
   return data
@@ -60,9 +58,8 @@ export async function getDetail(id: string): Promise<Nullable<AuthItem>> {
  * @returns
  */
 export async function save(user: AuthItem): Promise<AuthItem> {
-  const { data } = await request({
+  const { data } = await request.post({
     url: `${INTERFACE_PREFIX}/save`,
-    method: 'post',
     data: user
   })
 
@@ -75,9 +72,8 @@ export async function save(user: AuthItem): Promise<AuthItem> {
  * @returns
  */
 export async function del(id: number): Promise<AuthItem> {
-  const { data } = await request({
-    url: `${INTERFACE_PREFIX}/${id}`,
-    method: 'delete'
+  const { data } = await request.delete({
+    url: `${INTERFACE_PREFIX}/${id}`
   })
 
   return data
@@ -93,9 +89,8 @@ export async function changeStatus(
   id: number,
   status: ValueOf<typeof ACTIVATION_STATUS>
 ): Promise<AuthItem> {
-  const { data } = await request({
+  const { data } = await request.put({
     url: `${INTERFACE_PREFIX}/changeStatus`,
-    method: 'put',
     data: {
       id,
       status
@@ -111,7 +106,7 @@ export async function changeStatus(
 export async function getMenuTree() {
   const {
     data: { rows }
-  } = await request({
+  } = await request.get({
     url: '/menu/list'
   })
 
@@ -124,7 +119,7 @@ export async function getMenuTree() {
  * 获取当前权限已分配的菜单
  */
 export async function getDistributedMenuList(authId: number) {
-  const { data } = await request({
+  const { data } = await request.get({
     url: `${INTERFACE_PREFIX}/distributedMenus?id=${authId}`
   })
   return getLeafMenus(data)
@@ -134,9 +129,8 @@ export async function getDistributedMenuList(authId: number) {
  * 分配菜单
  */
 export async function distribute(auth: AuthItem) {
-  const { data } = await request({
+  const { data } = await request.post({
     url: `${INTERFACE_PREFIX}/distribute`,
-    method: 'post',
     data: auth
   })
   return data
