@@ -1,5 +1,6 @@
 declare namespace ZiMuAuth {
   interface Menu {
+    id: number
     code: string // 菜单编码
     name: string // 菜单名称
     type: string // 类型：菜单 or 按钮

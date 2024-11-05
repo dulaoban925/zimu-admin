@@ -1,7 +1,10 @@
 /**
  * 权限管理接口请求集合
  */
-import { transformFlatMenusToTree } from '@/store/modules/menu/helpers'
+import {
+  getLeafMenus,
+  transformFlatMenusToTree
+} from '@/store/modules/menu/helpers'
 import { request, type Nullable, type ValueOf } from '@/utils'
 import { objectToQueryString } from '@/utils/normal'
 import type { ACTIVATION_STATUS } from '@/constants'
@@ -120,24 +123,21 @@ export async function getMenuTree() {
 /**
  * 获取当前权限已分配的菜单
  */
-export async function getDistributedMenu(authId: number) {
+export async function getDistributedMenuList(authId: number) {
   const { data } = await request({
     url: `${INTERFACE_PREFIX}/distributedMenus?id=${authId}`
   })
-  return data
+  return getLeafMenus(data)
 }
 
 /**
  * 分配菜单
  */
-export async function distribute(authId: number, menuIds: number[]) {
+export async function distribute(auth: AuthItem) {
   const { data } = await request({
     url: `${INTERFACE_PREFIX}/distribute`,
     method: 'post',
-    data: {
-      authId,
-      menuIds
-    }
+    data: auth
   })
   return data
 }

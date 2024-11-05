@@ -40,3 +40,19 @@ export function sortMenuTree(menus: ZiMuAuth.Menu[]) {
 
   return menus
 }
+
+/**
+ * 获取末级菜单集合
+ */
+export function getLeafMenus(menus: ZiMuAuth.Menu[]) {
+  const result: ZiMuAuth.Menu[] = []
+  const menuTree = transformFlatMenusToTree(menus)
+  function getLeaf(menus: ZiMuAuth.Menu[]) {
+    for (const menu of menus) {
+      if (menu.children?.length) getLeaf(menu.children)
+      else result.push(menu)
+    }
+  }
+  getLeaf(menuTree)
+  return result
+}

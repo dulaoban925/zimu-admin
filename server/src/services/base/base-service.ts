@@ -1,6 +1,6 @@
 import { getDataSourceInstance } from '@tools/data-source'
 import { isEmpty } from 'lodash'
-import type { FindManyOptions, Repository } from 'typeorm'
+import type { FindManyOptions, FindOneOptions, Repository } from 'typeorm'
 
 export class BaseService {
   repository: Repository<any>
@@ -45,10 +45,9 @@ export class BaseService {
    * 查询数据详情
    * @param id 主键
    */
-  async queryById(id: string) {
-    const detail = await this.repository.findOneBy({
-      id
-    })
+  async queryById(id: number, options: FindOneOptions<any> = {}) {
+    options.where = { ...options.where, id }
+    const detail = await this.repository.findOne(options)
 
     return detail ?? {}
   }

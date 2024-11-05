@@ -13,9 +13,11 @@ import {
   Param,
   Post,
   Put,
+  QueryParam,
   QueryParams
 } from 'routing-controllers'
 import { BaseController } from './base/base-controller'
+import type { Auth } from '@entities/auth.entity'
 
 @Controller('/auth')
 @Authorized()
@@ -68,5 +70,21 @@ export class AuthController extends BaseController {
     @BodyParam('status') status: string
   ) {
     return super.changeStatus(id, status)
+  }
+
+  /**
+   * 分配资源
+   */
+  @Post('/distribute')
+  distribute(@Body() body: typeof Auth) {
+    return this.currentService.distribute(body)
+  }
+
+  /**
+   * 获取 authId 已分配的资源列表
+   */
+  @Get('/distributedMenus')
+  queryDistributedMenus(@QueryParam('id') id: string) {
+    return this.currentService.queryDistributedMenus(id)
   }
 }

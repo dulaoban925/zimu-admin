@@ -31,28 +31,23 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessage } from 'element-plus'
 import { useTemplateRef } from 'vue'
-import { PAGE_OPERATION } from '@/constants'
+import type { PAGE_OPERATION } from '@/constants'
 import type { ValueOf } from '@/utils'
-import { getMenuTree } from '../api'
+import type { MenuItem } from '@/views/system-manage/menu-manage/types'
+import { getDistributedMenuList, getMenuTree } from '../api'
+import type { ElTree } from 'element-plus'
 
 defineOptions({
   name: 'AuthDistributeDialog'
 })
 
-const { authId } = defineProps({
-  // 弹窗操作，默认新增
-  operation: {
-    type: String as PropType<ValueOf<typeof PAGE_OPERATION>>,
-    default: PAGE_OPERATION.EDIT
-  },
-  // 权限 id
-  authId: {
-    type: String,
-    default: ''
-  }
-})
+type Props = {
+  operation?: ValueOf<typeof PAGE_OPERATION>
+  authId?: number
+}
+
+const { authId } = defineProps<Props>()
 
 const emit = defineEmits(['distribute'])
 
@@ -61,17 +56,18 @@ const visible = defineModel({ type: Boolean, default: false })
 // 筛选数据
 const filterText = ref('')
 // ElTree ref
-const treeRef = useTemplateRef('tree')
+const treeRef = useTemplateRef<typeof ElTree>('tree')
 // 菜单树形结构数据
-const menuTreeData = ref([])
+const menuTreeData = ref<ZiMuAuth.Menu[]>([])
 // ElTree Props
 const treeProps = {
   label: 'name'
 }
 // ElTree 默认勾选的 key
-const treeDefaultCheckedKeys = ref([])
-// 勾选的菜单id
-const checkedMenuIds = ref<number[]>([])
+const treeDefaultCheckedKeys = ref<number[]>([])
+// 勾选的菜单集合
+const checkedMenus = ref<MenuItem[]>([])
+
 // ElTree 节点筛选函数
 const filterNodeMethod = (value: string, data: Record<string, string>) => {
   if (!value) return true
@@ -81,13 +77,27 @@ const filterNodeMethod = (value: string, data: Record<string, string>) => {
 // 勾选菜单
 const handleTreeCheck = (
   data: Record<string, string>,
-  { checkedKeys, halfCheckedKeys }
+  {
+    checkedNodes,
+    halfCheckedNodes
+  }: {
+    checkedNodes: MenuItem[]
+    halfCheckedNodes: MenuItem[]
+  }
 ) => {
-  checkedMenuIds.value = [...new Set([...checkedKeys, halfCheckedKeys])]
+  checkedMenus.value = [...new Set([...checkedNodes, ...halfCheckedNodes])]
+}
+
+// 获取当前权限已分配的菜单项并勾选
+const initDistributedMenus = () => {
+  getDistributedMenuList(authId!).then(data => {
+    treeDefaultCheckedKeys.value = data.map((r: ZiMuAuth.Menu) => r.id)
+  })
 }
 
 // 初始化
 const init = async () => {
+  initDistributedMenus()
   // 获取所有菜单
   menuTreeData.value = await getMenuTree()
 }
@@ -102,7 +112,7 @@ const handleFilterChange = (val: string) => {
 }
 
 const handleConfirm = () => {
-  emit('distribute', authId, checkedMenuIds.value)
+  emit('distribute', checkedMenus.value)
 }
 </script>
 

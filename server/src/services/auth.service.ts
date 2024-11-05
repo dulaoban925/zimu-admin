@@ -25,4 +25,20 @@ export class AuthService extends BaseService {
       rows
     }
   }
+
+  // 分配资源
+  distribute(auth: typeof Auth) {
+    return this.save(auth)
+  }
+
+  // 查询权限已分配的资源
+  async queryDistributedMenus(authId: number) {
+    const { menus } = await this.queryById(authId, {
+      relations: {
+        menus: true
+      }
+    })
+
+    return menus
+  }
 }

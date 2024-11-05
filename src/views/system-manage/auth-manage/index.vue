@@ -46,7 +46,7 @@
           >
             {{ getStatusText(row.status) }}
           </zm-button>
-          <zm-button link type="primary" @click="handleDistribute(row.id)">
+          <zm-button link type="primary" @click="showDistribute(row)">
             分配资源
           </zm-button>
         </template>
@@ -65,7 +65,7 @@
     <distribute-dialog
       v-model="distributeDialogVisible"
       v-bind="distributeDialogProps"
-      @distribute="handleReload"
+      @distribute="handleDistribute"
     />
   </div>
 </template>
@@ -75,9 +75,11 @@ import { ElMessage } from 'element-plus'
 import { ACTIVATION_STATUS, PAGE_OPERATION } from '@/constants'
 import { isEnable } from '@/utils/is'
 import type { ValueOf } from '@/utils'
-import { changeStatus, del, getList } from './api'
+import type { MenuItem } from '@/views/system-manage/menu-manage/types'
+import { changeStatus, del, distribute, getList } from './api'
 import DistributeDialog from './components/distribute-dialog.vue'
 import editDialog from './components/edit-dialog.vue'
+import type { AuthItem } from './types'
 
 defineOptions({
   name: 'AuthManage'
@@ -190,21 +192,38 @@ const handleChangeStatusConfirm = ({
 /** 分配资源弹窗 start */
 // 弹窗显隐
 const distributeDialogVisible = ref(false)
+// 分配资源的权限对象
+const distributeAuth = ref<AuthItem>({})
 // DistributeDialog Props
 const distributeDialogProps = reactive<{
   operation?: ValueOf<typeof PAGE_OPERATION>
-  authId?: string
+  authId?: number
 }>({})
 
 /**
  * 分配资源
  */
-const handleDistribute = (id: number) => {
-  Object.assign(editDialogProps, {
-    authId: id,
+const showDistribute = (row: AuthItem) => {
+  distributeAuth.value = { ...row }
+  Object.assign(distributeDialogProps, {
+    authId: row.id,
     operation: PAGE_OPERATION.EDIT
   })
   distributeDialogVisible.value = true
+}
+
+/**
+ * 分配
+ */
+const handleDistribute = (menus: MenuItem[]) => {
+  distribute({
+    id: distributeAuth.value.id,
+    menus
+  }).then(() => {
+    handleReload()
+    ElMessage.success('分配成功')
+    distributeDialogVisible.value = false
+  })
 }
 /** 分配资源弹窗 end */
 </script>
