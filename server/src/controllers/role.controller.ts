@@ -13,9 +13,11 @@ import {
   Param,
   Post,
   Put,
+  QueryParam,
   QueryParams
 } from 'routing-controllers'
 import { BaseController } from './base/base-controller'
+import type { Role } from '@entities/role.entity'
 
 @Controller('/role')
 @Authorized()
@@ -68,5 +70,21 @@ export class RoleController extends BaseController {
     @BodyParam('status') status: string
   ) {
     return super.changeStatus(id, status)
+  }
+
+  /**
+   * 查询以分配的权限列表
+   */
+  @Get('/distributedAuthList')
+  queryDistributedAuthList(@QueryParam('id') id: number) {
+    return this.currentService.queryDistributedAuthList(id)
+  }
+
+  /**
+   * 分配
+   */
+  @Post('/distribute')
+  distribute(@Body() body: typeof Role) {
+    return this.currentService.distribute(body)
   }
 }

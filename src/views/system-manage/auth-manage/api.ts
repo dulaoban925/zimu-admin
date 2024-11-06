@@ -27,9 +27,18 @@ export async function getList(
   const query = objectToQueryString(
     Object.assign({}, filter, { page, pageSize })
   )
-  const { data } = await request.get({
-    url: `${INTERFACE_PREFIX}/listByPage?${query}`
-  })
+  const { data } = await request.get(`${INTERFACE_PREFIX}/listByPage?${query}`)
+
+  return data
+}
+
+/**
+ * 获取所有权限数据
+ */
+export async function getAllList(filter: Record<string, string | number> = {}) {
+  let query = objectToQueryString(filter)
+  query = query ? `?${query}` : ''
+  const { data } = await request.get(`${INTERFACE_PREFIX}/list${query}`)
 
   return data
 }
@@ -45,9 +54,7 @@ export async function getDetail(id: string): Promise<Nullable<AuthItem>> {
     return null
   }
 
-  const { data } = await request.get({
-    url: `${INTERFACE_PREFIX}/query/${id}`
-  })
+  const { data } = await request.get(`${INTERFACE_PREFIX}/query/${id}`)
 
   return data
 }
@@ -58,8 +65,7 @@ export async function getDetail(id: string): Promise<Nullable<AuthItem>> {
  * @returns
  */
 export async function save(user: AuthItem): Promise<AuthItem> {
-  const { data } = await request.post({
-    url: `${INTERFACE_PREFIX}/save`,
+  const { data } = await request.post(`${INTERFACE_PREFIX}/save`, {
     data: user
   })
 
@@ -72,9 +78,7 @@ export async function save(user: AuthItem): Promise<AuthItem> {
  * @returns
  */
 export async function del(id: number): Promise<AuthItem> {
-  const { data } = await request.delete({
-    url: `${INTERFACE_PREFIX}/${id}`
-  })
+  const { data } = await request.delete(`${INTERFACE_PREFIX}/${id}`)
 
   return data
 }
@@ -89,8 +93,7 @@ export async function changeStatus(
   id: number,
   status: ValueOf<typeof ACTIVATION_STATUS>
 ): Promise<AuthItem> {
-  const { data } = await request.put({
-    url: `${INTERFACE_PREFIX}/changeStatus`,
+  const { data } = await request.put(`${INTERFACE_PREFIX}/changeStatus`, {
     data: {
       id,
       status
@@ -106,9 +109,7 @@ export async function changeStatus(
 export async function getMenuTree() {
   const {
     data: { rows }
-  } = await request.get({
-    url: '/menu/list'
-  })
+  } = await request.get('/menu/list')
 
   if (!rows.length) return []
   const result = transformFlatMenusToTree(rows)
@@ -119,9 +120,9 @@ export async function getMenuTree() {
  * 获取当前权限已分配的菜单
  */
 export async function getDistributedMenuList(authId: number) {
-  const { data } = await request.get({
-    url: `${INTERFACE_PREFIX}/distributedMenus?id=${authId}`
-  })
+  const { data } = await request.get(
+    `${INTERFACE_PREFIX}/distributedMenus?id=${authId}`
+  )
   return getLeafMenus(data)
 }
 
@@ -129,8 +130,7 @@ export async function getDistributedMenuList(authId: number) {
  * 分配菜单
  */
 export async function distribute(auth: AuthItem) {
-  const { data } = await request.post({
-    url: `${INTERFACE_PREFIX}/distribute`,
+  const { data } = await request.post(`${INTERFACE_PREFIX}/distribute`, {
     data: auth
   })
   return data

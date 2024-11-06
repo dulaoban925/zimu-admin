@@ -46,7 +46,7 @@
           >
             {{ getStatusText(row.status) }}
           </zm-button>
-          <zm-button link type="primary" @click="handleDistribute(row.id)">
+          <zm-button link type="primary" @click="showDistribute(row)">
             分配权限
           </zm-button>
         </template>
@@ -61,6 +61,12 @@
       v-bind="dialogProps"
       @saved="handleSaved"
     />
+    <!-- 分配资源弹窗 -->
+    <distribute-dialog
+      v-model="distributeDialogVisible"
+      v-bind="distributeDialogProps"
+      @distribute="handleDistribute"
+    />
   </div>
 </template>
 
@@ -68,8 +74,12 @@
 import { ElMessage } from 'element-plus'
 import { ACTIVATION_STATUS, PAGE_OPERATION } from '@/constants'
 import { isEnable } from '@/utils/is'
-import { changeStatus, del, getList } from './api'
+import type { ValueOf } from '@/utils'
+import type { AuthItem } from '@/views/system-manage/auth-manage/types'
+import { changeStatus, del, distribute, getList } from './api'
+import distributeDialog from './components/distribute-dialog.vue'
 import editDialog from './components/edit-dialog.vue'
+import type { RoleItem } from './types'
 
 defineOptions({
   name: 'RoleManage'
@@ -95,8 +105,8 @@ onBeforeMount(() => {
 const dialogVisible = ref(false)
 // dialog props
 const dialogProps = reactive<{
-  operation?: string
-  roleId?: string
+  operation?: ValueOf<typeof PAGE_OPERATION>
+  roleId?: number
 }>({})
 
 /**
@@ -112,7 +122,7 @@ const init = (page = 1, pageSize = 10, filter?: Record<string, string>) => {
 // 筛选查询
 const handleSearch = (filter: any) => {
   filterModel.value = { ...filter }
-  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
+  handleReload()
 }
 
 // 新增
@@ -125,7 +135,7 @@ const handleAdd = () => {
 }
 
 // 编辑
-const handleEdit = (id: string) => {
+const handleEdit = (id: number) => {
   Object.assign(dialogProps, {
     roleId: id,
     operation: PAGE_OPERATION.EDIT
@@ -135,18 +145,14 @@ const handleEdit = (id: string) => {
 
 // 保存回调
 const handleSaved = () => {
-  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
+  handleReload()
 }
 
 // 确认删除
 const handleDelConfirm = (id: number) => {
   del(id).then(() => {
     ElMessage.success('删除成功')
-    init(
-      paginationProps.currentPage,
-      paginationProps.pageSize,
-      filterModel.value
-    )
+    handleReload()
   })
 }
 
@@ -171,20 +177,52 @@ const handleChangeStatusConfirm = ({
 
   changeStatus(id, newStatus).then(() => {
     ElMessage.success(`${getStatusText(status)}成功`)
-    init(
-      paginationProps.currentPage,
-      paginationProps.pageSize,
-      filterModel.value
-    )
+    handleReload()
   })
 }
+
+// 重新加载
+const handleReload = () => {
+  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
+}
+
+/** 分配资源弹窗 start */
+// 弹窗显隐
+const distributeDialogVisible = ref(false)
+// 分配权限的角色对象
+const distributeRole = ref<RoleItem>({})
+// DistributeDialog Props
+const distributeDialogProps = reactive<{
+  roleId: number
+}>({
+  roleId: -1
+})
 
 /**
  * 分配资源
  */
-const handleDistribute = (id: number) => {
-  console.log('🚀 ~ handleDistribute ~ id:', id)
+const showDistribute = (row: RoleItem) => {
+  distributeRole.value = { ...row }
+  Object.assign(distributeDialogProps, {
+    roleId: row.id
+  })
+  distributeDialogVisible.value = true
 }
+
+/**
+ * 分配
+ */
+const handleDistribute = (authorizations: AuthItem[]) => {
+  distribute({
+    id: distributeRole.value.id,
+    authorizations
+  }).then(() => {
+    handleReload()
+    ElMessage.success('分配成功')
+    distributeDialogVisible.value = false
+  })
+}
+/** 分配资源弹窗 end */
 </script>
 
 <style scoped></style>

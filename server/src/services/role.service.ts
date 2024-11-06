@@ -25,4 +25,23 @@ export class RoleService extends BaseService {
       rows
     }
   }
+
+  /**
+   * 查询以分配的权限列表
+   */
+  async queryDistributedAuthList(id: number) {
+    const { authorizations } = await this.queryById(id, {
+      relations: {
+        authorizations: true
+      }
+    })
+    return authorizations
+  }
+
+  /**
+   * 分配
+   */
+  distribute(role: typeof Role) {
+    return this.save(role)
+  }
 }

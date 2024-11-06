@@ -52,29 +52,21 @@ defineOptions({
   name: 'RoleEditDialog'
 })
 
-const props = defineProps({
-  // 弹窗操作，默认新增
-  operation: {
-    type: String as PropType<ValueOf<typeof PAGE_OPERATION>>,
-    default: PAGE_OPERATION.NEW
-  },
-  // 角色 id
-  roleId: {
-    type: String,
-    default: ''
-  }
-})
+type Props = {
+  operation?: ValueOf<typeof PAGE_OPERATION>
+  roleId?: number
+}
+
+const { operation = PAGE_OPERATION.NEW, roleId } = defineProps<Props>()
 
 const emit = defineEmits(['saved'])
 
 // 弹窗显隐
 const visible = defineModel({ type: Boolean, default: false })
 // 是否编辑
-const isEdit = computed(() => props.operation === PAGE_OPERATION.EDIT)
+const isEdit = computed(() => operation === PAGE_OPERATION.EDIT)
 // 弹窗标题
-const dialogTitle = computed(
-  () => `${PAGE_OPERATION_DESC[props.operation]}角色`
-)
+const dialogTitle = computed(() => `${PAGE_OPERATION_DESC[operation]}角色`)
 // 表单 ref
 const dialogFormRef = ref<FormInstance>()
 // 表单默认值
@@ -92,8 +84,8 @@ const dialogFormRules = ref<FormRules<RoleItem>>({
 
 // 初始化
 const init = async () => {
-  if (props.operation === PAGE_OPERATION.EDIT) {
-    const role = await getDetail(props.roleId)
+  if (operation === PAGE_OPERATION.EDIT && roleId) {
+    const role = await getDetail(roleId)
     if (role) dialogFormModel.value = role
   }
 }

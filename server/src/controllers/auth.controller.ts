@@ -27,6 +27,15 @@ export class AuthController extends BaseController {
   }
 
   /**
+   * 列表查询
+   * @returns
+   */
+  @Get(`${INTERFACE_PATH.LIST}`)
+  list(@QueryParams() params: Record<string, any>) {
+    return super.list(params)
+  }
+
+  /**
    * 分页列表查询
    * @returns
    */
