@@ -1,7 +1,12 @@
 /**
  * 按钮组件
  */
-import { buttonProps, type PopconfirmProps } from 'element-plus'
+import {
+  buttonEmits,
+  buttonProps,
+  popconfirmEmits,
+  type PopconfirmProps
+} from 'element-plus'
 import type { ValueOf } from '@/utils'
 import type { PropType } from 'vue'
 import '../style/zm-button.scss'
@@ -36,12 +41,19 @@ const zmButtonProps = {
   }
 }
 
+const zmButtonEmits = {
+  ...buttonEmits,
+  ...popconfirmEmits
+}
+
 type ZmButtonProps = typeof zmButtonProps
 type ZmButtonPropsKey = keyof ZmButtonProps
 
 export const ZmButton = defineComponent({
   name: 'ZmButton',
+  inheritAttrs: false,
   props: zmButtonProps,
+  emits: zmButtonEmits,
   setup(props) {
     // el-button props
     const elButtonProps = computed(() =>
@@ -61,7 +73,11 @@ export const ZmButton = defineComponent({
       icon: this.$slots.icon
     }
     const ElButton = (
-      <el-button {...this.elButtonProps} v-slots={buttonSlots}></el-button>
+      <el-button
+        {...this.elButtonProps}
+        onClick={(e: MouseEvent) => this.$emit('click', e)}
+        v-slots={buttonSlots}
+      />
     )
 
     // popconfirm button
@@ -69,6 +85,8 @@ export const ZmButton = defineComponent({
       <span class="zm-button">
         <el-popconfirm
           {...this.popConfirmProps}
+          onConfirm={(e: MouseEvent) => this.$emit('confirm', e)}
+          onCancel={(e: MouseEvent) => this.$emit('cancel', e)}
           v-slots={{
             reference: () => ElButton,
             actions: this.$slots.popConfirmActions

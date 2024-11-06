@@ -40,7 +40,7 @@
           >
         </template>
       </zm-table-column>
-      <zm-table-column fixed="right" label="操作" min-width="250">
+      <zm-table-column fixed="right" label="操作" min-width="280">
         <template #default="{ row }">
           <zm-button link type="primary" @click="handleEdit(row.id)">
             编辑
