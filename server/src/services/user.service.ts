@@ -143,4 +143,23 @@ export class UserService extends BaseService {
   updatePassword(username: string, password: string) {
     return this.repository.update({ username }, { password })
   }
+
+  /**
+   * 查询以分配的角色列表
+   */
+  async queryDistributedRoleList(id: number) {
+    const { roles } = await this.queryById(id, {
+      relations: {
+        roles: true
+      }
+    })
+    return roles
+  }
+
+  /**
+   * 分配
+   */
+  distribute(user: typeof User) {
+    return this.save(user)
+  }
 }

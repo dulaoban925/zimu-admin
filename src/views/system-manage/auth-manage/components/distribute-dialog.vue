@@ -8,6 +8,7 @@
     width="35%"
     destroy-on-close
     @opened="handleOpened"
+    @closed="handleClosed"
     @confirm="handleConfirm"
   >
     <el-input
@@ -104,6 +105,11 @@ const init = async () => {
 
 const handleOpened = () => {
   init()
+}
+
+const handleClosed = () => {
+  // 重置勾选的节点
+  treeDefaultCheckedKeys.value = []
 }
 
 // 搜索

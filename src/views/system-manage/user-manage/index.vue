@@ -40,7 +40,7 @@
           >
         </template>
       </zm-table-column>
-      <zm-table-column fixed="right" label="操作" min-width="180">
+      <zm-table-column fixed="right" label="操作" min-width="250">
         <template #default="{ row }">
           <zm-button link type="primary" @click="handleEdit(row.id)">
             编辑
@@ -67,6 +67,9 @@
           >
             重置密码
           </zm-button>
+          <zm-button link type="primary" @click="showDistribute(row)">
+            分配角色
+          </zm-button>
         </template>
       </zm-table-column>
       <template #rightOperation>
@@ -77,7 +80,13 @@
     <edit-dialog
       v-model="dialogVisible"
       v-bind="dialogProps"
-      @saved="handleSaved"
+      @saved="handleReload"
+    />
+    <!-- 分配资源弹窗 -->
+    <distribute-dialog
+      v-model="distributeDialogVisible"
+      v-bind="distributeDialogProps"
+      @distribute="handleDistribute"
     />
   </div>
 </template>
@@ -86,8 +95,12 @@
 import { ElMessage } from 'element-plus'
 import { PAGE_OPERATION, Y_N_DESC } from '@/constants'
 import { isServing, isYes } from '@/utils/is'
-import { del, getList, resetPassword } from './api'
+import type { ValueOf } from '@/utils'
+import type { RoleItem } from '@/views/system-manage/role-manage/types'
+import { del, distribute, getList, resetPassword } from './api'
+import distributeDialog from './components/distribute-dialog.vue'
 import editDialog from './components/edit-dialog.vue'
+import type { UserItem } from './types'
 
 defineOptions({
   name: 'UserManage'
@@ -113,8 +126,8 @@ onBeforeMount(() => {
 const dialogVisible = ref(false)
 // dialog props
 const dialogProps = reactive<{
-  operation?: string
-  userId?: string
+  operation?: ValueOf<typeof PAGE_OPERATION>
+  userId?: number
 }>({})
 
 /**
@@ -130,7 +143,7 @@ const init = (page = 1, pageSize = 10, filter?: Record<string, string>) => {
 // 筛选查询
 const handleSearch = (filter: any) => {
   filterModel.value = { ...filter }
-  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
+  handleReload()
 }
 
 // 新增
@@ -151,20 +164,11 @@ const handleEdit = (id: string) => {
   dialogVisible.value = true
 }
 
-// 保存回调
-const handleSaved = () => {
-  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
-}
-
 // 确认删除
 const handleDelConfirm = (id: number) => {
   del(id).then(() => {
     ElMessage.success('删除成功')
-    init(
-      paginationProps.currentPage,
-      paginationProps.pageSize,
-      filterModel.value
-    )
+    handleReload()
   })
 }
 
@@ -172,13 +176,51 @@ const handleDelConfirm = (id: number) => {
 const handleResetPassword = (id: number) => {
   resetPassword(id).then(() => {
     ElMessage.success('密码重置成功')
-    init(
-      paginationProps.currentPage,
-      paginationProps.pageSize,
-      filterModel.value
-    )
+    handleReload()
   })
 }
+
+const handleReload = () => {
+  init(paginationProps.currentPage, paginationProps.pageSize, filterModel.value)
+}
+
+/** 分配资源弹窗 start */
+// 弹窗显隐
+const distributeDialogVisible = ref(false)
+// 分配权限的角色对象
+const distributeUser = ref<UserItem>({})
+// DistributeDialog Props
+const distributeDialogProps = reactive<{
+  userId: number
+}>({
+  userId: -1
+})
+
+/**
+ * 分配资源
+ */
+const showDistribute = (row: UserItem) => {
+  distributeUser.value = { ...row }
+  Object.assign(distributeDialogProps, {
+    userId: row.id
+  })
+  distributeDialogVisible.value = true
+}
+
+/**
+ * 分配
+ */
+const handleDistribute = (roles: RoleItem[]) => {
+  distribute({
+    id: distributeUser.value.id,
+    roles
+  }).then(() => {
+    handleReload()
+    ElMessage.success('分配成功')
+    distributeDialogVisible.value = false
+  })
+}
+/** 分配资源弹窗 end */
 </script>
 
 <style scoped></style>

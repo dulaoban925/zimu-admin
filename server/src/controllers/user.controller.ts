@@ -20,6 +20,7 @@ import {
   QueryParams
 } from 'routing-controllers'
 import { BaseController } from './base/base-controller'
+import type { User } from '@entities/user.entity'
 
 @Controller('/user')
 @Authorized()
@@ -90,6 +91,9 @@ export class UserController extends BaseController {
     return success(resources)
   }
 
+  /**
+   * 重置密码
+   */
   @Get('/resetPassword/:id')
   async resetPassword(@Param('id') id: number) {
     // 加密密码
@@ -100,5 +104,21 @@ export class UserController extends BaseController {
     await this.currentService.save({ id, password: resetPassword })
 
     return true
+  }
+
+  /**
+   * 查询以分配的权限列表
+   */
+  @Get('/distributedRoleList')
+  queryDistributedRoleList(@QueryParam('id') id: number) {
+    return this.currentService.queryDistributedRoleList(id)
+  }
+
+  /**
+   * 分配
+   */
+  @Post('/distribute')
+  distribute(@Body() body: typeof User) {
+    return this.currentService.distribute(body)
   }
 }

@@ -78,29 +78,21 @@ defineOptions({
   name: 'UserEditDialog'
 })
 
-const props = defineProps({
-  // 弹窗操作，默认新增
-  operation: {
-    type: String as PropType<ValueOf<typeof PAGE_OPERATION>>,
-    default: PAGE_OPERATION.NEW
-  },
-  // 用户 id
-  userId: {
-    type: String,
-    default: ''
-  }
-})
+type Props = {
+  operation?: ValueOf<typeof PAGE_OPERATION>
+  userId?: number
+}
+
+const { operation = PAGE_OPERATION.NEW, userId } = defineProps<Props>()
 
 const emit = defineEmits(['saved'])
 
 // 弹窗显隐
 const visible = defineModel({ type: Boolean, default: false })
 // 是否编辑
-const isEdit = computed(() => props.operation === PAGE_OPERATION.EDIT)
+const isEdit = computed(() => operation === PAGE_OPERATION.EDIT)
 // 弹窗标题
-const dialogTitle = computed(
-  () => `${PAGE_OPERATION_DESC[props.operation]}用户`
-)
+const dialogTitle = computed(() => `${PAGE_OPERATION_DESC[operation]}用户`)
 // 表单 ref
 const dialogFormRef = ref<FormInstance>()
 // 表单默认值
@@ -121,8 +113,8 @@ const dialogFormRules = ref<FormRules<UserItem>>({
 
 // 初始化
 const init = async () => {
-  if (props.operation === PAGE_OPERATION.EDIT) {
-    const user = await getDetail(props.userId)
+  if (operation === PAGE_OPERATION.EDIT && userId) {
+    const user = await getDetail(userId)
     if (user) dialogFormModel.value = user
   }
 }

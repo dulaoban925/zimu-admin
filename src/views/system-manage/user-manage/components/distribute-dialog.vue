@@ -1,8 +1,8 @@
-<!-- 分配权限弹窗 -->
+<!-- 分配角色弹窗 -->
 <template>
   <zm-popper
     v-model="visible"
-    title="分配权限"
+    title="分配角色"
     width="35%"
     destroy-on-close
     @opened="handleOpened"
@@ -12,12 +12,12 @@
     <el-input
       v-model="filterText"
       style="width: 240px"
-      placeholder="请输入权限编码/名称进行筛选"
+      placeholder="请输入角色编码/名称进行筛选"
       @change="handleFilterChange"
     />
     <el-tree
       ref="tree"
-      :data="authData"
+      :data="roleData"
       node-key="id"
       show-checkbox
       :default-checked-keys="treeDefaultCheckedKeys"
@@ -30,10 +30,10 @@
 </template>
 
 <script setup lang="ts">
-import { getAllList } from '@/views/system-manage/auth-manage/api'
-import type { AuthItem } from '@/views/system-manage/auth-manage/types'
-import { getDistributedAuthList } from '../api'
-import type { RoleItem } from '../types'
+import { getAllList } from '@/views/system-manage/role-manage/api'
+import type { RoleItem } from '@/views/system-manage/role-manage/types'
+import { getDistributedRoleList } from '../api'
+import type { UserItem } from '../types'
 import type { ElTree } from 'element-plus'
 
 defineOptions({
@@ -41,10 +41,10 @@ defineOptions({
 })
 
 type Props = {
-  roleId: number
+  userId: number
 }
 
-const { roleId } = defineProps<Props>()
+const { userId } = defineProps<Props>()
 
 const emit = defineEmits(['distribute'])
 
@@ -55,7 +55,7 @@ const filterText = ref('')
 // ElTree ref
 const treeRef = useTemplateRef<typeof ElTree>('tree')
 // 菜单树形结构数据
-const authData = ref<AuthItem[]>([])
+const roleData = ref<UserItem[]>([])
 // ElTree Props
 const treeProps = {
   label: 'name'
@@ -63,7 +63,7 @@ const treeProps = {
 // ElTree 默认勾选的 key
 const treeDefaultCheckedKeys = ref<number[]>([])
 // 勾选的菜单集合
-const checkedAuths = ref<RoleItem[]>([])
+const checkedRoles = ref<RoleItem[]>([])
 
 // ElTree 节点筛选函数
 const filterNodeMethod = (value: string, data: Record<string, string>) => {
@@ -85,19 +85,19 @@ const handleTreeCheck = (
     checkedNodes: RoleItem[]
   }
 ) => {
-  checkedAuths.value = [...new Set(checkedNodes)]
+  checkedRoles.value = [...new Set(checkedNodes)]
 }
 
-const initDistributedAuthList = async () => {
-  const list = await getDistributedAuthList(roleId)
-  treeDefaultCheckedKeys.value = list.map((item: AuthItem) => item.id!)
+const initDistributedRoleList = async () => {
+  const list = await getDistributedRoleList(userId)
+  treeDefaultCheckedKeys.value = list.map((item: RoleItem) => item.id!)
 }
 
 // 初始化
 const init = async () => {
-  initDistributedAuthList()
+  initDistributedRoleList()
   const { rows } = await getAllList()
-  authData.value = [...rows]
+  roleData.value = [...rows]
 }
 
 const handleOpened = () => {
@@ -110,6 +110,6 @@ const handleClosed = () => {
 }
 
 const handleConfirm = () => {
-  emit('distribute', checkedAuths.value)
+  emit('distribute', checkedRoles.value)
 }
 </script>

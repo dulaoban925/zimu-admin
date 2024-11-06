@@ -61,7 +61,7 @@
       v-bind="dialogProps"
       @saved="handleSaved"
     />
-    <!-- 分配资源弹窗 -->
+    <!-- 分配权限弹窗 -->
     <distribute-dialog
       v-model="distributeDialogVisible"
       v-bind="distributeDialogProps"

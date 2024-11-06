@@ -3,6 +3,7 @@
  */
 import { request, type Nullable } from '@/utils'
 import { objectToQueryString } from '@/utils/normal'
+import type { RoleItem } from '@/views/system-manage/role-manage/types'
 import type { UserItem } from './types'
 
 const INTERFACE_PREFIX = '/user'
@@ -31,7 +32,7 @@ export async function getList(
  * @param id id
  * @returns
  */
-export async function getDetail(id: string): Promise<Nullable<UserItem>> {
+export async function getDetail(id: number): Promise<Nullable<UserItem>> {
   if (!id) {
     console.error('id 为空，请检查')
     return null
@@ -73,6 +74,27 @@ export async function del(id: number): Promise<UserItem> {
  */
 export async function resetPassword(id: number): Promise<UserItem> {
   const { data } = await request.get(`${INTERFACE_PREFIX}/resetPassword/${id}`)
+
+  return data
+}
+
+/**
+ * 分配
+ */
+export async function distribute(user: UserItem) {
+  const { data } = await request.post(`${INTERFACE_PREFIX}/distribute`, {
+    data: user
+  })
+  return data
+}
+
+/**
+ * 获取已分配的角色列表
+ */
+export async function getDistributedRoleList(id: number): Promise<RoleItem[]> {
+  const { data } = await request.get(
+    `${INTERFACE_PREFIX}/distributedRoleList?id=${id}`
+  )
 
   return data
 }

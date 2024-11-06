@@ -9,6 +9,7 @@ import type {
   Y_N
 } from '@/constants'
 import type { ValueOf } from '@/utils'
+import type { RoleItem } from '@/views/system-manage/role-manage/types'
 
 export type UserItem = {
   id?: number
@@ -22,6 +23,7 @@ export type UserItem = {
   isAdmin?: ValueOf<typeof Y_N>
   status?: ValueOf<typeof EMPLOYEE_STATUS>
   statusText?: ValueOf<typeof EMPLOYEE_STATUS_DESC>
+  roles?: RoleItem[]
   version?: number
   createdBy?: string
   createdAt?: string

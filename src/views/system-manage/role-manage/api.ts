@@ -30,6 +30,17 @@ export async function getList(
 }
 
 /**
+ * 获取所有权限数据
+ */
+export async function getAllList(filter: Record<string, string | number> = {}) {
+  let query = objectToQueryString(filter)
+  query = query ? `?${query}` : ''
+  const { data } = await request.get(`${INTERFACE_PREFIX}/list${query}`)
+
+  return data
+}
+
+/**
  * 获取详情
  * @param id id
  * @returns
