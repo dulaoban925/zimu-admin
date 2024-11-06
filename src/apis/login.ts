@@ -13,9 +13,7 @@ export function login(data: { username: string; password: string }) {
   return promiseWrapper(async () => {
     const {
       data: { token }
-    } = await request({
-      url: `/login`,
-      method: 'post',
+    } = await request.post('/login', {
       data
     })
     if (token) {
@@ -44,21 +42,15 @@ export function login(data: { username: string; password: string }) {
 
 // 刷新 token
 export function refreshToken() {
-  return request({
-    url: '/refreshToken',
-    method: 'get'
-  })
+  return request.get('/refreshToken')
 }
 
 // 登出
 export function logout() {
   return promiseWrapper(async () => {
-    await request({
-      url: '/logout',
-      method: 'get'
-    })
+    await request.get('/logout')
     // 跳转登录
     const loginUrl = `${window.location.origin}/#/login`
     window.location.replace(loginUrl)
-  })
+  })()
 }

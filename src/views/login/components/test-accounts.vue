@@ -1,12 +1,19 @@
 <template>
   <div class="test-accounts">
     <span>测试账号：</span>
-    <el-button
+    <zm-button
       type="primary"
       plain
       size="small"
       @click="handleAccountClick('admin')"
-      >admin</el-button
+      >admin</zm-button
+    >
+    <zm-button
+      type="primary"
+      plain
+      size="small"
+      @click="handleAccountClick('zhangsan')"
+      >子账号</zm-button
     >
   </div>
 </template>

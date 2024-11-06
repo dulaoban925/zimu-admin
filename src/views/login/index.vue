@@ -82,13 +82,7 @@ const handleForgetPassword = () => {
  */
 const handleTestButtonClick = (account: string) => {
   loginInfo.username = account
-  switch (account) {
-    case 'admin':
-      loginInfo.password = 'password'
-      break
-    default:
-      break
-  }
+  loginInfo.password = 'password'
   handleLogin()
 }
 </script>
