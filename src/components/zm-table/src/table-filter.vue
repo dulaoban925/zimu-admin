@@ -1,7 +1,7 @@
 <template>
   <div class="zm-table__filter">
     <slot>
-      <zm-query-form
+      <zm-filter-form
         :items="formItems"
         @[FilterResetEvent]="handleFilterReset"
         @[FilterSearchEvent]="handleFilterSearch"
@@ -12,9 +12,9 @@
 
 <script setup lang="ts">
 import { EVENT_NAMES } from './constants'
+import ZmFilterForm from './filter-form/filter-form.vue'
 import { useFilterEvents } from './hooks'
-import ZmQueryForm from './query-form/query-form.vue'
-import type { QueryFormItemType } from './query-form/types'
+import type { QueryFormItemType } from './filter-form/types'
 import type { PropType } from 'vue'
 
 defineOptions({

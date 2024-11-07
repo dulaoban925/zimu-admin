@@ -26,3 +26,12 @@ export const EVENT_NAMES = {
   FILTER_RESET: 'filterReset',
   FILTER_SEARCH: 'filterSearch'
 }
+
+/** table-content start */
+// 表体操作栏插槽
+export const OPERATION_BAR_SLOTS = {
+  OPERATION_BAR: 'operationBar',
+  OPERATION_BAR_LEFT: 'operationBarLeft',
+  OPERATION_BAR_RIGHT: 'operationBarRight'
+}
+/** table-content end */

@@ -8,7 +8,7 @@
 
 <script setup lang="ts">
 import { ElTableColumn } from 'element-plus'
-import type { QueryFormItemType } from '../query-form/types'
+import type { QueryFormItemType } from '../filter-form/types'
 
 defineOptions({
   name: 'ZmTableColumn'
