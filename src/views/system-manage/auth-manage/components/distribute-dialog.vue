@@ -90,15 +90,15 @@ const handleTreeCheck = (
 }
 
 // 获取当前权限已分配的菜单项并勾选
-const initDistributedMenus = () => {
-  getDistributedMenuList(authId!).then(data => {
-    treeDefaultCheckedKeys.value = data.map((r: ZiMuAuth.Menu) => r.id)
-  })
+const initDistributedMenuList = async () => {
+  const list = await getDistributedMenuList(authId!)
+  checkedMenus.value = [...list]
+  treeDefaultCheckedKeys.value = list.map((r: ZiMuAuth.Menu) => r.id)
 }
 
 // 初始化
 const init = async () => {
-  initDistributedMenus()
+  initDistributedMenuList()
   // 获取所有菜单
   menuTreeData.value = await getMenuTree()
 }

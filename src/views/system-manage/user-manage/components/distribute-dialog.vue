@@ -90,6 +90,7 @@ const handleTreeCheck = (
 
 const initDistributedRoleList = async () => {
   const list = await getDistributedRoleList(userId)
+  checkedRoles.value = [...list]
   treeDefaultCheckedKeys.value = list.map((item: RoleItem) => item.id!)
 }
 
