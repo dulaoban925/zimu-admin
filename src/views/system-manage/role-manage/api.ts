@@ -4,8 +4,8 @@
 import { request, type Nullable, type ValueOf } from '@/utils'
 import { objectToQueryString } from '@/utils/normal'
 import type { ACTIVATION_STATUS } from '@/constants'
-import type { AuthItem } from '@/views/system-manage/auth-manage/types'
 import type { RoleItem } from './types'
+import type { AuthItem } from '@views/system-manage/auth-manage/types'
 
 // 接口前缀
 const INTERFACE_PREFIX = '/role'

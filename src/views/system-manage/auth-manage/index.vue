@@ -75,11 +75,11 @@ import { ElMessage } from 'element-plus'
 import { ACTIVATION_STATUS, PAGE_OPERATION } from '@/constants'
 import { isEnable } from '@/utils/is'
 import type { ValueOf } from '@/utils'
-import type { MenuItem } from '@/views/system-manage/menu-manage/types'
 import { changeStatus, del, distribute, getList } from './api'
 import DistributeDialog from './components/distribute-dialog.vue'
 import editDialog from './components/edit-dialog.vue'
 import type { AuthItem } from './types'
+import type { MenuItem } from '@views/system-manage/menu-manage/types'
 
 defineOptions({
   name: 'AuthManage'

@@ -6,7 +6,7 @@ import type { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
   BackdropFilter: () =>
-    import('@/views/demo-manage/css-demo-manage/backdrop-filter/index.vue')
+    import('@views/demo-manage/css-demo-manage/backdrop-filter/index.vue')
 }
 
 const demoManageRoutes: ZiMuRoute.Route = {

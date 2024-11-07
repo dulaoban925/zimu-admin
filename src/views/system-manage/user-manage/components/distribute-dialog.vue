@@ -30,10 +30,10 @@
 </template>
 
 <script setup lang="ts">
-import { getAllList } from '@/views/system-manage/role-manage/api'
-import type { RoleItem } from '@/views/system-manage/role-manage/types'
+import { getAllList } from '@views/system-manage/role-manage/api'
 import { getDistributedRoleList } from '../api'
 import type { UserItem } from '../types'
+import type { RoleItem } from '@views/system-manage/role-manage/types'
 import type { ElTree } from 'element-plus'
 
 defineOptions({

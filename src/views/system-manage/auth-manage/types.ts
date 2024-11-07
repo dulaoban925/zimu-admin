@@ -3,7 +3,7 @@
  */
 import type { ACTIVATION_STATUS, ACTIVATION_STATUS_DESC } from '@/constants'
 import type { ValueOf } from '@/utils'
-import type { MenuItem } from '@/views/system-manage/menu-manage/types'
+import type { MenuItem } from '@views/system-manage/menu-manage/types'
 
 export type AuthItem = {
   id?: number

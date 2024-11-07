@@ -30,10 +30,10 @@
 </template>
 
 <script setup lang="ts">
-import { getAllList } from '@/views/system-manage/auth-manage/api'
-import type { AuthItem } from '@/views/system-manage/auth-manage/types'
+import { getAllList } from '@views/system-manage/auth-manage/api'
 import { getDistributedAuthList } from '../api'
 import type { RoleItem } from '../types'
+import type { AuthItem } from '@views/system-manage/auth-manage/types'
 import type { ElTree } from 'element-plus'
 
 defineOptions({

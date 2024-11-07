@@ -3,8 +3,8 @@
  */
 import { request, type Nullable } from '@/utils'
 import { objectToQueryString } from '@/utils/normal'
-import type { RoleItem } from '@/views/system-manage/role-manage/types'
 import type { UserItem } from './types'
+import type { RoleItem } from '@views/system-manage/role-manage/types'
 
 const INTERFACE_PREFIX = '/user'
 

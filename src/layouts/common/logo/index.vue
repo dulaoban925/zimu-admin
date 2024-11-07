@@ -3,10 +3,10 @@
 -->
 <template>
   <div class="wrapper-logo" @click="handleClick">
-    <el-icon>
-      <pink-bear />
+    <el-icon color="var(--el-color-primary)">
+      <bear-smile-line />
     </el-icon>
-    <span>ZIMU-ADMIN</span>
+    <span>{{ appTitle }}</span>
   </div>
 </template>
 
@@ -21,6 +21,8 @@ const _router = useRouter()
 const handleClick = () => {
   _router.push(import.meta.env.VITE_ROUTE_HOME_PATH)
 }
+
+const appTitle = import.meta.env.VITE_APP_TITLE
 </script>
 
 <style scoped></style>

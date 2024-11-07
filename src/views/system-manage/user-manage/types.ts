@@ -9,7 +9,7 @@ import type {
   Y_N
 } from '@/constants'
 import type { ValueOf } from '@/utils'
-import type { RoleItem } from '@/views/system-manage/role-manage/types'
+import type { RoleItem } from '@views/system-manage/role-manage/types'
 
 export type UserItem = {
   id?: number

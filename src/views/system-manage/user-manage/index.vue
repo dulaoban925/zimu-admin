@@ -96,11 +96,11 @@ import { ElMessage } from 'element-plus'
 import { PAGE_OPERATION, Y_N_DESC } from '@/constants'
 import { isServing, isYes } from '@/utils/is'
 import type { ValueOf } from '@/utils'
-import type { RoleItem } from '@/views/system-manage/role-manage/types'
 import { del, distribute, getList, resetPassword } from './api'
 import distributeDialog from './components/distribute-dialog.vue'
 import editDialog from './components/edit-dialog.vue'
 import type { UserItem } from './types'
+import type { RoleItem } from '@views/system-manage/role-manage/types'
 
 defineOptions({
   name: 'UserManage'

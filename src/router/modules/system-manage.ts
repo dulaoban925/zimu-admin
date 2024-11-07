@@ -2,10 +2,10 @@ import { ROUTE_COMPONENT_LAYOUT_VALUE } from '@/constants'
 import type { ZiMuRoute } from '@/typings/route'
 
 const RouteComponents = {
-  UserManage: () => import('@/views/system-manage/user-manage/index.vue'),
-  MenuManage: () => import('@/views/system-manage/menu-manage/index.vue'),
-  AuthManage: () => import('@/views/system-manage/auth-manage/index.vue'),
-  RoleManage: () => import('@/views/system-manage/role-manage/index.vue')
+  UserManage: () => import('@views/system-manage/user-manage/index.vue'),
+  MenuManage: () => import('@views/system-manage/menu-manage/index.vue'),
+  AuthManage: () => import('@views/system-manage/auth-manage/index.vue'),
+  RoleManage: () => import('@views/system-manage/role-manage/index.vue')
 }
 
 const systemManageRoutes: ZiMuRoute.Route = {

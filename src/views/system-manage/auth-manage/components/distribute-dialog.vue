@@ -35,8 +35,8 @@
 import { useTemplateRef } from 'vue'
 import type { PAGE_OPERATION } from '@/constants'
 import type { ValueOf } from '@/utils'
-import type { MenuItem } from '@/views/system-manage/menu-manage/types'
 import { getDistributedMenuList, getMenuTree } from '../api'
+import type { MenuItem } from '@views/system-manage/menu-manage/types'
 import type { ElTree } from 'element-plus'
 
 defineOptions({

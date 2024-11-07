@@ -3,11 +3,11 @@ import type { ZiMuRoute } from '@/typings/route'
 import { routes } from '../modules'
 
 const RouteComponents = {
-  Dashboard: () => import('@/views/dashboard/index.vue'), // 控制台
+  Dashboard: () => import('@views/dashboard/index.vue'), // 控制台
   Login: () => import('@views/login/index.vue'), // 登录页
-  403: () => import('@views/error/403/index.vue'), // 403 页
-  404: () => import('@views/error/404/index.vue'), // 404 页
-  500: () => import('@views/error/500/index.vue') // 500 页
+  403: () => import('@views/static/403/index.vue'), // 403 页
+  404: () => import('@views/static/404/index.vue'), // 404 页
+  500: () => import('@views/static/500/index.vue') // 500 页
 }
 
 /** 根路由: */

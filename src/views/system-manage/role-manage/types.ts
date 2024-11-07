@@ -3,7 +3,7 @@
  */
 import type { ACTIVATION_STATUS, ACTIVATION_STATUS_DESC } from '@/constants'
 import type { ValueOf } from '@/utils'
-import type { AuthItem } from '@/views/system-manage/auth-manage/types'
+import type { AuthItem } from '@views/system-manage/auth-manage/types'
 
 export type RoleItem = {
   id?: number
