@@ -1,7 +1,23 @@
 <template>
-  <div>403</div>
+  <el-result icon="error" title="403" sub-title="Forbidden">
+    <template #extra>
+      <el-button type="primary" @click="handleClick">回到首页</el-button>
+    </template>
+  </el-result>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+defineOptions({
+  name: '403'
+})
+
+const _router = useRouter()
+
+const handleClick = () => {
+  _router.replace(import.meta.env.VITE_ROUTE_HOME_PATH)
+}
+</script>
 
 <style scoped></style>
