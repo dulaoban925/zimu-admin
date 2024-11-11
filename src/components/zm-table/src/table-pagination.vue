@@ -1,11 +1,12 @@
 <template>
   <div :class="bem.b()" :style="{ 'justify-content': justifyContent }">
-    <el-pagination v-bind="attrs" />
+    <el-pagination v-bind="attrs">
+      <slot />
+    </el-pagination>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ElPagination } from 'element-plus'
 import { useBem } from '@/hooks/use-bem'
 
 defineOptions({

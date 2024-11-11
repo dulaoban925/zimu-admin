@@ -12,18 +12,24 @@
       <!-- 分栏操作栏 -->
       <template v-if="splitOperationBar">
         <div :class="bem.e('split-operation-part')">
-          <slot name="leftOperation" />
+          <slot name="operationBarLeft" />
         </div>
         <div :class="bem.e('split-operation-part')">
-          <slot name="rightOperation" />
+          <slot name="operationBarRight" />
         </div>
       </template>
-      <slot v-else name="operation" />
+      <slot v-else name="operationBar" />
     </div>
     <el-table :class="bem.e('table')" v-bind="attrs">
       <slot />
-      <slot name="append" />
-      <slot name="empty" />
+      <template #append>
+        <slot name="append" />
+      </template>
+      <template #empty>
+        <slot name="empty">
+          <el-empty description="暂无数据" />
+        </slot>
+      </template>
     </el-table>
   </div>
 </template>

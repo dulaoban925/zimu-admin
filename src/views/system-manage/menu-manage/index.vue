@@ -81,7 +81,7 @@
           </zm-button>
         </template>
       </zm-table-column>
-      <template #rightOperation>
+      <template #operationBarRight>
         <el-button
           v-auth-button="AUTH_BUTTON.ADD"
           type="primary"

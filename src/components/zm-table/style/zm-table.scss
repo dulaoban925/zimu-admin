@@ -13,10 +13,7 @@
 
   @include e(split-operation-bar) {
     justify-content: space-between;
-
-    &-part:not(:empty) {
-      margin-bottom: 5px;
-    }
+    margin: 6px 0;
   }
 }
 

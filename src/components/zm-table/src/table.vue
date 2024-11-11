@@ -3,6 +3,7 @@
     <!-- 筛选 -->
     <zm-table-filter
       v-if="enableFilter"
+      ref="zm-filter-form"
       :form-items="filterFormItems"
       v-bind="filterFormProps"
       @[FilterResetEvent]="handleFilterReset"
@@ -11,17 +12,37 @@
       <slot name="filter" />
     </zm-table-filter>
     <!-- 表体 -->
-    <zm-table-content v-bind="elTableProps" v-on="elTableEvents">
+    <zm-table-content
+      ref="zm-table-content"
+      v-bind="elTableProps"
+      v-on="elTableEvents"
+    >
       <slot />
-      <slot name="append" />
-      <slot name="empty" />
+      <template #append>
+        <slot name="append" />
+      </template>
+      <template #empty>
+        <slot name="empty" />
+      </template>
+      <template #operationBar>
+        <slot name="operationBar" />
+      </template>
+      <template #operationBarLeft>
+        <slot name="operationBarLeft" />
+      </template>
+      <template #operationBarRight>
+        <slot name="operationBarRight" />
+      </template>
     </zm-table-content>
     <!-- 分页器 -->
     <zm-table-pagination
       v-if="enablePagination"
+      ref="zm-pagination"
       v-bind="elPaginationProps"
       v-on="elPaginationEvents"
-    />
+    >
+      <slot name="pagination" />
+    </zm-table-pagination>
   </div>
 </template>
 
@@ -78,6 +99,12 @@ const emit = defineEmits([
 ])
 
 const slots = useSlots()
+// filter-form ref
+const filterFormRef = useTemplateRef('zm-filter-form')
+// table-content ref
+const tableRef = useTemplateRef('zm-table-content')
+// pagination ref
+const paginationRef = useTemplateRef('zm-pagination')
 
 // el-table 属性
 const elTableProps = computed(() =>
@@ -142,6 +169,12 @@ const {
   handleFilterReset,
   handleFilterSearch
 } = useFilterEvents(emit)
+
+defineExpose({
+  ...tableRef.value,
+  ...filterFormRef.value,
+  ...paginationRef.value
+})
 </script>
 
 <style lang="scss" scoped>
