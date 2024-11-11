@@ -1,24 +1,26 @@
-.zm-table {
+@use '../../../styles/mixins' as *;
 
-  &__content {
-    margin: 10px 0;
+@include b(zm-table) {
+}
 
-    &-operation {
-      display: flex;
-      align-items: center;
-    }
+@include b(zm-table-content) {
+  margin: 10px 0;
 
-    &-split-operation {
-      justify-content: space-between;
-
-      &-part:not(:empty) {
-        margin-bottom: 5px;
-      }
-    }
-  }
-
-  &__pagination {
+  @include e(operation-bar) {
     display: flex;
     align-items: center;
   }
+
+  @include e(split-operation-bar) {
+    justify-content: space-between;
+
+    &-part:not(:empty) {
+      margin-bottom: 5px;
+    }
+  }
+}
+
+@include b(zm-table-pagination) {
+  display: flex;
+  align-items: center;
 }

@@ -8,8 +8,8 @@
       :pagination-props="paginationProps"
       @filter-search="handleFilterSearch"
       @filter-reset="handleFilterReset"
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
+      @pagination-size-change="handleSizeChange"
+      @pagination-current-change="handleCurrentChange"
     >
       <zm-table-column
         prop="code"

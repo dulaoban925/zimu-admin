@@ -37,7 +37,7 @@
 
 <script setup lang="ts">
 import { EVENT_NAMES } from '../constants'
-import { useFilterEvents } from '../hooks'
+import { useFilterEvents } from '../hooks/use-filter-events'
 import { ZmQueryFormItem } from './form-item/query-form-item'
 import type { QueryFormItemType } from './types'
 import type { FormProps } from 'element-plus'

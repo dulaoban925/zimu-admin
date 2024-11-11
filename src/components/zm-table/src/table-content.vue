@@ -11,17 +11,19 @@
     >
       <!-- 分栏操作栏 -->
       <template v-if="splitOperationBar">
-        <div class="zm-table__content-split-operation-part">
+        <div :class="bem.e('split-operation-part')">
           <slot name="leftOperation" />
         </div>
-        <div class="zm-table__content-split-operation-part">
+        <div :class="bem.e('split-operation-part')">
           <slot name="rightOperation" />
         </div>
       </template>
       <slot v-else name="operation" />
     </div>
-    <el-table class="zm-table__content-table" v-bind="attrs">
+    <el-table :class="bem.e('table')" v-bind="attrs">
       <slot />
+      <slot name="append" />
+      <slot name="empty" />
     </el-table>
   </div>
 </template>

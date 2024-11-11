@@ -11,12 +11,16 @@
       <slot name="filter" />
     </zm-table-filter>
     <!-- 表体 -->
-    <zm-table-content v-bind="elTableProps" v-on="elTableEvents" />
+    <zm-table-content v-bind="elTableProps" v-on="elTableEvents">
+      <slot />
+      <slot name="append" />
+      <slot name="empty" />
+    </zm-table-content>
     <!-- 分页器 -->
     <zm-table-pagination
       v-if="enablePagination"
       v-bind="elPaginationProps"
-      :events="paginationEvents"
+      v-on="elPaginationEvents"
     />
   </div>
 </template>
@@ -37,8 +41,9 @@ import {
 } from './constants'
 import { generateFormItemsByColumns } from './filter-form/form-item/generators'
 import { useFilterEvents } from './hooks/use-filter-events'
+import ZmTableContent from './table-content.vue'
+import ZmTableFilter from './table-filter.vue'
 import ZmTablePagination from './table-pagination.vue'
-import ZmTableFilter from './zm-table-filter.vue'
 import type { QueryFormItemType } from './filter-form/types'
 import type { Component, VNode } from 'vue'
 
@@ -47,12 +52,12 @@ defineOptions({
 })
 
 type Props = {
-  columnConfigurable: boolean // todo: 表格列是否可配置
-  enableFilter: boolean // 是否需要筛选表单
-  enablePagination: boolean // 是否启用分页器
+  columnConfigurable?: boolean // todo: 表格列是否可配置
+  enableFilter?: boolean // 是否需要筛选表单
+  enablePagination?: boolean // 是否启用分页器
   tableProps: TableProps<any> // el-table props
-  paginationProps: PaginationProps // el-pagination props
-  filterFormProps: FormProps // el-form props
+  paginationProps?: PaginationProps // el-pagination props
+  filterFormProps?: FormProps // el-form props
 }
 
 const {
@@ -66,7 +71,9 @@ const {
 
 const emit = defineEmits([
   ...Object.keys(ElTable.emits ?? {}),
-  ...Object.keys(ElPagination.emits ?? {}),
+  ...Object.keys(ElPagination.emits ?? {}).map(
+    (key: string) => `pagination-${key}`
+  ),
   ...[EVENT_NAMES.FILTER_RESET, EVENT_NAMES.FILTER_SEARCH]
 ])
 
@@ -78,8 +85,8 @@ const elTableProps = computed(() =>
 )
 // el-table 事件
 const elTableEvents: Record<string, (...args: any[]) => void> = Object.keys(
-  ElTable.emits
-).reduce((ret, key) => {
+  ElTable.emits ?? {}
+).reduce((ret: Record<string, any>, key: string) => {
   ret[key] = function (...args: any[]) {
     emit(key, ...args)
   }
@@ -90,14 +97,17 @@ const elTableEvents: Record<string, (...args: any[]) => void> = Object.keys(
 const elPaginationProps = computed(() =>
   Object.assign({}, DEFAULT_PAGINATION_PROPS, paginationProps)
 )
-const paginationEvents: Record<string, (...args: any[]) => void> = Object.keys(
-  ElPagination.emits
-).reduce((ret, key) => {
-  ret[key] = function (...args: any[]) {
-    emit(key, ...args)
-  }
-  return ret
-}, {})
+const elPaginationEvents: Record<string, (...args: any[]) => void> =
+  Object.keys(ElPagination.emits ?? {}).reduce(
+    (ret: Record<string, any>, key: string) => {
+      ret[key] = function (...args: any[]) {
+        console.log(111, key)
+        emit(`pagination-${key}`, ...args)
+      }
+      return ret
+    },
+    {}
+  )
 
 /**
  * 计算过滤可用的表格列。

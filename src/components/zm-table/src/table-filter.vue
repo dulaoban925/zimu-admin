@@ -13,7 +13,7 @@
 <script setup lang="ts">
 import { EVENT_NAMES } from './constants'
 import ZmFilterForm from './filter-form/filter-form.vue'
-import { useFilterEvents } from './hooks'
+import { useFilterEvents } from './hooks/use-filter-events'
 import type { QueryFormItemType } from './filter-form/types'
 import type { PropType } from 'vue'
 

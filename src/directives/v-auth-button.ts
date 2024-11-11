@@ -9,13 +9,6 @@ import type { DirectiveBinding } from 'vue'
 function vAuthButton(el: any, binding: DirectiveBinding) {
   const authStore = useAuthStore()
   const bindingButtonCode = binding.value as string
-  console.log(
-    '🚀 ~ vAuthButton ~ el:',
-    el,
-    binding,
-    authStore.authButtonCodes,
-    bindingButtonCode
-  )
 
   el.style.display = authStore.authButtonCodes.includes(bindingButtonCode)
     ? ''

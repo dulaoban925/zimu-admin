@@ -1,20 +1,19 @@
 <template>
-  <div
-    class="zm-table__pagination"
-    :style="{ 'justify-content': justifyContent }"
-  >
-    <el-pagination v-bind="attrs" v-on="events" />
+  <div :class="bem.b()" :style="{ 'justify-content': justifyContent }">
+    <el-pagination v-bind="attrs" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { ElPagination } from 'element-plus'
+import { useBem } from '@/hooks/use-bem'
+
 defineOptions({
-  name: 'ZmTablePagination'
+  name: 'ZmTablePagination',
+  inheritAttrs: false
 })
 
 defineProps({
-  // ElPagination 事件集合
-  events: Object as PropType<Record<string, (...args: any[]) => void>>,
   // 横向定位
   justifyContent: {
     type: String as PropType<'flex-start' | 'center' | 'flex-end'>,
@@ -22,7 +21,11 @@ defineProps({
   }
 })
 
-const attrs = useAttrs()
+const bem = useBem('zm-table-pagination')
+
+const attrs: Record<string, any> = useAttrs()
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@use '../style/zm-table.scss' as *;
+</style>
