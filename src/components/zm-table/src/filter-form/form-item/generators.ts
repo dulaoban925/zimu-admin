@@ -10,8 +10,8 @@ import {
   SELECT_NAME
 } from '../../constants'
 import type {
+  FilterFormItemType,
   ItemType,
-  QueryFormItemType,
   ZmInputNumberProps,
   ZmInputProps
 } from '../types'
@@ -54,7 +54,7 @@ export const typeGeneratorMap: Record<ItemType, (...args: any) => void> = {
  */
 export function generateFormItemsByColumns(columns?: VNode[]) {
   if (!columns || !columns.length) return []
-  const result: QueryFormItemType[] = []
+  const result: FilterFormItemType[] = []
   for (const c of columns) {
     const formItem = generateFormItemByColumn(c)
     formItem && result.push(formItem)
@@ -71,7 +71,7 @@ export function generateFormItemByColumn(column: VNode) {
   const filterableProp = column.props?.filterable ?? false
   if (!filterableProp && filterableProp !== '') return
   const uid = uniqueId('zm')
-  const formItem: QueryFormItemType = {
+  const formItem: FilterFormItemType = {
     uid
   }
 

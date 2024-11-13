@@ -6,7 +6,9 @@
     <zm-table
       :table-props="tableProps"
       :pagination-props="paginationProps"
+      :filter-form-props="filterFormProps"
       @filter-search="handleSearch"
+      @row-click="handleRowClick"
     >
       <zm-table-column
         prop="username"
@@ -21,10 +23,15 @@
         filterable
         min-width="80"
       />
-      <zm-table-column prop="tel" label="电话" min-width="120" />
-      <zm-table-column prop="email" label="电子邮箱" min-width="120" />
-      <zm-table-column prop="address" label="住址" min-width="180" />
-      <zm-table-column prop="isAdmin" label="超管权限" min-width="80">
+      <zm-table-column prop="tel" label="电话" min-width="120" filterable />
+      <zm-table-column
+        prop="email"
+        label="电子邮箱"
+        min-width="120"
+        filterable
+      />
+      <zm-table-column prop="address" label="住址" min-width="180" filterable />
+      <zm-table-column prop="isAdmin" label="超管" min-width="80">
         <template #default="{ row: { isAdmin } }">
           <el-tag v-if="isAdmin" :type="isYes(isAdmin) ? 'primary' : 'danger'"
             >{{ Y_N_DESC[isAdmin as keyof typeof Y_N_DESC] }}
@@ -115,6 +122,20 @@ const paginationProps = reactive({
   currentPage: 1,
   pageSize: 10
 })
+
+const filterFormProps = reactive({
+  collapsed: false,
+  model: {
+    username: '',
+    name: '',
+    genderText: '',
+    tel: '',
+    email: '',
+    address: '',
+    isAdmin: '',
+    status: ''
+  }
+})
 // 筛选对象
 const filterModel = ref<Record<string, string>>({})
 
@@ -178,6 +199,10 @@ const handleResetPassword = (id: number) => {
     ElMessage.success('密码重置成功')
     handleReload()
   })
+}
+
+const handleRowClick = (coll: boolean) => {
+  console.log('🚀 ~ handleCollapsed ~ coll:', coll)
 }
 
 const handleReload = () => {

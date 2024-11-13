@@ -8,14 +8,14 @@
 
 <script setup lang="ts">
 import { ElTableColumn } from 'element-plus'
-import type { QueryFormItemType } from '../filter-form/types'
+import type { FilterFormItemType } from '../filter-form/types'
 
 defineOptions({
   name: 'ZmTableColumn'
 })
 
 interface Props {
-  filterable?: boolean | QueryFormItemType
+  filterable?: boolean | FilterFormItemType
   showOverflowTooltip?: boolean
 }
 

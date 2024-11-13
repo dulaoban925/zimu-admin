@@ -77,7 +77,7 @@ export function useTable(
   /**
    * 筛选查询事件处理函数
    */
-  function handleFilterSearch(filter: Record<string, any>) {
+  function handleFilterSearch(filter: Record<string, any> = {}) {
     filterModel.value = { ...filter }
     return query()
   }

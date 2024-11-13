@@ -3,6 +3,23 @@
 @include b(zm-table) {
 }
 
+@include b(zm-filter-form) {
+  @include e(operations) {
+    @include flex-center-end();
+    grid-column: -2/-1;
+    margin-bottom: 18px;
+  }
+
+  @include e(container) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
 @include b(zm-table-content) {
   margin: 10px 0;
 

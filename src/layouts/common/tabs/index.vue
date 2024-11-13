@@ -112,7 +112,6 @@ watch(
   () => {
     viewStore.addView(_route)
     viewStore.setActiveView(_route)
-    console.log('🚀 ~ viewStore:', viewStore)
   }
 )
 

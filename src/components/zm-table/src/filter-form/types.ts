@@ -42,7 +42,7 @@ export type TagProps =
   | DatePickerTagProps
   | RadioTagProps
 
-export interface QueryFormItemType {
+export interface FilterFormItemType {
   uid?: string | number
   formModel?: any
   tagProps?: TagProps
@@ -63,7 +63,7 @@ export interface QueryFormItemType {
 
 // export type ZmRadioItemType = CommonPart & {}
 
-// export type QueryFormItemType =
+// export type FilterFormItemType =
 //   | ZmInputItemType
 //   | ZmInputNumberItemType
 //   | ZmSelectItemType

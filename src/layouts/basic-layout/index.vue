@@ -22,8 +22,6 @@ const authStore = useAuthStore()
 const menus = computed(() => authStore.authMenus)
 const activeMenu = computed(() => menuStore.activeMenu)
 
-watch(menus, val => console.log(val))
-
 provide(LAYOUT_PROVIDE_KEY, {
   menus,
   activeMenu

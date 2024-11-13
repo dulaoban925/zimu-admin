@@ -6,6 +6,7 @@
     <zm-table
       :table-props="tableProps"
       :pagination-props="paginationProps"
+      :filter-form-props="filterFormProps"
       @filter-search="handleFilterSearch"
       @filter-reset="handleFilterReset"
       @pagination-size-change="handleSizeChange"
@@ -135,13 +136,19 @@ const paginationProps = computed(() => ({
   pageSize: pageSize.value
 }))
 
+const filterFormProps = computed(() => ({
+  model: filterModel.value
+}))
+
 // 弹窗显隐
 const dialogVisible = ref(false)
 // dialog props
 const dialogProps = reactive<{
-  operation?: ValueOf<typeof PAGE_OPERATION>
+  operation: ValueOf<typeof PAGE_OPERATION>
   menuId?: string
-}>({})
+}>({
+  operation: PAGE_OPERATION.NEW
+})
 
 // 新增
 const handleAdd = () => {
@@ -163,14 +170,14 @@ const handleEdit = (id: string) => {
 
 // 保存回调
 const handleSaved = () => {
-  handleFilterSearch(filterModel.value)
+  handleFilterSearch()
 }
 
 // 确认删除
 const handleDelConfirm = (id: number) => {
   del(id).then(() => {
     ElMessage.success('删除成功')
-    handleFilterSearch(filterModel.value)
+    handleFilterSearch()
   })
 }
 
@@ -195,7 +202,7 @@ const handleChangeStatusConfirm = ({
 
   changeStatus(id, newStatus).then(() => {
     ElMessage.success(`${getStatusText(status)}成功`)
-    handleFilterSearch(filterModel.value)
+    handleFilterSearch()
   })
 }
 </script>

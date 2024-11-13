@@ -1,7 +1,0 @@
-@use '@/styles/mixins.scss' as *;
-
-.zm-query-form {
-  &__operations {
-    @include flex-center-end();
-  }
-}

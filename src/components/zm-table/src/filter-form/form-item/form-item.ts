@@ -35,8 +35,8 @@ const queryFormItemProps = {
 
 const queryFormItemEmits: string[] = ['update:modelValue']
 
-export const ZmQueryFormItem = defineComponent({
-  name: 'ZmQueryFormItem',
+export const ZmFilterFormItem = defineComponent({
+  name: 'ZmFilterFormItem',
   props: queryFormItemProps,
   emits: queryFormItemEmits,
   setup(props, { emit }) {
@@ -49,9 +49,9 @@ export const ZmQueryFormItem = defineComponent({
       }
     })
 
-    const formColProps = computed(() =>
-      Object.assign({}, { span: 8 }, props.colProps ?? {})
-    )
+    // const formColProps = computed(() =>
+    //   Object.assign({}, { span: 8 }, props.colProps ?? {})
+    // )
 
     // 处理 v-model 双向绑定
     function handleVModelProps(oProps: any) {
@@ -67,12 +67,6 @@ export const ZmQueryFormItem = defineComponent({
     const fullFormItemProps = fillDefaultFormItemProps(props.formItemProps)
 
     return () =>
-      h(
-        ElCol,
-        {
-          ...formColProps.value
-        },
-        () => h(ElFormItem, fullFormItemProps, () => itemRender(componentProps))
-      )
+      h(ElFormItem, fullFormItemProps, () => itemRender(componentProps))
   }
 })

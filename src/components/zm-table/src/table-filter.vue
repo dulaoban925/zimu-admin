@@ -2,37 +2,47 @@
   <div class="zm-table__filter">
     <slot>
       <zm-filter-form
+        v-bind="props"
         :items="formItems"
         @[FilterResetEvent]="handleFilterReset"
         @[FilterSearchEvent]="handleFilterSearch"
+        @[changeCollapsedEvent]="handleChangeCollapsed"
       />
     </slot>
   </div>
 </template>
 
 <script setup lang="ts">
-import { EVENT_NAMES } from './constants'
+import { EVENT_NAMES, FILTER_FORM_PROPS } from './constants'
 import ZmFilterForm from './filter-form/filter-form.vue'
 import { useFilterEvents } from './hooks/use-filter-events'
-import type { QueryFormItemType } from './filter-form/types'
-import type { PropType } from 'vue'
+import type { FilterFormItemType } from './filter-form/types'
 
 defineOptions({
   name: 'ZmTableFilter'
 })
 
-defineProps({
-  // 筛选表单对象列表
-  formItems: Array as PropType<QueryFormItemType[]>
-})
+type Props = {
+  formItems?: FilterFormItemType[]
+}
 
-const emit = defineEmits([EVENT_NAMES.FILTER_RESET, EVENT_NAMES.FILTER_SEARCH])
+const { formItems = [] } = defineProps<Props>()
+
+const emit = defineEmits([
+  EVENT_NAMES.FILTER_RESET,
+  EVENT_NAMES.FILTER_SEARCH,
+  EVENT_NAMES.CHANGE_COLLAPSED
+])
+
+const props = inject(FILTER_FORM_PROPS, {})
 
 const {
   FilterResetEvent,
   FilterSearchEvent,
+  changeCollapsedEvent,
   handleFilterReset,
-  handleFilterSearch
+  handleFilterSearch,
+  handleChangeCollapsed
 } = useFilterEvents(emit)
 </script>
 

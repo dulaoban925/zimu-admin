@@ -24,7 +24,8 @@ export const RADIO_NAME = 'Radio'
 
 export const EVENT_NAMES = {
   FILTER_RESET: 'filterReset',
-  FILTER_SEARCH: 'filterSearch'
+  FILTER_SEARCH: 'filterSearch',
+  CHANGE_COLLAPSED: 'changeCollapsed'
 }
 
 /** table-content start */
@@ -35,3 +36,8 @@ export const OPERATION_BAR_SLOTS = {
   OPERATION_BAR_RIGHT: 'operationBarRight'
 }
 /** table-content end */
+
+/** provide/inject keys start */
+// filter-form model 对象
+export const FILTER_FORM_PROPS = Symbol('filter-form-props')
+/** provide/inject keys end */

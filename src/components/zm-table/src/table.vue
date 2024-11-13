@@ -8,6 +8,7 @@
       v-bind="filterFormProps"
       @[FilterResetEvent]="handleFilterReset"
       @[FilterSearchEvent]="handleFilterSearch"
+      @[changeCollapsedEvent]="handleChangeCollapsed"
     >
       <slot name="filter" />
     </zm-table-filter>
@@ -58,14 +59,15 @@ import {
   DEFAULT_FILTER_FORM_PROPS,
   DEFAULT_PAGINATION_PROPS,
   DEFAULT_TABLE_PROPS,
-  EVENT_NAMES
+  EVENT_NAMES,
+  FILTER_FORM_PROPS
 } from './constants'
 import { generateFormItemsByColumns } from './filter-form/form-item/generators'
 import { useFilterEvents } from './hooks/use-filter-events'
 import ZmTableContent from './table-content.vue'
 import ZmTableFilter from './table-filter.vue'
 import ZmTablePagination from './table-pagination.vue'
-import type { QueryFormItemType } from './filter-form/types'
+import type { FilterFormItemType } from './filter-form/types'
 import type { Component, VNode } from 'vue'
 
 defineOptions({
@@ -78,7 +80,9 @@ type Props = {
   enablePagination?: boolean // 是否启用分页器
   tableProps: TableProps<any> // el-table props
   paginationProps?: PaginationProps // el-pagination props
-  filterFormProps?: FormProps // el-form props
+  filterFormProps?: FormProps & {
+    collapsed?: boolean // filter form 是否收起状态
+  } // el-form props
 }
 
 const {
@@ -95,7 +99,11 @@ const emit = defineEmits([
   ...Object.keys(ElPagination.emits ?? {}).map(
     (key: string) => `pagination-${key}`
   ),
-  ...[EVENT_NAMES.FILTER_RESET, EVENT_NAMES.FILTER_SEARCH]
+  ...[
+    EVENT_NAMES.FILTER_RESET,
+    EVENT_NAMES.FILTER_SEARCH,
+    EVENT_NAMES.CHANGE_COLLAPSED
+  ]
 ])
 
 const slots = useSlots()
@@ -111,7 +119,7 @@ const elTableProps = computed(() =>
   Object.assign({}, DEFAULT_TABLE_PROPS, tableProps)
 )
 // el-table 事件
-const elTableEvents: Record<string, (...args: any[]) => void> = Object.keys(
+const elTableEvents: Record<string, (...args: any[]) => void> = Object.values(
   ElTable.emits ?? {}
 ).reduce((ret: Record<string, any>, key: string) => {
   ret[key] = function (...args: any[]) {
@@ -128,7 +136,6 @@ const elPaginationEvents: Record<string, (...args: any[]) => void> =
   Object.keys(ElPagination.emits ?? {}).reduce(
     (ret: Record<string, any>, key: string) => {
       ret[key] = function (...args: any[]) {
-        console.log(111, key)
         emit(`pagination-${key}`, ...args)
       }
       return ret
@@ -152,7 +159,7 @@ const filterableColumns = computed(() =>
 )
 
 // 筛选表单对象列表
-const filterFormItems = ref<QueryFormItemType[]>([])
+const filterFormItems = ref<FilterFormItemType[]>([])
 
 /**
  * 当显示过滤器时，更新过滤表单项目。
@@ -166,9 +173,16 @@ watchEffect(() => {
 const {
   FilterResetEvent,
   FilterSearchEvent,
+  changeCollapsedEvent,
   handleFilterReset,
-  handleFilterSearch
+  handleFilterSearch,
+  handleChangeCollapsed
 } = useFilterEvents(emit)
+
+provide(
+  FILTER_FORM_PROPS,
+  computed(() => filterFormProps)
+)
 
 defineExpose({
   ...tableRef.value,
