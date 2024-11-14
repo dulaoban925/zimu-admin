@@ -28,6 +28,10 @@
 @include b(zm-table-content) {
   margin: 10px 0;
 
+  .el-card__body {
+    padding: 18px;
+  }
+
   @include e(operation-bar) {
     display: flex;
     align-items: center;
@@ -35,7 +39,7 @@
 
   @include e(split-operation-bar) {
     justify-content: space-between;
-    margin: 6px 0;
+    margin-bottom: 6px;
   }
 }
 

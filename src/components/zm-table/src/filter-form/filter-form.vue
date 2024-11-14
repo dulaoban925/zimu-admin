@@ -1,5 +1,5 @@
 <template>
-  <wrapper :card="card" :card-props="cardProps" :class="bem.b()">
+  <card-wrapper :card="card" :card-props="cardProps" :class="bem.b()">
     <el-form ref="filterForm" :model="innerModel" v-bind="attrs">
       <div ref="wrapperRef" :class="bem.e('container')">
         <slot>
@@ -23,19 +23,19 @@
         />
       </div>
     </el-form>
-  </wrapper>
+  </card-wrapper>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/hooks/use-bem'
 import { EVENT_NAMES } from '../constants'
 import { useFilterEvents } from '../hooks/use-filter-events'
+import { CardWrapper } from '../wrapper'
 import ZmFilterFormActions from './form-actions.vue'
 import { ZmFilterFormItem } from './form-item/form-item'
 import { useExpandable } from './hooks/use-expandable'
-import { Wrapper } from './wrapper'
 import type { FilterFormItemType } from './types'
-import type { ElForm, FormProps } from 'element-plus'
+import type { CardProps, ElForm, FormProps } from 'element-plus'
 
 defineOptions({
   name: 'ZmFilterForm',
@@ -44,7 +44,7 @@ defineOptions({
 
 interface Props {
   card?: boolean // 是否 card 模式
-  cardProps?: (typeof Wrapper)['cardProps'] // card 模式下的 props
+  cardProps?: CardProps // card 模式下的 props
   items: FilterFormItemType[] // 表单项
   collapsedRows?: number // 收起后展示的行数
   collapsed?: boolean // 是否收起状态

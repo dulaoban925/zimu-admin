@@ -4,8 +4,8 @@
 import type { CardProps } from 'element-plus'
 import type { PropType } from 'vue'
 
-export const Wrapper = defineComponent({
-  name: 'FilterFormWrapper',
+export const CardWrapper = defineComponent({
+  name: 'CardWrapper',
   props: {
     // 是否 card 模式
     card: {

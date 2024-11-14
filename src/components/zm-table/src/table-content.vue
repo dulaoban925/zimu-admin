@@ -2,7 +2,7 @@
   表格主题内容
 -->
 <template>
-  <div :class="bem.b()">
+  <card-wrapper :card="card" :card-props="cardProps" :class="bem.b()">
     <div
       :class="[
         bem.e('operation-bar'),
@@ -40,17 +40,26 @@
     >
       <slot name="pagination" />
     </zm-table-pagination> -->
-  </div>
+  </card-wrapper>
 </template>
 
 <script setup lang="ts">
 import { useBem } from '@/hooks'
 import { OPERATION_BAR_SLOTS } from './constants'
+import { CardWrapper } from './wrapper'
+import type { CardProps } from 'element-plus'
 
 defineOptions({
   name: 'ZmTableContent',
   inheritAttrs: false
 })
+
+type Props = {
+  card?: boolean
+  cardProps?: CardProps
+}
+
+const { card, cardProps } = defineProps<Props>()
 
 const attrs = useAttrs()
 const slots = useSlots()
