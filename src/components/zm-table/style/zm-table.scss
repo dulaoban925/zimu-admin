@@ -4,6 +4,10 @@
 }
 
 @include b(zm-filter-form) {
+  .el-form {
+    transition: height 0.3s ease;
+  }
+
   @include e(operations) {
     @include flex-center-end();
     grid-column: -2/-1;

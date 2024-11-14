@@ -1,13 +1,20 @@
 <template>
   <div :class="bem.b()">
-    <el-form ref="filterForm" :inner-model="innerModel" v-bind="attrs">
+    <el-form
+      ref="filterForm"
+      :model="innerModel"
+      v-bind="attrs"
+      :style="{ height: `${containerHeight}px` }"
+    >
       <div ref="wrapperRef" :class="bem.e('container')">
-        <zm-filter-form-item
-          v-for="item in computedItems"
-          :key="item.uid"
-          v-bind="item"
-          v-model="innerModel[item.tagProps!.modelKey]"
-        />
+        <slot>
+          <zm-filter-form-item
+            v-for="item in computedItems"
+            :key="item.uid"
+            v-bind="item"
+            v-model="innerModel[item.tagProps!.modelKey]"
+          />
+        </slot>
         <zm-filter-form-actions
           ref="actionsRef"
           :collapsed="innerCollapsed"
@@ -81,6 +88,17 @@ const computedItems = computed(() => {
 const attrs: FormProps = useAttrs() as FormProps
 const bem = useBem('zm-filter-form')
 
+const {
+  wrapperRef,
+  actionsRef,
+  containerHeight,
+  shownItemIndexes,
+  isCalculated
+} = useExpandable({
+  showCollapseBtn,
+  collapsedRows
+})
+
 // component size
 const size = computed(() => attrs.size ?? 'default')
 // form model
@@ -90,11 +108,9 @@ const innerCollapsed = ref(true)
 // 表单是否收起
 const formCollapsed = computed(() => innerCollapsed.value && isCalculated.value)
 
-const { wrapperRef, actionsRef, shownItemIndexes, isCalculated } =
-  useExpandable({
-    showCollapseBtn,
-    collapsedRows
-  })
+watch(containerHeight, val => {
+  console.log('🚀 ~ watch ~ val:', val)
+})
 
 const { handleFilterReset, handleFilterSearch } = useFilterEvents(emit)
 

@@ -95,7 +95,7 @@ const {
 } = defineProps<Props>()
 
 const emit = defineEmits([
-  ...Object.keys(ElTable.emits ?? {}),
+  ...Object.values(ElTable.emits ?? {}),
   ...Object.keys(ElPagination.emits ?? {}).map(
     (key: string) => `pagination-${key}`
   ),

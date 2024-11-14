@@ -2,23 +2,20 @@
  * 操作收起展开
  * @returns
  */
+import { useElementSize } from '@vueuse/core'
 
 type Options = {
   showCollapseBtn: boolean
   collapsedRows: number
 }
 export function useExpandable({ showCollapseBtn, collapsedRows = 1 }: Options) {
-  /**
-   * 操作栏占位大小
-   * 当操作栏独占一行时，= 24
-   * 当操 n-1个表单宽度 < 作栏宽度 < n个表单项款度，= 单个表单项宽度 * （n）
-   */
-  const actionsColSpan = ref(24)
   const actionsWidth = ref(0)
   const wrapperRef = useTemplateRef<HTMLElement>('wrapperRef')
   const actionsRef = useTemplateRef<{
     actionsRef: HTMLElement
   }>('actionsRef')
+  // container height
+  const { height: containerHeight } = useElementSize(wrapperRef)
   // 需要展示的行号和列数量映射，如第一行需要展示3列，则 shownRowColMapping.value = {1: 3}
   const shownRowColMapping = ref<Record<number, number>>({})
   // 是否已经计算过
@@ -38,6 +35,7 @@ export function useExpandable({ showCollapseBtn, collapsedRows = 1 }: Options) {
   async function calculate() {
     // 若不需要展开/收起按钮，则无需计算
     if (!showCollapseBtn) return
+    // 等待 wrapperRef 元素挂载
     await nextTick()
     // 若无容器组件，无需计算，因为表单元素定位是相对于容易元素的
     if (!wrapperRef.value) return
@@ -59,9 +57,6 @@ export function useExpandable({ showCollapseBtn, collapsedRows = 1 }: Options) {
       .split(' ')
     const containerRect = container?.getBoundingClientRect()
 
-    /**
-     *
-     */
     for (const item of formItems) {
       // item rect
       const itemRect = item.getBoundingClientRect()
@@ -94,9 +89,9 @@ export function useExpandable({ showCollapseBtn, collapsedRows = 1 }: Options) {
   })
 
   return {
-    actionsColSpan,
     wrapperRef,
     actionsRef,
+    containerHeight,
     shownItemIndexes,
     isCalculated
   }
