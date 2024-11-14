@@ -4,7 +4,9 @@
     <zm-table-filter
       v-if="enableFilter"
       ref="zm-filter-form"
+      :card="card"
       :form-items="filterFormItems"
+      :card-props="filterCardProps"
       v-bind="filterFormProps"
       @[FilterResetEvent]="handleFilterReset"
       @[FilterSearchEvent]="handleFilterSearch"
@@ -15,6 +17,8 @@
     <!-- 表体 -->
     <zm-table-content
       ref="zm-table-content"
+      :card="card"
+      :card-props="tableCardProps"
       v-bind="elTableProps"
       v-on="elTableEvents"
     >
@@ -51,6 +55,7 @@
 import {
   ElPagination,
   ElTable,
+  type CardProps,
   type FormProps,
   type PaginationProps,
   type TableProps
@@ -75,6 +80,7 @@ defineOptions({
 })
 
 type Props = {
+  card?: boolean // 是否展示卡片模式
   columnConfigurable?: boolean // todo: 表格列是否可配置
   enableFilter?: boolean // 是否需要筛选表单
   enablePagination?: boolean // 是否启用分页器
@@ -83,15 +89,20 @@ type Props = {
   filterFormProps?: FormProps & {
     collapsed?: boolean // filter form 是否收起状态
   } // el-form props
+  filterCardProps?: CardProps // 筛选部分 card 属性
+  tableCardProps?: CardProps // 标题部分 card 属性
 }
 
 const {
+  card = true,
   // columnConfigurable = true,
   enableFilter = true,
   enablePagination = true,
   tableProps = DEFAULT_TABLE_PROPS,
   paginationProps = DEFAULT_PAGINATION_PROPS,
-  filterFormProps = DEFAULT_FILTER_FORM_PROPS
+  filterFormProps = DEFAULT_FILTER_FORM_PROPS,
+  filterCardProps,
+  tableCardProps
 } = defineProps<Props>()
 
 const emit = defineEmits([

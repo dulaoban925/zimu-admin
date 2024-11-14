@@ -1,11 +1,6 @@
 <template>
-  <div :class="bem.b()">
-    <el-form
-      ref="filterForm"
-      :model="innerModel"
-      v-bind="attrs"
-      :style="{ height: `${containerHeight}px` }"
-    >
+  <wrapper :card="card" :card-props="cardProps" :class="bem.b()">
+    <el-form ref="filterForm" :model="innerModel" v-bind="attrs">
       <div ref="wrapperRef" :class="bem.e('container')">
         <slot>
           <zm-filter-form-item
@@ -28,7 +23,7 @@
         />
       </div>
     </el-form>
-  </div>
+  </wrapper>
 </template>
 
 <script setup lang="ts">
@@ -38,6 +33,7 @@ import { useFilterEvents } from '../hooks/use-filter-events'
 import ZmFilterFormActions from './form-actions.vue'
 import { ZmFilterFormItem } from './form-item/form-item'
 import { useExpandable } from './hooks/use-expandable'
+import { Wrapper } from './wrapper'
 import type { FilterFormItemType } from './types'
 import type { ElForm, FormProps } from 'element-plus'
 
@@ -47,6 +43,8 @@ defineOptions({
 })
 
 interface Props {
+  card?: boolean // 是否 card 模式
+  cardProps?: (typeof Wrapper)['cardProps'] // card 模式下的 props
   items: FilterFormItemType[] // 表单项
   collapsedRows?: number // 收起后展示的行数
   collapsed?: boolean // 是否收起状态
@@ -56,6 +54,8 @@ interface Props {
 }
 
 const {
+  card = true,
+  cardProps,
   items = [],
   collapsedRows = 1,
   collapsed = true,
@@ -88,16 +88,11 @@ const computedItems = computed(() => {
 const attrs: FormProps = useAttrs() as FormProps
 const bem = useBem('zm-filter-form')
 
-const {
-  wrapperRef,
-  actionsRef,
-  containerHeight,
-  shownItemIndexes,
-  isCalculated
-} = useExpandable({
-  showCollapseBtn,
-  collapsedRows
-})
+const { wrapperRef, actionsRef, shownItemIndexes, isCalculated } =
+  useExpandable({
+    showCollapseBtn,
+    collapsedRows
+  })
 
 // component size
 const size = computed(() => attrs.size ?? 'default')
@@ -107,10 +102,6 @@ const innerModel = ref<any>({})
 const innerCollapsed = ref(true)
 // 表单是否收起
 const formCollapsed = computed(() => innerCollapsed.value && isCalculated.value)
-
-watch(containerHeight, val => {
-  console.log('🚀 ~ watch ~ val:', val)
-})
 
 const { handleFilterReset, handleFilterSearch } = useFilterEvents(emit)
 

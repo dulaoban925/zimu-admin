@@ -2,8 +2,6 @@
  * 操作收起展开
  * @returns
  */
-import { useElementSize } from '@vueuse/core'
-
 type Options = {
   showCollapseBtn: boolean
   collapsedRows: number
@@ -15,7 +13,6 @@ export function useExpandable({ showCollapseBtn, collapsedRows = 1 }: Options) {
     actionsRef: HTMLElement
   }>('actionsRef')
   // container height
-  const { height: containerHeight } = useElementSize(wrapperRef)
   // 需要展示的行号和列数量映射，如第一行需要展示3列，则 shownRowColMapping.value = {1: 3}
   const shownRowColMapping = ref<Record<number, number>>({})
   // 是否已经计算过
@@ -91,7 +88,6 @@ export function useExpandable({ showCollapseBtn, collapsedRows = 1 }: Options) {
   return {
     wrapperRef,
     actionsRef,
-    containerHeight,
     shownItemIndexes,
     isCalculated
   }

@@ -4,8 +4,9 @@
 }
 
 @include b(zm-filter-form) {
-  .el-form {
-    transition: height 0.3s ease;
+  .el-card__body {
+    padding: 18px;
+    padding-bottom: 0;
   }
 
   @include e(operations) {

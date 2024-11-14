@@ -3,6 +3,7 @@
     <slot>
       <zm-filter-form
         v-bind="props"
+        :card-props="cardProps"
         :items="formItems"
         @[FilterResetEvent]="handleFilterReset"
         @[FilterSearchEvent]="handleFilterSearch"
@@ -17,6 +18,7 @@ import { EVENT_NAMES, FILTER_FORM_PROPS } from './constants'
 import ZmFilterForm from './filter-form/filter-form.vue'
 import { useFilterEvents } from './hooks/use-filter-events'
 import type { FilterFormItemType } from './filter-form/types'
+import type { CardProps } from 'element-plus'
 
 defineOptions({
   name: 'ZmTableFilter'
@@ -24,6 +26,7 @@ defineOptions({
 
 type Props = {
   formItems?: FilterFormItemType[]
+  cardProps?: CardProps
 }
 
 const { formItems = [] } = defineProps<Props>()

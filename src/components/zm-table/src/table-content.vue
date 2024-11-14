@@ -31,6 +31,15 @@
         </slot>
       </template>
     </el-table>
+    <!-- 分页器 -->
+    <!-- <zm-table-pagination
+      v-if="enablePagination"
+      ref="zm-pagination"
+      v-bind="elPaginationProps"
+      v-on="elPaginationEvents"
+    >
+      <slot name="pagination" />
+    </zm-table-pagination> -->
   </div>
 </template>
 
