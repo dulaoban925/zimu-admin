@@ -6,7 +6,6 @@
     <zm-table
       :table-props="tableProps"
       :pagination-props="paginationProps"
-      :filter-form-props="filterFormProps"
       @filter-search="handleSearch"
       @row-click="handleRowClick"
     >
@@ -123,19 +122,6 @@ const paginationProps = reactive({
   pageSize: 10
 })
 
-const filterFormProps = reactive({
-  collapsed: false,
-  model: {
-    username: '',
-    name: '',
-    genderText: '',
-    tel: '',
-    email: '',
-    address: '',
-    isAdmin: '',
-    status: ''
-  }
-})
 // 筛选对象
 const filterModel = ref<Record<string, string>>({})
 
