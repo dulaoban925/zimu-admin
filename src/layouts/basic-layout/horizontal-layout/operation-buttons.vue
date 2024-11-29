@@ -6,16 +6,7 @@
         @click="handleFullScreen"
       />
     </el-icon>
-    <el-icon>
-      <component
-        :is="THEME_ICON_MAP[themeStore.themeScheme]"
-        @click="
-          themeStore.setThemeScheme(
-            themeStore.darkMode ? THEME_SCHEMES.LIGHT : THEME_SCHEMES.DARK
-          )
-        "
-      />
-    </el-icon>
+    <zm-theme-toggler @toggled="handleThemeToggled" />
     <el-dropdown trigger="click" @command="handleUserDropdownCommand">
       <el-icon><avatar-line /></el-icon>
       <template #dropdown>
@@ -28,17 +19,11 @@
 </template>
 
 <script setup lang="ts">
-import { ExitFullscreen, FullScreen, Moon, Sunny, Sunrise } from '@zimu/icons'
+import { ExitFullscreen, FullScreen } from '@zimu/icons'
 import { logout } from '@/apis'
 import { THEME_SCHEMES } from '@/constants'
 import { useThemeStore } from '@/store'
 import { toggleFullScreen } from '@/utils'
-
-const THEME_ICON_MAP = {
-  dark: Moon,
-  light: Sunny,
-  auto: Sunrise
-}
 
 defineOptions({
   name: 'HeaderOperationButtons'
@@ -46,17 +31,21 @@ defineOptions({
 
 const themeStore = useThemeStore()
 
-// TODO:后续走配置，存 pinia
 const fullScreen = ref(false)
 
-function handleFullScreen() {
+const handleFullScreen = () => {
   fullScreen.value = toggleFullScreen()
+}
+
+// 切换主题
+const handleThemeToggled = isDark => {
+  themeStore.setThemeScheme(isDark ? THEME_SCHEMES.DARK : THEME_SCHEMES.LIGHT)
 }
 
 /**
  * 用户下拉菜单点击事件
  */
-function handleUserDropdownCommand(command: string) {
+const handleUserDropdownCommand = (command: string) => {
   switch (command) {
     case 'logout':
       logout()

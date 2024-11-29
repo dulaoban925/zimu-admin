@@ -38,9 +38,13 @@
     @include flex-center-space-between();
 
     &__operation {
-      .el-icon {
-        color: var(--el-text-color-primary);
-        font-size: var(--zm-toolbar-icon-size);
+      .header-operation-buttons {
+        @include flex-center-space-between();
+
+        .el-icon {
+          color: var(--el-text-color-primary);
+          font-size: var(--zm-toolbar-icon-size);
+        }
       }
     }
   }
