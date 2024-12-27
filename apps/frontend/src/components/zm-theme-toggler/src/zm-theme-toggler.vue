@@ -7,6 +7,7 @@
     :before-change="handleBeforeChange"
     :active-action-icon="DarkIcon"
     :inactive-action-icon="LightIcon"
+    @change="handleChange"
   />
 </template>
 
@@ -20,6 +21,7 @@ defineOptions({
 })
 
 const emit = defineEmits(['toggled'])
+const attrs = useAttrs()
 
 const darkMode = ref(isDark.value)
 
@@ -30,9 +32,8 @@ watch(
   }
 )
 
-const attrs = useAttrs()
-
 const switchRef = useTemplateRef('switchRef')
+
 const handleBeforeChange = () => {
   // 浏览器不支持 View Transitions 时的回退方案：
   if (!document.startViewTransition) {
@@ -52,10 +53,9 @@ const handleBeforeChange = () => {
       Math.max(y, innerHeight - y)
     )
 
-    const transition = document.startViewTransition(async () => {
+    const transition = document.startViewTransition(() => {
       resolve(true)
-      emit('toggled', isDark.value)
-      await nextTick()
+      // await nextTick()
     })
     transition.ready.then(() => {
       const clipPath = [
@@ -68,7 +68,7 @@ const handleBeforeChange = () => {
           clipPath
         },
         {
-          duration: 500,
+          duration: 400,
           easing: 'ease-in',
           // 指定要附加动画的伪元素
           pseudoElement: '::view-transition-new(root)'
@@ -76,6 +76,11 @@ const handleBeforeChange = () => {
       )
     })
   })
+}
+
+const handleChange = val => {
+  console.log('🚀 ~ handleChange ~ val:', val)
+  emit('toggled', val)
 }
 </script>
 

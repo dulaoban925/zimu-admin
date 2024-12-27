@@ -6,7 +6,7 @@
         @click="handleFullScreen"
       />
     </el-icon>
-    <zm-theme-toggler @toggled="handleThemeToggled" />
+    <zm-theme-toggler />
     <el-dropdown trigger="click" @command="handleUserDropdownCommand">
       <el-icon><avatar-line /></el-icon>
       <template #dropdown>
@@ -29,7 +29,7 @@ defineOptions({
   name: 'HeaderOperationButtons'
 })
 
-const themeStore = useThemeStore()
+// const themeStore = useThemeStore()
 
 const fullScreen = ref(false)
 
@@ -38,9 +38,9 @@ const handleFullScreen = () => {
 }
 
 // 切换主题
-const handleThemeToggled = isDark => {
-  themeStore.setThemeScheme(isDark ? THEME_SCHEMES.DARK : THEME_SCHEMES.LIGHT)
-}
+// const handleThemeToggled = isDark => {
+//   themeStore.setThemeScheme(isDark ? THEME_SCHEMES.DARK : THEME_SCHEMES.LIGHT)
+// }
 
 /**
  * 用户下拉菜单点击事件

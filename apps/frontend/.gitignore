@@ -22,3 +22,15 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.eslintcache
+
+vite.config.ts.timestamp-*.mjs
+
+# unplugin-auto-import/vite 插件自动生成的文件
+auto-imports.d.ts
+.eslintrc-auto-import.json
+
+# @zimu/eslint-config
+.eslint-config-inspector
+eslint.config.bundled_*.*

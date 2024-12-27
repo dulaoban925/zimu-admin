@@ -14,7 +14,7 @@
       "@components/*": ["./src/components/*"]
     },
     "resolveJsonModule": true,
-    "types": ["nprogress", "node", "element-plus/global.d.ts", "prettier", "./src/typings/*.d.ts"],
+    "types": ["nprogress", "node", "element-plus/global.d.ts", "prettier"],
     "allowImportingTsExtensions": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
@@ -26,10 +26,5 @@
     "skipLibCheck": true
   },
   "references": [{ "path": "./tsconfig.node.json" }],
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue"
-  ]
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"]
 }

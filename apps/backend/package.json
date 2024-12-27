@@ -1,12 +1,12 @@
 {
-  "name": "server",
+  "name": "@zimu-admin/backend",
   "version": "1.0.0",
   "packageManager": "pnpm@9.7.1",
-  "description": "",
+  "description": "ZimuAdmin 服务端",
   "keywords": [
     "zimu-admin",
     "ZimuAdmin",
-    "server"
+    "backend"
   ],
   "license": "ISC",
   "author": "SuperYing",
