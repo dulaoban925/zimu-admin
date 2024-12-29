@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start:frontend": "pnpm run -C apps/frontend start",
-    "start:server": "pnpm run -C apps/backend start",
+    "start:backend": "pnpm run -C apps/backend start",
     "build": "pnpm build:packages && pnpm build:frontend",
     "build:packages": "run-p build:icons build:utils",
     "build:icons": "pnpm run -C packages/zimu-icons build",
@@ -29,7 +29,7 @@
     "node": ">=16.0.0"
   },
   "lint-staged": {
-    "*.{js,jsx,vue,ts,tsx,json}": [
+    "**/*.{js,jsx,vue,ts,tsx,json}": [
       "eslint --cache --fix"
     ]
   }
