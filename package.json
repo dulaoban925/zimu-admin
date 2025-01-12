@@ -20,6 +20,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@zimu/eslint-config": "workspace:^",
     "eslint": "^9.8.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
